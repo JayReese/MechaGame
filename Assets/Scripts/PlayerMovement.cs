@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    public int PlayerID;
 
 	// Use this for initialization
 	void Start ()
@@ -16,9 +15,4 @@ public class Player : MonoBehaviour
     {
 	    
 	}
-
-    public void RetrieveCamera(string path)
-    {
-        
-    }
 }

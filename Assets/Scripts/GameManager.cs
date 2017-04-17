@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 	void Start ()
     {
         //NumberOfPlayers = NumberOfPlayers >= 3 && NumberOfPlayers > 1 ? 4 : 2;
-        NumberOfPlayers = 2;
+        NumberOfPlayers = 4;
         Rects = new CameraRects();
         CreatePlayer();
 	}
