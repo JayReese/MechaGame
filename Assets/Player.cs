@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraController : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    /// <summary>
-    /// 0.96, 0.636, -2.587
-    /// </summary>
+    public int PlayerID;
 
 	// Use this for initialization
 	void Start ()
@@ -18,4 +16,9 @@ public class CameraController : MonoBehaviour
     {
 	    
 	}
+
+    public void RetrieveCamera(string path)
+    {
+        
+    }
 }
