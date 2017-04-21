@@ -40,7 +40,10 @@ public class Weapon : MonoBehaviour
             CurrentMagazineSize--;
             RefreshNextFireTime();
         }
+<<<<<<< HEAD
             
+=======
+>>>>>>> fd33deeb7d80917a0661642517a8fa6413943f3c
     }
 
     private void RefreshNextFireTime()
@@ -54,6 +57,14 @@ public class Weapon : MonoBehaviour
             NextFireTime -= Time.deltaTime * FireRate;
     }
 
+<<<<<<< HEAD
+=======
+    private IEnumerator FireWeapon()
+    {
+        //yield return new 
+    }
+
+>>>>>>> fd33deeb7d80917a0661642517a8fa6413943f3c
     // Begins the reload coroutine. This is called after the user presses the reload button.
     public void Reload() { StartCoroutine(PerformReload()); }
 
