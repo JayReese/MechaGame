@@ -4,58 +4,77 @@ using System;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] int MaxMagazineSize, CurrentMagazineSize;
-    [SerializeField] bool IsReloading;
-    [SerializeField] float ReloadSpeed, FireRate, NextFireTime;
+    [SerializeField] int MaxMagazineSize, CurrentMagazineSize, BurstCount;
+    [SerializeField] bool IsReloading, IsFiring, TriggerPulled;
+    [SerializeField] float ReloadSpeed, FireRate, ShotInterval, NextFireTime;
 
 	// Use this for initialization
-	void Start ()
+	protected void Start ()
     {
-        MaxMagazineSize = 100;
-        CurrentMagazineSize = MaxMagazineSize;
-
-        ReloadSpeed = 1.0f;
-
-        FireRate = 1.5f;
-
-        NextFireTime = 0;
+        SetDefaults();
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	protected void Update ()
     {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.R))
             Reload();
 
-        if (Input.GetMouseButtonDown(0))
+        TriggerPulled = Input.GetMouseButton(0);
+#endif
+
+        if (TriggerPulled && NextFireTime <= 0 && CurrentMagazineSize > 0)
             PerformWeaponOperations();
 
-        DecrementNextFireTime();
+        if (!IsFiring) DecrementNextFireTime();
 	}
 
+    /// <summary>
+    /// Performs the necessary weapon operations.
+    /// </summary>
     public void PerformWeaponOperations()
     {
-        if (NextFireTime <= 0)
-        {
-            CurrentMagazineSize--;
-            RefreshNextFireTime();
-        }
+        StartCoroutine(Fire());
     }
 
-    private void RefreshNextFireTime()
+    private IEnumerator Fire()
+    {
+        // Ensures that the next fire counter isn't decremting before the shots are fired. 
+        // This way, you can't just shoot without the warmup in between. 
+        // We can take this out if it proves too slow for gameplay, but this is generally how a rifle should work.
+        IsFiring = true;
+        RefreshFiringMechanism();
+
+        // A flexible way of implementing burst shots. If the weapon doesn't burst, it'll only call itself once since BurstCount
+        // would always equal one.
+        for (int i = 0; i < BurstCount; i++)
+        {
+            yield return new WaitForSeconds(ShotInterval);
+            ReduceMagazine();
+        }
+
+        
+        // Finally, the Next Fire is polled once again, and the weapon will take its time to allow you to fire once more.
+        IsFiring = false;
+    }
+
+    private void ReduceMagazine()
+    {
+        CurrentMagazineSize--;
+    }
+    
+    // The function that refreshes the dependent firing variables.
+    private void RefreshFiringMechanism()
     {
         NextFireTime = 1;
     }
 
+    // The function that actually decrements the firing variable if it's above 0.
     private void DecrementNextFireTime()
     {
         if (NextFireTime > 0)
             NextFireTime -= Time.deltaTime * FireRate;
-    }
-
-    private IEnumerator FireWeapon()
-    {
-        //yield return new 
     }
 
     // Begins the reload coroutine. This is called after the user presses the reload button.
@@ -71,5 +90,28 @@ public class Weapon : MonoBehaviour
         CurrentMagazineSize = MaxMagazineSize;
 
         IsReloading = false;
+    }
+
+    // Sets the defaults of the weapon.
+    void SetDefaults()
+    {
+        MaxMagazineSize = 100;
+        CurrentMagazineSize = MaxMagazineSize;
+
+        ReloadSpeed = 1.0f;
+
+        FireRate = 1.5f;
+
+        // Future-proofing this. 
+        // What this is saying is, for some reason if anyone ever sets BurstCount to zero for a mecha (meaning they interpret 
+        // it to mean "don't have burst fire"), then it'll set BurstCount to 1 since the loop would need to run exactly
+        // one time. 
+        // In addition, a burst count of one will automatically set the shot interval to zero. That can be taken out if a 
+        // mechanic demands for it.
+        BurstCount = BurstCount == 0 ? 1 : BurstCount;
+        ShotInterval = BurstCount == 1 ? 0 : ShotInterval;
+
+        NextFireTime = 0;
+        IsFiring = false;
     }
 }
