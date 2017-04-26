@@ -18,7 +18,7 @@ public class Weapon : MonoBehaviour
 	protected void Update ()
     {
 #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && !IsReloading)
             Reload();
 
         TriggerPulled = Input.GetMouseButton(0);
@@ -54,7 +54,6 @@ public class Weapon : MonoBehaviour
             ReduceMagazine();
         }
 
-        
         // Finally, the Next Fire is polled once again, and the weapon will take its time to allow you to fire once more.
         IsFiring = false;
     }

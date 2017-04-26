@@ -16,6 +16,6 @@ public class CameraMovement : MonoBehaviour
 	void Update ()
     {
         //transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
-        transform.LookAt(new Vector3(TetheredPlayer.position.x, TetheredPlayer.position.y + 1.5f, TetheredPlayer.position.z));
+        //transform.LookAt(new Vector3(TetheredPlayer.position.x, TetheredPlayer.position.y + 1.5f, TetheredPlayer.position.z));
     }
 }
