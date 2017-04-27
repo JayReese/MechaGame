@@ -8,20 +8,23 @@ public class Projectile : MonoBehaviour
     GameObject TestPlayerCam;
 
     [SerializeField]
+    public Transform Origin;
+
+    [SerializeField]
     float FlightSpeed, Lifetime;
 
 	// Use this for initialization
 	void Start ()
     {
-        FlightSpeed = 20f;
+        FlightSpeed = 60f;
         Lifetime = 10f;
 
         //transform.eulerAngles = new Vector3(Screen.width / 2, Screen.height / 2 - 150);
         //transform.LookAt(TestPlayerCam.GetComponent<Camera>().ViewportToWorldPoint(new Vector3(100f, 0.5f, 100)));
 
-        transform.LookAt(TestPlayerCam.GetComponent<Camera>().ViewportToWorldPoint(GameObject.FindGameObjectWithTag("Reticle").transform.position));
+        TestPlayerCam = GameObject.FindGameObjectWithTag("PlayerCamera");
 
-        GetComponent<Rigidbody>().AddForce(Vector3.forward * FlightSpeed, ForceMode.Impulse);
+        GetComponent<Rigidbody>().AddForce(transform.forward * FlightSpeed, ForceMode.Impulse);
 	}
 	
 	// Update is called once per frame
@@ -35,5 +38,10 @@ public class Projectile : MonoBehaviour
         Lifetime -= Time.fixedDeltaTime * 1.5f;
 
         if (Lifetime <= 0) Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform != Origin) Destroy(gameObject);
     }
 }

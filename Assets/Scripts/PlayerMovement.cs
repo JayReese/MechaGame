@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
     public Transform PlayerCamera;
     Player PlayerReference;
     PlayerInput PInput;
+    Weapon PlayerWeapon;
     [SerializeField] Rigidbody PlayerRigidbody;
 
     [SerializeField]
@@ -19,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
         PlayerReference = GetComponent<Player>();
         PInput = GetComponent<PlayerInput>();
+        PlayerWeapon = transform.FindChild("Weapon").GetComponent<Weapon>();
 
         MovementSpeed = 10f;
         TurnSensitivity = 5f;
@@ -53,19 +56,39 @@ public class PlayerMovement : MonoBehaviour
         // part for where you've turned - it takes whatever you do quite literally. We can simulate acceleration through
         // simply using GetAxis, as well.
 
-        transform.position += transform.forward * MovementSpeed * Time.fixedDeltaTime * PInput.VerticalMovement;
-        transform.position += transform.right * MovementSpeed * Time.fixedDeltaTime * PInput.HorizontalMovement;
+        transform.position += transform.forward * (MovementSpeed * GetModifiedSpeed()) * Time.fixedDeltaTime * PInput.VerticalMovement;
+        transform.position += transform.right * (MovementSpeed * GetModifiedSpeed()) * Time.fixedDeltaTime * PInput.HorizontalMovement;
 
         // Stops forward velocity immediately when the directional buttons aren't being pressed.
         //if ((PInput.VerticalMovement == 0 && PInput.HorizontalMovement == 0))
         //    PlayerRigidbody.velocity = new Vector3(0, PlayerRigidbody.velocity.y, 0); 
+
+        LockOn();
+    }
+
+    private float GetModifiedSpeed()
+    {
+        float mod = 1;
+
+        if (PlayerWeapon.IsFiring)
+            mod *= 0.3f;
+
+        return mod;
     }
 
     private void Hop()
     {
-        PlayerReference.States = (PlayerState)Input.GetAxisRaw("Jump");
+        PlayerReference.PState = (PlayerState)Input.GetAxisRaw("Jump");
 
         if (PlayerReference.CurrentFuel > 0 && Input.GetKey(PInput.Boosting))
-            PlayerRigidbody.AddForce(transform.up * 15f, ForceMode.Acceleration);
+            PlayerRigidbody.AddForce(transform.up * 20f, ForceMode.Acceleration);
+    }
+
+    private void LockOn()
+    {
+        PlayerReference.LOState = PInput.LockedOn ? LockOnState.LOCKED : LockOnState.FREE;
+
+        if(PInput.LockedOn)
+            transform.LookAt(GameObject.FindGameObjectWithTag("Enemy").transform.position);
     }
 }

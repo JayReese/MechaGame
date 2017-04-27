@@ -5,8 +5,12 @@ using System;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] int MaxMagazineSize, CurrentMagazineSize, BurstCount;
-    [SerializeField] bool IsReloading, IsFiring, TriggerPulled;
+    [SerializeField] bool IsReloading, TriggerPulled;
+    public bool IsFiring { get; private set; }
     [SerializeField] float ReloadSpeed, FireRate, ShotInterval, NextFireTime;
+    [SerializeField] GameObject WeaponProjectile;
+    [SerializeField] Transform WeaponEmitter;
+    [SerializeField] GameObject LockOnTarget;
 
 	// Use this for initialization
 	protected void Start ()
@@ -51,11 +55,20 @@ public class Weapon : MonoBehaviour
         for (int i = 0; i < BurstCount; i++)
         {
             yield return new WaitForSeconds(ShotInterval);
+            FireProjectile();
             ReduceMagazine();
         }
 
         // Finally, the Next Fire is polled once again, and the weapon will take its time to allow you to fire once more.
         IsFiring = false;
+    }
+
+    private void FireProjectile()
+    {
+        GameObject g = WeaponProjectile;
+        g.GetComponent<Projectile>().Origin = transform.parent;
+
+        Instantiate(g, WeaponEmitter.position, WeaponEmitter.transform.rotation);
     }
 
     private void ReduceMagazine()
@@ -94,7 +107,7 @@ public class Weapon : MonoBehaviour
     // Sets the defaults of the weapon.
     void SetDefaults()
     {
-        MaxMagazineSize = 100;
+        MaxMagazineSize = 10;
         CurrentMagazineSize = MaxMagazineSize;
 
         ReloadSpeed = 1.0f;
@@ -112,5 +125,10 @@ public class Weapon : MonoBehaviour
 
         NextFireTime = 0;
         IsFiring = false;
+
+        WeaponProjectile = Resources.Load("Prefabs/Test Projectile") as GameObject;
+        WeaponEmitter = transform.FindChild("Emitter");
+
+        LockOnTarget = null;
     }
 }
