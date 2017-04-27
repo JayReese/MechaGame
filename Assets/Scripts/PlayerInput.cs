@@ -3,14 +3,13 @@ using System.Collections;
 
 public class PlayerInput : MonoBehaviour
 {
-    [SerializeField]
     public float HorizontalMouseMovement { get; private set; }
     public float VerticalMouseMovement { get; private set; }
     public float HorizontalMovement { get; private set; }
     public float VerticalMovement { get; private set; }
 
 #if UNITY_EDITOR
-    public KeyCode IsJumping { get; private set; }
+    public KeyCode Boosting { get; private set; }
 #endif
 
     // Use this for initialization
@@ -23,17 +22,16 @@ public class PlayerInput : MonoBehaviour
 	void Update ()
     {
         BindMovement();
-
     }
 
     void BindMovement()
     {
 #if UNITY_EDITOR 
-        HorizontalMovement = Input.GetAxisRaw("Horizontal");
-        VerticalMovement = Input.GetAxisRaw("Vertical");
+        HorizontalMovement = Input.GetAxis("Horizontal");
+        VerticalMovement = Input.GetAxis("Vertical");
 
-        HorizontalMouseMovement = Input.GetAxisRaw("Mouse X");
-        //IsJumping = 
+        HorizontalMouseMovement = Input.GetAxis("Mouse X");
+        Boosting = KeyCode.Space;
 #endif
     }
 }

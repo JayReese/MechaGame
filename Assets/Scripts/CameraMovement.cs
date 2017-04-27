@@ -2,6 +2,9 @@
 using System.Collections;
 using System;
 
+/// <summary>
+/// I'll be honest, I'm not even sure what this class does right now.
+/// </summary>
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField] Transform TetheredPlayer;

@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        MaxFuel = 50;
+        MaxFuel = 3;
         CurrentFuel = MaxFuel;
         States = PlayerState.ON_GROUND;
 	}
@@ -31,5 +31,7 @@ public class Player : MonoBehaviour
     {
         if (multiplier == 1 && CurrentFuel > 0 || multiplier == -1 && CurrentFuel < MaxFuel)
             CurrentFuel -= Time.deltaTime * 1.5f * multiplier;
+
+        CurrentFuel = States == PlayerState.ON_GROUND && CurrentFuel > MaxFuel ? MaxFuel : CurrentFuel;
     }
 }
