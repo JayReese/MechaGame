@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
         //if ((PInput.VerticalMovement == 0 && PInput.HorizontalMovement == 0))
         //    PlayerRigidbody.velocity = new Vector3(0, PlayerRigidbody.velocity.y, 0); 
 
-        LockOn();
+        ChangeLockOnState();
     }
 
     private float GetModifiedSpeed()
@@ -78,17 +78,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Hop()
     {
-        PlayerReference.PState = (PlayerState)Input.GetAxisRaw("Jump");
+        PlayerReference.CurrentPlayerState = (PlayerState)Input.GetAxisRaw("Jump");
 
         if (PlayerReference.CurrentFuel > 0 && Input.GetKey(PInput.Boosting))
             PlayerRigidbody.AddForce(transform.up * 20f, ForceMode.Acceleration);
     }
 
-    private void LockOn()
+    private void ChangeLockOnState()
     {
-        PlayerReference.LOState = PInput.LockedOn ? LockOnState.LOCKED : LockOnState.FREE;
-
-        if(PInput.LockedOn)
-            transform.LookAt(GameObject.FindGameObjectWithTag("Enemy").transform.position);
+        PlayerReference.CurrentLockOnState = PInput.LockedOn ? LockOnState.LOCKED : LockOnState.FREE;
     }
 }

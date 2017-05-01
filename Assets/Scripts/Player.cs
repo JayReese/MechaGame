@@ -5,15 +5,15 @@ public class Player : MonoBehaviour
 {
     public int PlayerID;
     public float MaxFuel, CurrentFuel;
-    public PlayerState PState;
-    public LockOnState LOState;
+    public PlayerState CurrentPlayerState;
+    public LockOnState CurrentLockOnState;
 
 	// Use this for initialization
 	void Start ()
     {
         MaxFuel = 3;
         CurrentFuel = MaxFuel;
-        PState = PlayerState.ON_GROUND;
+        CurrentPlayerState = PlayerState.ON_GROUND;
 	}
 	
 	// Update is called once per frame
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
 
     void CheckForStateBasedFunctions()
     {
-        if (PState == PlayerState.BOOSTING) ChangeFuel(1);
+        if (CurrentPlayerState == PlayerState.BOOSTING) ChangeFuel(1);
         else ChangeFuel(-1);
     }
 
@@ -33,6 +33,6 @@ public class Player : MonoBehaviour
         if (multiplier == 1 && CurrentFuel > 0 || multiplier == -1 && CurrentFuel < MaxFuel)
             CurrentFuel -= Time.deltaTime * 1.5f * multiplier;
 
-        CurrentFuel = PState == PlayerState.ON_GROUND && CurrentFuel > MaxFuel ? MaxFuel : CurrentFuel;
+        CurrentFuel = CurrentPlayerState == PlayerState.ON_GROUND && CurrentFuel > MaxFuel ? MaxFuel : CurrentFuel;
     }
 }
