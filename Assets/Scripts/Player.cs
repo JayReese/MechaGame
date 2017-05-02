@@ -11,16 +11,21 @@ public class Player : LiveEntity
     public PlayerState CurrentPlayerState;
     public LockOnState CurrentLockOnState;
 
-    public List<Transform> TargetsInRange;
+    //public List<Transform> TargetsInRange;
+    public Dictionary<Transform, float> TargetsInRange;
     Radar PlayerRadar;
 
-	// Use this for initialization
-	void Start ()
+    [SerializeField]
+    CommandExecution ExecuteCommand;
+
+    // Use this for initialization
+    void Start ()
     {
         MaxFuel = 3;
         CurrentFuel = MaxFuel;
         CurrentPlayerState = PlayerState.ON_GROUND;
         PlayerRadar = transform.FindChild("Radar").GetComponent<Radar>();
+        TargetsInRange = new Dictionary<Transform, float>();
 	}
 	
 	// Update is called once per frame
@@ -53,19 +58,24 @@ public class Player : LiveEntity
     {
         bool enemyCurrentlyListed = false;
 
-        if(TargetsInRange.Count > 0)
-        {
-            for (byte i = 0; i < TargetsInRange.Count; i++)
-            {
-                if (TargetsInRange[i] == target)
-                {
-                    enemyCurrentlyListed = true;
-                    break;
-                }
-            }
-        }
+        #region Currently commented out - code for populating targets in range.
+        //if(TargetsInRange.Count > 0)
+        //{
+        //    for (byte i = 0; i < TargetsInRange.Count; i++)
+        //    {
+        //        if (TargetsInRange[i] == target)
+        //        {
+        //            enemyCurrentlyListed = true;
+        //            break;
+        //        }
+        //    }
+        //}
+        #endregion
 
-        if (!enemyCurrentlyListed) TargetsInRange.Add(target);
+        if (TargetsInRange.ContainsKey(target))
+            enemyCurrentlyListed = true;
+        
+        if (!enemyCurrentlyListed) TargetsInRange.Add(target, Vector3.Distance(target.position, gameObject.transform.position));
     }
 
     void OnTriggerExit(Collider c)

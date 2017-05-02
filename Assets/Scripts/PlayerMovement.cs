@@ -30,7 +30,11 @@ public class PlayerMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        
+        if(ExecuteCommand != null)
+        {
+            ExecuteCommand();
+            ExecuteCommand = null;
+        }
     }
 
     void FixedUpdate()
@@ -88,9 +92,12 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerReference.CurrentLockOnState = PInput.LockedOn ? LockOnState.LOCKED : LockOnState.FREE;
 
-        //if(PlayerReference.CurrentLockOnState == LockOnState.LOCKED)
-        //    PlayerReference.ActivateRadar();
+        if (PlayerReference.CurrentLockOnState == LockOnState.LOCKED)
+        {
+            PlayerReference.ActivateRadar();
 
-        Debug.Log(PlayerReference.CurrentLockOnState);
+        }
+
+        //Debug.Log(PlayerReference.CurrentLockOnState);
     }
 }

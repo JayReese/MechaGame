@@ -20,13 +20,19 @@ public class Radar : MonoBehaviour
 
     public void Activate()
     {
-        StartCoroutine(ActivateRadarSystem());
+        //StartCoroutine(ActivateRadarSystem());
+        ActivateRadar();
     }
 
-    IEnumerator ActivateRadarSystem()
+    //IEnumerator ActivateRadarSystem()
+    //{
+        
+    //}
+
+    void ActivateRadar()
     {
         GetComponent<Collider>().enabled = true;
-        yield return new WaitForSeconds(0.2f);
+
         GetComponent<Collider>().enabled = false;
     }
 }

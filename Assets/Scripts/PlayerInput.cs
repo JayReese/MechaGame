@@ -8,7 +8,7 @@ public class PlayerInput : MonoBehaviour
     public float HorizontalMovement { get; private set; }   
     public float VerticalMovement { get; private set; }
 
-    public bool LockedOn { get; private set; }
+    public bool LockedOn;
 
 #if UNITY_EDITOR
     public KeyCode Boosting { get; private set; }
@@ -36,8 +36,8 @@ public class PlayerInput : MonoBehaviour
 
         //LockedOn = Input.GetMouseButtonDown(1);
 
-        if (Input.GetMouseButtonDown(1))
-            LockedOn = !LockedOn;
+        if (Input.GetMouseButton(1))
+            LockedOn = true;
 
         Boosting = KeyCode.Space;
 #endif
