@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class Player : LiveEntity
 {
@@ -10,7 +11,8 @@ public class Player : LiveEntity
     public PlayerState CurrentPlayerState;
     public LockOnState CurrentLockOnState;
 
-    public  
+    public List<Transform> TargetsInRange;
+    Radar PlayerRadar;
 
 	// Use this for initialization
 	void Start ()
@@ -18,6 +20,7 @@ public class Player : LiveEntity
         MaxFuel = 3;
         CurrentFuel = MaxFuel;
         CurrentPlayerState = PlayerState.ON_GROUND;
+        PlayerRadar = transform.FindChild("Radar").GetComponent<Radar>();
 	}
 	
 	// Update is called once per frame
@@ -43,12 +46,36 @@ public class Player : LiveEntity
     void OnTriggerEnter(Collider c)
     {
         if (c.tag == "Enemy" || c.tag == "Controllable")
-            Debug.Log(c.name);
+            AddTargetToRadarList(c.transform);
+    }
+
+    void AddTargetToRadarList(Transform target)
+    {
+        bool enemyCurrentlyListed = false;
+
+        if(TargetsInRange.Count > 0)
+        {
+            for (byte i = 0; i < TargetsInRange.Count; i++)
+            {
+                if (TargetsInRange[i] == target)
+                {
+                    enemyCurrentlyListed = true;
+                    break;
+                }
+            }
+        }
+
+        if (!enemyCurrentlyListed) TargetsInRange.Add(target);
     }
 
     void OnTriggerExit(Collider c)
     {
         if (c.tag == "Enemy" || c.tag == "Controllable")
             Debug.Log("Left the thing.");
+    }
+
+    public void ActivateRadar()
+    {
+        PlayerRadar.Activate();
     }
 }

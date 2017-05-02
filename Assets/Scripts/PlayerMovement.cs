@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     Player PlayerReference;
     PlayerInput PInput;
     Weapon PlayerWeapon;
-    [SerializeField] Rigidbody PlayerRigidbody;
+    Rigidbody PlayerRigidbody;
 
     [SerializeField]
     float MovementSpeed, TurnSensitivity;
@@ -87,5 +87,10 @@ public class PlayerMovement : MonoBehaviour
     private void ChangeLockOnState()
     {
         PlayerReference.CurrentLockOnState = PInput.LockedOn ? LockOnState.LOCKED : LockOnState.FREE;
+
+        //if(PlayerReference.CurrentLockOnState == LockOnState.LOCKED)
+        //    PlayerReference.ActivateRadar();
+
+        Debug.Log(PlayerReference.CurrentLockOnState);
     }
 }

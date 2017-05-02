@@ -9,7 +9,7 @@ public class TrainingBot : LiveEntity
 	void Start ()
     {
         lifetime = 4;
-        direction = 1;
+        direction = Random.Range(1, 100) > 50 ? 1 : -1;
 	}
 	
 	// Update is called once per frame
