@@ -16,7 +16,7 @@ public class CameraMovement : MonoBehaviour
     // Use this for initialization
 	void Start ()
     {
-        TetheredPlayer = GameObject.FindGameObjectWithTag("Player").transform;
+        TetheredPlayer = GameObject.FindGameObjectWithTag("Controllable").transform;
         //CameraPlanes = GeometryUtility.CalculateFrustumPlanes(GetComponent<Camera>());
         //EnemyCollider = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Collider>();
     }
@@ -36,7 +36,7 @@ public class CameraMovement : MonoBehaviour
         //else
         //    Debug.Log("There's nothing over there.");
 
-        Debug.Log(Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.FindGameObjectWithTag("Enemy").transform.position).y, 1));
+        //Debug.Log(Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.FindGameObjectWithTag("Enemy").transform.position).y, 1));
     }
 
     public void LockOn()

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TrainingBot : MonoBehaviour
+public class TrainingBot : LiveEntity
 {
     [SerializeField] float direction, lifetime;
 
