@@ -18,21 +18,21 @@ public class Radar : MonoBehaviour
 	    
 	}
 
-    public void Activate()
+    public void ActivateRadar()
     {
-        //StartCoroutine(ActivateRadarSystem());
-        ActivateRadar();
+        Debug.Log("Radar activated");
+        StartCoroutine(ToggleRadar());
     }
 
-    //IEnumerator ActivateRadarSystem()
-    //{
-        
-    //}
-
-    void ActivateRadar()
+    IEnumerator ToggleRadar()
     {
         GetComponent<Collider>().enabled = true;
-
+        yield return new WaitForSeconds(0.1f);
         GetComponent<Collider>().enabled = false;
+    }
+
+    void OnTriggerEnter(Collider c)
+    {
+        Debug.Log(c.name);
     }
 }

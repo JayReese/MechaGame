@@ -25,16 +25,15 @@ public class PlayerMovement : MonoBehaviour
 
         MovementSpeed = 10f;
         TurnSensitivity = 5f;
+
+        PlayerReference.ExecuteCommand += PrintFive;
+        PlayerReference.ExecuteCommand += PrintSix;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if(ExecuteCommand != null)
-        {
-            ExecuteCommand();
-            ExecuteCommand = null;
-        }
+        
     }
 
     void FixedUpdate()
@@ -47,6 +46,16 @@ public class PlayerMovement : MonoBehaviour
     void RotateCharacter()
     {
         transform.Rotate(new Vector3(transform.eulerAngles.x, PInput.HorizontalMouseMovement * (Time.deltaTime * TurnSensitivity) * 20f, transform.eulerAngles.z));
+    }
+
+    void PrintFive()
+    {
+        Debug.Log(5);
+    }
+
+    void PrintSix()
+    {
+        Debug.Log(6);
     }
 
     private void Move()
@@ -67,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
         //if ((PInput.VerticalMovement == 0 && PInput.HorizontalMovement == 0))
         //    PlayerRigidbody.velocity = new Vector3(0, PlayerRigidbody.velocity.y, 0); 
 
-        ChangeLockOnState();
+        CheckLockOnState();
     }
 
     private float GetModifiedSpeed()
@@ -88,16 +97,29 @@ public class PlayerMovement : MonoBehaviour
             PlayerRigidbody.AddForce(transform.up * 20f, ForceMode.Acceleration);
     }
 
-    private void ChangeLockOnState()
+    private void CheckLockOnState()
     {
-        PlayerReference.CurrentLockOnState = PInput.LockedOn ? LockOnState.LOCKED : LockOnState.FREE;
-
-        if (PlayerReference.CurrentLockOnState == LockOnState.LOCKED)
+        if (Input.GetKeyDown(KeyCode.Q) && PlayerReference.CurrentLockOnState == LockOnState.FREE)
         {
-            PlayerReference.ActivateRadar();
-
+            EngageLockOn();
+            
         }
+        else if(Input.GetKeyDown(KeyCode.Q) && PlayerReference.CurrentLockOnState == LockOnState.LOCKED)
+        {
+            BreakLockOn();
+        }
+    }
 
-        //Debug.Log(PlayerReference.CurrentLockOnState);
+    private void EngageLockOn()
+    {
+        Debug.Log("Activating lock on");
+        PlayerReference.CurrentLockOnState = LockOnState.LOCKED;
+        PlayerReference.ActivateRadar();
+    }
+
+    private void BreakLockOn()
+    {
+        Debug.Log("Break lock on");
+        PlayerReference.CurrentLockOnState = LockOnState.FREE;
     }
 }

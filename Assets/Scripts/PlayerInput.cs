@@ -8,7 +8,9 @@ public class PlayerInput : MonoBehaviour
     public float HorizontalMovement { get; private set; }   
     public float VerticalMovement { get; private set; }
 
-    public bool LockedOn;
+    [SerializeField] float SecondaryFire;
+
+    public float LockOn;
 
 #if UNITY_EDITOR
     public KeyCode Boosting { get; private set; }
@@ -34,10 +36,7 @@ public class PlayerInput : MonoBehaviour
 
         HorizontalMouseMovement = Input.GetAxis("Mouse X");
 
-        //LockedOn = Input.GetMouseButtonDown(1);
-
-        if (Input.GetMouseButton(1))
-            LockedOn = true;
+        LockOn = Input.GetAxisRaw("Lock On");
 
         Boosting = KeyCode.Space;
 #endif

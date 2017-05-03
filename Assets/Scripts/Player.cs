@@ -7,6 +7,7 @@ public class Player : LiveEntity
 {
     public int PlayerID;
     public float MaxFuel, CurrentFuel;
+    public bool IsExtraThicc;
 
     public PlayerState CurrentPlayerState;
     public LockOnState CurrentLockOnState;
@@ -16,7 +17,7 @@ public class Player : LiveEntity
     Radar PlayerRadar;
 
     [SerializeField]
-    CommandExecution ExecuteCommand;
+    public CommandExecution ExecuteCommand;
 
     // Use this for initialization
     void Start ()
@@ -32,7 +33,17 @@ public class Player : LiveEntity
 	void Update ()
     {
         CheckForStateBasedFunctions();
+        PerformCommandExecution();
 	}
+
+    private void PerformCommandExecution()
+    {
+        if (ExecuteCommand != null)
+        {
+            ExecuteCommand();
+            ExecuteCommand = null;
+        }
+    }
 
     void CheckForStateBasedFunctions()
     {
@@ -78,14 +89,8 @@ public class Player : LiveEntity
         if (!enemyCurrentlyListed) TargetsInRange.Add(target, Vector3.Distance(target.position, gameObject.transform.position));
     }
 
-    void OnTriggerExit(Collider c)
-    {
-        if (c.tag == "Enemy" || c.tag == "Controllable")
-            Debug.Log("Left the thing.");
-    }
-
     public void ActivateRadar()
     {
-        PlayerRadar.Activate();
+        PlayerRadar.GetComponent<Radar>().ActivateRadar();
     }
 }
