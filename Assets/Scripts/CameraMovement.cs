@@ -28,19 +28,23 @@ public class CameraMovement : MonoBehaviour
         //transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
         //transform.LookAt(new Vector3(TetheredPlayer.position.x, TetheredPlayer.position.y + 1.5f, TetheredPlayer.position.z));
 
-        LockOn();
-
         /// DEFUNCT, TRIED COMPLICATED SHIT AND DECIDED AGAINST IT. 
         //if (GeometryUtility.TestPlanesAABB(CameraPlanes, EnemyCollider.bounds))
         //    Debug.Log("There's something over there.");
         //else
         //    Debug.Log("There's nothing over there.");
 
-        //Debug.Log(Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.FindGameObjectWithTag("Enemy").transform.position).y, 1));
+        //if (CurrentLockOnTarget)
+        //    Debug.Log(GetComponent<Camera>().WorldToViewportPoint(CurrentLockOnTarget.position).x);
+            //Debug.Log(Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.Find(CurrentLockOnTarget.name).transform.position), 1));
+
     }
 
-    public void LockOn()
+    public void CameraLockOn(Transform targetToLockOn)
     {
-        
+        Debug.Log(targetToLockOn);
+        //transform.Rotate(new Vector3(targetToLockOn.rotation.x, targetToLockOn.rotation.y, transform.localEulerAngles.z));
+        //CurrentLockOnTarget = GameObject.Find(targetToLockOn.name).transform;
+        CurrentLockOnTarget = targetToLockOn;
     }
 }

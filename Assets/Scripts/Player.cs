@@ -12,8 +12,8 @@ public class Player : LiveEntity
     public PlayerState CurrentPlayerState;
     public LockOnState CurrentLockOnState;
 
-    //public List<Transform> TargetsInRange;
-    public Dictionary<Transform, float> TargetsInRange;
+    //public Dictionary<Transform, float> TargetsInRange;
+    public List<Transform> TargetsInRange;
     Radar PlayerRadar;
 
     [SerializeField]
@@ -26,7 +26,8 @@ public class Player : LiveEntity
         CurrentFuel = MaxFuel;
         CurrentPlayerState = PlayerState.ON_GROUND;
         PlayerRadar = transform.FindChild("Radar").GetComponent<Radar>();
-        TargetsInRange = new Dictionary<Transform, float>();
+        //TargetsInRange = new Dictionary<Transform, float>();
+        //TargetsInRange = new List<Transform>();
 	}
 	
 	// Update is called once per frame
@@ -69,28 +70,33 @@ public class Player : LiveEntity
     {
         bool enemyCurrentlyListed = false;
 
-        #region Currently commented out - code for populating targets in range.
-        //if(TargetsInRange.Count > 0)
-        //{
-        //    for (byte i = 0; i < TargetsInRange.Count; i++)
-        //    {
-        //        if (TargetsInRange[i] == target)
-        //        {
-        //            enemyCurrentlyListed = true;
-        //            break;
-        //        }
-        //    }
-        //}
-        #endregion
+        if (TargetsInRange.Count > 0)
+        {
+            for (byte i = 0; i < TargetsInRange.Count; i++)
+            {
+                if (TargetsInRange[i] == target)
+                {
+                    enemyCurrentlyListed = true;
+                    break;
+                }
+            }
+        }
 
-        if (TargetsInRange.ContainsKey(target))
-            enemyCurrentlyListed = true;
-        
-        if (!enemyCurrentlyListed) TargetsInRange.Add(target, Vector3.Distance(target.position, gameObject.transform.position));
+        if (!enemyCurrentlyListed) TargetsInRange.Add(target);
+
+        Debug.Log(TargetsInRange.Count);
+
+        #region Currently commented out - Dictionary method for populating the radar list.
+        //if (TargetsInRange.ContainsKey(target))
+        //    enemyCurrentlyListed = true;
+
+        //if (!enemyCurrentlyListed) TargetsInRange.Add(target, Vector3.Distance(target.position, gameObject.transform.position));
+        #endregion
     }
 
-    public void ActivateRadar()
+    public void ActivateRadar(ref Transform lockOnTarget)
     {
-        PlayerRadar.GetComponent<Radar>().ActivateRadar();
+        PlayerRadar.GetComponent<Radar>().Activate(TargetsInRange, ref lockOnTarget);
+        transform.FindChild("Camera").GetComponent<CameraMovement>().CameraLockOn(lockOnTarget);
     }
 }

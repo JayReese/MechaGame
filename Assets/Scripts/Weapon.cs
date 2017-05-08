@@ -10,7 +10,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] float ReloadSpeed, FireRate, ShotInterval, NextFireTime;
     [SerializeField] GameObject WeaponProjectile;
     [SerializeField] Transform WeaponEmitter;
-    [SerializeField] GameObject LockOnTarget;
+    public Transform LockOnTarget;
 
 	// Use this for initialization
 	protected void Start ()

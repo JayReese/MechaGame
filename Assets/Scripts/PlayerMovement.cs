@@ -11,7 +11,8 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody PlayerRigidbody;
 
     [SerializeField]
-    float MovementSpeed, TurnSensitivity;
+    float MovementSpeed, TurnSensitivity,
+          LockOnStateSwitchCounter;
 
     // Use this for initialization
     void Start ()
@@ -26,20 +27,21 @@ public class PlayerMovement : MonoBehaviour
         MovementSpeed = 10f;
         TurnSensitivity = 5f;
 
-        PlayerReference.ExecuteCommand += PrintFive;
-        PlayerReference.ExecuteCommand += PrintSix;
+        LockOnStateSwitchCounter = 1;
+
+        PInput.LockOnToggled = false;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        
+        Move();
     }
 
     void FixedUpdate()
     {
         RotateCharacter();
-        Move();
+        
         Hop();
     }
 
@@ -60,9 +62,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        /// Gravity-based programming. If you want it, it's right here.
+        #region Commented out - gravity-based programming. If you want it, it's right here.
         //PlayerRigidbody.AddRelativeForce(PlayerCamera.transform.forward * 10f * VerticalMovement, ForceMode.Acceleration);
         //PlayerRigidbody.AddRelativeForce(Vector3.right * 10f * HorizontalMovement, ForceMode.Acceleration);
+        #endregion
 
         // The reason trans pos is used to update the position rather than use Rigidbody addforce is because of rotational errors.
         // Transform.position takes in explicit rotation values, so there isn't any kind of implicit guessing on Unity's
@@ -72,9 +75,11 @@ public class PlayerMovement : MonoBehaviour
         transform.position += transform.forward * (MovementSpeed * GetModifiedSpeed()) * Time.fixedDeltaTime * PInput.VerticalMovement;
         transform.position += transform.right * (MovementSpeed * GetModifiedSpeed()) * Time.fixedDeltaTime * PInput.HorizontalMovement;
 
+        #region Commented out - velocity-based movement.
         // Stops forward velocity immediately when the directional buttons aren't being pressed.
         //if ((PInput.VerticalMovement == 0 && PInput.HorizontalMovement == 0))
         //    PlayerRigidbody.velocity = new Vector3(0, PlayerRigidbody.velocity.y, 0); 
+        #endregion
 
         CheckLockOnState();
     }
@@ -99,22 +104,52 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckLockOnState()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && PlayerReference.CurrentLockOnState == LockOnState.FREE)
+
+        #region Commented out - a switch statement for checking lock on.
+        //if(Input.GetKeyDown(KeyCode.Q) && LockOnStateSwitchCounter <= 0)
+        //{
+        //    switch(PlayerReference.CurrentLockOnState)
+        //    {
+        //        case LockOnState.FREE:
+        //            PlayerReference.ExecuteCommand += EngageLockOn;
+        //            break;
+        //        case LockOnState.LOCKED:
+        //             BreakLockOn();
+        //            break;
+        //    }
+        //}
+        #endregion
+
+#if UNITY_EDITOR
+        if (Input.GetMouseButtonDown(1))
         {
-            EngageLockOn();
-            
+            PInput.LockOnToggled = !PInput.LockOnToggled;
+
+            if (PInput.LockOnToggled) PlayerReference.ExecuteCommand = EngageLockOn;
+            else PlayerReference.ExecuteCommand = BreakLockOn;
         }
-        else if(Input.GetKeyDown(KeyCode.Q) && PlayerReference.CurrentLockOnState == LockOnState.LOCKED)
-        {
-            BreakLockOn();
-        }
+#endif
+
+        #region Commented out - if statements to determine if you can switch lock on states.
+        //if (Input.GetKeyDown(KeyCode.Q) && PlayerReference.CurrentLockOnState == LockOnState.FREE)
+        //{
+        //    PlayerReference.CurrentLockOnState = LockOnState.LOCKED;
+        //    EngageLockOn();
+        //}
+
+        //if (Input.GetKeyDown(KeyCode.Q) && PlayerReference.CurrentLockOnState == LockOnState.LOCKED)
+        //{
+        //    BreakLockOn();
+        //}
+        #endregion
+
     }
 
     private void EngageLockOn()
     {
         Debug.Log("Activating lock on");
         PlayerReference.CurrentLockOnState = LockOnState.LOCKED;
-        PlayerReference.ActivateRadar();
+        PlayerReference.ActivateRadar(ref PlayerWeapon.LockOnTarget);
     }
 
     private void BreakLockOn()
