@@ -7,6 +7,7 @@ public class Player : LiveEntity
 {
     public int PlayerID;
     public float MaxFuel, CurrentFuel;
+    // Checks periodically for sufficient thiccness.
     public bool IsExtraThicc;
 
     public PlayerState CurrentPlayerState;
@@ -83,8 +84,6 @@ public class Player : LiveEntity
         }
 
         if (!enemyCurrentlyListed) TargetsInRange.Add(target);
-
-        Debug.Log(TargetsInRange.Count);
 
         #region Currently commented out - Dictionary method for populating the radar list.
         //if (TargetsInRange.ContainsKey(target))

@@ -11,8 +11,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody PlayerRigidbody;
 
     [SerializeField]
-    float MovementSpeed, TurnSensitivity,
-          LockOnStateSwitchCounter;
+    float MovementSpeed, TurnSensitivity;
 
     // Use this for initialization
     void Start ()
@@ -26,8 +25,6 @@ public class PlayerMovement : MonoBehaviour
 
         MovementSpeed = 10f;
         TurnSensitivity = 5f;
-
-        LockOnStateSwitchCounter = 1;
 
         PInput.LockOnToggled = false;
 	}
@@ -47,7 +44,8 @@ public class PlayerMovement : MonoBehaviour
 
     void RotateCharacter()
     {
-        transform.Rotate(new Vector3(transform.eulerAngles.x, PInput.HorizontalMouseMovement * (Time.deltaTime * TurnSensitivity) * 20f, transform.eulerAngles.z));
+        if(PlayerReference.CurrentLockOnState != LockOnState.LOCKED)
+            transform.Rotate(new Vector3(transform.eulerAngles.x, PInput.HorizontalMouseMovement * (Time.deltaTime * TurnSensitivity) * 20f, transform.eulerAngles.z));
     }
 
     void PrintFive()
@@ -82,6 +80,22 @@ public class PlayerMovement : MonoBehaviour
         #endregion
 
         CheckLockOnState();
+        OrientToEnemy();
+    }
+
+    private void OrientToEnemy()
+    {
+        if (PlayerCamera.gameObject.GetComponent<CameraMovement>().LockOnTargetOutOfView)
+        {
+            double frustumPositionX = Math.Round(PlayerCamera.GetComponent<Camera>().WorldToViewportPoint(PlayerCamera.GetComponent<CameraMovement>().CurrentLockOnTarget.transform.position).x, 1);
+
+            int angleChange = frustumPositionX > 0 ? 1 : -1;
+
+            Debug.Log("Angle change is " + angleChange);
+
+            transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, (Vector3.Angle(PlayerCamera.GetComponent<CameraMovement>().CurrentLockOnTarget.position, transform.position) * 1.8f) * angleChange, 0), Time.deltaTime * 1.5f);
+        }
+            
     }
 
     private float GetModifiedSpeed()
