@@ -41,10 +41,8 @@ public class CameraMovement : MonoBehaviour
         if (CurrentLockOnTarget)
         {
             CheckIfTargetIsOutOfRange();
-            Debug.Log(Math.Round(GetComponent<Camera>().WorldToViewportPoint(CurrentLockOnTarget.position).x, 1));
+            //Debug.Log(Math.Round(GetComponent<Camera>().WorldToViewportPoint(CurrentLockOnTarget.position).x, 1));
         }
-                
-
 
         //transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, 90, 0), Time.deltaTime * 5f);
     }

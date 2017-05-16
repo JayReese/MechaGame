@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     float MovementSpeed, TurnSensitivity;
+    bool IsReorienting;
 
     // Use this for initialization
     void Start ()
@@ -32,13 +33,13 @@ public class PlayerMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        Move();
+        
     }
 
     void FixedUpdate()
     {
         RotateCharacter();
-        
+        Move();
         Boost();
     }
 
@@ -78,20 +79,34 @@ public class PlayerMovement : MonoBehaviour
         // This will only occur when the CurrentLockOnTarget is out of the view of the camera
         if (PlayerCamera.gameObject.GetComponent<CameraMovement>().LockOnTargetOutOfView)
         {
-            // Gets the x-axis position of the enemy in relation to the player's camera.
-            double frustumPositionX = Math.Round(PlayerCamera.GetComponent<Camera>().WorldToViewportPoint(PlayerCamera.GetComponent<CameraMovement>().CurrentLockOnTarget.transform.position).x, 1);
-
-            // Then, it evaluates the change in the angle. If frustumPositionX is more than zero, it's a positive change in angle,
-            // and if it's less than zero, it's a negative change in angle.
-            int angleChange = frustumPositionX > 0 ? 1 : -1;
-
-            Debug.Log("Angle change is " + angleChange); // a simple debug to check the angle change.
-
+            #region Commented out - isn't smooth don't worry about it.
             // Here's where the (horizontal) magic happens - the player's camera is reoriented to look toward the enemy based on where they
             // are in relation to the camera.
             // NOTE: This still need a LOT of fixing - it needs to have more finesse and flexibility, and allow for more relativity like
             // changes in velocity.
-            transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, (Vector3.Angle(PlayerCamera.GetComponent<CameraMovement>().CurrentLockOnTarget.position, transform.position) * 1.8f) * angleChange, 0), Time.deltaTime * 1.5f);
+
+            //transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, (Vector3.Angle(PlayerCamera.GetComponent<CameraMovement>().CurrentLockOnTarget.position, transform.position) * 1.8f) * angleChange, 0), Time.deltaTime * 5f);
+            //// Gets the x-axis position of the enemy in relation to the player's camera.
+            //double frustumPositionX = Math.Round(PlayerCamera.GetComponent<Camera>().WorldToViewportPoint(PlayerCamera.GetComponent<CameraMovement>().CurrentLockOnTarget.transform.position).x, 1);
+
+            //// Then, it evaluates the change in the angle. If frustumPositionX is more than zero, it's a positive change in angle,
+            //// and if it's less than zero, it's a negative change in angle.
+            //int angleChange = frustumPositionX > 0 ? 1 : -1;
+
+            //Debug.Log("Angle change is " + angleChange); // a simple debug to check the angle change.
+
+            //if (frustumPositionX > 0)
+            //    Debug.Log("Enemy moved to right: " + frustumPositionX);
+            //else
+            //    Debug.Log("Enemy moved to left: " + frustumPositionX);
+            #endregion
+
+            transform.LookAt( new Vector3(PlayerCamera.GetComponent<CameraMovement>().CurrentLockOnTarget.transform.position.x, 0));
+            //var lookPos = PlayerCamera.GetComponent<CameraMovement>().CurrentLockOnTarget.transform.position - transform.position;
+            //lookPos.y = 0;
+            //var rotation = Quaternion.LookRotation(lookPos * 3f);
+            //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 4.0f);
+            //transform.eulerAngles = new Vector3(0, PlayerCamera.GetComponent<CameraMovement>().CurrentLockOnTarget.transform.position.x, 0);
         }
             
     }
