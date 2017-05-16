@@ -7,13 +7,14 @@ public class Player : LiveEntity
 {
     public int PlayerID;
     public float MaxFuel, CurrentFuel;
-    // Checks periodically for sufficient thiccness.
+
+    // Checks periodically for sufficient thiccness. 
+    // Shut up Lex, it's staying and I don't care what you say. Fight me.
     public bool IsExtraThicc;
 
     public PlayerState CurrentPlayerState;
     public LockOnState CurrentLockOnState;
 
-    //public Dictionary<Transform, float> TargetsInRange;
     public List<Transform> TargetsInRange;
     Radar PlayerRadar;
 
@@ -27,6 +28,9 @@ public class Player : LiveEntity
         CurrentFuel = MaxFuel;
         CurrentPlayerState = PlayerState.ON_GROUND;
         PlayerRadar = transform.FindChild("Radar").GetComponent<Radar>();
+
+        PlayerRadar.BeginDefaults(TargetsInRange);
+
         //TargetsInRange = new Dictionary<Transform, float>();
         //TargetsInRange = new List<Transform>();
 	}

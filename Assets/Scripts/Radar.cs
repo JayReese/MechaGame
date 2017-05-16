@@ -7,12 +7,12 @@ using System;
 public class Radar : MonoBehaviour
 {
     List<Transform> Enemies;
+    bool _initialRadarPolled;
 
 	// Use this for initialization
 	void Start ()
     {
-        // Starts the radar from the very beginning. Something of a band-aid, but it works reusably.
-	    StartCoroutine(ToggleRadarCollider());
+        _initialRadarPolled = false;
 	}
 	
 	// Update is called once per frame
@@ -52,6 +52,7 @@ public class Radar : MonoBehaviour
 
     Transform ReturnCorrectTargetByDistance(List<Transform> enemies)
     {
+        // Orders the enemy list from closest to farthest in terms of distance.
         // Magnitude is actually cheaper, so we might use that for optimization at a later point.
         enemies = enemies.OrderBy(
             x => Vector3.Distance(transform.position, x.transform.position)
@@ -59,5 +60,27 @@ public class Radar : MonoBehaviour
 
         // Returns the first Transform in the enemy list, which is the closest one.
         return enemies[0];
+    }
+
+    public void BeginDefaults(List<Transform> initialEnemyList)
+    {
+        if (!_initialRadarPolled)
+        {
+            // Starts the radar from the very beginning. Something of a band-aid, but it works reusably.
+            StartCoroutine(ToggleRadarCollider());
+
+            // Clears out the enemy list.
+            ClearEnemyList(initialEnemyList);
+
+            _initialRadarPolled = true;
+        }
+        else
+            Debug.Log("Radar already polled, stop trying this.");
+    }
+
+    public void ClearEnemyList(List<Transform> enemyList)
+    {
+        enemyList.Clear();
+        Debug.Log("Enemy list cleared. " + enemyList.Count + " enemies in list.");
     }
 }

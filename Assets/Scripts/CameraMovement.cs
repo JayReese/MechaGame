@@ -79,7 +79,7 @@ public class CameraMovement : MonoBehaviour
     /// <returns>Bool</returns>
     private bool TargetOutOfFrustumView()
     {
-        if (Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.Find(CurrentLockOnTarget.name).transform.position).x, 1) >= 1.0f || Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.Find(CurrentLockOnTarget.name).transform.position).x, 1) <= -0.1f)
+        if (Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.Find(CurrentLockOnTarget.name).transform.position).x, 1) >= 1.0f || Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.Find(CurrentLockOnTarget.name).transform.position).x, 1) <= 0)
             return true;
 
         return false;

@@ -39,23 +39,13 @@ public class PlayerMovement : MonoBehaviour
     {
         RotateCharacter();
         
-        Hop();
+        Boost();
     }
 
     void RotateCharacter()
     {
         if(PlayerReference.CurrentLockOnState != LockOnState.LOCKED)
             transform.Rotate(new Vector3(transform.eulerAngles.x, PInput.HorizontalMouseMovement * (Time.deltaTime * TurnSensitivity) * 20f, transform.eulerAngles.z));
-    }
-
-    void PrintFive()
-    {
-        Debug.Log(5);
-    }
-
-    void PrintSix()
-    {
-        Debug.Log(6);
     }
 
     private void Move()
@@ -85,19 +75,29 @@ public class PlayerMovement : MonoBehaviour
 
     private void OrientToEnemy()
     {
+        // This will only occur when the CurrentLockOnTarget is out of the view of the camera
         if (PlayerCamera.gameObject.GetComponent<CameraMovement>().LockOnTargetOutOfView)
         {
+            // Gets the x-axis position of the enemy in relation to the player's camera.
             double frustumPositionX = Math.Round(PlayerCamera.GetComponent<Camera>().WorldToViewportPoint(PlayerCamera.GetComponent<CameraMovement>().CurrentLockOnTarget.transform.position).x, 1);
 
+            // Then, it evaluates the change in the angle. If frustumPositionX is more than zero, it's a positive change in angle,
+            // and if it's less than zero, it's a negative change in angle.
             int angleChange = frustumPositionX > 0 ? 1 : -1;
 
-            Debug.Log("Angle change is " + angleChange);
+            Debug.Log("Angle change is " + angleChange); // a simple debug to check the angle change.
 
+            // Here's where the (horizontal) magic happens - the player's camera is reoriented to look toward the enemy based on where they
+            // are in relation to the camera.
+            // NOTE: This still need a LOT of fixing - it needs to have more finesse and flexibility, and allow for more relativity like
+            // changes in velocity.
             transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, (Vector3.Angle(PlayerCamera.GetComponent<CameraMovement>().CurrentLockOnTarget.position, transform.position) * 1.8f) * angleChange, 0), Time.deltaTime * 1.5f);
         }
             
     }
 
+    // Not too sure if this actually works - I wanted to make it so that your speed was slower after you fired, but I'm not too sure we
+    // need this anymore. CANDIDATE FOR DELETION.
     private float GetModifiedSpeed()
     {
         float mod = 1;
@@ -108,11 +108,18 @@ public class PlayerMovement : MonoBehaviour
         return mod;
     }
 
-    private void Hop()
+    /// <summary>
+    /// Initiates flight.
+    /// </summary>
+    private void Boost()
     {
+        // This takes in if you're pressing the Jump button. It does a nifty thing of taking in the raw axis (either 1 or 0) and casts a
+        // PlayerState into it. This changes the current PlayerState since you're either ON_GROUND or BOOSTING, with ON_GROUND being at
+        // element 0.
         PlayerReference.CurrentPlayerState = (PlayerState)Input.GetAxisRaw("Jump");
 
-        if (PlayerReference.CurrentFuel > 0 && Input.GetKey(PInput.Boosting))
+        // This checks if you still have fuel and you're continuing to press the button.
+        if (PlayerReference.CurrentFuel > 0 && PlayerReference.CurrentPlayerState == PlayerState.BOOSTING)
             PlayerRigidbody.AddForce(transform.up * 20f, ForceMode.Acceleration);
     }
 
@@ -159,6 +166,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    // Engages the lock on feature.
     private void EngageLockOn()
     {
         Debug.Log("Activating lock on");
@@ -166,6 +174,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerReference.ActivateRadar(ref PlayerWeapon.LockOnTarget);
     }
 
+    // Engages the lock on feature.
     private void BreakLockOn()
     {
         Debug.Log("Break lock on");
