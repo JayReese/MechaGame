@@ -122,13 +122,16 @@ public class PlayerMovement : MonoBehaviour
             #endregion
 
             transform.LookAt( new Vector3(PlayerCamera.GetComponent<CameraMovement>().CurrentLockOnTarget.transform.position.x, 0));
+
+            #region Commented out - look pos.
             //var lookPos = PlayerCamera.GetComponent<CameraMovement>().CurrentLockOnTarget.transform.position - transform.position;
             //lookPos.y = 0;
             //var rotation = Quaternion.LookRotation(lookPos * 3f);
             //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 4.0f);
             //transform.eulerAngles = new Vector3(0, PlayerCamera.GetComponent<CameraMovement>().CurrentLockOnTarget.transform.position.x, 0);
+            #endregion
         }
-            
+
     }
 
     // Not too sure if this actually works - I wanted to make it so that your speed was slower after you fired, but I'm not too sure we
@@ -160,27 +163,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckLockOnState()
     {
-
-        #region Commented out - a switch statement for checking lock on.
-        //if(Input.GetKeyDown(KeyCode.Q) && LockOnStateSwitchCounter <= 0)
-        //{
-        //    switch(PlayerReference.CurrentLockOnState)
-        //    {
-        //        case LockOnState.FREE:
-        //            PlayerReference.ExecuteCommand += EngageLockOn;
-        //            break;
-        //        case LockOnState.LOCKED:
-        //             BreakLockOn();
-        //            break;
-        //    }
-        //}
-        #endregion
-
 #if UNITY_EDITOR
         if (Input.GetMouseButtonDown(1))
         {
-            //PInput.LockOnToggled = !PInput.LockOnToggled;
-
             if (PlayerReference.CurrentLockOnState == LockOnState.FREE) PlayerReference.ExecuteCommand = EngageLockOn;
             else PlayerReference.ExecuteCommand = BreakLockOn;
         }
@@ -199,6 +184,7 @@ public class PlayerMovement : MonoBehaviour
     private void BreakLockOn()
     {
         Debug.Log("Break lock on");
+        PlayerReference.DeactivateLockOn();
         PlayerReference.CurrentLockOnState = LockOnState.FREE;
     }
 }

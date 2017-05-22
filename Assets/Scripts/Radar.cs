@@ -6,8 +6,13 @@ using System;
 
 public class Radar : MonoBehaviour
 {
-    List<Transform> Enemies;
     bool _initialRadarPolled;
+
+    void Awake()
+    {
+        // Starts the radar from the very beginning. Something of a band-aid, but it works reusably.
+        StartCoroutine(ToggleRadarCollider());
+    }
 
 	// Use this for initialization
 	void Start ()
@@ -23,7 +28,7 @@ public class Radar : MonoBehaviour
 
     public void Activate(List<Transform> enemies, ref Transform lockOnTarget)
     {
-        Debug.Log("Radar activated");
+        //Debug.Log("Radar activated");
         
         StartCoroutine(ToggleRadarCollider());
         GetLockOnTarget(enemies, ref lockOnTarget);
@@ -66,9 +71,6 @@ public class Radar : MonoBehaviour
     {
         if (!_initialRadarPolled)
         {
-            // Starts the radar from the very beginning. Something of a band-aid, but it works reusably.
-            StartCoroutine(ToggleRadarCollider());
-
             // Clears out the enemy list.
             ClearEnemyList(initialEnemyList);
 

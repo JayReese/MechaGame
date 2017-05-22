@@ -66,7 +66,8 @@ public class Weapon : MonoBehaviour
     private void FireProjectile()
     {
         GameObject g = WeaponProjectile;
-        g.GetComponent<Projectile>().Origin = transform.parent;
+        //g.GetComponent<Projectile>().Origin = transform.parent;
+        g.GetComponent<Projectile>().LockOnTarget = transform.parent.GetComponentInChildren<CameraMovement>().CurrentLockOnTarget;
 
         Instantiate(g, WeaponEmitter.position, WeaponEmitter.transform.rotation);
     }
@@ -127,8 +128,6 @@ public class Weapon : MonoBehaviour
         IsFiring = false;
 
         WeaponProjectile = Resources.Load("Prefabs/Test Projectile") as GameObject;
-        WeaponEmitter = transform.FindChild("Emitter");
-
-        LockOnTarget = null;
+        WeaponEmitter = transform.FindChild("Weapon Emitter");
     }
 }

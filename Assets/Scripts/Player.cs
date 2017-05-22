@@ -11,6 +11,7 @@ public class Player : LiveEntity
     // Checks periodically for sufficient thiccness. 
     // Shut up Lex, it's staying and I don't care what you say. Fight me.
     public bool IsExtraThicc;
+    [SerializeField] bool _playerPreGameRadarHasFinished;
 
     public PlayerState CurrentPlayerState;
     public LockOnState CurrentLockOnState;
@@ -31,13 +32,18 @@ public class Player : LiveEntity
 
         PlayerRadar.BeginDefaults(TargetsInRange);
 
-        //TargetsInRange = new Dictionary<Transform, float>();
-        //TargetsInRange = new List<Transform>();
+        _playerPreGameRadarHasFinished = false;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
+        if (!_playerPreGameRadarHasFinished)
+        {
+            TargetsInRange.Clear();
+            _playerPreGameRadarHasFinished = true;
+        }
+
         CheckForStateBasedFunctions();
         PerformCommandExecution();
 	}
@@ -62,6 +68,7 @@ public class Player : LiveEntity
         if (multiplier == 1 && CurrentFuel > 0 || multiplier == -1 && CurrentFuel < MaxFuel)
             CurrentFuel -= Time.deltaTime * 1.5f * multiplier;
 
+        
         CurrentFuel = CurrentPlayerState == PlayerState.ON_GROUND && CurrentFuel > MaxFuel ? MaxFuel : CurrentFuel;
     }
 
@@ -101,5 +108,11 @@ public class Player : LiveEntity
     {
         PlayerRadar.GetComponent<Radar>().Activate(TargetsInRange, ref lockOnTarget);
         transform.FindChild("Camera").GetComponent<CameraMovement>().CameraLockOn(lockOnTarget);
+    }
+
+    public void DeactivateLockOn()
+    {
+        GetComponentInChildren<CameraMovement>().RemoveLockOnTarget();
+        PlayerRadar.GetComponent<Radar>().ClearEnemyList(TargetsInRange);
     }
 }

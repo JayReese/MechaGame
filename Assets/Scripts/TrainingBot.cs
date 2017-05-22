@@ -25,4 +25,9 @@ public class TrainingBot : LiveEntity
 
         transform.position += (transform.right * direction) * 10f * Time.deltaTime;
 	}
+
+    void OnTriggerEnter(Collider c)
+    {
+        Debug.Log(c.tag);
+    }
 }

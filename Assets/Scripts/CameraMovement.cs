@@ -7,20 +7,18 @@ using System;
 /// </summary>
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField] Transform TetheredPlayer;
-    public Transform CurrentLockOnTarget { get; private set; }
-    //private bool _cameraLock;
+    public Transform CurrentLockOnTarget;
+
     public bool LockOnTargetOutOfView;
 
     // Use this for initialization
     void Start ()
     {
-        //TetheredPlayer = GameObject.FindGameObjectWithTag("Controllable").transform;
-        //ursulaDewitt = true;
+
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update ()
     {
         #region Defunct commented out code.
         /// DEFUCT, DONT WORRY ABOUT THIS.
@@ -49,8 +47,7 @@ public class CameraMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        //if(CurrentLockOnTarget)
-        //    CheckIfTargetIsOutOfRange();
+        
     }
 
     public void CameraLockOn(Transform targetToLockOn)
@@ -81,5 +78,10 @@ public class CameraMovement : MonoBehaviour
             return true;
 
         return false;
+    }
+
+    public void RemoveLockOnTarget()
+    {
+        CurrentLockOnTarget = null;
     }
 }
