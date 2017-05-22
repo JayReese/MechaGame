@@ -15,7 +15,7 @@ public class CameraMovement : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        TetheredPlayer = GameObject.FindGameObjectWithTag("Controllable").transform;
+        //TetheredPlayer = GameObject.FindGameObjectWithTag("Controllable").transform;
         //ursulaDewitt = true;
     }
 	

@@ -4,15 +4,15 @@ using System;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Transform PlayerCamera;
+    public Transform PlayerCamera { get; private set; }
     Player PlayerReference;
     PlayerInput PInput;
     Weapon PlayerWeapon;
     Rigidbody PlayerRigidbody;
 
     [SerializeField]
-    float MovementSpeed, TurnSensitivity;
-    bool IsReorienting;
+    float MovementSpeed, TurnSensitivity, DodgeThresholdCounter;
+    [SerializeField] bool CanDodge;
 
     // Use this for initialization
     void Start ()
@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
         TurnSensitivity = 5f;
 
         PInput.LockOnToggled = false;
+        DodgeThresholdCounter = 1;
 	}
 	
 	// Update is called once per frame
@@ -42,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         Move();
         Boost();
     }
+
 
     void RotateCharacter()
     {
@@ -61,8 +63,13 @@ public class PlayerMovement : MonoBehaviour
         // part for where you've turned - it takes whatever you do quite literally. We can simulate acceleration through
         // simply using GetAxis, as well.
 
-        transform.position += transform.forward * (MovementSpeed * GetModifiedSpeed()) * Time.fixedDeltaTime * PInput.VerticalMovement;
-        transform.position += transform.right * (MovementSpeed * GetModifiedSpeed()) * Time.fixedDeltaTime * PInput.HorizontalMovement;
+        
+
+        transform.position += transform.forward * MovementSpeed * Time.fixedDeltaTime * PInput.VerticalMovement;
+        transform.position += transform.right * MovementSpeed * Time.fixedDeltaTime * PInput.HorizontalMovement;
+
+        
+
 
         #region Commented out - velocity-based movement.
         // Stops forward velocity immediately when the directional buttons aren't being pressed.
@@ -72,6 +79,19 @@ public class PlayerMovement : MonoBehaviour
 
         CheckLockOnState();
         OrientToEnemy();
+    }
+
+    void CorrectDodgeState()
+    {
+        // Checks if the player has pushed the directional controls at least once, which means that they were able to dodge.
+        if (!CanDodge && (PInput.VerticalMovement != 0 || PInput.HorizontalMovement != 0)) CanDodge = true;
+
+        // 
+        if (CanDodge) DodgeThresholdCounter -= Time.fixedDeltaTime * 0.5f;
+        else DodgeThresholdCounter = 1;
+
+        // If the dodge threshold has run out, then the player is incapable of dodging 
+        if (DodgeThresholdCounter <= 0) CanDodge = false;
     }
 
     private void OrientToEnemy()
@@ -135,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
 
         // This checks if you still have fuel and you're continuing to press the button.
         if (PlayerReference.CurrentFuel > 0 && PlayerReference.CurrentPlayerState == PlayerState.BOOSTING)
-            PlayerRigidbody.AddForce(transform.up * 20f, ForceMode.Acceleration);
+            PlayerRigidbody.AddForce(transform.up * (MovementSpeed * 2), ForceMode.Acceleration);
     }
 
     private void CheckLockOnState()
@@ -159,26 +179,12 @@ public class PlayerMovement : MonoBehaviour
 #if UNITY_EDITOR
         if (Input.GetMouseButtonDown(1))
         {
-            PInput.LockOnToggled = !PInput.LockOnToggled;
+            //PInput.LockOnToggled = !PInput.LockOnToggled;
 
-            if (PInput.LockOnToggled) PlayerReference.ExecuteCommand = EngageLockOn;
+            if (PlayerReference.CurrentLockOnState == LockOnState.FREE) PlayerReference.ExecuteCommand = EngageLockOn;
             else PlayerReference.ExecuteCommand = BreakLockOn;
         }
 #endif
-
-        #region Commented out - if statements to determine if you can switch lock on states.
-        //if (Input.GetKeyDown(KeyCode.Q) && PlayerReference.CurrentLockOnState == LockOnState.FREE)
-        //{
-        //    PlayerReference.CurrentLockOnState = LockOnState.LOCKED;
-        //    EngageLockOn();
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.Q) && PlayerReference.CurrentLockOnState == LockOnState.LOCKED)
-        //{
-        //    BreakLockOn();
-        //}
-        #endregion
-
     }
 
     // Engages the lock on feature.
