@@ -32,17 +32,9 @@ public class CameraMovement : MonoBehaviour
         //    Debug.Log("There's nothing over there.");
         #endregion
 
-        //if (CurrentLockOnTarget)
-        //    //    Debug.Log(GetComponent<Camera>().WorldToViewportPoint(CurrentLockOnTarget.position).x);
-        //    Debug.Log(string.Format("{0}: {1}", (int)Vector3.Angle(transform.position, CurrentLockOnTarget.position), Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.Find(CurrentLockOnTarget.name).transform.position).x, 1)));
-
+      
         if (CurrentLockOnTarget)
-        {
             CheckIfTargetIsOutOfRange();
-            //Debug.Log(Math.Round(GetComponent<Camera>().WorldToViewportPoint(CurrentLockOnTarget.position).x, 1));
-        }
-
-        //transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, 90, 0), Time.deltaTime * 5f);
     }
 
     void FixedUpdate()
@@ -62,10 +54,7 @@ public class CameraMovement : MonoBehaviour
         CurrentLockOnTarget = targetToLockOn;
     }
 
-    private void CheckIfTargetIsOutOfRange()
-    {
-       LockOnTargetOutOfView = TargetOutOfFrustumView();
-    }
+    private void CheckIfTargetIsOutOfRange() { LockOnTargetOutOfView = TargetOutOfFrustumView(); }
 
 
     /// <summary>

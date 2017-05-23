@@ -176,8 +176,8 @@ public class PlayerMovement : MonoBehaviour
     private void EngageLockOn()
     {
         Debug.Log("Activating lock on");
-        PlayerReference.CurrentLockOnState = LockOnState.LOCKED;
-        PlayerReference.ActivateRadar(ref PlayerWeapon.LockOnTarget);
+        PlayerReference.ActivateRadar(ref GetComponentInChildren<CameraMovement>().CurrentLockOnTarget);
+        PlayerReference.CurrentLockOnState = LockOnState.LOCKED;  
     }
 
     // Engages the lock on feature.
