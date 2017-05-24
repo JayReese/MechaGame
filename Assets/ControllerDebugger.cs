@@ -29,6 +29,14 @@ public class ControllerDebugger : MonoBehaviour {
                 Debug.Log(Input.GetJoystickNames()[i] + i + " is moved in X");
             if (Mathf.Abs(Input.GetAxis("Joy" + i + "Y")) > 0.2F)
                 Debug.Log(Input.GetJoystickNames()[i] + i + " is moved in Y");
+            if (Mathf.Abs(Input.GetAxis("Fire" + i)) > 0)
+                Debug.Log("Fire" + i);
+            if (Mathf.Abs(Input.GetAxis("Melee" + i)) > 0)
+                Debug.Log("Melee" + i);
+            if (Input.GetButtonDown("Jump" + i))
+                Debug.Log("Jump" + i);
+            if (Input.GetButtonDown("Target" + i))
+                Debug.Log("Target" + i);
             i++;
         }
         
