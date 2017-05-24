@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ControllerDebugger : MonoBehaviour {
 
+    public int ControllerCount;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -12,6 +14,8 @@ public class ControllerDebugger : MonoBehaviour {
 #if UNITY_STANDALONE_WIN
         Debug.Log("On Windows");
 #endif
+
+        //InvokeRepeating("CheckForControllerCount", 0, 0.3f);
     }
 
     // Update is called once per frame
@@ -26,5 +30,13 @@ public class ControllerDebugger : MonoBehaviour {
                 Debug.Log(Input.GetJoystickNames()[i] + i + " is moved in Y");
             i++;
         }
+
+        CheckForControllerCount();
+    }
+
+    void CheckForControllerCount()
+    {
+        Debug.Log("Update");
+        Debug.Log( Input.GetJoystickNames().IsSynchronized );
     }
 }
