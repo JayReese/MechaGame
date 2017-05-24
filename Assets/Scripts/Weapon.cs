@@ -2,14 +2,19 @@
 using System.Collections;
 using System;
 
-public class Weapon : MonoBehaviour
+public abstract class Weapon : MonoBehaviour
 {
-    [SerializeField] int MaxMagazineSize, CurrentMagazineSize, BurstCount;
-    [SerializeField] bool IsReloading, TriggerPulled;
+    [SerializeField] protected int MaxMagazineSize, CurrentMagazineSize, BurstCount;
+    [SerializeField] protected bool IsReloading, TriggerPulled;
     public bool IsFiring { get; private set; }
-    [SerializeField] float ReloadSpeed, FireRate, ShotInterval, NextFireTime;
-    [SerializeField] GameObject WeaponProjectile;
-    [SerializeField] Transform WeaponEmitter;
+    [SerializeField]
+    protected float ReloadSpeed, FireRate, ShotInterval, NextFireTime;
+    [SerializeField]
+    protected GameObject WeaponProjectile;
+    [SerializeField]
+    protected Transform WeaponEmitter;
+    [SerializeField]
+    protected LockOnHardness ProjectileLockOnHardness;
 
 	// Use this for initialization
 	protected void Start ()
@@ -105,9 +110,10 @@ public class Weapon : MonoBehaviour
     }
 
     // Sets the defaults of the weapon.
-    void SetDefaults()
+    protected virtual void SetDefaults()
     {
-        MaxMagazineSize = 10;
+        Debug.Log("Weapon defaults set.");
+
         CurrentMagazineSize = MaxMagazineSize;
 
         ReloadSpeed = 1.0f;
