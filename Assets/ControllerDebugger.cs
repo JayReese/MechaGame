@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ControllerDebugger : MonoBehaviour {
 
+
+    
 	// Use this for initialization
 	void Start ()
     {
@@ -12,11 +14,14 @@ public class ControllerDebugger : MonoBehaviour {
 #if UNITY_STANDALONE_WIN
         Debug.Log("On Windows");
 #endif
+
+        
     }
 
     // Update is called once per frame
     void Update ()
     {
+
         int i = 0;
         while (i < 4)
         {
@@ -26,5 +31,7 @@ public class ControllerDebugger : MonoBehaviour {
                 Debug.Log(Input.GetJoystickNames()[i] + i + " is moved in Y");
             i++;
         }
+
+        
     }
 }
