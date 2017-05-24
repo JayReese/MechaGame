@@ -2,14 +2,9 @@
 using System.Collections;
 
 public class ControllerDebugger : MonoBehaviour {
-
-<<<<<<< HEAD
+    
     public int ControllerCount;
 
-=======
-
-    
->>>>>>> e735f92f6e31da9b46cfdc6560fabc0fccc96b48
 	// Use this for initialization
 	void Start ()
     {
@@ -20,11 +15,7 @@ public class ControllerDebugger : MonoBehaviour {
         Debug.Log("On Windows");
 #endif
 
-<<<<<<< HEAD
         //InvokeRepeating("CheckForControllerCount", 0, 0.3f);
-=======
-        
->>>>>>> e735f92f6e31da9b46cfdc6560fabc0fccc96b48
     }
 
     // Update is called once per frame
