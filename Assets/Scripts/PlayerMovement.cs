@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerCamera = transform.FindChild("Camera");
         PlayerRigidbody = GetComponent<Rigidbody>();
 
-        PlayerReference = GetComponent<Player>();
+        PlayerReference = GetComponent<Player_MachineGunner>();
         PInput = GetComponent<PlayerInput>();
         PlayerWeapon = transform.FindChild("Weapon").GetComponent<Weapon>();
 

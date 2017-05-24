@@ -6,7 +6,7 @@ using System;
 
 public class Radar : MonoBehaviour
 {
-    public Transform CurrentLockOnTarget;
+    //public Transform CurrentLockOnTarget;
     bool _initialRadarPolled;
 
     void Awake()
@@ -29,7 +29,6 @@ public class Radar : MonoBehaviour
 
     public void Activate(List<Transform> enemies, ref Transform lockOnTarget)
     {
-        
         StartCoroutine(ToggleRadarCollider());
         GetLockOnTarget(enemies, ref lockOnTarget);
     }
@@ -55,9 +54,12 @@ public class Radar : MonoBehaviour
     {
         // Orders the enemy list from closest to farthest in terms of distance.
         // Magnitude is actually cheaper, so we might use that for optimization at a later point.
-        enemies = enemies.OrderBy(
-            x => Vector3.Distance(transform.position, x.transform.position)
+        if (enemies.Count > 1)
+        {
+            enemies = enemies.OrderBy(
+                x => Vector3.Distance(transform.position, x.transform.position)
             ).ToList();
+        }
 
         // Returns the first Transform in the enemy list, which is the closest one.
         return enemies[0];

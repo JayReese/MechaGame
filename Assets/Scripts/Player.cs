@@ -3,18 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public class Player : LiveEntity
+public abstract class Player : LiveEntity
 {
     public int PlayerID;
+    public int Health;
     public float MaxFuel, CurrentFuel;
 
     // Checks periodically for sufficient thiccness. 
     // Shut up Lex, it's staying and I don't care what you say. Fight me.
     public bool IsExtraThicc;
-    [SerializeField] bool _playerPreGameRadarHasFinished;
+    [SerializeField]
+    bool _playerPreGameRadarHasFinished;
 
     public PlayerState CurrentPlayerState;
     public LockOnState CurrentLockOnState;
+
+    public byte WeaponLockHardnessValue;
 
     public List<Transform> TargetsInRange;
     Radar PlayerRadar;
@@ -23,7 +27,7 @@ public class Player : LiveEntity
     public CommandExecution ExecuteCommand;
 
     // Use this for initialization
-    void Start ()
+    protected void Start()
     {
         MaxFuel = 3;
         CurrentFuel = MaxFuel;
@@ -32,11 +36,13 @@ public class Player : LiveEntity
 
         PlayerRadar.BeginDefaults(TargetsInRange);
 
+        Health = 10;
+
         _playerPreGameRadarHasFinished = false;
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    }
+
+    // Update is called once per frame
+    protected void Update()
     {
         if (!_playerPreGameRadarHasFinished)
         {
@@ -45,8 +51,13 @@ public class Player : LiveEntity
         }
 
         CheckForStateBasedFunctions();
+    }
+
+    protected void FixedUpdate()
+    {
         PerformCommandExecution();
-	}
+        CheckIfUsingSubweapons();
+    }
 
     private void PerformCommandExecution()
     {
@@ -68,7 +79,7 @@ public class Player : LiveEntity
         if (multiplier == 1 && CurrentFuel > 0 || multiplier == -1 && CurrentFuel < MaxFuel)
             CurrentFuel -= Time.deltaTime * 1.5f * multiplier;
 
-        
+
         CurrentFuel = CurrentPlayerState == PlayerState.ON_GROUND && CurrentFuel > MaxFuel ? MaxFuel : CurrentFuel;
     }
 
@@ -114,5 +125,26 @@ public class Player : LiveEntity
     {
         GetComponentInChildren<CameraMovement>().RemoveLockOnTarget();
         PlayerRadar.GetComponent<Radar>().ClearEnemyList(TargetsInRange);
+    }
+
+    public void TakeDamage(int damageDealt)
+    {
+        Health -= damageDealt;
+    }
+
+    void CheckIfUsingSubweapons()
+    {
+        if (GetComponent<PlayerInput>().FirstSubweaponButtonPressed) ExecuteCommand += UseFirstSubweapon;
+        if (GetComponent<PlayerInput>().SecondSubweaponButtonPressed) ExecuteCommand += UseSecondSubweapon;
+    }
+
+    void UseFirstSubweapon()
+    {
+        Debug.Log("First Subweapon used.");
+    }
+
+    void UseSecondSubweapon()
+    {
+        Debug.Log("Second subweapon used.");
     }
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class PlayerInput : MonoBehaviour
     public float VerticalMouseMovement { get; private set; }
     public float HorizontalMovement { get; private set; }   
     public float VerticalMovement { get; private set; }
+
+    public bool FirstSubweaponButtonPressed { get; private set; }
+    public bool SecondSubweaponButtonPressed { get; private set; }
 
     [SerializeField] float SecondaryFire;
     public bool LockOnToggled;
@@ -25,6 +29,15 @@ public class PlayerInput : MonoBehaviour
 	void Update ()
     {
         BindMovement();
+        BindActionInputs();
+    }
+
+    private void BindActionInputs()
+    {
+#if UNITY_EDITOR
+        FirstSubweaponButtonPressed = Input.GetKeyDown(KeyCode.Q);
+        SecondSubweaponButtonPressed = Input.GetKeyDown(KeyCode.E);
+#endif   
     }
 
     void BindMovement()

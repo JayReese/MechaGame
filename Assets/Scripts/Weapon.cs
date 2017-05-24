@@ -70,10 +70,17 @@ public abstract class Weapon : MonoBehaviour
     private void FireProjectile()
     {
         GameObject g = WeaponProjectile;
-        //g.GetComponent<Projectile>().Origin = transform.parent;
-        g.GetComponent<Projectile>().LockOnTarget = transform.parent.GetComponentInChildren<CameraMovement>().CurrentLockOnTarget;
+
+        SetUpProjectileParameters(g);
 
         Instantiate(g, WeaponEmitter.position, WeaponEmitter.transform.rotation);
+    }
+
+    private void SetUpProjectileParameters(GameObject g)
+    {
+        g.GetComponent<Projectile>().LockOnTarget = transform.parent.GetComponentInChildren<CameraMovement>().CurrentLockOnTarget;
+        g.GetComponent<Projectile>().PlayerOrigin = transform.parent;
+        g.GetComponent<Projectile>().WeaponOrigin = transform;
     }
 
     private void ReduceMagazine()
