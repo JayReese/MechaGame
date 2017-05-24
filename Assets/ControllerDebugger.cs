@@ -37,6 +37,12 @@ public class ControllerDebugger : MonoBehaviour {
                 Debug.Log("Jump" + i);
             if (Input.GetButtonDown("Target" + i))
                 Debug.Log("Target" + i);
+            if (Input.GetButtonDown("CenterCam" + i))
+                Debug.Log("Centering Camera " + i);
+            if (Input.GetButtonDown("Alt1Fire" + i))
+                Debug.Log("SubWeapon 1 firing from controller " + i);
+            if (Input.GetButtonDown("Alt2Fire" + i))
+                Debug.Log("SubWeapon 2 firing from controller " + i);
             i++;
         }
         
