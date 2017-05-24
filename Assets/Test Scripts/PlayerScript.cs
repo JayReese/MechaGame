@@ -65,13 +65,21 @@ public class PlayerScript : TestGameManager
            
             ammoTextPanel.SetActive(true);
             FireWeapon();
-            Debug.Log("Fired weapon");
+            //Debug.Log("Fired weapon");
             TextBoxCheck();
         }
         else if (isFiring == false)
         {
             //ammoTextPanel.SetActive(false);          
         }
+        if (playerAmmo <= 0)
+        {
+            playerAmmoText.text = "0";
+        //    for (int i = 0; i > playerAmmo; playerAmmo++) ;
+
+               
+        }
+
     }
     private void TextBoxCheck()
     {
@@ -93,6 +101,7 @@ void FireWeapon()
 
     playerAmmo--;
     playerAmmoText.text = playerAmmo.ToString();
+    
 }
     private void SetHealthUI()
     {
