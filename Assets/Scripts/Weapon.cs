@@ -5,7 +5,7 @@ using System;
 public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] protected int MaxMagazineSize, CurrentMagazineSize, BurstCount;
-    [SerializeField] protected bool IsReloading, TriggerPulled;
+    [SerializeField] protected bool IsReloading;
     public bool IsFiring { get; private set; }
     [SerializeField]
     protected float ReloadSpeed, FireRate, ShotInterval, NextFireTime;
@@ -29,10 +29,10 @@ public abstract class Weapon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && !IsReloading)
             Reload();
 
-        TriggerPulled = Input.GetMouseButton(0);
+        
 #endif
 
-        if (TriggerPulled && NextFireTime <= 0 && CurrentMagazineSize > 0)
+        if ((transform.parent.GetComponentInChildren<PlayerInput>().TriggerPulled || transform.parent.GetComponentInChildren<PlayerInput>().TriggerPulledThreshold != 0) && NextFireTime <= 0 && CurrentMagazineSize > 0)
             PerformWeaponOperations();
 
         if (!IsFiring) DecrementNextFireTime();
@@ -81,6 +81,7 @@ public abstract class Weapon : MonoBehaviour
         g.GetComponent<Projectile>().LockOnTarget = transform.parent.GetComponentInChildren<CameraMovement>().CurrentLockOnTarget;
         g.GetComponent<Projectile>().PlayerOrigin = transform.parent;
         g.GetComponent<Projectile>().WeaponOrigin = transform;
+        g.GetComponent<Projectile>().LockOnHardnessValue = LockOnHardnessValue;
     }
 
     private void ReduceMagazine()

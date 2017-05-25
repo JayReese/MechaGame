@@ -14,6 +14,8 @@ public class Weapon_MachineGunner : Weapon
 
         BurstCount = 5;
         ShotInterval = 0.3f;
+
+        LockOnHardnessValue = 2;
         base.Start();
 	}
 	

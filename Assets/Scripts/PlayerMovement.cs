@@ -2,7 +2,6 @@
 using System.Collections;
 using System;
 
-<<<<<<< HEAD:Assets/Scripts/PlayerMovement.cs
 public class PlayerMovement : MonoBehaviour
 {
     public Transform PlayerCamera { get; private set; }
@@ -13,10 +12,11 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     float MovementSpeed, TurnSensitivity, DodgeThresholdCounter;
-    [SerializeField] bool CanDodge;
+    [SerializeField]
+    bool CanDodge;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         PlayerCamera = transform.FindChild("Camera");
         PlayerRigidbody = GetComponent<Rigidbody>();
@@ -30,10 +30,10 @@ public class PlayerMovement : MonoBehaviour
 
         PInput.LockOnToggled = false;
         DodgeThresholdCounter = 1;
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    }
+
+    // Update is called once per frame
+    void Update()
     {
         
     }
@@ -48,8 +48,8 @@ public class PlayerMovement : MonoBehaviour
 
     void RotateCharacter()
     {
-        if(PlayerReference.CurrentLockOnState != LockOnState.LOCKED)
-            transform.Rotate(new Vector3(transform.eulerAngles.x, PInput.HorizontalMouseMovement * (Time.deltaTime * TurnSensitivity) * 20f, transform.eulerAngles.z));
+        if (PlayerReference.CurrentLockOnState != LockOnState.LOCKED)
+            transform.Rotate( new Vector3(transform.eulerAngles.x, PInput.HorizontalLook * (Time.deltaTime * TurnSensitivity) * 20f, transform.eulerAngles.z) );
     }
 
     private void Move()
@@ -64,13 +64,8 @@ public class PlayerMovement : MonoBehaviour
         // part for where you've turned - it takes whatever you do quite literally. We can simulate acceleration through
         // simply using GetAxis, as well.
 
-        
-
         transform.position += transform.forward * MovementSpeed * Time.fixedDeltaTime * PInput.VerticalMovement;
         transform.position += transform.right * MovementSpeed * Time.fixedDeltaTime * PInput.HorizontalMovement;
-
-        
-
 
         #region Commented out - velocity-based movement.
         // Stops forward velocity immediately when the directional buttons aren't being pressed.
@@ -122,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
             //    Debug.Log("Enemy moved to left: " + frustumPositionX);
             #endregion
 
-            transform.LookAt( new Vector3(PlayerCamera.GetComponent<CameraMovement>().CurrentLockOnTarget.transform.position.x, 0));
+            transform.LookAt(new Vector3(PlayerCamera.GetComponent<CameraMovement>().CurrentLockOnTarget.transform.position.x, 0));
 
             #region Commented out - look pos.
             //var lookPos = PlayerCamera.GetComponent<CameraMovement>().CurrentLockOnTarget.transform.position - transform.position;
@@ -155,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
         // This takes in if you're pressing the Jump button. It does a nifty thing of taking in the raw axis (either 1 or 0) and casts a
         // PlayerState into it. This changes the current PlayerState since you're either ON_GROUND or BOOSTING, with ON_GROUND being at
         // element 0.
-        PlayerReference.CurrentPlayerState = (PlayerState)Input.GetAxisRaw("Jump");
+        PlayerReference.CurrentPlayerState = (PlayerState)Input.GetAxisRaw("JumpController0");
 
         // This checks if you still have fuel and you're continuing to press the button.
         if (PlayerReference.CurrentFuel > 0 && PlayerReference.CurrentPlayerState == PlayerState.BOOSTING)
@@ -164,6 +159,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckLockOnState()
     {
+        if (Input.GetButtonDown("Target0"))
+        {
+            if (PlayerReference.CurrentLockOnState == LockOnState.FREE) PlayerReference.ExecuteCommand = EngageLockOn;
+            else PlayerReference.ExecuteCommand = BreakLockOn;
+        }
+
 #if UNITY_EDITOR
         if (Input.GetMouseButtonDown(1))
         {
@@ -177,8 +178,9 @@ public class PlayerMovement : MonoBehaviour
     private void EngageLockOn()
     {
         Debug.Log("Activating lock on");
+
         PlayerReference.ActivateRadar(ref GetComponentInChildren<CameraMovement>().CurrentLockOnTarget);
-        PlayerReference.CurrentLockOnState = LockOnState.LOCKED;  
+        PlayerReference.CurrentLockOnState = LockOnState.LOCKED;
     }
 
     // Engages the lock on feature.
@@ -189,17 +191,3 @@ public class PlayerMovement : MonoBehaviour
         PlayerReference.CurrentLockOnState = LockOnState.FREE;
     }
 }
-=======
-public class Select : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-}
->>>>>>> system:Assets/Scripts/Select.cs

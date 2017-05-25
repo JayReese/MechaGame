@@ -34,6 +34,4 @@ public class Player_MachineGunner : Player
         Debug.Log("Machi Second Subweapon Used");
         base.UseSecondSubweapon();
     }
-
-    
 }

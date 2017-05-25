@@ -33,7 +33,7 @@ public class ControllerDebugger : MonoBehaviour {
                 Debug.Log("Fire" + i);
             if (Mathf.Abs(Input.GetAxis("Melee" + i)) > 0)
                 Debug.Log("Melee" + i);
-            if (Input.GetButtonDown("Jump" + i))
+            if (Input.GetButtonDown("JumpController" + i))
                 Debug.Log("Jump" + i);
             if (Input.GetButtonDown("Target" + i))
                 Debug.Log("Target" + i);

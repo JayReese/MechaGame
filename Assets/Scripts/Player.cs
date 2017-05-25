@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-<<<<<<< HEAD:Assets/Scripts/Player.cs
 public abstract class Player : LiveEntity
 {
     public int PlayerID;
-    
+
     // Checks periodically for sufficient thiccness. 
     // Shut up Lex, it's staying and I don't care what you say. Fight me.
     public bool IsExtraThicc;
@@ -26,7 +25,7 @@ public abstract class Player : LiveEntity
     public float MovementSpeed, JumpJetStrength, MaxFuel;
     [SerializeField]
     protected float FirstSubWeaponCooldown, SecondSubWeaponCooldown;
-    
+
     #endregion
 
     #region Player statuses.
@@ -36,7 +35,8 @@ public abstract class Player : LiveEntity
     public float CurrentFuel;
     public bool CanUseSubweapons;
 
-    [SerializeField] private float FirstSubWeaponCooldownTimer, SecondSubWeaponCooldownTimer;
+    [SerializeField]
+    private float FirstSubWeaponCooldownTimer, SecondSubWeaponCooldownTimer;
     #endregion
 
     // Use this for initialization
@@ -71,7 +71,13 @@ public abstract class Player : LiveEntity
     {
         PerformCommandExecution();
         CheckIfUsingSubweapons();
+        CheckIfUsingMelee();
         ManageCooldownTimers();
+    }
+
+    private void CheckIfUsingMelee()
+    {
+        // Not implemented yet.
     }
 
     private void PerformCommandExecution()
@@ -149,7 +155,7 @@ public abstract class Player : LiveEntity
 
     void CheckIfUsingSubweapons()
     {
-        if(CanUseSubweapons)
+        if (CanUseSubweapons)
         {
             if (GetComponent<PlayerInput>().FirstSubweaponButtonPressed && FirstSubWeaponCooldownTimer == 0)
                 ExecuteCommand += UseFirstSubweapon;
@@ -161,13 +167,13 @@ public abstract class Player : LiveEntity
 
     protected virtual void UseFirstSubweapon()
     {
-        Debug.Log("First Subweapon used.");
+        //Debug.Log("First Subweapon used.");
         FirstSubWeaponCooldownTimer = FirstSubWeaponCooldown;
     }
 
     protected virtual void UseSecondSubweapon()
     {
-        Debug.Log("Second subweapon used.");
+        //Debug.Log("Second subweapon used.");
         SecondSubWeaponCooldownTimer = SecondSubWeaponCooldown;
     }
 
@@ -177,17 +183,3 @@ public abstract class Player : LiveEntity
         SecondSubWeaponCooldownTimer = SecondSubWeaponCooldownTimer <= 0 ? 0 : SecondSubWeaponCooldownTimer -= 1.5f * Time.fixedDeltaTime;
     }
 }
-=======
-public class TempPlayer : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-}
->>>>>>> system:Assets/Scripts/TempPlayer.cs

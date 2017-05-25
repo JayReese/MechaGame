@@ -12,18 +12,19 @@ public class LiveEntity : MonoBehaviour, IDamageable
     /// <param name="amount"></param>
     public void ReceiveDamage(int amount)
     {
+        Debug.Log("BODY HIT: " + amount + " damage dealt. " + Health + " remaining.");
         Health -= amount;
     }
 
     // Use this for initialization
     void Start ()
     {
-	
+	    
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-	
+	    
 	}
 }

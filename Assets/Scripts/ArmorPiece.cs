@@ -8,6 +8,7 @@ public class ArmorPiece : MonoBehaviour, IDamageable
 
     public void ReceiveDamage(int amount)
     {
+        Debug.Log("Armor piece damaged. " + amount + " damage dealt. " + StructuralIntegrity + " health left.");
         StructuralIntegrity -= amount;
     }
 
@@ -25,15 +26,9 @@ public class ArmorPiece : MonoBehaviour, IDamageable
 
     private void CheckIfDestroyed()
     {
+        StructuralIntegrity = StructuralIntegrity <= 0 ? 0 : StructuralIntegrity;
+
         if (StructuralIntegrity == 0)
             Destroy(gameObject);
     }
-
-    public void Degrade(int amount)
-    {
-        StructuralIntegrity -= amount;
-        StructuralIntegrity = StructuralIntegrity <= 0 ? 0 : StructuralIntegrity;
-    }
-
-    
 }

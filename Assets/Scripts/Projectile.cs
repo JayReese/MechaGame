@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour
     bool PlayerIsLockedOn;
 
     [SerializeField]
-    int LockOnHardnessValue;
+    public int LockOnHardnessValue;
 
 
     void Awake()
@@ -30,12 +30,7 @@ public class Projectile : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
 
-        //PlayerIsLockedOn = LockOnTarget != null ? true : false;
-
-        //if (!PlayerIsLockedOn)
-        //    GetComponent<Rigidbody>().AddForce(transform.forward * FlightSpeed, ForceMode.Impulse);
     }
 
     // Update is called once per frame
@@ -56,10 +51,7 @@ public class Projectile : MonoBehaviour
         if (other.transform != PlayerOrigin && !other.transform.IsChildOf(PlayerOrigin))
         {
             if (other.GetComponent<IDamageable>() != null)
-            {
-                if (other.GetComponent<ArmorPiece>())
-                    other.GetComponent<ArmorPiece>().Degrade(2);
-            }
+                other.GetComponent<IDamageable>().ReceiveDamage(2);
 
             Destroy(gameObject);
             PerformProjectileBehavior = null;
