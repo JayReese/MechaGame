@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
+<<<<<<< HEAD:Assets/Scripts/Player.cs
 public abstract class Player : LiveEntity
 {
     public int PlayerID;
@@ -176,3 +177,17 @@ public abstract class Player : LiveEntity
         SecondSubWeaponCooldownTimer = SecondSubWeaponCooldownTimer <= 0 ? 0 : SecondSubWeaponCooldownTimer -= 1.5f * Time.fixedDeltaTime;
     }
 }
+=======
+public class TempPlayer : MonoBehaviour {
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+}
+>>>>>>> system:Assets/Scripts/TempPlayer.cs

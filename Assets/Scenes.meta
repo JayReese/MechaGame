@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 7331b4ee56cd2db4f81eeb684fc04fa0
+<<<<<<< HEAD:Assets/Resources.meta
+guid: 0200ee1f81c252d47b154c34ce714ddd
 folderAsset: yes
 timeCreated: 1495381639
 =======
-guid: 2d7d39780a3155947abc02aee27411e6
+guid: c9c454cedb6382448b4c3abb7ae21bfb
 folderAsset: yes
-timeCreated: 1494960658
->>>>>>> system
+timeCreated: 1494962992
+>>>>>>> system:Assets/Scenes.meta
 licenseType: Free
 DefaultImporter:
   userData: 

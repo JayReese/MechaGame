@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 
+<<<<<<< HEAD:Assets/Scripts/PlayerInput.cs
 public class PlayerInput : MonoBehaviour
 {
     public float HorizontalMouseMovement { get; private set; }
@@ -51,4 +52,17 @@ public class PlayerInput : MonoBehaviour
         Boosting = KeyCode.Space;
 #endif
     }
+=======
+public class CharacterSelectAlternate : MonoBehaviour {
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+>>>>>>> system:Assets/Scripts/CharacterSelectAlternate.cs
 }

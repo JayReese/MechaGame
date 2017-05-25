@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 
+<<<<<<< HEAD:Assets/Scripts/PlayerMovement.cs
 public class PlayerMovement : MonoBehaviour
 {
     public Transform PlayerCamera { get; private set; }
@@ -188,3 +189,17 @@ public class PlayerMovement : MonoBehaviour
         PlayerReference.CurrentLockOnState = LockOnState.FREE;
     }
 }
+=======
+public class Select : MonoBehaviour {
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+}
+>>>>>>> system:Assets/Scripts/Select.cs
