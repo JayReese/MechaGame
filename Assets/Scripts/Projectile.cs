@@ -9,26 +9,33 @@ public class Projectile : MonoBehaviour
     public MovementBehavior PerformProjectileBehavior;
 
     [SerializeField]
-    float FlightSpeed, Lifetime;
+    public float FlightSpeed;
+
+    float Lifetime;
 
     [SerializeField]
     bool PlayerIsLockedOn;
 
+    [SerializeField]
+    int LockOnHardnessValue;
 
 
+    void Awake()
+    {
+        SetUpLockOnBehavior();
+        FlightSpeed = 60f;
+        Lifetime = 10f;
+    }
 
     // Use this for initialization
     void Start()
     {
-        FlightSpeed = 60f;
-        Lifetime = 10f;
+        
 
-        SetUpLockOnTransform();
+        //PlayerIsLockedOn = LockOnTarget != null ? true : false;
 
-        PlayerIsLockedOn = LockOnTarget != null ? true : false;
-
-        if (!PlayerIsLockedOn)
-            GetComponent<Rigidbody>().AddForce(transform.forward * FlightSpeed, ForceMode.Impulse);
+        //if (!PlayerIsLockedOn)
+        //    GetComponent<Rigidbody>().AddForce(transform.forward * FlightSpeed, ForceMode.Impulse);
     }
 
     // Update is called once per frame
@@ -76,9 +83,25 @@ public class Projectile : MonoBehaviour
         if (Lifetime <= 0) Destroy(gameObject);
     }
 
-    void SetUpLockOnTransform()
+    void SetUpLockOnBehavior()
     {
-        
+        PlayerIsLockedOn = LockOnTarget != null ? true : false;
+
+        if (PlayerIsLockedOn)
+        {
+            switch ((LockOnHardness)LockOnHardnessValue)
+            {
+                case LockOnHardness.SOFT:
+                    transform.LookAt(LockOnTarget);
+                    PerformProjectileBehavior += ProjectileBehavior_SoftLockedMovement;
+                    break;
+                case LockOnHardness.HARD:
+                    PerformProjectileBehavior += ProjectileBehavior_HardLockedMovement;
+                    break;
+            }
+        }
+        else
+            PerformProjectileBehavior += ProjectileBehavior_SoftLockedMovement;
     }
 
     void ProjectileBehavior_HardLockedMovement()
@@ -88,7 +111,6 @@ public class Projectile : MonoBehaviour
 
     void ProjectileBehavior_SoftLockedMovement()
     {
-        transform.LookAt(LockOnTarget);
         transform.GetComponent<Rigidbody>().AddForce(transform.forward * FlightSpeed / 9f, ForceMode.Impulse);
     }
 }

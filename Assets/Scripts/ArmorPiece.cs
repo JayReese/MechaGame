@@ -6,8 +6,13 @@ public class ArmorPiece : MonoBehaviour, IDamageable
 {
     public int StructuralIntegrity { get; private set; }
 
-	// Use this for initialization
-	void Start ()
+    public void ReceiveDamage(int amount)
+    {
+        StructuralIntegrity -= amount;
+    }
+
+    // Use this for initialization
+    void Start ()
     {
         StructuralIntegrity = 10;
 	}
@@ -29,4 +34,6 @@ public class ArmorPiece : MonoBehaviour, IDamageable
         StructuralIntegrity -= amount;
         StructuralIntegrity = StructuralIntegrity <= 0 ? 0 : StructuralIntegrity;
     }
+
+    
 }

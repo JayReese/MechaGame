@@ -6,17 +6,12 @@ using System;
 public abstract class Player : LiveEntity
 {
     public int PlayerID;
-    public int Health;
-    public float MaxFuel, CurrentFuel;
-
+    
     // Checks periodically for sufficient thiccness. 
     // Shut up Lex, it's staying and I don't care what you say. Fight me.
     public bool IsExtraThicc;
     [SerializeField]
     bool _playerPreGameRadarHasFinished;
-
-    public PlayerState CurrentPlayerState;
-    public LockOnState CurrentLockOnState;
 
     public byte WeaponLockHardnessValue;
 
@@ -26,11 +21,29 @@ public abstract class Player : LiveEntity
     [SerializeField]
     public CommandExecution ExecuteCommand;
 
+    #region Player Stats
+    public float MovementSpeed, JumpJetStrength, MaxFuel;
+    [SerializeField]
+    protected float FirstSubWeaponCooldown, SecondSubWeaponCooldown;
+    
+    #endregion
+
+    #region Player statuses.
+    public PlayerState CurrentPlayerState;
+    public LockOnState CurrentLockOnState;
+
+    public float CurrentFuel;
+    public bool CanUseSubweapons;
+
+    [SerializeField] private float FirstSubWeaponCooldownTimer, SecondSubWeaponCooldownTimer;
+    #endregion
+
     // Use this for initialization
     protected void Start()
     {
         MaxFuel = 3;
         CurrentFuel = MaxFuel;
+        CanUseSubweapons = true;
         CurrentPlayerState = PlayerState.ON_GROUND;
         PlayerRadar = transform.FindChild("Radar").GetComponent<Radar>();
 
@@ -57,6 +70,7 @@ public abstract class Player : LiveEntity
     {
         PerformCommandExecution();
         CheckIfUsingSubweapons();
+        ManageCooldownTimers();
     }
 
     private void PerformCommandExecution()
@@ -134,17 +148,31 @@ public abstract class Player : LiveEntity
 
     void CheckIfUsingSubweapons()
     {
-        if (GetComponent<PlayerInput>().FirstSubweaponButtonPressed) ExecuteCommand += UseFirstSubweapon;
-        if (GetComponent<PlayerInput>().SecondSubweaponButtonPressed) ExecuteCommand += UseSecondSubweapon;
+        if(CanUseSubweapons)
+        {
+            if (GetComponent<PlayerInput>().FirstSubweaponButtonPressed && FirstSubWeaponCooldownTimer == 0)
+                ExecuteCommand += UseFirstSubweapon;
+
+            if (GetComponent<PlayerInput>().SecondSubweaponButtonPressed && SecondSubWeaponCooldownTimer == 0)
+                ExecuteCommand += UseSecondSubweapon;
+        }
     }
 
-    void UseFirstSubweapon()
+    protected virtual void UseFirstSubweapon()
     {
         Debug.Log("First Subweapon used.");
+        FirstSubWeaponCooldownTimer = FirstSubWeaponCooldown;
     }
 
-    void UseSecondSubweapon()
+    protected virtual void UseSecondSubweapon()
     {
         Debug.Log("Second subweapon used.");
+        SecondSubWeaponCooldownTimer = SecondSubWeaponCooldown;
+    }
+
+    void ManageCooldownTimers()
+    {
+        FirstSubWeaponCooldownTimer = FirstSubWeaponCooldownTimer <= 0 ? 0 : FirstSubWeaponCooldownTimer -= 1.5f * Time.fixedDeltaTime;
+        SecondSubWeaponCooldownTimer = SecondSubWeaponCooldownTimer <= 0 ? 0 : SecondSubWeaponCooldownTimer -= 1.5f * Time.fixedDeltaTime;
     }
 }

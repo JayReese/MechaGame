@@ -7,6 +7,12 @@ public class TrainingBot : LiveEntity
     [SerializeField]
     GameObject bulletP;
     int ammo, maxAmmo;
+    int test;
+
+    void Awake()
+    {
+        test = 10;
+    }
 
 	// Use this for initialization
 	void Start ()
@@ -18,6 +24,8 @@ public class TrainingBot : LiveEntity
         direction = Random.Range(1, 100) > 50 ? 1 : -1;
         bulletP = Resources.Load("Prefabs/Test Projectile") as GameObject;
         //InvokeRepeating("Fire", 0, 0.4f);
+
+
 	}
 	
 	// Update is called once per frame
@@ -34,6 +42,11 @@ public class TrainingBot : LiveEntity
         transform.position += (transform.right * direction) * 10f * Time.deltaTime;
 
 	}
+
+    void OnEnable()
+    {
+        Debug.Log(test);
+    }
 
     void OnTriggerEnter(Collider c)
     {

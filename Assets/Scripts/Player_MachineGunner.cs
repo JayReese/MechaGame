@@ -7,6 +7,8 @@ public class Player_MachineGunner : Player
 	// Use this for initialization
 	new void Start ()
     {
+        FirstSubWeaponCooldown = 5f;
+        SecondSubWeaponCooldown = 5f;
         base.Start();
 	}
 	
@@ -20,4 +22,18 @@ public class Player_MachineGunner : Player
     {
         base.FixedUpdate();
     }
+
+    protected override void UseFirstSubweapon()
+    {
+        Debug.Log("Machi First Subweapon Used");
+        base.UseFirstSubweapon();
+    }
+
+    protected override void UseSecondSubweapon()
+    {
+        Debug.Log("Machi Second Subweapon Used");
+        base.UseSecondSubweapon();
+    }
+
+    
 }

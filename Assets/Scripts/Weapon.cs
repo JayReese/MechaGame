@@ -14,7 +14,7 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField]
     protected Transform WeaponEmitter;
     [SerializeField]
-    protected LockOnHardness ProjectileLockOnHardness;
+    protected int LockOnHardnessValue;
 
 	// Use this for initialization
 	protected void Start ()
