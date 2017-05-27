@@ -82,6 +82,7 @@ public abstract class Weapon : MonoBehaviour
         g.GetComponent<Projectile>().PlayerOrigin = transform.parent;
         g.GetComponent<Projectile>().WeaponOrigin = transform;
         g.GetComponent<Projectile>().LockOnHardnessValue = LockOnHardnessValue;
+        g.GetComponent<Projectile>().ArmorInteractionValue = 2;
     }
 
     private void ReduceMagazine()

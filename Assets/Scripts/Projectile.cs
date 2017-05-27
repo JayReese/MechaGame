@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Projectile : MonoBehaviour
 {
     [SerializeField]
-    public ArmorPiercingInteraction ArmorInteraction;
+    public int LockOnHardnessValue, ArmorInteractionValue;
     public Transform WeaponOrigin, PlayerOrigin, LockOnTarget;
     public MovementBehavior PerformProjectileBehavior;
 
@@ -16,8 +17,7 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     bool PlayerIsLockedOn;
 
-    [SerializeField]
-    public int LockOnHardnessValue;
+    
 
 
     void Awake()
@@ -41,31 +41,60 @@ public class Projectile : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (PerformProjectileBehavior != null) PerformProjectileBehavior();
+        CheckForProjectileHit();
+
+        if (PerformProjectileBehavior != null)
+            PerformProjectileBehavior();   
 
         DegradeProjectileLife();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void CheckForProjectileHit()
     {
-        if (other.transform != PlayerOrigin && !other.transform.IsChildOf(PlayerOrigin))
+        RaycastHit h = Globals.RaycastHitTarget(transform.position, Vector3.forward, 2f);
+
+        if (h.collider != null && (ArmorPiercingInteraction)ArmorInteractionValue != ArmorPiercingInteraction.PIERCING)
         {
-            if (other.GetComponent<IDamageable>() != null)
-                other.GetComponent<IDamageable>().ReceiveDamage(2);
+            if (h.collider.gameObject.GetComponent<DamageableObject>() != null)
+                ApplyDamageToCorrectObject(h.collider);
+            else
+                Debug.Log("No damage applied");
 
             Destroy(gameObject);
-            PerformProjectileBehavior = null;
         }
+        
     }
 
-    void ApplyDamageToCorrectObject()
-    {
-        switch (ArmorInteraction)
-        {
-            case ArmorPiercingInteraction.BLOCKED:
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.transform != PlayerOrigin && !other.transform.IsChildOf(PlayerOrigin))
+    //    {
+    //        if (other.GetComponent<IDamageable>() != null)
+    //            other.GetComponent<IDamageable>().ReceiveDamage(2);
 
+    //        Destroy(gameObject);
+            
+    //    }
+    //}
+
+    void ApplyDamageToCorrectObject(Collider colliderToDamage)
+    {
+        int damageDealt = 0;
+
+        switch ((ArmorPiercingInteraction)ArmorInteractionValue)
+        {
+            case ArmorPiercingInteraction.DAMAGING:
+                damageDealt = 2;
                 break;
+            //case ArmorPiercingInteraction.BREAKING:
+            //    if (colliderToDamage.GetComponent<LiveEntity>() != null)
+            //        damageDealt = colliderToDamage.GetComponent<LiveEntity>().Health;
+            //    else if (colliderToDamage.GetComponent<ArmorPiece>() != null)
+            //        damageDealt = colliderToDamage.GetComponent<ArmorPiece>().StructuralIntegrity;
+            //    break;
         }
+
+        colliderToDamage.GetComponent<DamageableObject>().ReceiveDamage(damageDealt);
     }
 
     void DegradeProjectileLife()

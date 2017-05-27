@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TrainingBot : LiveEntity
+public class TrainingBot : DamageableObject
 {
     [SerializeField] float direction, lifetime;
     [SerializeField]
@@ -9,9 +9,17 @@ public class TrainingBot : LiveEntity
     int ammo, maxAmmo;
     int test;
 
+    int Health;
+
+    public override void ReceiveDamage(int amount)
+    {
+        Health -= amount;
+        Debug.Log("Damage dealt to body, " + Health + " remaining.");
+    }
+
     void Awake()
     {
-        test = 10;
+        Health = 10;
     }
 
 	// Use this for initialization
@@ -39,13 +47,13 @@ public class TrainingBot : LiveEntity
             direction *= -1;
         }
 
-        transform.position += (transform.right * direction) * 10f * Time.deltaTime;
+       // transform.position += (transform.right * direction) * 10f * Time.deltaTime;
 
 	}
 
     void OnEnable()
     {
-        Debug.Log(test);
+        //Debug.Log(test);
     }
 
     void OnTriggerEnter(Collider c)

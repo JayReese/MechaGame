@@ -54,7 +54,7 @@ public class PlayerInput : MonoBehaviour
     private void BindActionInputs()
     {
         LoadControllerControls();
-        //LoadKeyboardControls();
+        LoadKeyboardControls();
     }
 
     void LoadKeyboardControls()
@@ -69,7 +69,10 @@ public class PlayerInput : MonoBehaviour
 
         TriggerPulled = Input.GetMouseButton(0);
 
+        MeleeUsed = Input.GetKeyDown(KeyCode.F);
+
         Boosting = KeyCode.Space;
+
     }
 
     void LoadControllerControls()

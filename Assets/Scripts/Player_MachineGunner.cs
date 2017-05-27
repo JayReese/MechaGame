@@ -4,19 +4,22 @@ using System.Collections;
 public class Player_MachineGunner : Player
 {
 
-	// Use this for initialization
-	new void Start ()
+    // Use this for initialization
+    new void Start()
     {
         FirstSubWeaponCooldown = 5f;
         SecondSubWeaponCooldown = 5f;
+
+        Health = 10;
+
         base.Start();
-	}
-	
-	// Update is called once per frame
-	new void Update ()
+    }
+
+    // Update is called once per frame
+    new void Update()
     {
         base.Update();
-	}
+    }
 
     new void FixedUpdate()
     {

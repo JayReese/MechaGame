@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public abstract class Player : LiveEntity
+public class Player : DamageableObject
 {
-    public int PlayerID;
+    public int PlayerID, Health;
 
     // Checks periodically for sufficient thiccness. 
     // Shut up Lex, it's staying and I don't care what you say. Fight me.
@@ -39,6 +39,11 @@ public abstract class Player : LiveEntity
     private float FirstSubWeaponCooldownTimer, SecondSubWeaponCooldownTimer;
     #endregion
 
+    #region Testing fields.
+    [SerializeField]
+    bool isActivePlayer;
+    #endregion
+
     // Use this for initialization
     protected void Start()
     {
@@ -50,29 +55,33 @@ public abstract class Player : LiveEntity
 
         PlayerRadar.BeginDefaults(TargetsInRange);
 
-        Health = 10;
-
         _playerPreGameRadarHasFinished = false;
     }
 
     // Update is called once per frame
     protected void Update()
     {
-        if (!_playerPreGameRadarHasFinished)
-        {
-            TargetsInRange.Clear();
-            _playerPreGameRadarHasFinished = true;
-        }
+        if(isActivePlayer)
+        {        
+            if (!_playerPreGameRadarHasFinished)
+            {
+                TargetsInRange.Clear();
+                _playerPreGameRadarHasFinished = true;
+            }
 
-        CheckForStateBasedFunctions();
+            CheckForStateBasedFunctions();
+        }
     }
 
     protected void FixedUpdate()
     {
-        PerformCommandExecution();
-        CheckIfUsingSubweapons();
-        CheckIfUsingMelee();
-        ManageCooldownTimers();
+        if(isActivePlayer)
+        {
+            PerformCommandExecution();
+            CheckIfUsingSubweapons();
+            CheckIfUsingMelee();
+            ManageCooldownTimers();
+        }
     }
 
     private void CheckIfUsingMelee()
@@ -181,5 +190,15 @@ public abstract class Player : LiveEntity
     {
         FirstSubWeaponCooldownTimer = FirstSubWeaponCooldownTimer <= 0 ? 0 : FirstSubWeaponCooldownTimer -= 1.5f * Time.fixedDeltaTime;
         SecondSubWeaponCooldownTimer = SecondSubWeaponCooldownTimer <= 0 ? 0 : SecondSubWeaponCooldownTimer -= 1.5f * Time.fixedDeltaTime;
+    }
+
+    /// <summary>
+    /// From the DamageableObject superclass, which allows an object to take damage. In this context, all LiveEntities (entities with some form of AI/controller) will be harmed by things that call this function.
+    /// </summary>
+    /// <param name="amount"></param>
+    public override void ReceiveDamage(int amount)
+    {
+        TakeDamage(amount);
+        Debug.Log("damage dealt to body, " + Health + " HP left.");
     }
 }

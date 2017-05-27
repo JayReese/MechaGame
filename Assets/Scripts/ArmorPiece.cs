@@ -2,14 +2,18 @@
 using System.Collections;
 using System;
 
-public class ArmorPiece : MonoBehaviour, IDamageable
+public class ArmorPiece : DamageableObject
 {
+    [SerializeField] int CurrentStructural;
     public int StructuralIntegrity { get; private set; }
 
-    public void ReceiveDamage(int amount)
+    public override void ReceiveDamage(int amount)
     {
-        Debug.Log("Armor piece damaged. " + amount + " damage dealt. " + StructuralIntegrity + " health left.");
         StructuralIntegrity -= amount;
+        Debug.Log(string.Format("damage dealt to {0}, {1} HP left.", gameObject.name, StructuralIntegrity));
+
+        if (StructuralIntegrity <= 0)
+            Destroy(gameObject);
     }
 
     // Use this for initialization
@@ -21,7 +25,8 @@ public class ArmorPiece : MonoBehaviour, IDamageable
 	// Update is called once per frame
 	void Update ()
     {
-        CheckIfDestroyed();
+        CurrentStructural = StructuralIntegrity;
+        //CheckIfDestroyed();
 	}
 
     private void CheckIfDestroyed()
@@ -29,6 +34,10 @@ public class ArmorPiece : MonoBehaviour, IDamageable
         StructuralIntegrity = StructuralIntegrity <= 0 ? 0 : StructuralIntegrity;
 
         if (StructuralIntegrity == 0)
+        {
+            Debug.Log("Destroyed");
             Destroy(gameObject);
+        }
+            
     }
 }
