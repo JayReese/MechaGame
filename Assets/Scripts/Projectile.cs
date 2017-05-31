@@ -41,41 +41,27 @@ public class Projectile : MonoBehaviour
 
     void FixedUpdate()
     {
-        CheckForProjectileHit();
-
         if (PerformProjectileBehavior != null)
             PerformProjectileBehavior();   
 
         DegradeProjectileLife();
     }
 
-    private void CheckForProjectileHit()
+    private void CheckForProjectileHit(Collider h)
     {
-        RaycastHit h = Globals.RaycastHitTarget(transform.position, Vector3.forward, 2f);
-
-        if (h.collider != null && (ArmorPiercingInteraction)ArmorInteractionValue != ArmorPiercingInteraction.PIERCING)
-        {
-            if (h.collider.gameObject.GetComponent<DamageableObject>() != null)
-                ApplyDamageToCorrectObject(h.collider);
-            else
-                Debug.Log("No damage applied");
-
-            Destroy(gameObject);
-        }
-        
+        if (h.gameObject.GetComponent<DamageableObject>() != null)
+            ApplyDamageToCorrectObject(h);
+        else
+            Debug.Log(PlayerOrigin);
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.transform != PlayerOrigin && !other.transform.IsChildOf(PlayerOrigin))
-    //    {
-    //        if (other.GetComponent<IDamageable>() != null)
-    //            other.GetComponent<IDamageable>().ReceiveDamage(2);
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other != null && other.transform.root != PlayerOrigin && (ArmorPiercingInteraction)ArmorInteractionValue != ArmorPiercingInteraction.PIERCING && !other.transform.IsChildOf(PlayerOrigin))
+            CheckForProjectileHit(other);
 
-    //        Destroy(gameObject);
-            
-    //    }
-    //}
+        Destroy(gameObject);
+    }
 
     void ApplyDamageToCorrectObject(Collider colliderToDamage)
     {

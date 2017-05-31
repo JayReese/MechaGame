@@ -17,7 +17,6 @@ public class Player : DamageableObject
 
     public List<Transform> TargetsInRange;
     
-
     public CommandExecution ExecuteCommand;
 
     #region Player Stats
@@ -216,6 +215,14 @@ public class Player : DamageableObject
     {
         TakeDamage(amount);
         Debug.Log("damage dealt to body, " + Health + " HP left.");
+
+        if (Health <= 0)
+            Kill();
+    }
+
+    private void Kill()
+    {
+        Destroy(gameObject);
     }
 
     public void ToggleRadar()

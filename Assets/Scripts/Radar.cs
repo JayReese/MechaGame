@@ -74,6 +74,7 @@ public class Radar : MonoBehaviour
     {
         ClearEnemyList();
         CurrentLockOnTarget = null;
+        PlayerVisionReference.SetCameraLockOnReference(CurrentLockOnTarget);
     }
 
     void AcquireLockOnTarget()

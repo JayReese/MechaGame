@@ -15,6 +15,14 @@ public class TrainingBot : DamageableObject
     {
         Health -= amount;
         Debug.Log("Damage dealt to body, " + Health + " remaining.");
+
+        if (Health <= 0)
+            Kill();
+    }
+
+    private void Kill()
+    {
+        Destroy(gameObject);
     }
 
     void Awake()

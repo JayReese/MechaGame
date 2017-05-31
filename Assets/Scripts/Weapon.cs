@@ -35,8 +35,6 @@ public abstract class Weapon : MonoBehaviour
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.R))
             Test_Reload();
-
-        
 #endif
 
         //if ((transform.parent.GetComponentInChildren<PlayerInput>().TriggerPulled || transform.parent.GetComponentInChildren<PlayerInput>().TriggerPulledThreshold != 0) && NextFireTime <= 0 && CurrentMagazineSize > 0)
@@ -92,7 +90,7 @@ public abstract class Weapon : MonoBehaviour
     private void SetUpProjectileParameters(GameObject g, Transform lockOnTarget)
     {
         g.GetComponent<Projectile>().LockOnTarget = lockOnTarget;
-        g.GetComponent<Projectile>().PlayerOrigin = transform.parent;
+        g.GetComponent<Projectile>().PlayerOrigin = transform.root;
         g.GetComponent<Projectile>().WeaponOrigin = transform;
         g.GetComponent<Projectile>().LockOnHardnessValue = LockOnHardnessValue;
         g.GetComponent<Projectile>().ArmorInteractionValue = 2;

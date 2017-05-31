@@ -10,7 +10,8 @@ public class CameraMovement : MonoBehaviour
     Transform _currentTargetToTrack;
 
     bool LockOnTargetOutOfViewX, LockOnTargetOutOfViewY;
-    float _horizontalTargetOffScreenBoundaryLowerLimit, _horizontalTargetOffScreenBoundaryUpperLimit; 
+    float _horizontalTargetOffScreenBoundaryLowerLimit, _horizontalTargetOffScreenBoundaryUpperLimit, 
+          _verticalTargetOffScreenBoundaryLowerLimit, _verticalTargetOffScreenBoundaryUpperLimit; 
 
     // Use this for initialization
     void Start ()
@@ -24,33 +25,28 @@ public class CameraMovement : MonoBehaviour
         // The LOWER this is, the more sensitive the reorient functionality is.
         _horizontalTargetOffScreenBoundaryUpperLimit = 0.8f;
         #endregion
+
+        #region Vertical off screen boundaries.
+        // When the relative position of the lock on target reaches this point on the negative side of the Y-axis, the camera will register that the target is out of view.
+        // The HIGHER this is, the more sensitive the horizontal reorient functionality is.
+        _verticalTargetOffScreenBoundaryLowerLimit = 0f;
+
+        // When the relative position of lock on target reaches this point on the positive side of the Y-axis, the camera will register that the target is out of view.
+        // The LOWER this is, the more sensitive the reorient functionality is.
+        _verticalTargetOffScreenBoundaryUpperLimit = 1f;
+        #endregion
     }
 
     // Update is called once per frame
     void Update ()
     {
-        #region Defunct commented out code.
-        /// DEFUCT, DONT WORRY ABOUT THIS.
-        //transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
-        //transform.LookAt(new Vector3(TetheredPlayer.position.x, TetheredPlayer.position.y + 1.5f, TetheredPlayer.position.z));
-
-        /// DEFUNCT, TRIED COMPLICATED SHIT AND DECIDED AGAINST IT. 
-        //if (GeometryUtility.TestPlanesAABB(CameraPlanes, EnemyCollider.bounds))
-        //    Debug.Log("There's something over there.");
-        //else
-        //    Debug.Log("There's nothing over there.");
-        #endregion
-
-
         if (_currentTargetToTrack != null)
             CheckIfTargetIsOutOfRange();
-        else
-            Debug.Log("No lock on target");
     }
 
     void FixedUpdate()
     {
-        if (LockOnTargetOutOfViewX)
+        if (LockOnTargetOutOfViewX || LockOnTargetOutOfViewY)
             OrientToLockOnTarget();
     }
 
@@ -68,12 +64,19 @@ public class CameraMovement : MonoBehaviour
     {
         LockOnTargetOutOfViewX = TargetOutOfFrustumViewX();
         LockOnTargetOutOfViewY = TargetOutOfFrustumViewY();
-
     }
 
+    /// <summary>
+    /// Checks periodically if the target is out of the viewport on the Y-axis. It'll return a bool based on the calculations done.
+    /// </summary>
+    /// <returns>Bool</returns>
     private bool TargetOutOfFrustumViewY()
     {
-        // Not implemented.
+        //Debug.Log("Pos: " + Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.Find(_currentTargetToTrack.name).transform.position).y, 1));
+
+        if (Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.Find(_currentTargetToTrack.name).transform.position).y, 1) >= _verticalTargetOffScreenBoundaryUpperLimit || Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.Find(_currentTargetToTrack.name).transform.position).y, 1) <=  _verticalTargetOffScreenBoundaryLowerLimit)
+            return true;
+
         return false;
     }
 
