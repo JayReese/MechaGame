@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
             //transform.Rotate( new Vector3(transform.eulerAngles.x, PInput.HorizontalLook * (Time.deltaTime * TurnSensitivity) * 20f, transform.eulerAngles.z) );
     }
 
-    public void Move(float movementXAxisDirection, float movementZAxisDirection, float boostingThreshold)
+    public void Move(float lookAxis, float movementAxis, float boostingThreshold, bool isBoosting)
     {
         #region Commented out - gravity-based programming. If you want it, it's right here.
         //PlayerRigidbody.AddRelativeForce(PlayerCamera.transform.forward * 10f * VerticalMovement, ForceMode.Acceleration);
@@ -62,8 +62,9 @@ public class PlayerMovement : MonoBehaviour
         // part for where you've turned - it takes whatever you do quite literally. We can simulate acceleration through
         // simply using GetAxis, as well.
 
-        transform.position += transform.forward * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementZAxisDirection;
-        transform.position += transform.right * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementXAxisDirection;
+        transform.position += transform.forward * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementAxis;
+        transform.Rotate(0, lookAxis * Time.deltaTime * 150.0f, 0);
+        //transform.position += transform.right * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementXAxisDirection;
 
         #region Commented out - velocity-based movement.
         // Stops forward velocity immediately when the directional buttons aren't being pressed.
@@ -71,10 +72,10 @@ public class PlayerMovement : MonoBehaviour
         //    PlayerRigidbody.velocity = new Vector3(0, PlayerRigidbody.velocity.y, 0); 
         #endregion
 
-        CorrectDodgeState(movementXAxisDirection, movementZAxisDirection);
+        //CorrectDodgeState(movementXAxisDirection, movementZAxisDirection);
 
         MaintainModelRotationToEnemy();
-        Boost(boostingThreshold);
+        Boost(boostingThreshold, isBoosting);
     }
 
     void MaintainModelRotationToEnemy()
@@ -102,14 +103,13 @@ public class PlayerMovement : MonoBehaviour
         if (CanDodge) DodgeThresholdCounter -= Time.fixedDeltaTime * 0.5f;
     }
 
-
-
-
     /// <summary>
     /// Initiates flight.
     /// </summary>
-    public void Boost(float boosting)
+    public void Boost(float boostingThresh, bool isBoosting)
     {
+        int boosting = (boostingThresh != 0) || (isBoosting) ? 1 : 0;
+
         // This takes in if you're pressing the Jump button. It does a nifty thing of taking in the raw axis (either 1 or 0) and casts a
         // PlayerState into it. This changes the current PlayerState since you're either ON_GROUND or BOOSTING, with ON_GROUND being at
         // element 0.

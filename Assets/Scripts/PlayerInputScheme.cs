@@ -8,11 +8,12 @@ public class PlayerInputScheme
     bool UsingControllers;
 
     public float HorizontalLook { get; private set; }
-    public float VerticalLook { get; private set; }
+    public float LookAxis { get; private set; }
 
     public float HorizontalMovement { get; private set; }
-    public float VerticalMovement { get; private set; }
+    public float MovementAxis { get; private set; }
     public float BoostingThreshold { get; private set; }
+    public bool Boosting { get; private set; }
 
     #region Trigger inputs.
     // Trigger pulling variables.
@@ -34,10 +35,6 @@ public class PlayerInputScheme
     public bool LockOnToggled { get; private set; }
     #endregion
 
-#if UNITY_EDITOR
-    public KeyCode Boosting { get; private set; }
-#endif
-
     /// <summary>
     /// Loads the keyboard and controller control scheme setups.
     /// </summary>
@@ -53,8 +50,9 @@ public class PlayerInputScheme
         FirstSubweaponButtonPressed = Input.GetKeyDown(KeyCode.Q);
         SecondSubweaponButtonPressed = Input.GetKeyDown(KeyCode.E);
 
-        HorizontalMovement = Input.GetAxis("Horizontal");
-        VerticalMovement = Input.GetAxis("Vertical");
+        //HorizontalMovement = Input.GetAxis("Horizontal");
+        MovementAxis = Input.GetAxis("Vertical");
+        LookAxis = Input.GetAxis("Horizontal");
 
         HorizontalLook = Input.GetAxis("Mouse X");
 
@@ -73,15 +71,18 @@ public class PlayerInputScheme
     void LoadControllerControls()
     {
         //Debug.Log("Controller");
-        HorizontalMovement = Input.GetAxisRaw("Joy0X");
-        VerticalMovement = -Input.GetAxisRaw("Joy0Y");
+        LookAxis = Input.GetAxisRaw("Joy0X");
+        MovementAxis = -Input.GetAxisRaw("Joy0Y");
 
         FirstSubweaponButtonPressed = Input.GetButtonDown("Alt1Fire0");
         SecondSubweaponButtonPressed = Input.GetButtonDown("Alt2Fire0");
 
         HorizontalLook = Input.GetAxisRaw("AltJoy0X");
 
-        //IsBoosting = Input.GetButtonDown("JumpController0");
+        BoostingThreshold = Input.GetAxisRaw("JumpController0");
+        Boosting = Input.GetButton("JumpController0");
+
+        Debug.Log(Boosting);
 
         MeleeUsed = Input.GetButtonDown("AltMelee0");
         MeleeInputThreshold = Input.GetAxisRaw("Melee0");
@@ -89,7 +90,5 @@ public class PlayerInputScheme
         // Firing inputs.
         TriggerPulled = Input.GetButtonDown("FireController0");
         TriggerPulledThreshold = Input.GetAxisRaw("AltFireController0");
-
-
     }
 }

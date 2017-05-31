@@ -28,7 +28,7 @@ public class PlayerControls : MonoBehaviour
     private void CheckActionControls()
     {
         // This function continually runs without a gate because the DodgeState requires it.
-        Movement.Move(PlayerInput.HorizontalMovement, PlayerInput.VerticalMovement, PlayerInput.BoostingThreshold);
+        Movement.Move(PlayerInput.LookAxis, PlayerInput.MovementAxis, PlayerInput.BoostingThreshold, PlayerInput.Boosting);
 
         if (PlayerInput.TriggerPulled || PlayerInput.TriggerPulledThreshold != 0)
             PlayerReference.UseWeapon();

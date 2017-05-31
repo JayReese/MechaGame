@@ -36,7 +36,7 @@ public class StateManager : MonoBehaviour
     //Singleton... at least, the Unity version of one
     void Start()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(this);
@@ -50,7 +50,7 @@ public class StateManager : MonoBehaviour
     //Called inside "currentGameState" property
     void ChangeSceneOnStateChange()
     {
-        switch(currentGameState)
+        switch (currentGameState)
         {
             case (GameState.MAIN_MENU):
                 SceneManager.LoadScene(mainMenuSceneName);
