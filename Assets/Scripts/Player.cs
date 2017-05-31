@@ -35,6 +35,8 @@ public class Player : DamageableObject
     public float CurrentFuel;
     public bool CanUseSubweapons;
 
+    public byte GUIDisplayID; // Depending on the number, this is the GUI it'll display.
+
     [SerializeField]
     private float FirstSubWeaponCooldownTimer, SecondSubWeaponCooldownTimer;
     #endregion

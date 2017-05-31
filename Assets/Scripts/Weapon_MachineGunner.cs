@@ -7,7 +7,7 @@ public class Weapon_MachineGunner : Weapon
 	// Use this for initialization
 	new void Start ()
     {
-        MaxMagazineSize = 10;
+        MaxMagazineSize = 14;
 
         ReloadSpeed = 1.0f;
         FireRate = 1.5f;
