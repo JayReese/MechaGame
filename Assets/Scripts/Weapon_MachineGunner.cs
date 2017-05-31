@@ -4,8 +4,33 @@ using System.Collections;
 public class Weapon_MachineGunner : Weapon
 {
 
-	// Use this for initialization
-	new void Start ()
+    public float MagSize
+    {
+        get
+        {
+            return MaxMagazineSize;
+        }
+
+        private set
+        {
+            MaxMagazineSize = (int)value;
+        }
+    }
+    public float RemainingAmmunition
+    {
+        get
+        {
+            return CurrentMagazineSize;
+        }
+
+        private set
+        {
+            CurrentMagazineSize = (int)value;
+        }
+    }
+    
+    // Use this for initialization
+    new void Start ()
     {
         MaxMagazineSize = 14;
 

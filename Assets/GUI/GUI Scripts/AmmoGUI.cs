@@ -28,6 +28,7 @@ public class AmmoGUI : MonoBehaviour {
     void Awake()
     {
         player = FindObjectOfType<Player>();
+        personalWep = player.GetComponent<Weapon_MachineGunner>();
         MachiGui = transform.FindChild("MachiGui").gameObject;
         MachiGui.SetActive(false);
         BaemGui = transform.FindChild("BaemGui").gameObject;
@@ -86,7 +87,7 @@ public class AmmoGUI : MonoBehaviour {
             case 0:
                 if (Input.GetKeyDown(KeyCode.F))
                 {
-                    ammoFill -= (1f / 14f);
+                    ammoFill -= (1f / personalWep.MagSize);
                 }
                 Ammo.fillAmount = ammoFill;
                 if (ammoFill <= 0)
@@ -108,12 +109,22 @@ public class AmmoGUI : MonoBehaviour {
                 }
                 break;
             case 1:
+                if (ammoFill < 0)
+                {
+                    ammoFill = 0;
+                    reloadSpeed = 10;
+                }
+                if (chargeGui.fillAmount == 1)
+                {
+                    reloadSpeed = 2;
+                }
                 if(ammoFill < 1)
                 ammoFill += Time.deltaTime / reloadSpeed;
                 if (Input.GetKeyDown(KeyCode.F))
                 {
-                    if(ammoFill >= .25f)
+                    if(ammoFill >= .10f)
                         ammoFill -= (1f / 4f);
+                    
                 }
                 chargeGui.fillAmount = ammoFill;
                 break;
