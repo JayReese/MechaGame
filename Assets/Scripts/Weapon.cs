@@ -8,13 +8,20 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected bool IsReloading;
     public bool IsFiring { get; private set; }
     [SerializeField]
-    protected float ReloadSpeed, FireRate, ShotInterval, NextFireTime;
+    protected float ShotInterval, NextFireTime;
     [SerializeField]
     protected GameObject WeaponProjectile;
     [SerializeField]
     protected Transform WeaponEmitter;
+
+    #region Weapon stats
     [SerializeField]
-    protected int LockOnHardnessValue;
+    protected int BaseDamage, LockOnHardnessValue;
+    [SerializeField]
+    protected float ProjectileSpeed, ReloadSpeed, FireRate;
+    #endregion
+    [SerializeField]
+    AmmunitionFeeder Feeder;
 
 	// Use this for initialization
 	protected void Start ()
@@ -26,8 +33,8 @@ public abstract class Weapon : MonoBehaviour
 	protected void Update ()
     {
 #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.R) && !IsReloading)
-            Reload();
+        if (Input.GetKeyDown(KeyCode.R))
+            Test_Reload();
 
         
 #endif
@@ -41,13 +48,16 @@ public abstract class Weapon : MonoBehaviour
     /// <summary>
     /// Performs the necessary weapon operations.
     /// </summary>
-    public void PerformWeaponOperations()
+    public void PerformWeaponOperations(Transform currentLockOnTarget)
     {
-        StartCoroutine(Fire());
+        if(CurrentMagazineSize > 0 && !IsFiring)
+            StartCoroutine(Fire(currentLockOnTarget));
     }
 
-    private IEnumerator Fire()
+    private IEnumerator Fire(Transform currentLockOnTarget)
     {
+
+
         // Ensures that the next fire counter isn't decremting before the shots are fired. 
         // This way, you can't just shoot without the warmup in between. 
         // We can take this out if it proves too slow for gameplay, but this is generally how a rifle should work.
@@ -59,7 +69,10 @@ public abstract class Weapon : MonoBehaviour
         for (int i = 0; i < BurstCount; i++)
         {
             yield return new WaitForSeconds(ShotInterval);
-            FireProjectile();
+
+            Debug.Log("fired a projectile");
+
+            FireProjectile(currentLockOnTarget);
             ReduceMagazine();
         }
 
@@ -67,18 +80,18 @@ public abstract class Weapon : MonoBehaviour
         IsFiring = false;
     }
 
-    private void FireProjectile()
+    private void FireProjectile(Transform currentLockOnTarget)
     {
         GameObject g = WeaponProjectile;
 
-        SetUpProjectileParameters(g);
+        SetUpProjectileParameters(g, currentLockOnTarget);
 
         Instantiate(g, WeaponEmitter.position, WeaponEmitter.transform.rotation);
     }
 
-    private void SetUpProjectileParameters(GameObject g)
+    private void SetUpProjectileParameters(GameObject g, Transform lockOnTarget)
     {
-        //  g.GetComponent<Projectile>().LockOnTarget = transform.parent.GetComponentInChildren<CameraMovement>().CurrentLockOnTarget;
+        g.GetComponent<Projectile>().LockOnTarget = lockOnTarget;
         g.GetComponent<Projectile>().PlayerOrigin = transform.parent;
         g.GetComponent<Projectile>().WeaponOrigin = transform;
         g.GetComponent<Projectile>().LockOnHardnessValue = LockOnHardnessValue;
@@ -103,8 +116,8 @@ public abstract class Weapon : MonoBehaviour
             NextFireTime -= Time.deltaTime * FireRate;
     }
 
-    // Begins the reload coroutine. This is called after the user presses the reload button.
-    public void Reload() { StartCoroutine(PerformReload()); }
+    // The test reload.
+    public void Test_Reload() { CurrentMagazineSize = MaxMagazineSize; }
 
     // Performs the reload coroutine - IsReloading becomes true, which interrupts any weapon operation, and waits for a variable amount of time (your reload speed) before
     // actually setting the Current Magazine Size to the Max Magazine Size.
@@ -121,13 +134,13 @@ public abstract class Weapon : MonoBehaviour
     // Sets the defaults of the weapon.
     protected virtual void SetDefaults()
     {
-        Debug.Log("Weapon defaults set.");
-
         CurrentMagazineSize = MaxMagazineSize;
 
         ReloadSpeed = 1.0f;
 
         FireRate = 1.5f;
+
+        SetUpAmmoFeederPool();
 
         // Future-proofing this. 
         // What this is saying is, for some reason if anyone ever sets BurstCount to zero for a mecha (meaning they interpret 
@@ -141,7 +154,17 @@ public abstract class Weapon : MonoBehaviour
         NextFireTime = 0;
         IsFiring = false;
 
-        WeaponProjectile = Resources.Load("Prefabs/Test Projectile") as GameObject;
+        WeaponProjectile = Resources.Load("Prefabs/Testing/Test Projectile") as GameObject;
         WeaponEmitter = transform.FindChild("Weapon Emitter");
+    }
+
+    void SetUpAmmoFeederPool()
+    {
+        Feeder = new AmmunitionFeeder(new ProjectileStatConfig
+        {
+            LockOnHardnessValue = LockOnHardnessValue,
+            BaseDamageDealt = BaseDamage,
+            ProjectileFlightSpeed = ProjectileSpeed 
+        });
     }
 }

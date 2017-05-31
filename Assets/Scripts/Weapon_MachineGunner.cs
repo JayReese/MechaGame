@@ -12,11 +12,8 @@ public class Weapon_MachineGunner : Weapon
         ReloadSpeed = 1.0f;
         FireRate = 1.5f;
 
-        //BurstCount = 5;
-        //ShotInterval = 0.3f;
-
-        BurstCount = 1;
-        ShotInterval = 0;
+        BurstCount = 5;
+        ShotInterval = 0.4f;
 
         LockOnHardnessValue = 2;
         base.Start();

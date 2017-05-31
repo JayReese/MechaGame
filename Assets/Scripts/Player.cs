@@ -167,7 +167,7 @@ public class Player : DamageableObject
 
     public void UseWeapon()
     {
-
+        PlayerWeapon.PerformWeaponOperations(PRadar.CurrentLockOnTarget);
     }
 
     public void TakeDamage(int damageDealt)

@@ -132,6 +132,6 @@ public class Projectile : MonoBehaviour
 
     void ProjectileBehavior_SoftLockedMovement()
     {
-        transform.GetComponent<Rigidbody>().AddForce(transform.forward * FlightSpeed / 9f, ForceMode.Impulse);
+        transform.position += transform.forward * FlightSpeed * 1.5f * Time.fixedDeltaTime;
     }
 }
