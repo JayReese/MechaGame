@@ -16,13 +16,13 @@ public class Player : DamageableObject
     public byte WeaponLockHardnessValue;
 
     public List<Transform> TargetsInRange;
-    Radar PlayerRadar;
+    
 
-    [SerializeField]
     public CommandExecution ExecuteCommand;
 
     #region Player Stats
     public float MovementSpeed, JumpJetStrength, MaxFuel;
+
     [SerializeField]
     protected float FirstSubWeaponCooldown, SecondSubWeaponCooldown;
 
@@ -39,49 +39,55 @@ public class Player : DamageableObject
     private float FirstSubWeaponCooldownTimer, SecondSubWeaponCooldownTimer;
     #endregion
 
+    #region Reference Fields
+    public Radar PRadar;
+    Weapon PlayerWeapon;
+    Transform PlayerCamera;
+    #endregion
+
     #region Testing fields.
     [SerializeField]
     bool isActivePlayer;
     #endregion
 
-    // Use this for initialization
-    protected void Start()
+    protected void Awake()
     {
         MaxFuel = 3;
         CurrentFuel = MaxFuel;
         CanUseSubweapons = true;
         CurrentPlayerState = PlayerState.ON_GROUND;
-        PlayerRadar = transform.FindChild("Radar").GetComponent<Radar>();
 
-        PlayerRadar.BeginDefaults(TargetsInRange);
+        PRadar = transform.GetComponentInChildren<Radar>();
+        PlayerWeapon = GetComponentInChildren<Weapon>();
+
+        PlayerCamera = transform.FindChild("Camera");
+    }
+
+    // Use this for initialization
+    protected void Start()
+    {
+        //PRadar.BeginDefaults(TargetsInRange);
 
         _playerPreGameRadarHasFinished = false;
     }
 
     // Update is called once per frame
     protected void Update()
-    {
-        if(isActivePlayer)
-        {        
-            if (!_playerPreGameRadarHasFinished)
-            {
-                TargetsInRange.Clear();
-                _playerPreGameRadarHasFinished = true;
-            }
-
-            CheckForStateBasedFunctions();
+    {       
+        if (!_playerPreGameRadarHasFinished)
+        {
+            TargetsInRange.Clear();
+            _playerPreGameRadarHasFinished = true;
         }
+
+        CheckForStateBasedFunctions();
     }
 
     protected void FixedUpdate()
     {
-        if(isActivePlayer)
-        {
-            PerformCommandExecution();
-            CheckIfUsingSubweapons();
-            CheckIfUsingMelee();
-            ManageCooldownTimers();
-        }
+        PerformCommandExecution();
+        CheckIfUsingMelee();
+        ManageCooldownTimers();
     }
 
     private void CheckIfUsingMelee()
@@ -113,48 +119,55 @@ public class Player : DamageableObject
         CurrentFuel = CurrentPlayerState == PlayerState.ON_GROUND && CurrentFuel > MaxFuel ? MaxFuel : CurrentFuel;
     }
 
-    void OnTriggerEnter(Collider c)
+    #region Commented out - old radar targeting system.
+    //void OnTriggerEnter(Collider c)
+    //{
+    //    if (c.tag == "Enemy" || c.tag == "Controllable")
+    //        AddTargetToRadarList(c.transform);
+    //}
+
+    //void AddTargetToRadarList(Transform target)
+    //{
+    //    bool enemyCurrentlyListed = false;
+
+    //    if (TargetsInRange.Count > 0)
+    //    {
+    //        for (byte i = 0; i < TargetsInRange.Count; i++)
+    //        {
+    //            if (TargetsInRange[i] == target)
+    //            {
+    //                enemyCurrentlyListed = true;
+    //                break;
+    //            }
+    //        }
+    //    }
+
+    //    if (!enemyCurrentlyListed) TargetsInRange.Add(target);
+
+    //    #region Currently commented out - Dictionary method for populating the radar list.
+    //    //if (TargetsInRange.ContainsKey(target))
+    //    //    enemyCurrentlyListed = true;
+
+    //    //if (!enemyCurrentlyListed) TargetsInRange.Add(target, Vector3.Distance(target.position, gameObject.transform.position));
+    //    #endregion
+    //}
+
+    //public void ActivateRadar(ref Transform lockOnTarget)
+    //{
+    //    PlayerRadar.GetComponent<Radar>().Activate(TargetsInRange, ref lockOnTarget);
+    //    transform.FindChild("Camera").GetComponent<CameraMovement>().CameraLockOn(lockOnTarget);
+    //}
+
+    //public void DeactivateLockOn()
+    //{
+    //    GetComponentInChildren<CameraMovement>().RemoveLockOnTarget();
+    //    PlayerRadar.GetComponent<Radar>().ClearEnemyList(TargetsInRange);
+    //}
+    #endregion
+
+    public void UseWeapon()
     {
-        if (c.tag == "Enemy" || c.tag == "Controllable")
-            AddTargetToRadarList(c.transform);
-    }
 
-    void AddTargetToRadarList(Transform target)
-    {
-        bool enemyCurrentlyListed = false;
-
-        if (TargetsInRange.Count > 0)
-        {
-            for (byte i = 0; i < TargetsInRange.Count; i++)
-            {
-                if (TargetsInRange[i] == target)
-                {
-                    enemyCurrentlyListed = true;
-                    break;
-                }
-            }
-        }
-
-        if (!enemyCurrentlyListed) TargetsInRange.Add(target);
-
-        #region Currently commented out - Dictionary method for populating the radar list.
-        //if (TargetsInRange.ContainsKey(target))
-        //    enemyCurrentlyListed = true;
-
-        //if (!enemyCurrentlyListed) TargetsInRange.Add(target, Vector3.Distance(target.position, gameObject.transform.position));
-        #endregion
-    }
-
-    public void ActivateRadar(ref Transform lockOnTarget)
-    {
-        PlayerRadar.GetComponent<Radar>().Activate(TargetsInRange, ref lockOnTarget);
-        transform.FindChild("Camera").GetComponent<CameraMovement>().CameraLockOn(lockOnTarget);
-    }
-
-    public void DeactivateLockOn()
-    {
-        GetComponentInChildren<CameraMovement>().RemoveLockOnTarget();
-        PlayerRadar.GetComponent<Radar>().ClearEnemyList(TargetsInRange);
     }
 
     public void TakeDamage(int damageDealt)
@@ -162,15 +175,18 @@ public class Player : DamageableObject
         Health -= damageDealt;
     }
 
-    void CheckIfUsingSubweapons()
+    public void ActivateSubweapon(byte number)
     {
-        if (CanUseSubweapons)
+        switch(number)
         {
-            if (GetComponent<PlayerInput>().FirstSubweaponButtonPressed && FirstSubWeaponCooldownTimer == 0)
+            case 1:
                 ExecuteCommand += UseFirstSubweapon;
-
-            if (GetComponent<PlayerInput>().SecondSubweaponButtonPressed && SecondSubWeaponCooldownTimer == 0)
+                break;
+            case 2:
                 ExecuteCommand += UseSecondSubweapon;
+                break;
+            default:
+                throw new Exception("No subweapon known by that number.");
         }
     }
 
@@ -200,5 +216,40 @@ public class Player : DamageableObject
     {
         TakeDamage(amount);
         Debug.Log("damage dealt to body, " + Health + " HP left.");
+    }
+
+    public void ToggleRadar()
+    {
+        AssignCorrectLockOnAction();
+
+        PRadar.PingRadar(CurrentLockOnState);
+        Debug.Log(CurrentLockOnState);
+    }
+
+    private void AssignCorrectLockOnAction()
+    {
+        if (CurrentLockOnState == LockOnState.FREE) ExecuteCommand += EngageLockOn;
+        else ExecuteCommand += BreakLockOn;
+    }
+
+    public Transform ReturnLockOnTarget()
+    {
+        return PRadar.CurrentLockOnTarget;
+    }
+
+
+
+    // Engages the lock on feature.
+    private void EngageLockOn()
+    {
+        Debug.Log("Activating lock on");
+        CurrentLockOnState = LockOnState.LOCKED;
+    }
+
+    // Engages the lock on feature.
+    private void BreakLockOn()
+    {
+        Debug.Log("Break lock on");
+        CurrentLockOnState = LockOnState.FREE;
     }
 }

@@ -8,18 +8,20 @@ public class Radar : MonoBehaviour
 {
     //public Transform CurrentLockOnTarget;
     bool _initialRadarPolled;
+    public List<Transform> TargetsInRange;
+    public Transform CurrentLockOnTarget { get; private set; }
+    CameraMovement PlayerVisionReference;
 
     void Awake()
     {
-        // Starts the radar from the very beginning. Something of a band-aid, but it works reusably.
-        StartCoroutine(ToggleRadarCollider());
+        PlayerVisionReference = transform.parent.GetComponentInChildren<CameraMovement>();
     }
 
 	// Use this for initialization
 	void Start ()
     {
-        _initialRadarPolled = false;
-	}
+        
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -27,60 +29,77 @@ public class Radar : MonoBehaviour
 	    
 	}
 
-    public void Activate(List<Transform> enemies, ref Transform lockOnTarget)
+    public void PingRadar(LockOnState loState)
     {
-        StartCoroutine(ToggleRadarCollider());
-        GetLockOnTarget(enemies, ref lockOnTarget);
+        switch(loState)
+        {
+            case LockOnState.FREE:
+                ActivateRadar();
+                break;
+            case LockOnState.LOCKED:
+                DeactivateRadar();
+                break;
+        }
     }
 
-    IEnumerator ToggleRadarCollider()
+    void ActivateRadar()
     {
-        GetComponent<Collider>().enabled = true;
-        yield return new WaitForSeconds(0.1f);
-        GetComponent<Collider>().enabled = false;
+        Collider[] targets = Physics.OverlapSphere(transform.position, 150f);
+
+        foreach (Collider t in targets)
+        {
+            if (t.tag == "Enemy")
+                TargetsInRange.Add(t.gameObject.transform);
+        }
+
+        foreach (Transform t in TargetsInRange)
+            Debug.Log(t.name);
+
+        if (TargetsInRange.Count > 0)
+        {
+            AcquireLockOnTarget();
+            PlayerVisionReference.SetCameraLockOnReference(CurrentLockOnTarget);
+        }
+        else
+            ReportTargetAcquisitionFailure();
+        
     }
 
-    void OnTriggerEnter(Collider c)
+    private void ReportTargetAcquisitionFailure()
     {
-        //Debug.Log(c.name);
+        Debug.Log("No targets in range.");
     }
 
-    void GetLockOnTarget(List<Transform> enemies, ref Transform lockOnTarget)
+    private void DeactivateRadar()
     {
-        lockOnTarget = ReturnCorrectTargetByDistance(enemies);
+        ClearEnemyList();
+        CurrentLockOnTarget = null;
     }
 
-    Transform ReturnCorrectTargetByDistance(List<Transform> enemies)
+    void AcquireLockOnTarget()
+    {
+        CurrentLockOnTarget = ReturnCorrectTargetByDistance();
+        Debug.Log("Lock on target: " + CurrentLockOnTarget);
+    }
+
+    Transform ReturnCorrectTargetByDistance()
     {
         // Orders the enemy list from closest to farthest in terms of distance.
         // Magnitude is actually cheaper, so we might use that for optimization at a later point.
-        if (enemies.Count > 1)
+        if (TargetsInRange.Count > 1)
         {
-            enemies = enemies.OrderBy(
+            TargetsInRange = TargetsInRange.OrderBy(
                 x => Vector3.Distance(transform.position, x.transform.position)
             ).ToList();
         }
 
         // Returns the first Transform in the enemy list, which is the closest one.
-        return enemies[0];
+        return TargetsInRange[0];
     }
 
-    public void BeginDefaults(List<Transform> initialEnemyList)
+    public void ClearEnemyList()
     {
-        if (!_initialRadarPolled)
-        {
-            // Clears out the enemy list.
-            ClearEnemyList(initialEnemyList);
-
-            _initialRadarPolled = true;
-        }
-        else
-            Debug.Log("Radar already polled, stop trying this.");
-    }
-
-    public void ClearEnemyList(List<Transform> enemyList)
-    {
-        enemyList.Clear();
-        Debug.Log("Enemy list cleared. " + enemyList.Count + " enemies in list.");
+        TargetsInRange.Clear();
+        Debug.Log("Enemy list cleared. " + TargetsInRange.Count + " enemies in list.");
     }
 }

@@ -32,8 +32,8 @@ public abstract class Weapon : MonoBehaviour
         
 #endif
 
-        if ((transform.parent.GetComponentInChildren<PlayerInput>().TriggerPulled || transform.parent.GetComponentInChildren<PlayerInput>().TriggerPulledThreshold != 0) && NextFireTime <= 0 && CurrentMagazineSize > 0)
-            PerformWeaponOperations();
+        //if ((transform.parent.GetComponentInChildren<PlayerInput>().TriggerPulled || transform.parent.GetComponentInChildren<PlayerInput>().TriggerPulledThreshold != 0) && NextFireTime <= 0 && CurrentMagazineSize > 0)
+        //    PerformWeaponOperations();
 
         if (!IsFiring) DecrementNextFireTime();
 	}
@@ -78,7 +78,7 @@ public abstract class Weapon : MonoBehaviour
 
     private void SetUpProjectileParameters(GameObject g)
     {
-        g.GetComponent<Projectile>().LockOnTarget = transform.parent.GetComponentInChildren<CameraMovement>().CurrentLockOnTarget;
+        //  g.GetComponent<Projectile>().LockOnTarget = transform.parent.GetComponentInChildren<CameraMovement>().CurrentLockOnTarget;
         g.GetComponent<Projectile>().PlayerOrigin = transform.parent;
         g.GetComponent<Projectile>().WeaponOrigin = transform;
         g.GetComponent<Projectile>().LockOnHardnessValue = LockOnHardnessValue;

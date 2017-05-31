@@ -2,15 +2,17 @@
 using System.Collections;
 using System;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInputScheme
 {
     [SerializeField]
     bool UsingControllers;
 
     public float HorizontalLook { get; private set; }
     public float VerticalLook { get; private set; }
+
     public float HorizontalMovement { get; private set; }
     public float VerticalMovement { get; private set; }
+    public float BoostingThreshold { get; private set; }
 
     #region Trigger inputs.
     // Trigger pulling variables.
@@ -28,35 +30,24 @@ public class PlayerInput : MonoBehaviour
     public float MeleeInputThreshold { get; private set; }
     #endregion
 
-    [SerializeField]
-    float SecondaryFire;
-    public bool LockOnToggled;
-
-    bool IsBoosting;
+    #region Lock on inputs.
+    public bool LockOnToggled { get; private set; }
+    #endregion
 
 #if UNITY_EDITOR
     public KeyCode Boosting { get; private set; }
 #endif
 
-    // Use this for initialization
-    void Start()
-    {
-        UsingControllers = true;
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        BindActionInputs();
-    }
-
-    private void BindActionInputs()
+    /// <summary>
+    /// Loads the keyboard and controller control scheme setups.
+    /// </summary>
+    public void BindActionInputs()
     {
         LoadControllerControls();
         LoadKeyboardControls();
     }
 
+    
     void LoadKeyboardControls()
     {
         FirstSubweaponButtonPressed = Input.GetKeyDown(KeyCode.Q);
@@ -67,14 +58,18 @@ public class PlayerInput : MonoBehaviour
 
         HorizontalLook = Input.GetAxis("Mouse X");
 
-        TriggerPulled = Input.GetMouseButton(0);
+        LockOnToggled = Input.GetMouseButtonDown(1);
+
+        TriggerPulled = Input.GetMouseButton(0); 
 
         MeleeUsed = Input.GetKeyDown(KeyCode.F);
 
-        Boosting = KeyCode.Space;
-
+        BoostingThreshold = Input.GetAxisRaw("Jump");
     }
-
+    
+    /// <summary>
+    /// Loads the XBox 360 controller control scheme setup.
+    /// </summary>
     void LoadControllerControls()
     {
         //Debug.Log("Controller");
@@ -86,7 +81,7 @@ public class PlayerInput : MonoBehaviour
 
         HorizontalLook = Input.GetAxisRaw("AltJoy0X");
 
-        IsBoosting = Input.GetButtonDown("JumpController0");
+        //IsBoosting = Input.GetButtonDown("JumpController0");
 
         MeleeUsed = Input.GetButtonDown("AltMelee0");
         MeleeInputThreshold = Input.GetAxisRaw("Melee0");
@@ -94,5 +89,7 @@ public class PlayerInput : MonoBehaviour
         // Firing inputs.
         TriggerPulled = Input.GetButtonDown("FireController0");
         TriggerPulledThreshold = Input.GetAxisRaw("AltFireController0");
+
+
     }
 }

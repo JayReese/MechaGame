@@ -3,6 +3,10 @@ using System.Collections;
 
 public class Player_MachineGunner : Player
 {
+    new void Awake()
+    {
+        base.Awake();
+    }
 
     // Use this for initialization
     new void Start()

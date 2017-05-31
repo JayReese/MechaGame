@@ -7,14 +7,23 @@ using System;
 /// </summary>
 public class CameraMovement : MonoBehaviour
 {
-    public Transform CurrentLockOnTarget;
+    Transform _currentTargetToTrack;
 
-    public bool LockOnTargetOutOfView;
+    bool LockOnTargetOutOfViewX, LockOnTargetOutOfViewY;
+    float _horizontalTargetOffScreenBoundaryLowerLimit, _horizontalTargetOffScreenBoundaryUpperLimit; 
 
     // Use this for initialization
     void Start ()
     {
+        #region Horizontal off screen boundaries.
+        // When the relative position of the lock on target reaches this point on the negative side of the X-axis, the camera will register that the target is out of view.
+        // The HIGHER this is, the more sensitive the horizontal reorient functionality is.
+        _horizontalTargetOffScreenBoundaryLowerLimit = 0.2f;
 
+        // When the relative position of lock on target reaches this point on the positive side of the X-axis, the camera will register that the target is out of view.
+        // The LOWER this is, the more sensitive the reorient functionality is.
+        _horizontalTargetOffScreenBoundaryUpperLimit = 0.8f;
+        #endregion
     }
 
     // Update is called once per frame
@@ -32,45 +41,54 @@ public class CameraMovement : MonoBehaviour
         //    Debug.Log("There's nothing over there.");
         #endregion
 
-      
-        if (CurrentLockOnTarget)
+
+        if (_currentTargetToTrack != null)
             CheckIfTargetIsOutOfRange();
+        else
+            Debug.Log("No lock on target");
     }
 
     void FixedUpdate()
     {
-        
+        if (LockOnTargetOutOfViewX)
+            OrientToLockOnTarget();
     }
 
-    public void CameraLockOn(Transform targetToLockOn)
+    public void SetCameraLockOnReference(Transform targetToLockOn)
     {
-        Debug.Log(targetToLockOn);
-
-        #region Commented out - old method of acquiring targets
-        //transform.Rotate(new Vector3(targetToLockOn.rotation.x, targetToLockOn.rotation.y, transform.localEulerAngles.z));
-        //CurrentLockOnTarget = GameObject.Find(targetToLockOn.name).transform;
-        #endregion
-
-        CurrentLockOnTarget = targetToLockOn;
+        _currentTargetToTrack = targetToLockOn;
     }
 
-    private void CheckIfTargetIsOutOfRange() { LockOnTargetOutOfView = TargetOutOfFrustumView(); }
-
-
-    /// <summary>
-    /// Checks periodically if the target is out of the viewport. It'll return a bool based on the calculations done.
-    /// </summary>
-    /// <returns>Bool</returns>
-    private bool TargetOutOfFrustumView()
+    private void OrientToLockOnTarget()
     {
-        if (Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.Find(CurrentLockOnTarget.name).transform.position).x, 1) >= 1.0f || Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.Find(CurrentLockOnTarget.name).transform.position).x, 1) <= 0)
-            return true;
+        transform.parent.LookAt(_currentTargetToTrack);
+    }
 
+    private void CheckIfTargetIsOutOfRange()
+    {
+        LockOnTargetOutOfViewX = TargetOutOfFrustumViewX();
+        LockOnTargetOutOfViewY = TargetOutOfFrustumViewY();
+
+    }
+
+    private bool TargetOutOfFrustumViewY()
+    {
+        // Not implemented.
         return false;
     }
 
-    public void RemoveLockOnTarget()
+
+    /// <summary>
+    /// Checks periodically if the target is out of the viewport on the X-axis. It'll return a bool based on the calculations done.
+    /// </summary>
+    /// <returns>Bool</returns>
+    private bool TargetOutOfFrustumViewX()
     {
-        CurrentLockOnTarget = null;
+        //Debug.Log("Pos: " + Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.Find(_currentTargetToTrack.name).transform.position).x, 1));
+
+        if (Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.Find(_currentTargetToTrack.name).transform.position).x, 1) >= _horizontalTargetOffScreenBoundaryUpperLimit || Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.Find(_currentTargetToTrack.name).transform.position).x, 1) <= _horizontalTargetOffScreenBoundaryLowerLimit)
+            return true;
+
+        return false;
     }
 }
