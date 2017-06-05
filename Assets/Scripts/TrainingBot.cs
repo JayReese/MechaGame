@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class TrainingBot : DamageableObject
 {
@@ -13,20 +14,18 @@ public class TrainingBot : DamageableObject
 
     public override void ReceiveDamage(int amount)
     {
+        Debug.Log("hit");
+
         Health -= amount;
         Debug.Log("Damage dealt to body, " + Health + " remaining.");
 
         if (Health <= 0)
-            Kill();
-    }
-
-    private void Kill()
-    {
-        Destroy(gameObject);
+            IsTargetable = false;
     }
 
     void Awake()
     {
+        IsTargetable = true;
         Health = 10;
     }
 
@@ -37,7 +36,7 @@ public class TrainingBot : DamageableObject
         ammo = maxAmmo;
 
         lifetime = 4;
-        direction = Random.Range(1, 100) > 50 ? 1 : -1;
+        direction = UnityEngine.Random.Range(1, 100) > 50 ? 1 : -1;
         bulletP = Resources.Load("Prefabs/Test Projectile") as GameObject;
         //InvokeRepeating("Fire", 0, 0.4f);
 

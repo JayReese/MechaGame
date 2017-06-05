@@ -57,8 +57,13 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other != null && other.transform.root != PlayerOrigin && (ArmorPiercingInteraction)ArmorInteractionValue != ArmorPiercingInteraction.PIERCING && !other.transform.IsChildOf(PlayerOrigin))
+        {
+            Debug.Log("hit");
             CheckForProjectileHit(other);
+        }
+            
 
         Destroy(gameObject);
     }

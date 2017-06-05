@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
             for (int teamNum = 0; teamNum < numberOfTeams; teamNum++) //divide the players into teams
             {
                 GameObject newPlayerMech = Instantiate(mechaPlayerPrefabs[0]);
-                newPlayerMech.GetComponent<DeleteMeTempController>().FirstTimeSetup(this, teamNum, TeamSpawnPositions[teamNum].positions);
+                //newPlayerMech.GetComponent<DeleteMeTempController>().FirstTimeSetup(this, teamNum, TeamSpawnPositions[teamNum].positions);
 
                 playerNum++;
                 Debug.Log("Player: " + playerNum + " has been placed in team " + teamNum);

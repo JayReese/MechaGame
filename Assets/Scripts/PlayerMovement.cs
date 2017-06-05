@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody PlayerRigidbody;
     Player PlayerRef;
 
+    Vector3 _currentLockOnTargetPosition;
+
     GameObject PlayerModel;
 
     [SerializeField]
@@ -62,8 +64,18 @@ public class PlayerMovement : MonoBehaviour
         // part for where you've turned - it takes whatever you do quite literally. We can simulate acceleration through
         // simply using GetAxis, as well.
 
-        transform.position += transform.forward * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementAxis;
-        transform.Rotate(0, lookAxis * Time.deltaTime * 150.0f, 0);
+        if(PlayerRef.CurrentLockOnState == LockOnState.FREE)
+        {
+            transform.position += transform.forward * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementAxis;
+            transform.Rotate(0, lookAxis * Time.deltaTime * 150.0f, 0);
+        }
+        else
+        {
+            transform.position += transform.forward * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementAxis;
+            transform.position += transform.right * PlayerRef.MovementSpeed * Time.fixedDeltaTime * lookAxis;
+        }
+        
+
         //transform.position += transform.right * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementXAxisDirection;
 
         #region Commented out - velocity-based movement.
@@ -81,14 +93,22 @@ public class PlayerMovement : MonoBehaviour
     void MaintainModelRotationToEnemy()
     {
         if (PlayerRef.ReturnLockOnTarget() != null)
+        {
+            //_currentLockOnTargetPosition = PlayerRef.ReturnLockOnTarget().position;
+            //_currentLockOnTargetPosition.y = PlayerRef.IsOnGround ? 0.0f : _currentLockOnTargetPosition.y;
+
             PlayerModel.transform.LookAt(PlayerRef.ReturnLockOnTarget());
+        }
         else
             MaintainModelRotationToWorld();
     }
     
     void MaintainModelRotationToWorld()
     {
-        PlayerModel.transform.localEulerAngles = PlayerCamera.transform.forward;
+        _currentLockOnTargetPosition = PlayerCamera.transform.forward;
+        _currentLockOnTargetPosition.y = 0.0f;
+
+        PlayerModel.transform.localEulerAngles = _currentLockOnTargetPosition;
     }
 
     void CorrectDodgeState(float movementXAxis, float movementZAxis)

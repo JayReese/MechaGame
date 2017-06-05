@@ -54,8 +54,6 @@ public class PlayerInputScheme
         MovementAxis = Input.GetAxis("Vertical");
         LookAxis = Input.GetAxis("Horizontal");
 
-        HorizontalLook = Input.GetAxis("Mouse X");
-
         LockOnToggled = Input.GetMouseButtonDown(1);
 
         TriggerPulled = Input.GetMouseButton(0); 
@@ -82,7 +80,7 @@ public class PlayerInputScheme
         BoostingThreshold = Input.GetAxisRaw("JumpController0");
         Boosting = Input.GetButton("JumpController0");
 
-        Debug.Log(Boosting);
+        //Debug.Log(Boosting);
 
         MeleeUsed = Input.GetButtonDown("AltMelee0");
         MeleeInputThreshold = Input.GetAxisRaw("Melee0");

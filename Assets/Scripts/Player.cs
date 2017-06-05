@@ -11,12 +11,12 @@ public class Player : DamageableObject
     // Shut up Lex, it's staying and I don't care what you say. Fight me.
     public bool IsExtraThicc;
     [SerializeField]
-    bool _playerPreGameRadarHasFinished;
+    bool _playerPreGameRadarHasFinished, GodModeActive;
 
     public byte WeaponLockHardnessValue;
 
     public List<Transform> TargetsInRange;
-    
+
     public CommandExecution ExecuteCommand;
 
     #region Player Stats
@@ -32,7 +32,7 @@ public class Player : DamageableObject
     public LockOnState CurrentLockOnState;
 
     public float CurrentFuel;
-    public bool CanUseSubweapons;
+    public bool CanUseSubweapons, IsOnGround;
 
     [SerializeField]
     private float FirstSubWeaponCooldownTimer, SecondSubWeaponCooldownTimer;
@@ -54,7 +54,6 @@ public class Player : DamageableObject
         MaxFuel = 3;
         CurrentFuel = MaxFuel;
         CanUseSubweapons = true;
-        CurrentPlayerState = PlayerState.ON_GROUND;
 
         PRadar = transform.GetComponentInChildren<Radar>();
         PlayerWeapon = GetComponentInChildren<Weapon>();
@@ -80,21 +79,17 @@ public class Player : DamageableObject
         }
 
         CheckForStateBasedFunctions();
+        ActivateGodMode();
+
+        CurrentPlayerState = IsOnGround ? PlayerState.ON_GROUND : CurrentPlayerState;
     }
 
-    protected void FixedUpdate()
-    {
-        PerformCommandExecution();
-        CheckIfUsingMelee();
-        ManageCooldownTimers();
-    }
-
-    private void CheckIfUsingMelee()
+    protected void CheckIfUsingMelee()
     {
         // Not implemented yet.
     }
 
-    private void PerformCommandExecution()
+    protected void PerformCommandExecution()
     {
         if (ExecuteCommand != null)
         {
@@ -111,9 +106,11 @@ public class Player : DamageableObject
 
     void ChangeFuel(float multiplier)
     {
-        if (multiplier == 1 && CurrentFuel > 0 || multiplier == -1 && CurrentFuel < MaxFuel)
-            CurrentFuel -= Time.deltaTime * 1.5f * multiplier;
-
+        if(!GodModeActive)
+        {
+            if (multiplier == 1 && CurrentFuel > 0 || multiplier == -1 && CurrentFuel < MaxFuel)
+                CurrentFuel -= Time.deltaTime * 1.5f * multiplier;
+        }
 
         CurrentFuel = CurrentPlayerState == PlayerState.ON_GROUND && CurrentFuel > MaxFuel ? MaxFuel : CurrentFuel;
     }
@@ -201,7 +198,7 @@ public class Player : DamageableObject
         SecondSubWeaponCooldownTimer = SecondSubWeaponCooldown;
     }
 
-    void ManageCooldownTimers()
+    protected void ManageCooldownTimers()
     {
         FirstSubWeaponCooldownTimer = FirstSubWeaponCooldownTimer <= 0 ? 0 : FirstSubWeaponCooldownTimer -= 1.5f * Time.fixedDeltaTime;
         SecondSubWeaponCooldownTimer = SecondSubWeaponCooldownTimer <= 0 ? 0 : SecondSubWeaponCooldownTimer -= 1.5f * Time.fixedDeltaTime;
@@ -244,8 +241,6 @@ public class Player : DamageableObject
         return PRadar.CurrentLockOnTarget;
     }
 
-
-
     // Engages the lock on feature.
     private void EngageLockOn()
     {
@@ -258,5 +253,27 @@ public class Player : DamageableObject
     {
         Debug.Log("Break lock on");
         CurrentLockOnState = LockOnState.FREE;
+    }
+
+    private void ActivateGodMode()
+    {
+        if (Input.GetKeyDown(KeyCode.G)) GodModeActive = !GodModeActive;
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag != "Controllable")
+            IsOnGround = true;
+    }
+
+    public void OnCollisionStay(Collision collision)
+    {
+        if (collision.collider.tag != "Controllable")
+            IsOnGround = true;
+    }
+
+    public void OnCollisionExit(Collision collision)
+    {
+        IsOnGround = false;
     }
 }

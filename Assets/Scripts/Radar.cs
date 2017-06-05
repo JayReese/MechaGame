@@ -26,7 +26,9 @@ public class Radar : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-	    
+        //Debug.Log("lock on target: " + CurrentLockOnTarget);
+        if (CurrentLockOnTarget != null && (CurrentLockOnTarget.root.GetComponent<DamageableObject>() && !CurrentLockOnTarget.root.GetComponent<DamageableObject>().IsTargetable))
+            DeactivateRadar();
 	}
 
     public void PingRadar(LockOnState loState)
@@ -67,6 +69,7 @@ public class Radar : MonoBehaviour
 
     private void ReportTargetAcquisitionFailure()
     {
+        CurrentLockOnTarget = null;
         Debug.Log("No targets in range.");
     }
 

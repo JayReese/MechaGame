@@ -68,8 +68,6 @@ public abstract class Weapon : MonoBehaviour
         {
             yield return new WaitForSeconds(ShotInterval);
 
-            Debug.Log("fired a projectile");
-
             FireProjectile(currentLockOnTarget);
             ReduceMagazine();
         }

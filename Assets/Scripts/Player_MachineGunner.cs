@@ -27,7 +27,11 @@ public class Player_MachineGunner : Player
 
     new void FixedUpdate()
     {
-        base.FixedUpdate();
+        PerformCommandExecution();
+        CheckIfUsingMelee();
+        ManageCooldownTimers();
+
+        base.FixedUpdate(); 
     }
 
     protected override void UseFirstSubweapon()
@@ -41,4 +45,6 @@ public class Player_MachineGunner : Player
         Debug.Log("Machi Second Subweapon Used");
         base.UseSecondSubweapon();
     }
+
+
 }
