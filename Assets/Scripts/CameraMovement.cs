@@ -8,6 +8,7 @@ using System;
 public class CameraMovement : MonoBehaviour
 {
     Transform _currentTargetToTrack;
+    Camera PlayerCameraReference;
 
     bool LockOnTargetOutOfViewX, LockOnTargetOutOfViewY;
     float _horizontalTargetOffScreenBoundaryLowerLimit, _horizontalTargetOffScreenBoundaryUpperLimit, 
@@ -35,6 +36,8 @@ public class CameraMovement : MonoBehaviour
         // The LOWER this is, the more sensitive the reorient functionality is.
         _verticalTargetOffScreenBoundaryUpperLimit = 1f;
         #endregion
+
+        PlayerCameraReference = GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -79,7 +82,7 @@ public class CameraMovement : MonoBehaviour
     {
         //Debug.Log("Pos: " + Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.Find(_currentTargetToTrack.name).transform.position).y, 1));
 
-        if (Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.Find(_currentTargetToTrack.name).transform.position).y, 1) >= _verticalTargetOffScreenBoundaryUpperLimit || Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.Find(_currentTargetToTrack.name).transform.position).y, 1) <=  _verticalTargetOffScreenBoundaryLowerLimit)
+        if (Math.Round(PlayerCameraReference.WorldToViewportPoint(GameObject.Find(_currentTargetToTrack.name).transform.position).y, 1) >= _verticalTargetOffScreenBoundaryUpperLimit || Math.Round(PlayerCameraReference.WorldToViewportPoint(GameObject.Find(_currentTargetToTrack.name).transform.position).y, 1) <=  _verticalTargetOffScreenBoundaryLowerLimit)
             return true;
 
         return false;
@@ -94,9 +97,9 @@ public class CameraMovement : MonoBehaviour
     {
         //Debug.Log("Pos: " + Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.Find(_currentTargetToTrack.name).transform.position).x, 1));
 
-        if (Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.Find(_currentTargetToTrack.name).transform.position).x, 1) >= _horizontalTargetOffScreenBoundaryUpperLimit || Math.Round(GetComponent<Camera>().WorldToViewportPoint(GameObject.Find(_currentTargetToTrack.name).transform.position).x, 1) <= _horizontalTargetOffScreenBoundaryLowerLimit)
+        if (Math.Round(PlayerCameraReference.WorldToViewportPoint(GameObject.Find(_currentTargetToTrack.name).transform.position).x, 1) >= _horizontalTargetOffScreenBoundaryUpperLimit || Math.Round(PlayerCameraReference.WorldToViewportPoint(GameObject.Find(_currentTargetToTrack.name).transform.position).x, 1) <= _horizontalTargetOffScreenBoundaryLowerLimit)
             return true;
 
         return false;
     }
-}
+} 

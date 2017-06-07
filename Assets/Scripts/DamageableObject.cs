@@ -7,6 +7,8 @@ public class DamageableObject : MonoBehaviour
     public bool IsTargetable, IsPersistingObject;
     [SerializeField] protected float _destructTimer;
 
+    public SurfaceType DamageSurfaceType;
+
     public virtual void ReceiveDamage(int amount)
     {
         Health -= amount;
@@ -19,7 +21,7 @@ public class DamageableObject : MonoBehaviour
 
     private void DecrementDestructTimer()
     {
-        if (!IsTargetable)
+        if (!IsTargetable && IsPersistingObject)
         {
             _destructTimer -= Time.fixedDeltaTime;
 
@@ -28,11 +30,12 @@ public class DamageableObject : MonoBehaviour
         }
 
         if (!IsPersistingObject && Health <= 0)
-            Kill();
+            Kill("non pers obj killed.");
     }
 
-    private void Kill()
+    private void Kill(string g = "regular death")
     {
+        Debug.Log(gameObject.name + " destroyed. " + g);
         Destroy(gameObject);
     }
 

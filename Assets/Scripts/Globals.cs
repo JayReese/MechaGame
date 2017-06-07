@@ -10,6 +10,8 @@ public enum LockOnHardness { SOFT = 1, HARD };
 
 public enum ArmorPiercingInteraction { BLOCKED = 1, DAMAGING, PIERCING, BREAKING };
 
+public enum SurfaceType { PLAYER, ARMOR, ENVIRONMENT };
+
 public delegate void CommandExecution();
 public delegate void MovementBehavior();
 

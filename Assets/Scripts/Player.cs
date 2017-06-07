@@ -57,6 +57,8 @@ public class Player : DamageableObject
 
         IsPersistingObject = true;
 
+        DamageSurfaceType = SurfaceType.PLAYER;
+
         PRadar = transform.GetComponentInChildren<Radar>();
         PlayerWeapon = GetComponentInChildren<Weapon>();
 

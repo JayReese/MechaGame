@@ -54,13 +54,11 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (other != null && other.transform.root != PlayerOrigin && (ArmorPiercingInteraction)ArmorInteractionValue != ArmorPiercingInteraction.PIERCING && !other.transform.IsChildOf(PlayerOrigin))
         {
             Debug.Log("hit");
             CheckForProjectileHit(other);
         }
-            
 
         Destroy(gameObject);
     }
@@ -69,6 +67,8 @@ public class Projectile : MonoBehaviour
     {
         Debug.Log("Damage applied");
         int damageDealt = 0;
+
+        Debug.Log(colliderToDamage.name);
 
         switch ((ArmorPiercingInteraction)ArmorInteractionValue)
         {
@@ -83,7 +83,7 @@ public class Projectile : MonoBehaviour
             //    break;
         }
 
-        colliderToDamage.transform.root.GetComponent<DamageableObject>().ReceiveDamage(damageDealt);
+        //colliderToDamage.transform.root.GetComponent<DamageableObject>().ReceiveDamage(damageDealt);
     }
 
     void DegradeProjectileLife()
