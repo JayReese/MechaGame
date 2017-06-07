@@ -7,6 +7,7 @@ public class ArmorPiece : DamageableObject
     [SerializeField] int CurrentStructural;
     public int StructuralIntegrity { get; private set; }
 
+
     public override void ReceiveDamage(int amount)
     {
         StructuralIntegrity -= amount;
@@ -19,6 +20,7 @@ public class ArmorPiece : DamageableObject
     // Use this for initialization
     void Start ()
     {
+        IsPersistingObject = false;
         StructuralIntegrity = 10;
 	}
 	
@@ -39,5 +41,10 @@ public class ArmorPiece : DamageableObject
             Destroy(gameObject);
         }
             
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
     }
 }

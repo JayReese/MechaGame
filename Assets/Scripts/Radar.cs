@@ -50,7 +50,7 @@ public class Radar : MonoBehaviour
 
         foreach (Collider t in targets)
         {
-            if (t.tag == "Enemy")
+            if (t.tag == "Controllable" && t.gameObject != gameObject)
                 TargetsInRange.Add(t.gameObject.transform);
         }
 

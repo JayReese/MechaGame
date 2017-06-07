@@ -10,13 +10,11 @@ public class TrainingBot : DamageableObject
     int ammo, maxAmmo;
     int test;
 
-    int Health;
-
     public override void ReceiveDamage(int amount)
     {
         Debug.Log("hit");
 
-        Health -= amount;
+        base.ReceiveDamage(amount);
         Debug.Log("Damage dealt to body, " + Health + " remaining.");
 
         if (Health <= 0)
@@ -54,13 +52,15 @@ public class TrainingBot : DamageableObject
             direction *= -1;
         }
 
+
        // transform.position += (transform.right * direction) * 10f * Time.deltaTime;
 
 	}
 
-    void OnEnable()
+    protected override void OnEnable()
     {
-        //Debug.Log(test);
+        IsPersistingObject = true;
+        base.OnEnable();
     }
 
     void OnTriggerEnter(Collider c)

@@ -17,9 +17,6 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     bool PlayerIsLockedOn;
 
-    
-
-
     void Awake()
     {
         SetUpLockOnBehavior();
@@ -49,7 +46,7 @@ public class Projectile : MonoBehaviour
 
     private void CheckForProjectileHit(Collider h)
     {
-        if (h.gameObject.GetComponent<DamageableObject>() != null)
+        if (h.transform.root.GetComponent<DamageableObject>() != null)
             ApplyDamageToCorrectObject(h);
         else
             Debug.Log(PlayerOrigin);
@@ -70,6 +67,7 @@ public class Projectile : MonoBehaviour
 
     void ApplyDamageToCorrectObject(Collider colliderToDamage)
     {
+        Debug.Log("Damage applied");
         int damageDealt = 0;
 
         switch ((ArmorPiercingInteraction)ArmorInteractionValue)
@@ -85,7 +83,7 @@ public class Projectile : MonoBehaviour
             //    break;
         }
 
-        colliderToDamage.GetComponent<DamageableObject>().ReceiveDamage(damageDealt);
+        colliderToDamage.transform.root.GetComponent<DamageableObject>().ReceiveDamage(damageDealt);
     }
 
     void DegradeProjectileLife()

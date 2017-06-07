@@ -5,7 +5,7 @@ using System;
 
 public class Player : DamageableObject
 {
-    public int PlayerID, Health;
+    public int PlayerID;
 
     // Checks periodically for sufficient thiccness. 
     // Shut up Lex, it's staying and I don't care what you say. Fight me.
@@ -55,6 +55,8 @@ public class Player : DamageableObject
         CurrentFuel = MaxFuel;
         CanUseSubweapons = true;
 
+        IsPersistingObject = true;
+
         PRadar = transform.GetComponentInChildren<Radar>();
         PlayerWeapon = GetComponentInChildren<Weapon>();
 
@@ -65,7 +67,7 @@ public class Player : DamageableObject
     protected void Start()
     {
         //PRadar.BeginDefaults(TargetsInRange);
-
+        IsTargetable = true;
         _playerPreGameRadarHasFinished = false;
     }
 
