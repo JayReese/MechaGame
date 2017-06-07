@@ -19,8 +19,10 @@ public class GameManager : MonoBehaviour
 
     public const int pointsPerKill = 100;       //how many points the team will score when they get a kill
     const int numberOfTeams = 2;                //this variable can be adjusted in the future if we ever want more than 2 teams
-
+    int NumPlayers;
     int[] teamScoreboards;
+
+    GameObject[] Players;
 
     //You can't have 2D arrays exposed to the editor, so this is the workaround
     [System.Serializable]
@@ -29,33 +31,51 @@ public class GameManager : MonoBehaviour
         public Transform[] positions;
     }
 
+
+    void Awake()
+    {
+        Players = GameObject.FindGameObjectsWithTag("Player");
+        //determine how many controllers are hooked up
+        NumPlayers = Input.GetJoystickNames().Length;
+        //Debug.Log(players);
+        teamScoreboards = new int[NumPlayers];
+        //bool unevenTeams = (players % numberOfTeams != 0);    //this variable can be used to determine if the teams cannot be evenly distributed
+        SetPlayerID();
+
+    }
 	// Use this for initialization
 	void Start ()
     {
-        //determine how many controllers are hooked up
-        int players = Input.GetJoystickNames().Length;
-        teamScoreboards = new int[players];
-        //bool unevenTeams = (players % numberOfTeams != 0);    //this variable can be used to determine if the teams cannot be evenly distributed
 
-        int playerNum = 0;
-        while(playerNum < players) //loop through all the players
-        {
-            for (int teamNum = 0; teamNum < numberOfTeams; teamNum++) //divide the players into teams
-            {
-                GameObject newPlayerMech = Instantiate(mechaPlayerPrefabs[0]);
-                //newPlayerMech.GetComponent<DeleteMeTempController>().FirstTimeSetup(this, teamNum, TeamSpawnPositions[teamNum].positions);
-
-                playerNum++;
-                Debug.Log("Player: " + playerNum + " has been placed in team " + teamNum);
-
-                if (playerNum >= players) //if we've matched or exceeded our number of players, stop looping
-                {
-                    break;
-                }
-                
-            }
-        }
 	}
+
+    void SetPlayerID()
+    {
+        for (int i = 0; i < Players.Length; i++)
+        {
+            Players[i].GetComponent<Player>().PlayerID = i;
+        }
+
+
+        //int playerNum = 0;
+        //while (playerNum < NumPlayers) //loop through all the players
+        //{
+        //    for (int teamNum = 0; teamNum < numberOfTeams; teamNum++) //divide the players into teams
+        //    {
+        //        //GameObject newPlayerMech = Instantiate(mechaPlayerPrefabs[0]);
+        //        //newPlayerMech.GetComponent<DeleteMeTempController>().FirstTimeSetup(this, teamNum, TeamSpawnPositions[teamNum].positions);
+
+        //        playerNum++;
+        //        Debug.Log("Player: " + playerNum + " has been placed in team " + teamNum);
+
+        //        if (playerNum >= NumPlayers) //if we've matched or exceeded our number of players, stop looping
+        //        {
+        //            break;
+        //        }
+
+        //    }
+        //}
+    }
 
 
     public void AdjustTeamPoints(int amount, int teamIndex)
