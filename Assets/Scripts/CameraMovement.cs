@@ -7,11 +7,12 @@ using System;
 /// </summary>
 public class CameraMovement : MonoBehaviour
 {
-    Transform _currentTargetToTrack;
+    [SerializeField] Transform _currentTargetToTrack;
     Camera PlayerCameraReference;
+    Vector3 _defaultCameraRotation;
 
-    bool LockOnTargetOutOfViewX, LockOnTargetOutOfViewY;
-    float _horizontalTargetOffScreenBoundaryLowerLimit, _horizontalTargetOffScreenBoundaryUpperLimit, 
+    [SerializeField] bool LockOnTargetOutOfViewX, LockOnTargetOutOfViewY;
+    [SerializeField] float _horizontalTargetOffScreenBoundaryLowerLimit, _horizontalTargetOffScreenBoundaryUpperLimit, 
           _verticalTargetOffScreenBoundaryLowerLimit, _verticalTargetOffScreenBoundaryUpperLimit; 
 
     // Use this for initialization
@@ -36,6 +37,8 @@ public class CameraMovement : MonoBehaviour
         // The LOWER this is, the more sensitive the reorient functionality is.
         _verticalTargetOffScreenBoundaryUpperLimit = 1f;
         #endregion
+
+        _defaultCameraRotation = transform.localEulerAngles;
 
         PlayerCameraReference = GetComponent<Camera>();
     }
@@ -101,5 +104,10 @@ public class CameraMovement : MonoBehaviour
             return true;
 
         return false;
+    }
+
+    public void ReorientToCenter()
+    {
+        transform.localEulerAngles = _defaultCameraRotation;
     }
 } 

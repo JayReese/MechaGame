@@ -249,7 +249,7 @@ public class Player : DamageableObject
     private void EngageLockOn()
     {
         Debug.Log("Activating lock on");
-        CurrentLockOnState = LockOnState.LOCKED;
+        if(PRadar.CurrentLockOnTarget != null) CurrentLockOnState = LockOnState.LOCKED;
     }
 
     // Engages the lock on feature.
@@ -268,6 +268,8 @@ public class Player : DamageableObject
     {
         if (collision.collider.tag != "Controllable")
             IsOnGround = true;
+
+        
     }
 
     public void OnCollisionStay(Collision collision)

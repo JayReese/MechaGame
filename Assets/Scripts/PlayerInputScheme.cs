@@ -37,7 +37,8 @@ public class PlayerInputScheme : MonoBehaviour
 
     void Start()
     {
-        _currentPlayerID = GetComponent<Player_MachineGunner>().PlayerID;
+        // IDs are currently set by grabbing the component of the player.
+        _currentPlayerID = GetComponent<Player>().PlayerID;
     }
     
     /// <summary>
@@ -46,7 +47,7 @@ public class PlayerInputScheme : MonoBehaviour
     public void BindActionInputs()
     {
         LoadControllerControls();
-       // LoadKeyboardControls();
+        //LoadKeyboardControls();
     }
 
     
@@ -85,6 +86,8 @@ public class PlayerInputScheme : MonoBehaviour
         BoostingThreshold = Input.GetAxisRaw("JumpController" + _currentPlayerID);
         Boosting = Input.GetButton("JumpController" + _currentPlayerID);
 
+        LockOnToggled = Input.GetButtonDown("Target" + _currentPlayerID);
+
         //Debug.Log(Boosting);
 
         MeleeUsed = Input.GetButtonDown("AltMelee" + _currentPlayerID);
@@ -92,6 +95,8 @@ public class PlayerInputScheme : MonoBehaviour
 
         // Firing inputs.
         TriggerPulled = Input.GetButtonDown("FireController" + _currentPlayerID);
+        //Debug.Log(_currentPlayerID + " pulled trigger? " + TriggerPulled);
         TriggerPulledThreshold = Input.GetAxisRaw("AltFireController" + _currentPlayerID);
+        Debug.Log(_currentPlayerID + " pulled trigger? " + TriggerPulledThreshold);
     }
 }

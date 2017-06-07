@@ -28,4 +28,11 @@ public static class Globals
 
         return hit;
     }
+
+    public static Vector2 ReturnCorrectCameraRect(int idToReturn)
+    {
+        Vector2[] cameraRects = new Vector2[] { new Vector2(0, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0, 0), new Vector2(0.5f, 0) };
+
+        return cameraRects[idToReturn];
+    }
 }

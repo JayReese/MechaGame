@@ -54,9 +54,12 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < Players.Length; i++)
         {
             Players[i].GetComponent<Player>().PlayerID = i;
+
+            Vector2 viewRect = Globals.ReturnCorrectCameraRect(i);
+            Players[i].GetComponentInChildren<Camera>().rect = new Rect(viewRect[0], viewRect[1], 0.5f, 0.5f);
         }
 
-
+        #region Commented out.
         //int playerNum = 0;
         //while (playerNum < NumPlayers) //loop through all the players
         //{
@@ -75,6 +78,7 @@ public class GameManager : MonoBehaviour
 
         //    }
         //}
+        #endregion
     }
 
 

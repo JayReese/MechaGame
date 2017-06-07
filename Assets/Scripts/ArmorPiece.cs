@@ -16,7 +16,6 @@ public class ArmorPiece : DamageableObject
     // Use this for initialization
     void Start ()
     {
-       
         Health = 10;
 	}
 	

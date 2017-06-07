@@ -44,47 +44,49 @@ public class Projectile : MonoBehaviour
         DegradeProjectileLife();
     }
 
-    private void CheckForProjectileHit(Collider h)
-    {
-        if (h.transform.root.GetComponent<DamageableObject>() != null)
-            ApplyDamageToCorrectObject(h);
-        else
-            Debug.Log(PlayerOrigin);
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other != null && other.transform.root != PlayerOrigin && (ArmorPiercingInteraction)ArmorInteractionValue != ArmorPiercingInteraction.PIERCING && !other.transform.IsChildOf(PlayerOrigin))
-        {
-            Debug.Log("hit");
-            CheckForProjectileHit(other);
-        }
 
-        Destroy(gameObject);
-    }
+    //private void CheckForProjectileHit(Collider h)
+    //{
+    //    if (h.transform.root.GetComponent<DamageableObject>() != null)
+    //        ApplyDamageToCorrectObject(h);
+    //    else
+    //        Debug.Log(PlayerOrigin);
+    //}
 
-    void ApplyDamageToCorrectObject(Collider colliderToDamage)
-    {
-        Debug.Log("Damage applied");
-        int damageDealt = 0;
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other != null && other.transform.root != PlayerOrigin && (ArmorPiercingInteraction)ArmorInteractionValue != ArmorPiercingInteraction.PIERCING && !other.transform.IsChildOf(PlayerOrigin))
+    //    {
+    //        Debug.Log("object hit" + other.transform.root.name);
+    //        CheckForProjectileHit(other);
 
-        Debug.Log(colliderToDamage.name);
+    //        Destroy(gameObject);
+    //    }
+    //}
 
-        switch ((ArmorPiercingInteraction)ArmorInteractionValue)
-        {
-            case ArmorPiercingInteraction.DAMAGING:
-                damageDealt = 2;
-                break;
-            //case ArmorPiercingInteraction.BREAKING:
-            //    if (colliderToDamage.GetComponent<LiveEntity>() != null)
-            //        damageDealt = colliderToDamage.GetComponent<LiveEntity>().Health;
-            //    else if (colliderToDamage.GetComponent<ArmorPiece>() != null)
-            //        damageDealt = colliderToDamage.GetComponent<ArmorPiece>().StructuralIntegrity;
-            //    break;
-        }
+    //void ApplyDamageToCorrectObject(Collider colliderToDamage)
+    //{
+    //    Debug.Log("Damage applied");
+    //    int damageDealt = 0;
 
-        //colliderToDamage.transform.root.GetComponent<DamageableObject>().ReceiveDamage(damageDealt);
-    }
+    //    Debug.Log(colliderToDamage.transform.root.name);
+
+    //    switch ((ArmorPiercingInteraction)ArmorInteractionValue)
+    //    {
+    //        case ArmorPiercingInteraction.DAMAGING:
+    //            damageDealt = 2;
+    //            break;
+    //        //case ArmorPiercingInteraction.BREAKING:
+    //        //    if (colliderToDamage.GetComponent<LiveEntity>() != null)
+    //        //        damageDealt = colliderToDamage.GetComponent<LiveEntity>().Health;
+    //        //    else if (colliderToDamage.GetComponent<ArmorPiece>() != null)
+    //        //        damageDealt = colliderToDamage.GetComponent<ArmorPiece>().StructuralIntegrity;
+    //        //    break;
+    //    }
+
+    //    //colliderToDamage.transform.root.GetComponent<DamageableObject>().ReceiveDamage(damageDealt);
+    //}
 
     void DegradeProjectileLife()
     {

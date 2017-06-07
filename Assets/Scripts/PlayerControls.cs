@@ -28,13 +28,16 @@ public class PlayerControls : MonoBehaviour
     {
         // This function continually runs without a gate because the DodgeState requires it.
         if(PlayerReference.PlayerID == PlayerInput._currentPlayerID)
-        Movement.Move(PlayerInput.LookAxis, PlayerInput.MovementAxis, PlayerInput.BoostingThreshold, PlayerInput.Boosting, PlayerReference.PlayerID);
+        {
+            Movement.Move(PlayerInput.LookAxis, PlayerInput.MovementAxis, PlayerInput.BoostingThreshold, PlayerInput.Boosting, PlayerReference.PlayerID);
 
-        if (PlayerInput.TriggerPulled || PlayerInput.TriggerPulledThreshold != 0)
-            PlayerReference.UseWeapon();
+            if (PlayerInput.TriggerPulled || PlayerInput.TriggerPulledThreshold != 0)
+                PlayerReference.UseWeapon();
 
-        if (PlayerInput.LockOnToggled)
-            PlayerReference.ToggleRadar();
+            if (PlayerInput.LockOnToggled)
+                PlayerReference.ToggleRadar();
+        }
+            
 
         //Debug.Log(Input.GetAxis("JumpController0"));
     }

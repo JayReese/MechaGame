@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 _currentLockOnTargetPosition;
 
-    GameObject PlayerModel;
+    [SerializeField] GameObject PlayerModel;
 
     [SerializeField]
     float DodgeThresholdCounter;
@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+
     }
 
 
@@ -98,7 +98,6 @@ public class PlayerMovement : MonoBehaviour
         {
             //_currentLockOnTargetPosition = PlayerRef.ReturnLockOnTarget().position;
             //_currentLockOnTargetPosition.y = PlayerRef.IsOnGround ? 0.0f : _currentLockOnTargetPosition.y;
-
             PlayerModel.transform.LookAt(PlayerRef.ReturnLockOnTarget());
         }
         else
