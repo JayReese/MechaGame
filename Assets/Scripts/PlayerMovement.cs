@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
             //transform.Rotate( new Vector3(transform.eulerAngles.x, PInput.HorizontalLook * (Time.deltaTime * TurnSensitivity) * 20f, transform.eulerAngles.z) );
     }
 
-    public void Move(float lookAxis, float movementAxis, float boostingThreshold, bool isBoosting)
+    public void Move(float lookAxis, float movementAxis, float boostingThreshold, bool isBoosting, int ID)
     {
         #region Commented out - gravity-based programming. If you want it, it's right here.
         //PlayerRigidbody.AddRelativeForce(PlayerCamera.transform.forward * 10f * VerticalMovement, ForceMode.Acceleration);
@@ -63,31 +63,33 @@ public class PlayerMovement : MonoBehaviour
         // Transform.position takes in explicit rotation values, so there isn't any kind of implicit guessing on Unity's
         // part for where you've turned - it takes whatever you do quite literally. We can simulate acceleration through
         // simply using GetAxis, as well.
-
-        if(PlayerRef.CurrentLockOnState == LockOnState.FREE)
+        if (ID == PlayerRef.PlayerID)
         {
-            transform.position += transform.forward * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementAxis;
-            transform.Rotate(0, lookAxis * Time.deltaTime * 150.0f, 0);
+            if (PlayerRef.CurrentLockOnState == LockOnState.FREE)
+            {
+                transform.position += transform.forward * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementAxis;
+                transform.Rotate(0, lookAxis * Time.deltaTime * 150.0f, 0);
+            }
+            else
+            {
+                transform.position += transform.forward * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementAxis;
+                transform.position += transform.right * PlayerRef.MovementSpeed * Time.fixedDeltaTime * lookAxis;
+            }
+
+
+            //transform.position += transform.right * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementXAxisDirection;
+
+            #region Commented out - velocity-based movement.
+            // Stops forward velocity immediately when the directional buttons aren't being pressed.
+            //if ((PInput.VerticalMovement == 0 && PInput.HorizontalMovement == 0))
+            //    PlayerRigidbody.velocity = new Vector3(0, PlayerRigidbody.velocity.y, 0); 
+            #endregion
+
+            //CorrectDodgeState(movementXAxisDirection, movementZAxisDirection);
+
+            MaintainModelRotationToEnemy();
+            Boost(boostingThreshold, isBoosting);
         }
-        else
-        {
-            transform.position += transform.forward * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementAxis;
-            transform.position += transform.right * PlayerRef.MovementSpeed * Time.fixedDeltaTime * lookAxis;
-        }
-        
-
-        //transform.position += transform.right * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementXAxisDirection;
-
-        #region Commented out - velocity-based movement.
-        // Stops forward velocity immediately when the directional buttons aren't being pressed.
-        //if ((PInput.VerticalMovement == 0 && PInput.HorizontalMovement == 0))
-        //    PlayerRigidbody.velocity = new Vector3(0, PlayerRigidbody.velocity.y, 0); 
-        #endregion
-
-        //CorrectDodgeState(movementXAxisDirection, movementZAxisDirection);
-
-        MaintainModelRotationToEnemy();
-        Boost(boostingThreshold, isBoosting);
     }
 
     void MaintainModelRotationToEnemy()

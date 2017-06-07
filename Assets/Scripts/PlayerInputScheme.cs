@@ -2,11 +2,11 @@
 using System.Collections;
 using System;
 
-public class PlayerInputScheme
+public class PlayerInputScheme : MonoBehaviour
 {
     [SerializeField]
     bool UsingControllers;
-
+    public int _currentPlayerID; 
     public float HorizontalLook { get; private set; }
     public float LookAxis { get; private set; }
 
@@ -35,13 +35,18 @@ public class PlayerInputScheme
     public bool LockOnToggled { get; private set; }
     #endregion
 
+    void Start()
+    {
+        _currentPlayerID = GetComponent<Player_MachineGunner>().PlayerID;
+    }
+    
     /// <summary>
     /// Loads the keyboard and controller control scheme setups.
     /// </summary>
     public void BindActionInputs()
     {
         LoadControllerControls();
-        LoadKeyboardControls();
+       // LoadKeyboardControls();
     }
 
     
@@ -69,24 +74,24 @@ public class PlayerInputScheme
     void LoadControllerControls()
     {
         //Debug.Log("Controller");
-        LookAxis = Input.GetAxisRaw("Joy0X");
-        MovementAxis = -Input.GetAxisRaw("Joy0Y");
+        LookAxis = Input.GetAxisRaw("Joy" + _currentPlayerID + "X");
+        MovementAxis = -Input.GetAxisRaw("Joy" + _currentPlayerID + "Y");
 
-        FirstSubweaponButtonPressed = Input.GetButtonDown("Alt1Fire0");
-        SecondSubweaponButtonPressed = Input.GetButtonDown("Alt2Fire0");
+        FirstSubweaponButtonPressed = Input.GetButtonDown("Alt1Fire" + _currentPlayerID);
+        SecondSubweaponButtonPressed = Input.GetButtonDown("Alt2Fire" + _currentPlayerID);
 
-        HorizontalLook = Input.GetAxisRaw("AltJoy0X");
+        HorizontalLook = Input.GetAxisRaw("AltJoy" + _currentPlayerID + "X");
 
-        BoostingThreshold = Input.GetAxisRaw("JumpController0");
-        Boosting = Input.GetButton("JumpController0");
+        BoostingThreshold = Input.GetAxisRaw("JumpController" + _currentPlayerID);
+        Boosting = Input.GetButton("JumpController" + _currentPlayerID);
 
         //Debug.Log(Boosting);
 
-        MeleeUsed = Input.GetButtonDown("AltMelee0");
-        MeleeInputThreshold = Input.GetAxisRaw("Melee0");
+        MeleeUsed = Input.GetButtonDown("AltMelee" + _currentPlayerID);
+        MeleeInputThreshold = Input.GetAxisRaw("Melee" + _currentPlayerID);
 
         // Firing inputs.
-        TriggerPulled = Input.GetButtonDown("FireController0");
-        TriggerPulledThreshold = Input.GetAxisRaw("AltFireController0");
+        TriggerPulled = Input.GetButtonDown("FireController" + _currentPlayerID);
+        TriggerPulledThreshold = Input.GetAxisRaw("AltFireController" + _currentPlayerID);
     }
 }
