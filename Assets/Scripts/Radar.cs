@@ -52,13 +52,9 @@ public class Radar : MonoBehaviour
         {
             if (t.transform.root.tag == "Player" && t.transform.root.gameObject != gameObject.transform.root.gameObject)
             {
-                if(!TargetsInRange.Contains(t.gameObject.transform.root))
-                    TargetsInRange.Add(t.gameObject.transform.root);
+                if(!TargetsInRange.Contains(t.gameObject.transform.root)) TargetsInRange.Add(t.gameObject.transform.root);
             }    
         }
-
-        foreach (Transform t in TargetsInRange)
-            Debug.Log(t.name);
 
         if (TargetsInRange.Count > 0)
         {
@@ -108,5 +104,10 @@ public class Radar : MonoBehaviour
     {
         TargetsInRange.Clear();
         Debug.Log("Enemy list cleared. " + TargetsInRange.Count + " enemies in list.");
+    }
+
+    public void ForceLockOnDisable()
+    {
+        DeactivateRadar();
     }
 }

@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        Players = GameObject.FindGameObjectsWithTag("Player");
+        Players = GameObject.FindGameObjectsWithTag("Controllable");
         //determine how many controllers are hooked up
         NumPlayers = Input.GetJoystickNames().Length;
         //Debug.Log(players);

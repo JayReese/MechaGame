@@ -9,7 +9,9 @@ public class CameraMovement : MonoBehaviour
 {
     [SerializeField] Transform _currentTargetToTrack;
     Camera PlayerCameraReference;
-    Vector3 _defaultCameraRotation;
+    Vector3 _defaultCameraRotation, _defaultCameraPosition;
+
+    Quaternion _camRot;
 
     [SerializeField] bool LockOnTargetOutOfViewX, LockOnTargetOutOfViewY;
     [SerializeField] float _horizontalTargetOffScreenBoundaryLowerLimit, _horizontalTargetOffScreenBoundaryUpperLimit, 
@@ -39,6 +41,9 @@ public class CameraMovement : MonoBehaviour
         #endregion
 
         _defaultCameraRotation = transform.localEulerAngles;
+        _defaultCameraPosition = transform.localPosition;
+
+        _camRot = transform.localRotation;
 
         PlayerCameraReference = GetComponent<Camera>();
     }
@@ -108,6 +113,7 @@ public class CameraMovement : MonoBehaviour
 
     public void ReorientToCenter()
     {
-        transform.localEulerAngles = _defaultCameraRotation;
+        //transform.localRotation = _camRot;
+        //transform.localPosition = _defaultCameraPosition;
     }
 } 

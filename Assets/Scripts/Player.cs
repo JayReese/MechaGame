@@ -10,6 +10,7 @@ public class Player : DamageableObject
     // Checks periodically for sufficient thiccness. 
     // Shut up Lex, it's staying and I don't care what you say. Fight me.
     public bool IsExtraThicc;
+
     [SerializeField]
     bool _playerPreGameRadarHasFinished, GodModeActive;
 
@@ -32,7 +33,7 @@ public class Player : DamageableObject
     public LockOnState CurrentLockOnState;
 
     public float CurrentFuel;
-    public bool CanUseSubweapons, IsOnGround;
+    public bool CanUseSubweapons, IsOnGround, IsCurrentlyControllable;
 
     [SerializeField]
     private float FirstSubWeaponCooldownTimer, SecondSubWeaponCooldownTimer;
@@ -51,11 +52,12 @@ public class Player : DamageableObject
 
     protected void Awake()
     {
-        MaxFuel = 3;
+        MaxFuel = 7;
         CurrentFuel = MaxFuel;
-        CanUseSubweapons = true;
 
+        CanUseSubweapons = true;
         IsPersistingObject = true;
+        IsCurrentlyControllable = true;
 
         DamageSurfaceType = SurfaceType.PLAYER;
 
@@ -85,7 +87,23 @@ public class Player : DamageableObject
         CheckForStateBasedFunctions();
         ActivateGodMode();
 
+        CorrectLockOnEdgeCase();
+
         CurrentPlayerState = IsOnGround ? PlayerState.ON_GROUND : CurrentPlayerState;
+
+        if (Health <= 0)
+        {
+            IsCurrentlyControllable = false;
+            GetComponent<PlayerMovement>().SetUpRagdollFeatures(IsCurrentlyControllable);
+            gameObject.SetActive(false);
+        }
+
+    }
+
+    private void CorrectLockOnEdgeCase()
+    {
+        if (PRadar.CurrentLockOnTarget == null && CurrentLockOnState != LockOnState.FREE)
+            CurrentLockOnState = LockOnState.FREE;
     }
 
     protected void CheckIfUsingMelee()
@@ -192,13 +210,11 @@ public class Player : DamageableObject
 
     protected virtual void UseFirstSubweapon()
     {
-        //Debug.Log("First Subweapon used.");
         FirstSubWeaponCooldownTimer = FirstSubWeaponCooldown;
     }
 
     protected virtual void UseSecondSubweapon()
     {
-        //Debug.Log("Second subweapon used.");
         SecondSubWeaponCooldownTimer = SecondSubWeaponCooldown;
     }
 
@@ -216,10 +232,17 @@ public class Player : DamageableObject
     {
         TakeDamage(amount);
         Debug.Log("damage dealt to body, " + Health + " HP left.");
-
-        if (Health <= 0)
-            Kill();
     }
+
+    public void TogglePlayerResetting()
+    {
+        Debug.Log("Camera is recentering");
+            
+        //transform.position = transform.position;
+        GetComponentInChildren<PlayerMovement>().ReorientPlayerViaReset();
+        GetComponentInChildren<CameraMovement>().ReorientToCenter();
+        PRadar.ForceLockOnDisable();
+    }   
 
     private void Kill()
     {
@@ -231,7 +254,6 @@ public class Player : DamageableObject
         AssignCorrectLockOnAction();
 
         PRadar.PingRadar(CurrentLockOnState);
-        Debug.Log(CurrentLockOnState);
     }
 
     private void AssignCorrectLockOnAction()
@@ -268,8 +290,6 @@ public class Player : DamageableObject
     {
         if (collision.collider.tag != "Controllable")
             IsOnGround = true;
-
-        
     }
 
     public void OnCollisionStay(Collision collision)
@@ -282,6 +302,4 @@ public class Player : DamageableObject
     {
         IsOnGround = false;
     }
-    
-
 }

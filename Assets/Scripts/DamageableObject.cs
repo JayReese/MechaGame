@@ -36,7 +36,6 @@ public class DamageableObject : MonoBehaviour
     private void Kill(string g = "regular death")
     {
         Debug.Log(gameObject.name + " destroyed. " + g);
-        Destroy(gameObject);
     }
 
     protected virtual void OnEnable()

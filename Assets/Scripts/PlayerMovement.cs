@@ -11,7 +11,8 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 _currentLockOnTargetPosition;
 
-    [SerializeField] GameObject PlayerModel;
+    [SerializeField]
+    GameObject PlayerModel;
 
     [SerializeField]
     float DodgeThresholdCounter;
@@ -28,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
         PlayerModel = transform.FindChild("Model").gameObject;
 
-        PlayerRef.MovementSpeed = 10f;
+        PlayerRef.MovementSpeed = 15f;
         PlayerRef.JumpJetStrength = 15f;
 
         DodgeThresholdCounter = 1;
@@ -37,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void FixedUpdate()
@@ -49,7 +50,12 @@ public class PlayerMovement : MonoBehaviour
     void RotateCharacter()
     {
         //if (PlayerReference.CurrentLockOnState != LockOnState.LOCKED)
-            //transform.Rotate( new Vector3(transform.eulerAngles.x, PInput.HorizontalLook * (Time.deltaTime * TurnSensitivity) * 20f, transform.eulerAngles.z) );
+        //transform.Rotate( new Vector3(transform.eulerAngles.x, PInput.HorizontalLook * (Time.deltaTime * TurnSensitivity) * 20f, transform.eulerAngles.z) );
+    }
+
+    public void ReorientPlayerViaReset()
+    {
+        transform.eulerAngles = new Vector3(0, 0, 0);
     }
 
     public void Move(float lookAxis, float movementAxis, float boostingThreshold, bool isBoosting, int ID)
@@ -59,12 +65,15 @@ public class PlayerMovement : MonoBehaviour
         //PlayerRigidbody.AddRelativeForce(Vector3.right * 10f * HorizontalMovement, ForceMode.Acceleration);
         #endregion
 
-        // The reason trans pos is used to update the position rather than use Rigidbody addforce is because of rotational errors.
-        // Transform.position takes in explicit rotation values, so there isn't any kind of implicit guessing on Unity's
-        // part for where you've turned - it takes whatever you do quite literally. We can simulate acceleration through
-        // simply using GetAxis, as well.
         if (ID == PlayerRef.PlayerID)
         {
+            Debug.Log(ID + " is boosting: " + boostingThreshold);
+            
+
+            // The reason trans pos is used to update the position rather than use Rigidbody addforce is because of rotational errors.
+            // Transform.position takes in explicit rotation values, so there isn't any kind of implicit guessing on Unity's
+            // part for where you've turned - it takes whatever you do quite literally. We can simulate acceleration through
+            // simply using GetAxis, as well.
             if (PlayerRef.CurrentLockOnState == LockOnState.FREE)
             {
                 transform.position += transform.forward * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementAxis;
@@ -75,7 +84,6 @@ public class PlayerMovement : MonoBehaviour
                 transform.position += transform.forward * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementAxis;
                 transform.position += transform.right * PlayerRef.MovementSpeed * Time.fixedDeltaTime * lookAxis;
             }
-
 
             //transform.position += transform.right * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementXAxisDirection;
 
@@ -88,7 +96,8 @@ public class PlayerMovement : MonoBehaviour
             //CorrectDodgeState(movementXAxisDirection, movementZAxisDirection);
 
             MaintainModelRotationToEnemy();
-            Boost(boostingThreshold, isBoosting);
+
+            
         }
     }
 
@@ -103,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
         else
             MaintainModelRotationToWorld();
     }
-    
+
     void MaintainModelRotationToWorld()
     {
         _currentLockOnTargetPosition = PlayerCamera.transform.forward;
@@ -137,8 +146,15 @@ public class PlayerMovement : MonoBehaviour
         PlayerRef.CurrentPlayerState = (PlayerState)boosting;
 
         // This checks if you still have fuel and you're continuing to press the button.
-        if (PlayerRef.CurrentFuel > 0 && PlayerRef.CurrentPlayerState == PlayerState.BOOSTING)
+        if (PlayerRef.CurrentFuel > 0 && isBoosting)
             PlayerRigidbody.AddForce(transform.up * PlayerRef.JumpJetStrength, ForceMode.Acceleration);
     }
-    
+
+    public void SetUpRagdollFeatures(bool isAlive)
+    {
+        if (isAlive)
+            PlayerRigidbody.constraints = RigidbodyConstraints.None;
+        else
+            PlayerRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+    }
 }

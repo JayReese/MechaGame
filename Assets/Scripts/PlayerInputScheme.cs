@@ -35,6 +35,8 @@ public class PlayerInputScheme : MonoBehaviour
     public bool LockOnToggled { get; private set; }
     #endregion
 
+    public bool IsRecentering { get; private set; }
+
     void Start()
     {
         // IDs are currently set by grabbing the component of the player.
@@ -88,10 +90,12 @@ public class PlayerInputScheme : MonoBehaviour
 
         LockOnToggled = Input.GetButtonDown("Target" + _currentPlayerID);
 
-        //Debug.Log(Boosting);
+        Debug.Log("b " + Boosting);
 
         MeleeUsed = Input.GetButtonDown("AltMelee" + _currentPlayerID);
         MeleeInputThreshold = Input.GetAxisRaw("Melee" + _currentPlayerID);
+
+        IsRecentering = Input.GetButtonDown("RecenterCamera" + _currentPlayerID);
 
         // Firing inputs.
         TriggerPulled = Input.GetButtonDown("FireController" + _currentPlayerID);

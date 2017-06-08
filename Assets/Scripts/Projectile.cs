@@ -44,8 +44,50 @@ public class Projectile : MonoBehaviour
         DegradeProjectileLife();
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other != null && (!other.GetComponent<Projectile>() || (other.GetComponent<Projectile>() && other.GetComponent<Projectile>().PlayerOrigin != PlayerOrigin)))
+        {
+            if (other.transform.GetComponent<DamageableObject>())
+                ApplyDamageToCorrectObject(other.transform);
+            else
+                ApplyDamageToCorrectObject(other.transform.root);
+        }
+    }
 
+    //public void OnCollisionEnter(Collision collision)
+    //{
+    //    if(collision.collider != null && (!collision.collider.GetComponent<Projectile>() || (collision.collider.GetComponent<Projectile>() && collision.collider.GetComponent<Projectile>().PlayerOrigin != PlayerOrigin)))
+    //    {
+    //        if (collision.transform.GetComponent<DamageableObject>())
+    //            ApplyDamageToCorrectObject(collision.transform);
+    //        else
+    //            ApplyDamageToCorrectObject(collision.transform.root);
+    //    }
+    //}
 
+    private void ApplyDamageToCorrectObject(Transform o)
+    {
+        o.GetComponent<DamageableObject>().ReceiveDamage(2);
+
+        GameObject particle;
+
+        if (o.GetComponent<DamageableObject>().DamageSurfaceType == SurfaceType.ARMOR)
+        {
+            particle = Resources.Load("Prefabs/Testing/Armor Explosion Test") as GameObject;
+            Instantiate(particle, o.position, Quaternion.identity);
+        }      
+        else
+        {
+            particle = Resources.Load("Prefabs/Testing/Body Explosion Test") as GameObject;
+            Instantiate(particle, o.position, Quaternion.identity);
+        }
+            
+
+        Destroy(gameObject);
+    }
+
+    #region commented out hit detection
     //private void CheckForProjectileHit(Collider h)
     //{
     //    if (h.transform.root.GetComponent<DamageableObject>() != null)
@@ -87,6 +129,7 @@ public class Projectile : MonoBehaviour
 
     //    //colliderToDamage.transform.root.GetComponent<DamageableObject>().ReceiveDamage(damageDealt);
     //}
+    #endregion
 
     void DegradeProjectileLife()
     {
