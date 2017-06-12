@@ -12,7 +12,7 @@ public class Player : DamageableObject
     public bool IsExtraThicc;
 
     [SerializeField]
-    bool _playerPreGameRadarHasFinished, GodModeActive;
+    bool GodModeActive;
 
     public byte WeaponLockHardnessValue;
 
@@ -21,7 +21,8 @@ public class Player : DamageableObject
     public CommandExecution ExecuteCommand;
 
     #region Player Stats
-    public float MovementSpeed, JumpJetStrength, MaxFuel;
+    public float MovementSpeed, MoveSpeedModifier,
+        JumpJetStrength, MaxFuel, CurrentFuel;
 
     [SerializeField]
     protected float FirstSubWeaponCooldown, SecondSubWeaponCooldown;
@@ -32,21 +33,27 @@ public class Player : DamageableObject
     public PlayerState CurrentPlayerState;
     public LockOnState CurrentLockOnState;
 
-    public float CurrentFuel;
-    public bool CanUseSubweapons, IsOnGround, IsCurrentlyControllable;
+    public bool IsOnGround, IsCurrentlyControllable,
+                CanUseSubweapons;
 
     [SerializeField]
-    private float FirstSubWeaponCooldownTimer, SecondSubWeaponCooldownTimer;
+    protected float FirstSubWeaponCooldownTimer, SecondSubWeaponCooldownTimer;
+    [SerializeField]
+    protected bool FirstSubweaponFinished, SecondSubweaponFinished;
+
+    [SerializeField]
+    //protected List<GameObject> OperationalArmorPieces;
+    protected Transform ArmorPiecesReference, UniquePartsReference;
     #endregion
 
     #region Reference Fields
-    public Radar PRadar;
+    [HideInInspector] public Radar PRadar;
     Weapon PlayerWeapon;
     Transform PlayerCamera;
     #endregion
 
     #region Testing fields.
-    [SerializeField]
+    
     bool isActivePlayer;
     #endregion
 
@@ -64,6 +71,8 @@ public class Player : DamageableObject
         PRadar = transform.GetComponentInChildren<Radar>();
         PlayerWeapon = GetComponentInChildren<Weapon>();
 
+        //sOperationalArmorPieces = new List<GameObject>();
+
         PlayerCamera = transform.FindChild("Camera");
     }
 
@@ -72,18 +81,19 @@ public class Player : DamageableObject
     {
         //PRadar.BeginDefaults(TargetsInRange);
         IsTargetable = true;
-        _playerPreGameRadarHasFinished = false;
+
+        GetAllFunctionalPieces();
+    }
+
+    private void GetAllFunctionalPieces()
+    {
+        ArmorPiecesReference = transform.FindGrandchild("Armor Pieces");
+        UniquePartsReference = transform.FindGrandchild("Unique Pieces");
     }
 
     // Update is called once per frame
     protected void Update()
     {       
-        if (!_playerPreGameRadarHasFinished)
-        {
-            TargetsInRange.Clear();
-            _playerPreGameRadarHasFinished = true;
-        }
-
         CheckForStateBasedFunctions();
         ActivateGodMode();
 
@@ -208,21 +218,30 @@ public class Player : DamageableObject
         }
     }
 
+    #region Subweapon system.
     protected virtual void UseFirstSubweapon()
     {
-        FirstSubWeaponCooldownTimer = FirstSubWeaponCooldown;
+        if (FirstSubWeaponCooldownTimer <= 0)
+            FirstSubWeaponCooldownTimer = FirstSubWeaponCooldown;
+        else Debug.Log("First subweapon can't be used.");
     }
 
     protected virtual void UseSecondSubweapon()
     {
-        SecondSubWeaponCooldownTimer = SecondSubWeaponCooldown;
+        if (FirstSubWeaponCooldownTimer <= 0)
+            SecondSubWeaponCooldownTimer = SecondSubWeaponCooldown;
+        else Debug.Log("Second subweapon can't be used.");
     }
 
     protected void ManageCooldownTimers()
     {
         FirstSubWeaponCooldownTimer = FirstSubWeaponCooldownTimer <= 0 ? 0 : FirstSubWeaponCooldownTimer -= 1.5f * Time.fixedDeltaTime;
         SecondSubWeaponCooldownTimer = SecondSubWeaponCooldownTimer <= 0 ? 0 : SecondSubWeaponCooldownTimer -= 1.5f * Time.fixedDeltaTime;
+
+        if (FirstSubWeaponCooldownTimer == 0) FirstSubweaponFinished = false;
+        if (SecondSubWeaponCooldownTimer == 0) SecondSubweaponFinished = false; 
     }
+    #endregion
 
     /// <summary>
     /// From the DamageableObject superclass, which allows an object to take damage. In this context, all LiveEntities (entities with some form of AI/controller) will be harmed by things that call this function.
@@ -230,7 +249,8 @@ public class Player : DamageableObject
     /// <param name="amount"></param>
     public override void ReceiveDamage(int amount)
     {
-        TakeDamage(amount);
+        base.ReceiveDamage(amount);
+        //TakeDamage(amount);
         Debug.Log("damage dealt to body, " + Health + " HP left.");
     }
 

@@ -4,5 +4,5 @@ using System;
 
 public class LiveEntity : DamageableObject
 {
-    public int Health;
+    //public int Health;
 }

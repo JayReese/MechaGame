@@ -50,7 +50,7 @@ public class Radar : MonoBehaviour
 
         foreach (Collider t in targets)
         {
-            if (t.transform.root.tag == "Player" && t.transform.root.gameObject != gameObject.transform.root.gameObject)
+            if ((t.transform.root.tag == "Player" || t.transform.root.tag == "Controllable") && t.transform.root.gameObject != gameObject.transform.root.gameObject)
             {
                 if(!TargetsInRange.Contains(t.gameObject.transform.root)) TargetsInRange.Add(t.gameObject.transform.root);
             }    

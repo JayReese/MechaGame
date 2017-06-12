@@ -35,4 +35,40 @@ public static class Globals
 
         return cameraRects[idToReturn];
     }
+
+    /// <summary>
+    /// Extension method to find a grandchild.
+    /// </summary>
+    /// <param name="aParent"></param>
+    /// <param name="aName"></param>
+    /// <returns></returns>
+    public static Transform FindGrandchild(this Transform aParent, string aName)
+    {
+        var result = aParent.Find(aName);
+        if (result != null)
+            return result;
+        foreach (Transform child in aParent)
+        {
+            result = child.FindGrandchild(aName);
+            if (result != null)
+                return result;
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// Returns the number of active children.
+    /// </summary>
+    /// <param name="t"></param>
+    /// <returns></returns>
+    public static int ActiveChildrenCount(this Transform t)
+    {
+        int k = 0;
+        foreach (Transform c in t)
+        {
+            if (c.gameObject.activeSelf)
+                k++;
+        }
+        return k;
+    }
 }

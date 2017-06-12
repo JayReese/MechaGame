@@ -12,6 +12,7 @@ public class DamageableObject : MonoBehaviour
     public virtual void ReceiveDamage(int amount)
     {
         Health -= amount;
+        Debug.Log(string.Format("change to health detected on {0}, {1} HP left.", gameObject.name, this.Health)); 
     }
 
     protected void FixedUpdate()
@@ -35,7 +36,8 @@ public class DamageableObject : MonoBehaviour
 
     private void Kill(string g = "regular death")
     {
-        Debug.Log(gameObject.name + " destroyed. " + g);
+        Debug.Log(gameObject.name + " destroyed. " + g + " Health: " + Health);
+        gameObject.SetActive(false);
     }
 
     protected virtual void OnEnable()

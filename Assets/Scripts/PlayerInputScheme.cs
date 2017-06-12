@@ -10,7 +10,6 @@ public class PlayerInputScheme : MonoBehaviour
     public float HorizontalLook { get; private set; }
     public float LookAxis { get; private set; }
 
-    public float HorizontalMovement { get; private set; }
     public float MovementAxis { get; private set; }
     public float BoostingThreshold { get; private set; }
     public bool Boosting { get; private set; }
@@ -48,17 +47,15 @@ public class PlayerInputScheme : MonoBehaviour
     /// </summary>
     public void BindActionInputs()
     {
-        LoadControllerControls();
-        //LoadKeyboardControls();
+        // LoadControllerControls();
+        LoadKeyboardControls();
     }
 
-    
     void LoadKeyboardControls()
     {
-        FirstSubweaponButtonPressed = Input.GetKeyDown(KeyCode.Q);
-        SecondSubweaponButtonPressed = Input.GetKeyDown(KeyCode.E);
+        FirstSubweaponButtonPressed = Input.GetKey(KeyCode.Q);
+        SecondSubweaponButtonPressed = Input.GetKey(KeyCode.E);
 
-        //HorizontalMovement = Input.GetAxis("Horizontal");
         MovementAxis = Input.GetAxis("Vertical");
         LookAxis = Input.GetAxis("Horizontal");
 
@@ -69,6 +66,8 @@ public class PlayerInputScheme : MonoBehaviour
         MeleeUsed = Input.GetKeyDown(KeyCode.F);
 
         BoostingThreshold = Input.GetAxisRaw("Jump");
+
+        IsRecentering = Input.GetKeyDown(KeyCode.R);
     }
     
     /// <summary>
@@ -90,7 +89,7 @@ public class PlayerInputScheme : MonoBehaviour
 
         LockOnToggled = Input.GetButtonDown("Target" + _currentPlayerID);
 
-        Debug.Log("b " + Boosting);
+        //Debug.Log("b " + Boosting);
 
         MeleeUsed = Input.GetButtonDown("AltMelee" + _currentPlayerID);
         MeleeInputThreshold = Input.GetAxisRaw("Melee" + _currentPlayerID);
@@ -101,6 +100,6 @@ public class PlayerInputScheme : MonoBehaviour
         TriggerPulled = Input.GetButtonDown("FireController" + _currentPlayerID);
         //Debug.Log(_currentPlayerID + " pulled trigger? " + TriggerPulled);
         TriggerPulledThreshold = Input.GetAxisRaw("AltFireController" + _currentPlayerID);
-        Debug.Log(_currentPlayerID + " pulled trigger? " + TriggerPulledThreshold);
+        //Debug.Log(_currentPlayerID + " pulled trigger? " + TriggerPulledThreshold);
     }
 }

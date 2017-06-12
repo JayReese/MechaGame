@@ -29,7 +29,9 @@ public class PlayerMovement : MonoBehaviour
 
         PlayerModel = transform.FindChild("Model").gameObject;
 
-        PlayerRef.MovementSpeed = 15f;
+        PlayerRef.MovementSpeed = 25f;
+        PlayerRef.MoveSpeedModifier = 1.0f;
+
         PlayerRef.JumpJetStrength = 15f;
 
         DodgeThresholdCounter = 1;
@@ -68,21 +70,20 @@ public class PlayerMovement : MonoBehaviour
         if (ID == PlayerRef.PlayerID)
         {
             Debug.Log(ID + " is boosting: " + boostingThreshold);
-            
-
+    
             // The reason trans pos is used to update the position rather than use Rigidbody addforce is because of rotational errors.
             // Transform.position takes in explicit rotation values, so there isn't any kind of implicit guessing on Unity's
             // part for where you've turned - it takes whatever you do quite literally. We can simulate acceleration through
             // simply using GetAxis, as well.
             if (PlayerRef.CurrentLockOnState == LockOnState.FREE)
             {
-                transform.position += transform.forward * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementAxis;
+                transform.position += transform.forward * (PlayerRef.MovementSpeed * PlayerRef.MoveSpeedModifier) * Time.fixedDeltaTime * movementAxis;
                 transform.Rotate(0, lookAxis * Time.deltaTime * 150.0f, 0);
             }
             else
             {
-                transform.position += transform.forward * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementAxis;
-                transform.position += transform.right * PlayerRef.MovementSpeed * Time.fixedDeltaTime * lookAxis;
+                transform.position += transform.forward * (PlayerRef.MovementSpeed * PlayerRef.MoveSpeedModifier) * Time.fixedDeltaTime * movementAxis;
+                transform.position += transform.right * (PlayerRef.MovementSpeed * PlayerRef.MoveSpeedModifier) * Time.fixedDeltaTime * lookAxis;
             }
 
             //transform.position += transform.right * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementXAxisDirection;
