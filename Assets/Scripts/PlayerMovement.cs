@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (ID == PlayerRef.PlayerID)
         {
-            Debug.Log(ID + " is boosting: " + boostingThreshold);
+            //Debug.Log(ID + " is boosting: " + boostingThreshold);
     
             // The reason trans pos is used to update the position rather than use Rigidbody addforce is because of rotational errors.
             // Transform.position takes in explicit rotation values, so there isn't any kind of implicit guessing on Unity's
