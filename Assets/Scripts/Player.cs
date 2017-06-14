@@ -7,6 +7,9 @@ public class Player : DamageableObject
 {
     public int PlayerID;
 
+    public int TeamNumber;
+    public Vector3 SpawnPosition;
+
     // Checks periodically for sufficient thiccness. 
     // Shut up Lex, it's staying and I don't care what you say. Fight me.
     public bool IsExtraThicc;
@@ -53,14 +56,15 @@ public class Player : DamageableObject
     #endregion
 
     #region Testing fields.
-    
-    bool isActivePlayer;
+
+    bool isActivePlayer, colorSet;
     #endregion
 
     protected void Awake()
     {
         MaxFuel = 7;
         CurrentFuel = MaxFuel;
+        colorSet = false;
 
         CanUseSubweapons = true;
         IsPersistingObject = true;
@@ -108,6 +112,13 @@ public class Player : DamageableObject
             gameObject.SetActive(false);
         }
 
+        //if (!colorSet)
+        //{
+        //    Debug.Log(GetComponent<TestingCharacter>().TeamColors.Length);
+        //    transform.FindGrandchild("Model").GetComponent<MeshRenderer>().material.color = GetComponent<TestingCharacter>().TeamColors[TeamNumber - 1];
+        //    colorSet = true;
+        //}
+            
     }
 
     private void CorrectLockOnEdgeCase()
@@ -257,7 +268,7 @@ public class Player : DamageableObject
     public void TogglePlayerResetting()
     {
         Debug.Log("Camera is recentering");
-            
+        
         //transform.position = transform.position;
         GetComponentInChildren<PlayerMovement>().ReorientPlayerViaReset();
         GetComponentInChildren<CameraMovement>().ReorientToCenter();
@@ -322,4 +333,21 @@ public class Player : DamageableObject
     {
         IsOnGround = false;
     }
+
+    public void SetTeamNumber(int num)
+    {
+        TeamNumber = num;
+    }
+
+    public void SetUpPlayerSpawn(Vector3 position)
+    {
+        SpawnPosition = position;
+    }
+
+    protected override void OnEnable()
+    {
+        //transform.position = SpawnPosition;
+    }
+
+    public void TestReload() { PlayerWeapon.Test_Reload(); }
 }

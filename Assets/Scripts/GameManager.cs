@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] int pointsToWinThreshhold;
     [SerializeField] GameObject[] mechaPlayerPrefabs;
     [SerializeField] TeamTransformPositions[] TeamSpawnPositions;
+    [SerializeField]
+    GameObject[] TeamSpawningPositions;
 
     public const int pointsPerKill = 100;       //how many points the team will score when they get a kill
     const int numberOfTeams = 2;                //this variable can be adjusted in the future if we ever want more than 2 teams
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        //CreatePlayers();
         Players = GameObject.FindGameObjectsWithTag("Controllable");
         //determine how many controllers are hooked up
         NumPlayers = Input.GetJoystickNames().Length;
@@ -41,7 +44,7 @@ public class GameManager : MonoBehaviour
         teamScoreboards = new int[NumPlayers];
         //bool unevenTeams = (players % numberOfTeams != 0);    //this variable can be used to determine if the teams cannot be evenly distributed
         SetPlayerID();
-
+        //SetUpPlayerSpawns();
     }
 	// Use this for initialization
 	void Start ()
@@ -54,7 +57,8 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < Players.Length; i++)
         {
             Players[i].GetComponent<Player>().PlayerID = i;
-
+            //Players[i].GetComponent<Player>().SetTeamNumber(i + 1 < 3 ? 1 : 2);
+           
             Vector2 viewRect = Globals.ReturnCorrectCameraRect(i);
             Players[i].GetComponentInChildren<Camera>().rect = new Rect(viewRect[0], viewRect[1], 0.5f, 0.5f);
         }
@@ -92,6 +96,36 @@ public class GameManager : MonoBehaviour
         {
             ActivateWin();
         }
+    }
+    
+    void SetUpPlayerSpawns()
+    {
+        TeamSpawningPositions = GameObject.FindGameObjectsWithTag("Spawner");
+        int a = 0;
+        int b = 0;
+
+        foreach(GameObject p in Players)
+        {
+            if (p.GetComponent<Player>().TeamNumber == 1)
+            {
+                p.GetComponent<Player>().SetUpPlayerSpawn(
+                    TeamSpawningPositions[p.GetComponent<Player>().TeamNumber - 1].transform.GetChild(a).InverseTransformPoint(TeamSpawningPositions[p.GetComponent<Player>().TeamNumber - 1].transform.GetChild(a).position)
+                    );
+                a++;
+            }    
+            else if(p.GetComponent<Player>().TeamNumber == 2)
+            {
+                p.GetComponent<Player>().SetUpPlayerSpawn(TeamSpawningPositions[p.GetComponent<Player>().TeamNumber - 1].transform.GetChild(b).InverseTransformPoint(TeamSpawningPositions[p.GetComponent<Player>().TeamNumber - 1].transform.GetChild(b).position));
+                b++;
+            }
+                
+        }
+    }
+
+    void CreatePlayers()
+    {
+        for (byte i = 0; i < 4; i++)
+            Instantiate(Resources.Load("Prefabs/Testing/Test Machi") as GameObject);
     }
 
 

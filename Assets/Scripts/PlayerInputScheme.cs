@@ -34,6 +34,10 @@ public class PlayerInputScheme : MonoBehaviour
     public bool LockOnToggled { get; private set; }
     #endregion
 
+    #region testing
+    public bool Test_Reloading { get; private set; }
+    #endregion
+
     public bool IsRecentering { get; private set; }
 
     void Start()
@@ -47,7 +51,7 @@ public class PlayerInputScheme : MonoBehaviour
     /// </summary>
     public void BindActionInputs()
     {
-        // LoadControllerControls();
+        //LoadControllerControls();
         LoadKeyboardControls();
     }
 
@@ -100,6 +104,9 @@ public class PlayerInputScheme : MonoBehaviour
         TriggerPulled = Input.GetButtonDown("FireController" + _currentPlayerID);
         //Debug.Log(_currentPlayerID + " pulled trigger? " + TriggerPulled);
         TriggerPulledThreshold = Input.GetAxisRaw("AltFireController" + _currentPlayerID);
-        //Debug.Log(_currentPlayerID + " pulled trigger? " + TriggerPulledThreshold);
+        //Debug.Log(_currentPlayerID + " pulled trigger? " + TriggerPulledThreshold);\
+
+        Test_Reloading = Input.GetButtonDown("TestReload" + _currentPlayerID);
+
     }
 }

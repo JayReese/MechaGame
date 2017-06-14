@@ -147,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerRef.CurrentPlayerState = (PlayerState)boosting;
 
         // This checks if you still have fuel and you're continuing to press the button.
-        if (PlayerRef.CurrentFuel > 0 && isBoosting)
+        if (PlayerRef.CurrentFuel > 0 && PlayerRef.CurrentPlayerState == PlayerState.BOOSTING)
             PlayerRigidbody.AddForce(transform.up * PlayerRef.JumpJetStrength, ForceMode.Acceleration);
     }
 

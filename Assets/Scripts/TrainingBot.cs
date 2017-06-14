@@ -37,8 +37,6 @@ public class TrainingBot : DamageableObject
         direction = UnityEngine.Random.Range(1, 100) > 50 ? 1 : -1;
         bulletP = Resources.Load("Prefabs/Test Projectile") as GameObject;
         //InvokeRepeating("Fire", 0, 0.4f);
-
-
 	}
 	
 	// Update is called once per frame
@@ -53,7 +51,7 @@ public class TrainingBot : DamageableObject
         }
 
 
-       // transform.position += (transform.right * direction) * 10f * Time.deltaTime;
+        transform.position += (transform.right * direction) * 10f * Time.deltaTime;
 
 	}
 

@@ -113,7 +113,7 @@ public abstract class Weapon : MonoBehaviour
     }
 
     // The test reload.
-    public void Test_Reload() { CurrentMagazineSize = MaxMagazineSize; }
+    public void Test_Reload() { StartCoroutine(PerformReload()); }
 
     // Performs the reload coroutine - IsReloading becomes true, which interrupts any weapon operation, and waits for a variable amount of time (your reload speed) before
     // actually setting the Current Magazine Size to the Max Magazine Size.
@@ -124,6 +124,8 @@ public abstract class Weapon : MonoBehaviour
         yield return new WaitForSeconds(ReloadSpeed);
         CurrentMagazineSize = MaxMagazineSize;
 
+        Debug.Log("reloaded");
+
         IsReloading = false;
     }
 
@@ -132,7 +134,7 @@ public abstract class Weapon : MonoBehaviour
     {
         CurrentMagazineSize = MaxMagazineSize;
 
-        ReloadSpeed = 1.0f;
+        ReloadSpeed = 1.5f;
 
         FireRate = 1.5f;
 
