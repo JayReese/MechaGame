@@ -72,6 +72,13 @@ public static class Globals
         return k;
     }
 
+    /// <summary>
+    /// Play a layered sound clip at your volume.
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="audioIndexToSearch"></param>
+    /// <param name="audioClipRetrievedFromIndex"></param>
+    /// <param name="volumeOfClip"></param>
     public static void PlaySoundClip(AudioSource source, byte audioIndexToSearch, byte audioClipRetrievedFromIndex, float volumeOfClip = 0.7f)
     {
         source.PlayOneShot(SoundManager.GetSoundClipForAllocation(audioIndexToSearch, audioClipRetrievedFromIndex), volumeOfClip);
