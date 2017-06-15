@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class SpiderDrone : Deployable
 {
-    List<Transform> BuildingWaypoints, RegularWaypoints;
+    Vector3 TargetDestination;    
 
     void Awake()
     {
@@ -22,4 +22,9 @@ public class SpiderDrone : Deployable
     {
 	    
 	}
+
+    void GetWayPoint()
+    {
+
+    }
 }

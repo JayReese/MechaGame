@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class SoundBank
 {
@@ -25,6 +26,9 @@ public class SoundBank
                 AudioCollection.Add(Resources.Load(path) as AudioClip);
             }
         }
+
+        // Sorts the audio collection by the name of the file, so as to best organize it.
+        AudioCollection = AudioCollection.OrderBy(x => x.name).ToList();
     }
 
     public AudioClip ReturnCorrectAudioClip(byte index)

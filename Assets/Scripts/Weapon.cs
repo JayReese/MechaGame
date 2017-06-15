@@ -134,10 +134,6 @@ public abstract class Weapon : MonoBehaviour
     {
         CurrentMagazineSize = MaxMagazineSize;
 
-        ReloadSpeed = 1.5f;
-
-        FireRate = 1.5f;
-
         SetUpAmmoFeederPool();
 
         // Future-proofing this. 

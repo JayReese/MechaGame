@@ -89,6 +89,8 @@ public class Player : DamageableObject
         //PRadar.BeginDefaults(TargetsInRange);
         IsTargetable = true;
 
+        Globals.PlaySoundClip(PlayerAudioSource, 0, 0);
+
         GetAllFunctionalPieces();
     }
 
