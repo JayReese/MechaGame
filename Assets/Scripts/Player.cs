@@ -53,6 +53,7 @@ public class Player : DamageableObject
     [HideInInspector] public Radar PRadar;
     Weapon PlayerWeapon;
     Transform PlayerCamera;
+    AudioSource PlayerAudioSource;
     #endregion
 
     #region Testing fields.
@@ -74,6 +75,8 @@ public class Player : DamageableObject
 
         PRadar = transform.GetComponentInChildren<Radar>();
         PlayerWeapon = GetComponentInChildren<Weapon>();
+
+        PlayerAudioSource = GetComponent<AudioSource>();
 
         //sOperationalArmorPieces = new List<GameObject>();
 

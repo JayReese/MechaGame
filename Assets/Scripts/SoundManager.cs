@@ -5,18 +5,19 @@ using System.IO;
 
 public class SoundManager : MonoBehaviour
 {
-    public List<SoundBank> Bank;
+    static List<SoundBank> Banks;
 
     private void Awake()
     {
-        Bank = new List<SoundBank>();
+        Banks = new List<SoundBank>();
+        AllocateToSoundBanks();
     }
 
     // Use this for initialization
     void Start ()
     {
-        AllocateToSoundBanks();
-
+        
+        
     }
 
     // Update is called once per frame
@@ -30,11 +31,11 @@ public class SoundManager : MonoBehaviour
         string[] dirs = Directory.GetDirectories("Assets/Resources/Sounds");
 
         foreach (string s in dirs)
-        {
-            SoundBank sb = new SoundBank(Path.GetFileName(s));
-            Bank.Add(sb);
-        }
+            Banks.Add(new SoundBank(Path.GetFileName(s), Directory.GetFiles(s)));
+    }
 
-        Bank.ForEach(x => Debug.Log(x.BankName));
+    public static AudioClip GetSoundClipForAllocation(byte indexOfList, byte indexOfSound)
+    {
+        return Banks[indexOfList].ReturnCorrectAudioClip(indexOfSound);
     }
 }
