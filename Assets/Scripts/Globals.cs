@@ -71,4 +71,9 @@ public static class Globals
         }
         return k;
     }
+
+    public static void PlaySoundClip(AudioSource source, byte audioIndexToSearch, byte audioClipRetrievedFromIndex, float volumeOfClip = 0.7f)
+    {
+        source.PlayOneShot(SoundManager.GetSoundClipForAllocation(audioIndexToSearch, audioClipRetrievedFromIndex), volumeOfClip);
+    }
 }
