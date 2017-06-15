@@ -283,6 +283,7 @@ public class Player : DamageableObject
         Destroy(gameObject);
     }
 
+    #region Lock On Mechanics
     public void ToggleRadar()
     {
         AssignCorrectLockOnAction();
@@ -314,6 +315,7 @@ public class Player : DamageableObject
         Debug.Log("Break lock on");
         CurrentLockOnState = LockOnState.FREE;
     }
+    #endregion
 
     private void ActivateGodMode()
     {

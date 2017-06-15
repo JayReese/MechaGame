@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] TeamTransformPositions[] TeamSpawnPositions;
     [SerializeField]
     GameObject[] TeamSpawningPositions;
+    [SerializeField]
+    List<Transform> BuildingWaypoints, RegularWaypoints;
 
     public const int pointsPerKill = 100;       //how many points the team will score when they get a kill
     const int numberOfTeams = 2;                //this variable can be adjusted in the future if we ever want more than 2 teams
@@ -51,6 +54,22 @@ public class GameManager : MonoBehaviour
     {
 
 	}
+
+    void GetWaypointTransformReferences()
+    {
+        GameObject[] go = GameObject.FindGameObjectsWithTag("Waypoint");
+
+        BuildingWaypoints = new List<Transform>();
+        RegularWaypoints = new List<Transform>();
+
+        foreach (GameObject g in go)
+        {
+            if (g.name == "Building Waypoint")
+                BuildingWaypoints.Add(g.transform);
+            else
+                RegularWaypoints.Add(g.transform);
+        }
+    }
 
     void SetPlayerID()
     {
