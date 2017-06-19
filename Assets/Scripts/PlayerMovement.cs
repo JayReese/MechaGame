@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
 
             MaintainModelRotationToEnemy();
 
-            
+            Boost(boostingThreshold, isBoosting);
         }
     }
 
@@ -139,6 +139,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void Boost(float boostingThresh, bool isBoosting)
     {
+        Debug.Log("boosting");
         int boosting = (boostingThresh != 0) || (isBoosting) ? 1 : 0;
 
         // This takes in if you're pressing the Jump button. It does a nifty thing of taking in the raw axis (either 1 or 0) and casts a
@@ -147,8 +148,12 @@ public class PlayerMovement : MonoBehaviour
         PlayerRef.CurrentPlayerState = (PlayerState)boosting;
 
         // This checks if you still have fuel and you're continuing to press the button.
-        if (PlayerRef.CurrentFuel > 0 && PlayerRef.CurrentPlayerState == PlayerState.BOOSTING)
-            PlayerRigidbody.AddForce(transform.up * PlayerRef.JumpJetStrength, ForceMode.Acceleration);
+        //if (PlayerRef.CurrentFuel > 0)
+        //    PlayerRigidbody.AddForce(transform.up * PlayerRef.JumpJetStrength * boostingThresh, ForceMode.Acceleration);
+
+        //transform.position += transform.up * Time.deltaTime * (PlayerRef.JumpJetStrength * boostingThresh);
+
+        GetComponent<Rigidbody>().AddForce(Vector3.up * PlayerRef.JumpJetStrength * boostingThresh * Time.deltaTime, ForceMode.Acceleration);
     }
 
     public void SetUpRagdollFeatures(bool isAlive)

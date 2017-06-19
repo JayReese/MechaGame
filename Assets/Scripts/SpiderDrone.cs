@@ -23,6 +23,13 @@ public class SpiderDrone : Deployable
 	    
 	}
 
+    protected override void OnEnable()
+    {
+        Health = 5;
+        IsPersistingObject = false;
+        base.OnEnable();
+    }
+
     void GetWayPoint()
     {
 
