@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        PlayerCamera = transform.FindChild("Camera");
+        PlayerCamera = transform.FindGrandchild("Camera");
 
         PlayerRef = GetComponent<Player>();
         PlayerRigidbody = GetComponent<Rigidbody>();

@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour
         }
 
         ToggleRoundProgress();
+        CheckIfAnyLiveEntitiesAreDead();
     }
 
     private void ToggleRoundProgress()
@@ -141,6 +142,7 @@ public class GameManager : MonoBehaviour
 
             Vector2 viewRect = Globals.ReturnCorrectCameraRect(i);
             PlayersInMatch.transform.GetChild(i).GetComponentInChildren<Camera>().rect = new Rect(viewRect[0], viewRect[1], 0.5f, 0.5f);
+            PlayersInMatch.transform.GetChild(i).FindGrandchild("Death Camera").GetComponent<Camera>().rect = new Rect(viewRect[0], viewRect[1], 0.5f, 0.5f);
         }
     }
 
@@ -228,6 +230,17 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
+
+    private void CheckIfAnyLiveEntitiesAreDead()
+    {
+        //for(byte i = 0; i < PlayersInMatch.transform.childCount; i++)
+        //{
+        //    if (PlayersInMatch.transform.GetChild(i).GetComponent<DamageableObject>().Health <= 0)
+        //    {
+                
+        //    }
+        //}
+    }
 
 #if UNITY_EDITOR
     private void PerformScoreDebugging()

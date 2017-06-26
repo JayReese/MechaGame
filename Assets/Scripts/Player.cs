@@ -52,8 +52,8 @@ public class Player : DamageableObject
 
     #region Reference Fields
     [HideInInspector] public Radar PRadar;
-    Weapon PlayerWeapon;
-    Transform PlayerCamera;
+    [SerializeField] Weapon PlayerWeapon;
+    [SerializeField] Transform PlayerCamera, PlayerDeathCamera;
     AudioSource PlayerAudioSource;
     #endregion
 
@@ -72,6 +72,7 @@ public class Player : DamageableObject
 
         CanUseSubweapons = true;
         IsPersistingObject = true;
+        IsPlayer = true;
 
         DamageSurfaceType = SurfaceType.PLAYER;
         CurrentInterfacingState = InterfacingState.SPECTATING;
@@ -83,8 +84,9 @@ public class Player : DamageableObject
 
         //sOperationalArmorPieces = new List<GameObject>();
 
-        PlayerCamera = transform.FindChild("Camera");
-
+        PlayerCamera = transform.FindGrandchild("Camera");
+        PlayerDeathCamera = transform.FindGrandchild("Death Camera");
+        
         //Debug.Log(Enum.IsDefined(typeof(PoiseState), 2));
     }
 
@@ -128,20 +130,7 @@ public class Player : DamageableObject
 
         CurrentPlayerBoostingState = IsOnGround ? BoostState.ON_GROUND : CurrentPlayerBoostingState;
 
-        if (Health <= 0)
-        {
-            IsCurrentlyControllable = false;
-            GetComponent<PlayerMovement>().SetUpRagdollFeatures(IsCurrentlyControllable);
-            gameObject.SetActive(false);
-        }
-
-        //if (!colorSet)
-        //{
-        //    Debug.Log(GetComponent<TestingCharacter>().TeamColors.Length);
-        //    transform.FindGrandchild("Model").GetComponent<MeshRenderer>().material.color = GetComponent<TestingCharacter>().TeamColors[TeamNumber - 1];
-        //    colorSet = true;
-        //}
-            
+        Kill();
     }
 
     private void CorrectLockOnEdgeCase()
@@ -320,6 +309,23 @@ public class Player : DamageableObject
     protected override void OnEnable()
     {
         //transform.position = SpawnPosition;
+    }
+
+    public override void Kill(string g = "regular death")
+    {
+
+        base.Kill(g);
+
+        bool isDead = Health <= 0;
+
+        if (isDead)
+            BodyPartsReference.gameObject.SetActive(false);
+
+        if (RespawnTimer > 0)
+        {
+            transform.FindGrandchild("Camera").gameObject.SetActive(isDead);
+            transform.FindGrandchild("Death Camera").gameObject.SetActive(!isDead);
+        }
     }
 
     public void TestReload() { PlayerWeapon.Test_Reload(); }
