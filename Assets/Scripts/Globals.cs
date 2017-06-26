@@ -2,7 +2,11 @@
 using System;
 using System.Collections;
 
-public enum PlayerState { ON_GROUND, BOOSTING };
+public enum BoostState { ON_GROUND, BOOSTING };
+
+public enum PoiseState { POISED, DAZED = 50, SUPER_STAGGERED = 100 };
+
+public enum InterfacingState { CONTROLLABLE = 1, SPECTATING };
 
 public enum LockOnState { FREE, LOCKED };
 
@@ -14,8 +18,6 @@ public enum SurfaceType { PLAYER, ARMOR, ENVIRONMENT };
 
 public delegate void CommandExecution();
 public delegate void MovementBehavior();
-
-public delegate Transform ActiveLockOnTarget(); // Not really necessary anymore.
 
 public static class Globals
 {
@@ -54,6 +56,22 @@ public static class Globals
                 return result;
         }
         return null;
+    }
+
+    /// <summary>
+    /// Extension method that iterates up the directory tree to find the grandparent you want.
+    /// </summary>
+    /// <param name="aCurrent"></param>
+    /// <param name="aNameToStop"></param>
+    /// <returns></returns>
+    public static Transform FindGrandparent(this Transform aCurrent, string aNameToStop)
+    {
+        Transform currentParent = aCurrent;
+
+        while (currentParent.parent.name != aNameToStop)
+            currentParent = aCurrent.parent;
+
+        return currentParent;
     }
 
     /// <summary>

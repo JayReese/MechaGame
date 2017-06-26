@@ -8,7 +8,7 @@ public class Player : DamageableObject
     public int PlayerID;
 
     public int TeamNumber;
-    public Vector3 SpawnPosition;
+    //public Vector3 SpawnPosition { get; private set; }
 
     // Checks periodically for sufficient thiccness. 
     // Shut up Lex, it's staying and I don't care what you say. Fight me.
@@ -33,8 +33,9 @@ public class Player : DamageableObject
     #endregion
 
     #region Player statuses.
-    public PlayerState CurrentPlayerState;
+    public BoostState CurrentPlayerBoostingState;
     public LockOnState CurrentLockOnState;
+    public InterfacingState CurrentInterfacingState;
 
     public bool IsOnGround, IsCurrentlyControllable,
                 CanUseSubweapons;
@@ -46,7 +47,7 @@ public class Player : DamageableObject
 
     [SerializeField]
     //protected List<GameObject> OperationalArmorPieces;
-    protected Transform ArmorPiecesReference, UniquePartsReference;
+    protected Transform ArmorPiecesReference, UniquePartsReference, BodyPartsReference;
     #endregion
 
     #region Reference Fields
@@ -59,19 +60,21 @@ public class Player : DamageableObject
     #region Testing fields.
 
     bool isActivePlayer, colorSet;
+
+    
     #endregion
 
     protected void Awake()
     {
-        MaxFuel = 7;
+        MaxFuel = 20;
         CurrentFuel = MaxFuel;
         colorSet = false;
 
         CanUseSubweapons = true;
         IsPersistingObject = true;
-        IsCurrentlyControllable = true;
 
         DamageSurfaceType = SurfaceType.PLAYER;
+        CurrentInterfacingState = InterfacingState.SPECTATING;
 
         PRadar = transform.GetComponentInChildren<Radar>();
         PlayerWeapon = GetComponentInChildren<Weapon>();
@@ -81,6 +84,8 @@ public class Player : DamageableObject
         //sOperationalArmorPieces = new List<GameObject>();
 
         PlayerCamera = transform.FindChild("Camera");
+
+        //Debug.Log(Enum.IsDefined(typeof(PoiseState), 2));
     }
 
     // Use this for initialization
@@ -92,12 +97,25 @@ public class Player : DamageableObject
         //Globals.PlaySoundClip(PlayerAudioSource, 0, 0);
 
         GetAllFunctionalPieces();
+        TetherBodyPartsToParent();
+    }
+
+    private void TetherBodyPartsToParent()
+    {
+        BodyPartsReference = transform.FindGrandchild("Body");
+
+        for (byte i = 0; i < BodyPartsReference.childCount; i++)
+            BodyPartsReference.GetChild(i).GetComponent<BodyPart>().TetheredParentObject = gameObject.transform;
+
+        transform.FindGrandchild("Weapon").GetComponent<Weapon>().TetheredPlayer = gameObject.transform;
     }
 
     private void GetAllFunctionalPieces()
     {
         ArmorPiecesReference = transform.FindGrandchild("Armor Pieces");
         UniquePartsReference = transform.FindGrandchild("Unique Pieces");
+
+
     }
 
     // Update is called once per frame
@@ -108,7 +126,7 @@ public class Player : DamageableObject
 
         CorrectLockOnEdgeCase();
 
-        CurrentPlayerState = IsOnGround ? PlayerState.ON_GROUND : CurrentPlayerState;
+        CurrentPlayerBoostingState = IsOnGround ? BoostState.ON_GROUND : CurrentPlayerBoostingState;
 
         if (Health <= 0)
         {
@@ -148,7 +166,7 @@ public class Player : DamageableObject
 
     void CheckForStateBasedFunctions()
     {
-        if (CurrentPlayerState == PlayerState.BOOSTING) ChangeFuel(1);
+        if (CurrentPlayerBoostingState == BoostState.BOOSTING) ChangeFuel(1);
         else ChangeFuel(-1);
     }
 
@@ -160,63 +178,12 @@ public class Player : DamageableObject
                 CurrentFuel -= Time.deltaTime * 1.5f * multiplier;
         }
 
-        CurrentFuel = CurrentPlayerState == PlayerState.ON_GROUND && CurrentFuel > MaxFuel ? MaxFuel : CurrentFuel;
+        CurrentFuel = CurrentPlayerBoostingState == BoostState.ON_GROUND && CurrentFuel > MaxFuel ? MaxFuel : CurrentFuel;
     }
-
-    #region Commented out - old radar targeting system.
-    //void OnTriggerEnter(Collider c)
-    //{
-    //    if (c.tag == "Enemy" || c.tag == "Controllable")
-    //        AddTargetToRadarList(c.transform);
-    //}
-
-    //void AddTargetToRadarList(Transform target)
-    //{
-    //    bool enemyCurrentlyListed = false;
-
-    //    if (TargetsInRange.Count > 0)
-    //    {
-    //        for (byte i = 0; i < TargetsInRange.Count; i++)
-    //        {
-    //            if (TargetsInRange[i] == target)
-    //            {
-    //                enemyCurrentlyListed = true;
-    //                break;
-    //            }
-    //        }
-    //    }
-
-    //    if (!enemyCurrentlyListed) TargetsInRange.Add(target);
-
-    //    #region Currently commented out - Dictionary method for populating the radar list.
-    //    //if (TargetsInRange.ContainsKey(target))
-    //    //    enemyCurrentlyListed = true;
-
-    //    //if (!enemyCurrentlyListed) TargetsInRange.Add(target, Vector3.Distance(target.position, gameObject.transform.position));
-    //    #endregion
-    //}
-
-    //public void ActivateRadar(ref Transform lockOnTarget)
-    //{
-    //    PlayerRadar.GetComponent<Radar>().Activate(TargetsInRange, ref lockOnTarget);
-    //    transform.FindChild("Camera").GetComponent<CameraMovement>().CameraLockOn(lockOnTarget);
-    //}
-
-    //public void DeactivateLockOn()
-    //{
-    //    GetComponentInChildren<CameraMovement>().RemoveLockOnTarget();
-    //    PlayerRadar.GetComponent<Radar>().ClearEnemyList(TargetsInRange);
-    //}
-    #endregion
 
     public void UseWeapon()
     {
         PlayerWeapon.PerformWeaponOperations(PRadar.CurrentLockOnTarget);
-    }
-
-    public void TakeDamage(int damageDealt)
-    {
-        Health -= damageDealt;
     }
 
     public void ActivateSubweapon(byte number)
@@ -270,27 +237,28 @@ public class Player : DamageableObject
         Debug.Log("damage dealt to body, " + Health + " HP left.");
     }
 
+    internal void ChangeBodyColor(Color teamColor)
+    {
+        Transform bodyparts = transform.FindGrandchild("Body");
+
+        for (byte i = 0; i < bodyparts.childCount; i++)
+            bodyparts.GetChild(i).GetComponent<MeshRenderer>().material.color = teamColor;
+    }
+
     public void TogglePlayerResetting()
     {
         Debug.Log("Camera is recentering");
         
-        //transform.position = transform.position;
         GetComponentInChildren<PlayerMovement>().ReorientPlayerViaReset();
         GetComponentInChildren<CameraMovement>().ReorientToCenter();
         PRadar.ForceLockOnDisable();
     }   
 
-    private void Kill()
-    {
-        Destroy(gameObject);
-    }
-
     #region Lock On Mechanics
     public void ToggleRadar()
     {
-        AssignCorrectLockOnAction();
-
         PRadar.PingRadar(CurrentLockOnState);
+        AssignCorrectLockOnAction();
     }
 
     private void AssignCorrectLockOnAction()
@@ -324,31 +292,29 @@ public class Player : DamageableObject
         if (Input.GetKeyDown(KeyCode.G)) GodModeActive = !GodModeActive;
     }
 
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.tag != "Controllable")
-            IsOnGround = true;
-    }
+    #region Collision enter things. Might not want it.
+    //public void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.collider.tag != "Controllable")
+    //        IsOnGround = true;
+    //}
 
-    public void OnCollisionStay(Collision collision)
-    {
-        if (collision.collider.tag != "Controllable")
-            IsOnGround = true;
-    }
+    //public void OnCollisionStay(Collision collision)
+    //{
+    //    if (collision.collider.tag != "Controllable")
+    //        IsOnGround = true;
+    //}
 
-    public void OnCollisionExit(Collision collision)
-    {
-        IsOnGround = false;
-    }
-
+    //public void OnCollisionExit(Collision collision)
+    //{
+    //    IsOnGround = false;
+    //}
+    #endregion
+   
+    // The player's team number is set up here.
     public void SetTeamNumber(int num)
     {
         TeamNumber = num;
-    }
-
-    public void SetUpPlayerSpawn(Vector3 position)
-    {
-        SpawnPosition = position;
     }
 
     protected override void OnEnable()

@@ -10,6 +10,8 @@ public class TrainingBot : DamageableObject
     int ammo, maxAmmo;
     int test;
 
+    public int TeamNumber;
+
     public override void ReceiveDamage(int amount)
     {
         Debug.Log("hit");
@@ -24,7 +26,7 @@ public class TrainingBot : DamageableObject
     void Awake()
     {
         IsTargetable = true;
-        Health = 10;
+        
     }
 
 	// Use this for initialization
@@ -51,13 +53,14 @@ public class TrainingBot : DamageableObject
         }
 
 
-        transform.position += (transform.right * direction) * 10f * Time.deltaTime;
+        //transform.position += (transform.right * direction) * 10f * Time.deltaTime;
 
 	}
 
     protected override void OnEnable()
     {
         IsPersistingObject = true;
+        Health = 10;
         base.OnEnable();
     }
 

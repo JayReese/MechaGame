@@ -46,14 +46,14 @@ public class Radar : MonoBehaviour
 
     void ActivateRadar()
     {
-        Collider[] targets = Physics.OverlapSphere(transform.position, 150f);
+        Collider[] targets = Physics.OverlapSphere(transform.position, 150f, 1 << 11);
 
-        foreach (Collider t in targets)
+        foreach (Collider c in targets)
         {
-            if ((t.transform.root.tag == "Player" || t.transform.root.tag == "Controllable") && t.transform.root.gameObject != gameObject.transform.root.gameObject)
+            if (c.transform.tag == "Controllable" && c.transform.GetComponent<Player>().TeamNumber != gameObject.transform.FindGrandparent("Players").GetComponent<Player>().TeamNumber)
             {
-                if(!TargetsInRange.Contains(t.gameObject.transform.root)) TargetsInRange.Add(t.gameObject.transform.root);
-            }    
+                if (!TargetsInRange.Contains(c.transform.FindGrandparent("Players"))) TargetsInRange.Add(c.transform.FindGrandparent("Players"));
+            }
         }
 
         if (TargetsInRange.Count > 0)
@@ -63,7 +63,7 @@ public class Radar : MonoBehaviour
         }
         else
             ReportTargetAcquisitionFailure();
-        
+
     }
 
     private void ReportTargetAcquisitionFailure()

@@ -15,6 +15,8 @@ public class ArmorShield : ArmorPiece
         IsPersistingObject = false;
         DamageSurfaceType = SurfaceType.ARMOR;
 
+        GetComponent<MeshRenderer>().material.color = new Color(GetComponent<MeshRenderer>().material.color.r, GetComponent<MeshRenderer>().material.color.g, GetComponent<MeshRenderer>().material.color.b, .1f);
+
         base.OnEnable();
     }
 }

@@ -13,6 +13,8 @@ public abstract class Weapon : MonoBehaviour
     protected GameObject WeaponProjectile;
     [SerializeField]
     protected Transform WeaponEmitter;
+    [SerializeField]
+    public Transform TetheredPlayer;
 
     #region Weapon stats
     [SerializeField]
@@ -78,6 +80,7 @@ public abstract class Weapon : MonoBehaviour
 
     private void FireProjectile(Transform currentLockOnTarget)
     {
+        Debug.Log("fired projectile");
         GameObject g = WeaponProjectile;
 
         SetUpProjectileParameters(g, currentLockOnTarget);
@@ -88,7 +91,7 @@ public abstract class Weapon : MonoBehaviour
     private void SetUpProjectileParameters(GameObject g, Transform lockOnTarget)
     {
         g.GetComponent<Projectile>().LockOnTarget = lockOnTarget;
-        g.GetComponent<Projectile>().PlayerOrigin = transform.root;
+        g.GetComponent<Projectile>().PlayerOrigin = TetheredPlayer;
         g.GetComponent<Projectile>().WeaponOrigin = transform;
         g.GetComponent<Projectile>().LockOnHardnessValue = LockOnHardnessValue;
         g.GetComponent<Projectile>().ArmorInteractionValue = 2;

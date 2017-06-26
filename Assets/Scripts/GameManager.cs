@@ -16,12 +16,17 @@ public class GameManager : MonoBehaviour
      */
 
     [SerializeField] int pointsToWinThreshhold;
+    [SerializeField] float MatchStartTimer;
     [SerializeField] GameObject[] mechaPlayerPrefabs;
     [SerializeField] TeamTransformPositions[] TeamSpawnPositions;
     //[SerializeField]
     //GameObject[] TeamSpawningPositions;
     [SerializeField]
     List<Transform> BuildingWaypoints, RegularWaypoints;
+    //[SerializeField]
+    //List<GameObject> TeamOne, TeamTwo;
+    [SerializeField]
+    TeamStats[] Teams;
 
     public const int pointsPerKill = 100;       //how many points the team will score when they get a kill
     const int numberOfTeams = 2;                //this variable can be adjusted in the future if we ever want more than 2 teams
@@ -40,26 +45,78 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+
         //CreatePlayers();
         //Players = GameObject.FindGameObjectsWithTag("Controllable");
+
         //determine how many controllers are hooked up
         NumPlayers = Input.GetJoystickNames().Length;
         //Debug.Log(players);
         teamScoreboards = new int[NumPlayers];
         //bool unevenTeams = (players % numberOfTeams != 0);    //this variable can be used to determine if the teams cannot be evenly distributed
         PlayersInMatch = GameObject.Find("Players");
+
         SetUpPlayersForBattle();
-        //SetUpPlayerSpawns();
-    }
-	// Use this for initialization
-	void Start ()
-    {
-        //TeamSpawnPositions = new TeamTransformPositions[2];
-        //Debug.Log(TeamSpawnPositions.Length);
-        SetUpTeamSpawningPositions();
+        SetUpTeams();
         
     }
 
+    private void SetUpTeams()
+    {
+        Teams = new TeamStats[2];
+
+        // All players in the match are iterated through and added to the team member list to ensure that they are with their correct teammate.
+        #region Assigns players to the correct teams.
+        for (byte i = 0; i < Teams.Length; i++)
+        {
+            Teams[i] = new TeamStats(i + 1);
+
+            for(byte a = 0; a < PlayersInMatch.transform.childCount; a++)
+            {
+                if (PlayersInMatch.transform.GetChild(a).GetComponent<Player>().TeamNumber == Teams[i].TeamNumber)
+                    Teams[i].AddPlayerToTeam(PlayersInMatch.transform.GetChild(a).gameObject);
+            }
+        }
+        #endregion
+
+        SetUpTeamSpawnPositions();
+
+        RepositionAllPlayersToRespectiveSpawns();
+
+        SetPlayerColors();
+    }
+
+    // Use this for initialization
+    void Start ()
+    {
+        GetWaypointTransformReferences();
+        MatchStartTimer = 5;
+    }
+
+    void Update()
+    {
+#if UNITY_EDITOR
+        PerformScoreDebugging();
+#endif
+
+        for(byte i = 0; i < Teams.Length; i++)
+        {
+            if (Teams[i].Score >= 4)
+                Debug.Log("Team " + Teams[i].TeamNumber + " wins.");
+        }
+
+        ToggleRoundProgress();
+    }
+
+    private void ToggleRoundProgress()
+    {
+        if (MatchStartTimer > 0)
+            MatchStartTimer -= Time.deltaTime;
+        else
+            StartMatch();
+    }
+
+    #region Match start methods and routines to perform.
     void GetWaypointTransformReferences()
     {
         GameObject[] go = GameObject.FindGameObjectsWithTag("Waypoint");
@@ -80,59 +137,21 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < PlayersInMatch.transform.childCount; i++)
         {
-            PlayersInMatch.transform.GetChild(i).GetComponent<Player>().PlayerID = i;
-            //Players[i].GetComponent<Player>().SetTeamNumber(i + 1 < 3 ? 1 : 2);
-           
+            PlayersInMatch.transform.GetChild(i).GetComponent<Player>().PlayerID = i;        
+
             Vector2 viewRect = Globals.ReturnCorrectCameraRect(i);
             PlayersInMatch.transform.GetChild(i).GetComponentInChildren<Camera>().rect = new Rect(viewRect[0], viewRect[1], 0.5f, 0.5f);
         }
-
-        #region Commented out.
-        //int playerNum = 0;
-        //while (playerNum < NumPlayers) //loop through all the players
-        //{
-        //    for (int teamNum = 0; teamNum < numberOfTeams; teamNum++) //divide the players into teams
-        //    {
-        //        //GameObject newPlayerMech = Instantiate(mechaPlayerPrefabs[0]);
-        //        //newPlayerMech.GetComponent<DeleteMeTempController>().FirstTimeSetup(this, teamNum, TeamSpawnPositions[teamNum].positions);
-
-        //        playerNum++;
-        //        Debug.Log("Player: " + playerNum + " has been placed in team " + teamNum);
-
-        //        if (playerNum >= NumPlayers) //if we've matched or exceeded our number of players, stop looping
-        //        {
-        //            break;
-        //        }
-
-        //    }
-        //}
-        #endregion
     }
 
-
-    public void AdjustTeamPoints(int amount, int teamIndex)
+    void SetUpTeamSpawnPositions()
     {
-        teamScoreboards[teamIndex] += amount;
-
-        Debug.Log("Team " + teamIndex + " now has " + teamScoreboards[teamIndex] + " points");
-
-        if(teamScoreboards[teamIndex] >= pointsToWinThreshhold)
+        for (byte i = 0; i < Teams.Length; i++)
         {
-            ActivateWin();
-        }
-    }
+            if (Teams[i].SpawnPositions == null) Teams[i].SpawnPositions = new Transform[PlayersInMatch.transform.childCount / 2];
 
-    void SetUpTeamSpawningPositions()
-    {
-        TeamSpawnPositions = new TeamTransformPositions[2];
-
-        for (byte i = 0; i < TeamSpawnPositions.Length; i++)
-        {
-            TeamSpawnPositions[i] = new TeamTransformPositions();
-            TeamSpawnPositions[i].positions = new Transform[2];
-
-            for (byte a = 0; a < TeamSpawnPositions[i].positions.Length; a++)
-                TeamSpawnPositions[i].positions[a] = GameObject.Find("Team Spawns").transform.GetChild(i).GetChild(a);
+            for (byte a = 0; a < Teams[i].SpawnPositions.Length; a++)
+                Teams[i].SetUpTeamSpawns(a, GameObject.Find("Team Spawns").transform.GetChild(Teams[i].TeamNumber - 1).GetChild(a));
         }
     }
 
@@ -147,30 +166,6 @@ public class GameManager : MonoBehaviour
                 PlayersInMatch.transform.GetChild(i).GetComponent<Player>().SetTeamNumber(2);
         }
     }
-    
-    //void SetUpPlayerSpawns()
-    //{
-    //    TeamSpawningPositions = GameObject.FindGameObjectsWithTag("Spawner");
-    //    int a = 0;
-    //    int b = 0;
-
-    //    foreach(GameObject p in Players)
-    //    {
-    //        if (p.GetComponent<Player>().TeamNumber == 1)
-    //        {
-    //            p.GetComponent<Player>().SetUpPlayerSpawn(
-    //                TeamSpawningPositions[p.GetComponent<Player>().TeamNumber - 1].transform.GetChild(a).InverseTransformPoint(TeamSpawningPositions[p.GetComponent<Player>().TeamNumber - 1].transform.GetChild(a).position)
-    //                );
-    //            a++;
-    //        }    
-    //        else if(p.GetComponent<Player>().TeamNumber == 2)
-    //        {
-    //            p.GetComponent<Player>().SetUpPlayerSpawn(TeamSpawningPositions[p.GetComponent<Player>().TeamNumber - 1].transform.GetChild(b).InverseTransformPoint(TeamSpawningPositions[p.GetComponent<Player>().TeamNumber - 1].transform.GetChild(b).position));
-    //            b++;
-    //        }
-                
-    //    }
-    //}
 
     void CreatePlayers()
     {
@@ -178,27 +173,86 @@ public class GameManager : MonoBehaviour
             Instantiate(Resources.Load("Prefabs/Testing/Test Machi") as GameObject);
     }
 
-
-    void ActivateWin()
+    private void StartMatch()
     {
-        //do more stuff (like register scores, calculate MVP, send info to the next scene, signal the UI to update/display end of match stats, etc)
+        Debug.Log("Match begin.");
 
-        StateManager.instance.currentGameState = StateManager.GameState.END_OF_MATCH;
+        MakeAllPlayersControllable();
     }
+
+    private void MakeAllPlayersControllable()
+    {
+        for (byte i = 0; i < PlayersInMatch.transform.childCount; i++)
+            PlayersInMatch.transform.GetChild(i).GetComponent<Player>().CurrentInterfacingState = InterfacingState.CONTROLLABLE;
+    }
+
+    //void ActivateWin()
+    //{
+    //    //do more stuff (like register scores, calculate MVP, send info to the next scene, signal the UI to update/display end of match stats, etc)
+
+    //    StateManager.instance.currentGameState = StateManager.GameState.END_OF_MATCH;
+    //}
 
     void SetUpPlayersForBattle()
     {
         SetPlayerID();
         AssignTeamNumberToPlayers();
-        RepositionPlayersToRespectiveSpawns();
     }
 
-    private void RepositionPlayersToRespectiveSpawns()
+    public void ActivateSpawn(GameObject player)
     {
-        for(byte i = 0; i < PlayersInMatch.transform.childCount; i++)
+        int teamIndexToCheck = player.GetComponent<Player>().TeamNumber - 1;
+
+        for(byte i = 0; i < Teams[teamIndexToCheck].TeamMembers.Count; i++)
         {
-            
-            PlayersInMatch.transform.GetChild(i).localPosition = TeamSpawnPositions[PlayersInMatch.transform.GetChild(i).GetComponent<Player>().TeamNumber - 1].positions[i].position;
+            if (player == Teams[teamIndexToCheck].TeamMembers[i])
+                player.transform.position = Teams[teamIndexToCheck].SpawnPositions[i].position;
         }
     }
+
+    private void RepositionAllPlayersToRespectiveSpawns()
+    {
+        for(byte i = 0; i < Teams.Length; i++)
+        {
+            foreach (GameObject p in Teams[i].TeamMembers)
+                ActivateSpawn(p);
+        }
+    }
+
+    private void SetPlayerColors()
+    {
+        for(byte i = 0; i < Teams.Length; i++)
+        {
+            foreach (GameObject p in Teams[i].TeamMembers)
+                if(p.name.Contains("Test")) p.GetComponent<Player>().ChangeBodyColor(Teams[i].TeamColor);
+        }
+    }
+    #endregion
+
+#if UNITY_EDITOR
+    private void PerformScoreDebugging()
+    {
+        int teamThatScored = -1;
+        int teamAttacked = -1;
+
+        if(Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.P))
+        {
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                teamThatScored = 1;
+                teamAttacked = 2;
+            }
+            else if (Input.GetKeyDown(KeyCode.P))
+            {
+                teamThatScored = 2;
+                teamAttacked = 1;
+            }
+
+            Teams[teamThatScored - 1].AddToScore(1);
+        }
+        
+
+        
+    }
+#endif    
 }

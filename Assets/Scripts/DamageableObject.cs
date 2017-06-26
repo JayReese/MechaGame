@@ -5,7 +5,7 @@ public class DamageableObject : MonoBehaviour
 {
     public int Health;
     public bool IsTargetable, IsPersistingObject;
-    [SerializeField] protected float _destructTimer;
+    public float RespawnTimer;
 
     public SurfaceType DamageSurfaceType;
 
@@ -24,9 +24,10 @@ public class DamageableObject : MonoBehaviour
     {
         if (!IsTargetable && IsPersistingObject)
         {
-            _destructTimer -= Time.fixedDeltaTime;
+            Debug.Log(gameObject.name + " destroyed. Health: " + Health);
+            RespawnTimer -= Time.fixedDeltaTime;
 
-            if (_destructTimer <= 0 && IsPersistingObject)
+            if (RespawnTimer <= 0 && IsPersistingObject)
                 Kill();
         }
 
@@ -42,6 +43,6 @@ public class DamageableObject : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        _destructTimer = IsPersistingObject ? 4 : 0;
+        RespawnTimer = IsPersistingObject ? 4 : 0;
     }
 }

@@ -46,12 +46,33 @@ public class Projectile : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other != null && (!other.GetComponent<Projectile>() || (other.GetComponent<Projectile>() && other.GetComponent<Projectile>().PlayerOrigin != PlayerOrigin)))
+        //if (other != null && (!other.GetComponent<Projectile>() || (other.GetComponent<Projectile>() && other.GetComponent<Projectile>().PlayerOrigin != PlayerOrigin)))
+        //{
+        //    //if (other.transform.GetComponent<DamageableObject>())
+        //    //    ApplyDamageToCorrectObject(other.transform);
+        //    //else
+        //    //    ApplyDamageToCorrectObject(other.transform.FindGrandparent("Players"));
+
+
+        //}
+
+        if (other.gameObject.layer != 11)
         {
-            if (other.transform.GetComponent<DamageableObject>())
+            if (other.tag == "Projectile" && other.GetComponent<Projectile>())
+            {
+                 if(other.GetComponent<Projectile>().PlayerOrigin == PlayerOrigin)
+                    Debug.Log("Own projectile hit lolol");
+            }
+            else if ((other.GetComponent<ArmorPiece>()))
+            {
                 ApplyDamageToCorrectObject(other.transform);
+            }
             else
-                ApplyDamageToCorrectObject(other.transform.root);
+            {
+                ApplyDamageToCorrectObject(other.GetComponent<BodyPart>().TetheredParentObject);
+                Debug.Log(other.GetComponent<BodyPart>().TetheredParentObject + " hit");
+            }
+                
         }
     }
 
