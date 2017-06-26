@@ -1,0 +1,339 @@
+fileFormatVersion: 2
+guid: 423e7a0dd7813fc47ad0055b3f1576d4
+timeCreated: 1498512333
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Controls
+    100002: Curve_L_Elbow
+    100004: Curve_L_Knee
+    100006: Curve_L_Shoulder
+    100008: Curve_L_Wrist
+    100010: Curve_R_Elbow
+    100012: Curve_R_Knee
+    100014: Curve_R_Shoulder
+    100016: Curve_R_Wrist
+    100018: global_control
+    100020: ikHandle1
+    100022: ikHandle2
+    100024: ikHandle3
+    100026: ikHandle4
+    100028: ikHandle_L_Foot
+    100030: ikHandle_R_Foot
+    100032: jnt_Neck
+    100034: joint10
+    100036: joint10 1
+    100038: joint10 2
+    100040: joint10 3
+    100042: joint10 4
+    100044: joint10 5
+    100046: joint10 6
+    100048: joint10 7
+    100050: joint11
+    100052: joint11 1
+    100054: joint11 2
+    100056: joint11 3
+    100058: joint11 4
+    100060: joint11 5
+    100062: joint11 6
+    100064: joint11 7
+    100066: joint12
+    100068: joint12 1
+    100070: joint12 2
+    100072: joint12 3
+    100074: joint12 4
+    100076: joint12 5
+    100078: joint12 6
+    100080: joint12 7
+    100082: joint4
+    100084: joint4 1
+    100086: joint6
+    100088: joint6 1
+    100090: joint7
+    100092: joint7 1
+    100094: joint8
+    100096: joint8 1
+    100098: L_Foot_curve
+    100100: L_Foot_curve 1
+    100102: //RootNode
+    100104: polySurface150
+    100106: polySurface151
+    100108: polySurface161
+    100110: polySurface169
+    100112: polySurface170
+    100114: polySurface171
+    100116: polySurface175
+    100118: polySurface181
+    100120: polySurface189
+    100122: polySurface193
+    100124: polySurface199
+    100126: polySurface201
+    100128: polySurface208
+    100130: polySurface211
+    100132: polySurface218
+    100134: polySurface223
+    100136: polySurface224
+    100138: polySurface225
+    100140: R_Foot_curve
+    100142: R_Foot_curve 1
+    100144: Rig_abdomen
+    100146: Rig_chest
+    100148: Rig_Head1
+    100150: Rig_L_ankle
+    100152: Rig_L_Elbow
+    100154: Rig_L_Foot
+    100156: Rig_L_hip
+    100158: Rig_L_index
+    100160: Rig_L_knee
+    100162: Rig_L_Middle
+    100164: Rig_L_Pinki
+    100166: Rig_L_pointer
+    100168: Rig_L_shoulder
+    100170: Rig_L_Thumb
+    100172: Rig_L_Toe
+    100174: Rig_L_Wrist
+    100176: Rig_Pelvis
+    100178: Rig_R_ankle
+    100180: Rig_R_Elbow
+    100182: Rig_R_hip
+    100184: Rig_R_index
+    100186: Rig_R_knee
+    100188: Rig_R_Middle
+    100190: Rig_R_Pinki
+    100192: Rig_R_pointer
+    100194: Rig_R_Rig_L_Foot
+    100196: Rig_R_shoulder
+    100198: Rig_R_Thumb
+    100200: Rig_R_Toe
+    100202: Rig_R_Wrist
+    100204: Skeleton01
+    100206: Torso
+    100208: Torso1
+    100210: Torso2
+    100212: Waist
+    100214: Waist1
+    400000: Controls
+    400002: Curve_L_Elbow
+    400004: Curve_L_Knee
+    400006: Curve_L_Shoulder
+    400008: Curve_L_Wrist
+    400010: Curve_R_Elbow
+    400012: Curve_R_Knee
+    400014: Curve_R_Shoulder
+    400016: Curve_R_Wrist
+    400018: global_control
+    400020: ikHandle1
+    400022: ikHandle2
+    400024: ikHandle3
+    400026: ikHandle4
+    400028: ikHandle_L_Foot
+    400030: ikHandle_R_Foot
+    400032: jnt_Neck
+    400034: joint10
+    400036: joint10 1
+    400038: joint10 2
+    400040: joint10 3
+    400042: joint10 4
+    400044: joint10 5
+    400046: joint10 6
+    400048: joint10 7
+    400050: joint11
+    400052: joint11 1
+    400054: joint11 2
+    400056: joint11 3
+    400058: joint11 4
+    400060: joint11 5
+    400062: joint11 6
+    400064: joint11 7
+    400066: joint12
+    400068: joint12 1
+    400070: joint12 2
+    400072: joint12 3
+    400074: joint12 4
+    400076: joint12 5
+    400078: joint12 6
+    400080: joint12 7
+    400082: joint4
+    400084: joint4 1
+    400086: joint6
+    400088: joint6 1
+    400090: joint7
+    400092: joint7 1
+    400094: joint8
+    400096: joint8 1
+    400098: L_Foot_curve
+    400100: L_Foot_curve 1
+    400102: //RootNode
+    400104: polySurface150
+    400106: polySurface151
+    400108: polySurface161
+    400110: polySurface169
+    400112: polySurface170
+    400114: polySurface171
+    400116: polySurface175
+    400118: polySurface181
+    400120: polySurface189
+    400122: polySurface193
+    400124: polySurface199
+    400126: polySurface201
+    400128: polySurface208
+    400130: polySurface211
+    400132: polySurface218
+    400134: polySurface223
+    400136: polySurface224
+    400138: polySurface225
+    400140: R_Foot_curve
+    400142: R_Foot_curve 1
+    400144: Rig_abdomen
+    400146: Rig_chest
+    400148: Rig_Head1
+    400150: Rig_L_ankle
+    400152: Rig_L_Elbow
+    400154: Rig_L_Foot
+    400156: Rig_L_hip
+    400158: Rig_L_index
+    400160: Rig_L_knee
+    400162: Rig_L_Middle
+    400164: Rig_L_Pinki
+    400166: Rig_L_pointer
+    400168: Rig_L_shoulder
+    400170: Rig_L_Thumb
+    400172: Rig_L_Toe
+    400174: Rig_L_Wrist
+    400176: Rig_Pelvis
+    400178: Rig_R_ankle
+    400180: Rig_R_Elbow
+    400182: Rig_R_hip
+    400184: Rig_R_index
+    400186: Rig_R_knee
+    400188: Rig_R_Middle
+    400190: Rig_R_Pinki
+    400192: Rig_R_pointer
+    400194: Rig_R_Rig_L_Foot
+    400196: Rig_R_shoulder
+    400198: Rig_R_Thumb
+    400200: Rig_R_Toe
+    400202: Rig_R_Wrist
+    400204: Skeleton01
+    400206: Torso
+    400208: Torso1
+    400210: Torso2
+    400212: Waist
+    400214: Waist1
+    2300000: polySurface151
+    2300002: polySurface161
+    2300004: polySurface169
+    2300006: polySurface170
+    2300008: polySurface171
+    2300010: polySurface175
+    2300012: polySurface181
+    2300014: polySurface189
+    2300016: polySurface193
+    2300018: polySurface199
+    2300020: polySurface201
+    2300022: polySurface208
+    2300024: polySurface211
+    2300026: polySurface218
+    2300028: polySurface224
+    2300030: polySurface225
+    3300000: polySurface151
+    3300002: polySurface161
+    3300004: polySurface169
+    3300006: polySurface170
+    3300008: polySurface171
+    3300010: polySurface175
+    3300012: polySurface181
+    3300014: polySurface189
+    3300016: polySurface193
+    3300018: polySurface199
+    3300020: polySurface201
+    3300022: polySurface208
+    3300024: polySurface211
+    3300026: polySurface218
+    3300028: polySurface224
+    3300030: polySurface225
+    4300000: polySurface223
+    4300002: polySurface211
+    4300004: polySurface218
+    4300006: polySurface189
+    4300008: polySurface193
+    4300010: polySurface151
+    4300012: polySurface161
+    4300014: polySurface224
+    4300016: polySurface201
+    4300018: polySurface208
+    4300020: polySurface175
+    4300022: polySurface225
+    4300024: polySurface169
+    4300026: polySurface171
+    4300028: polySurface199
+    4300030: polySurface181
+    4300032: polySurface170
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: polySurface223
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 1
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
