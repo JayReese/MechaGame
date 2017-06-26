@@ -68,11 +68,6 @@ public class CameraMovement : MonoBehaviour
 
     private void OrientToLockOnTarget()
     {
-        //transform.parent.LookAt(_currentTargetToTrack);
-
-        //_currentLockOnTargetPosition = _currentTargetToTrack.position;
-        //_currentLockOnTargetPosition.y = transform.parent.GetComponent<Player>().IsOnGround ? 0.0f : _currentLockOnTargetPosition.y;
-
         transform.parent.LookAt(_currentTargetToTrack);
     }
 

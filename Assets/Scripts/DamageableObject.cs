@@ -4,7 +4,7 @@ using System.Collections;
 public class DamageableObject : MonoBehaviour
 {
     public int Health;
-    public bool IsTargetable, IsPersistingObject;
+    public bool IsTargetable, IsPersistingObject, IsPlayer;
     public float RespawnTimer;
 
     public SurfaceType DamageSurfaceType;
@@ -35,14 +35,16 @@ public class DamageableObject : MonoBehaviour
             Kill("non pers obj killed.");
     }
 
-    private void Kill(string g = "regular death")
+    public virtual void Kill( string g = "regular death")
     {
         Debug.Log(gameObject.name + " destroyed. " + g + " Health: " + Health);
-        gameObject.SetActive(false);
+        if(!IsPlayer) gameObject.SetActive(false);    
     }
 
     protected virtual void OnEnable()
     {
+        if (gameObject.tag == "Controllable") IsPlayer = true;
+
         RespawnTimer = IsPersistingObject ? 4 : 0;
     }
 }

@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     public int LockOnHardnessValue, ArmorInteractionValue;
     public Transform WeaponOrigin, PlayerOrigin, LockOnTarget;
     public MovementBehavior PerformProjectileBehavior;
+   
 
     [SerializeField]
     public float FlightSpeed;
@@ -42,6 +43,8 @@ public class Projectile : MonoBehaviour
             PerformProjectileBehavior();   
 
         DegradeProjectileLife();
+
+        CheckForHit();
     }
 
     public void OnTriggerEnter(Collider other)
@@ -56,24 +59,52 @@ public class Projectile : MonoBehaviour
 
         //}
 
-        if (other.gameObject.layer != 11)
-        {
-            if (other.tag == "Projectile" && other.GetComponent<Projectile>())
-            {
-                 if(other.GetComponent<Projectile>().PlayerOrigin == PlayerOrigin)
-                    Debug.Log("Own projectile hit lolol");
-            }
-            else if ((other.GetComponent<ArmorPiece>()))
-            {
-                ApplyDamageToCorrectObject(other.transform);
-            }
-            else
-            {
-                ApplyDamageToCorrectObject(other.GetComponent<BodyPart>().TetheredParentObject);
-                Debug.Log(other.GetComponent<BodyPart>().TetheredParentObject + " hit");
-            }
+        //if (other.gameObject.layer != 11)
+        //{
+        //    if (other.tag == "Projectile" && other.GetComponent<Projectile>())
+        //    {
+        //         if(other.GetComponent<Projectile>().PlayerOrigin == PlayerOrigin)
+        //            Debug.Log("Own projectile hit lolol");
+        //    }
+        //    else if ((other.GetComponent<ArmorPiece>()))
+        //    {
+        //        ApplyDamageToCorrectObject(other.transform);
+        //    }
+        //    else
+        //    {
+        //        ApplyDamageToCorrectObject(other.GetComponent<BodyPart>().TetheredParentObject);
+        //        Debug.Log(other.GetComponent<BodyPart>().TetheredParentObject + " hit");
+        //    }
                 
+        //}
+    }
+
+    void CheckForHit()
+    {
+        if (Globals.RaycastHitTarget(transform.position, transform.forward, 3f).collider != null)
+        {
+            Collider hit = Globals.RaycastHitTarget(transform.position, transform.forward, 3f).collider;
+
+            if (hit.gameObject.layer != 11 && hit.transform != WeaponOrigin)
+            {
+                if (hit.tag == "Projectile" && hit.GetComponent<Projectile>())
+                {
+                    if (hit.GetComponent<Projectile>().PlayerOrigin == PlayerOrigin)
+                        Debug.Log("Own projectile hit lolol");
+                }
+                else if ((hit.GetComponent<ArmorPiece>()))
+                {
+                    ApplyDamageToCorrectObject(hit.transform);
+                }
+                else
+                {
+                    ApplyDamageToCorrectObject(hit.GetComponent<BodyPart>().TetheredParentObject);
+                    Debug.Log(hit.GetComponent<BodyPart>().TetheredParentObject + " hit");
+                }
+
+            }
         }
+            
     }
 
     //public void OnCollisionEnter(Collision collision)

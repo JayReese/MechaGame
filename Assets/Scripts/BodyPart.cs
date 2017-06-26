@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BodyPart : MonoBehaviour
+public class BodyPart : MechaComponent
 {
-    public Transform TetheredParentObject;
+    
 }
