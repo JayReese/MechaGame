@@ -99,7 +99,7 @@ public class Player : DamageableObject
         //Globals.PlaySoundClip(PlayerAudioSource, 0, 0);
 
         GetAllFunctionalPieces();
-        TetherBodyPartsToParent();
+        //TetherBodyPartsToParent();
     }
 
     private void TetherBodyPartsToParent()
