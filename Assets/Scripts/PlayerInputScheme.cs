@@ -37,7 +37,7 @@ public class PlayerInputScheme : MonoBehaviour
 
     void Start()
     {
-        _currentPlayerID = GetComponent<Player_MachineGunner>().PlayerID;
+        _currentPlayerID = GetComponent<Player>().PlayerID;
     }
     
     /// <summary>
