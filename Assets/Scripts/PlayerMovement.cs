@@ -82,8 +82,12 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                transform.position += transform.forward * (PlayerRef.MovementSpeed * PlayerRef.MoveSpeedModifier) * Time.fixedDeltaTime * movementAxis;
-                transform.position += transform.right * (PlayerRef.MovementSpeed * PlayerRef.MoveSpeedModifier) * Time.fixedDeltaTime * lookAxis;
+                //Transform newForwardVector = PlayerCamera.GetComponent<Camera>().transform;
+                //newForwardVector.localEulerAngles = new Vector3(0, 0, 0);
+       
+
+                transform.position += PlayerCamera.GetComponent<Camera>().transform.forward * (PlayerRef.MovementSpeed * PlayerRef.MoveSpeedModifier) * Time.fixedDeltaTime * movementAxis;
+                transform.position += PlayerCamera.GetComponent<Camera>().transform.right * (PlayerRef.MovementSpeed * PlayerRef.MoveSpeedModifier) * Time.fixedDeltaTime * lookAxis;
             }
 
             //transform.position += transform.right * PlayerRef.MovementSpeed * Time.fixedDeltaTime * movementXAxisDirection;

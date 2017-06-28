@@ -50,10 +50,12 @@ public class Radar : MonoBehaviour
 
         foreach (Collider c in targets)
         {
-            if (c.transform.tag == "Controllable" && c.transform.GetComponent<Player>().TeamNumber != gameObject.transform.FindGrandparent("Players").GetComponent<Player>().TeamNumber)
+            if (c.transform.tag == "Controllable" && c.transform.GetComponent<Player>().TeamNumber != gameObject.transform.root.GetComponent<Player>().TeamNumber && c.transform.gameObject != transform.root.gameObject)
             {
-                if (!TargetsInRange.Contains(c.transform.FindGrandparent("Players"))) TargetsInRange.Add(c.transform.FindGrandparent("Players"));
+                if (!TargetsInRange.Contains(c.transform)) TargetsInRange.Add(c.transform);
             }
+
+            //Debug.Log(c.transform.root.name);
         }
 
         if (TargetsInRange.Count > 0)

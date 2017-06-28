@@ -5,7 +5,8 @@ using System;
 public class Projectile : MonoBehaviour
 {
     [SerializeField]
-    public int LockOnHardnessValue, ArmorInteractionValue;
+    public int LockOnHardnessValue, BaseDamage;
+    public ArmorPiercingInteraction ArmorInteractionValue;
     public Transform WeaponOrigin, PlayerOrigin, LockOnTarget;
     public MovementBehavior PerformProjectileBehavior;
    
@@ -21,7 +22,6 @@ public class Projectile : MonoBehaviour
     void Awake()
     {
         SetUpLockOnBehavior();
-        FlightSpeed = 60f;
         Lifetime = 10f;
     }
 
@@ -45,6 +45,19 @@ public class Projectile : MonoBehaviour
         DegradeProjectileLife();
 
         CheckForHit();
+    }
+
+    void OnEnable()
+    {
+        transform.parent = null;
+        transform.position = WeaponOrigin.FindChild("Weapon Emitter").transform.position;
+        transform.rotation = WeaponOrigin.FindChild("Weapon Emitter").transform.rotation;
+    }
+
+    void OnDisable()
+    {
+        Debug.Log("Bullet deactivated.");
+        transform.parent = WeaponOrigin.FindChild("Ammo Feeder");
     }
 
     public void OnTriggerEnter(Collider other)
@@ -94,15 +107,18 @@ public class Projectile : MonoBehaviour
                 }
                 else if ((hit.GetComponent<ArmorPiece>()))
                 {
-                    ApplyDamageToCorrectObject(hit.transform);
+                    //ApplyDamageToCorrectObject(hit.transform);
+                    Debug.Log("Armor piece hit");
                 }
                 else
                 {
-                    ApplyDamageToCorrectObject(hit.GetComponent<BodyPart>().TetheredParentObject);
+                    //ApplyDamageToCorrectObject(hit.GetComponent<BodyPart>().TetheredParentObject);
                     Debug.Log(hit.GetComponent<BodyPart>().TetheredParentObject + " hit");
                 }
 
             }
+
+            gameObject.SetActive(false);
         }
             
     }
@@ -134,9 +150,8 @@ public class Projectile : MonoBehaviour
             particle = Resources.Load("Prefabs/Testing/Body Explosion Test") as GameObject;
             Instantiate(particle, o.position, Quaternion.identity);
         }
-            
 
-        Destroy(gameObject);
+        
     }
 
     #region commented out hit detection
