@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour
 
     void Awake()
     {
-        SetUpLockOnBehavior();
+        //SetUpLockOnBehavior();
         Lifetime = 10f;
     }
 
@@ -42,23 +42,31 @@ public class Projectile : MonoBehaviour
         if (PerformProjectileBehavior != null)
             PerformProjectileBehavior();   
 
-        DegradeProjectileLife();
+        //DegradeProjectileLife();
 
         CheckForHit();
+
+        ReorientProjectileRotation();
+        transform.position += transform.forward * FlightSpeed * 1.5f * Time.fixedDeltaTime;
     }
 
-    void OnEnable()
+    void ReorientProjectileRotation()
     {
-        transform.parent = null;
-        transform.position = WeaponOrigin.FindChild("Weapon Emitter").transform.position;
-        transform.rotation = WeaponOrigin.FindChild("Weapon Emitter").transform.rotation;
+        //Debug.Log(Vector3.Angle(transform.position, LockOnTarget.position));
     }
 
-    void OnDisable()
-    {
-        Debug.Log("Bullet deactivated.");
-        transform.parent = WeaponOrigin.FindChild("Ammo Feeder");
-    }
+    //void OnEnable()
+    //{
+    //    transform.parent = null;
+    //    transform.position = WeaponOrigin.FindChild("Weapon Emitter").transform.position;
+    //    transform.rotation = WeaponOrigin.FindChild("Weapon Emitter").transform.rotation;
+    //}
+
+    //void OnDisable()
+    //{
+    //    Debug.Log("Bullet deactivated.");
+    //    //transform.parent = WeaponOrigin.FindChild("Ammo Feeder");
+    //}
 
     public void OnTriggerEnter(Collider other)
     {
@@ -88,39 +96,46 @@ public class Projectile : MonoBehaviour
         //        ApplyDamageToCorrectObject(other.GetComponent<BodyPart>().TetheredParentObject);
         //        Debug.Log(other.GetComponent<BodyPart>().TetheredParentObject + " hit");
         //    }
-                
+
         //}
+
+        Debug.Log("Hit");
+        Destroy(gameObject);
     }
 
     void CheckForHit()
     {
+        //if (Globals.RaycastHitTarget(transform.position, transform.forward, 3f).collider != null)
+        //{
+        //    Collider hit = Globals.RaycastHitTarget(transform.position, transform.forward, 3f).collider;
+
+        //    if (hit.gameObject.layer != 11 && hit.transform != WeaponOrigin)
+        //    {
+        //        if (hit.tag == "Projectile" && hit.GetComponent<Projectile>())
+        //        {
+        //            if (hit.GetComponent<Projectile>().PlayerOrigin == PlayerOrigin)
+        //                Debug.Log("Own projectile hit lolol");
+        //        }
+        //        else if ((hit.GetComponent<ArmorPiece>()))
+        //        {
+        //            //ApplyDamageToCorrectObject(hit.transform);
+        //            Debug.Log("Armor piece hit");
+        //        }
+        //        else
+        //        {
+        //            //ApplyDamageToCorrectObject(hit.GetComponent<BodyPart>().TetheredParentObject);
+        //            Debug.Log(hit.GetComponent<BodyPart>().TetheredParentObject + " hit");
+        //        }
+
+        //    }
+
+        //    gameObject.SetActive(false);
+        //}
+
         if (Globals.RaycastHitTarget(transform.position, transform.forward, 3f).collider != null)
         {
-            Collider hit = Globals.RaycastHitTarget(transform.position, transform.forward, 3f).collider;
-
-            if (hit.gameObject.layer != 11 && hit.transform != WeaponOrigin)
-            {
-                if (hit.tag == "Projectile" && hit.GetComponent<Projectile>())
-                {
-                    if (hit.GetComponent<Projectile>().PlayerOrigin == PlayerOrigin)
-                        Debug.Log("Own projectile hit lolol");
-                }
-                else if ((hit.GetComponent<ArmorPiece>()))
-                {
-                    //ApplyDamageToCorrectObject(hit.transform);
-                    Debug.Log("Armor piece hit");
-                }
-                else
-                {
-                    //ApplyDamageToCorrectObject(hit.GetComponent<BodyPart>().TetheredParentObject);
-                    Debug.Log(hit.GetComponent<BodyPart>().TetheredParentObject + " hit");
-                }
-
-            }
-
-            gameObject.SetActive(false);
-        }
-            
+            Debug.Log("Hit");
+        }    
     }
 
     //public void OnCollisionEnter(Collision collision)
@@ -150,8 +165,6 @@ public class Projectile : MonoBehaviour
             particle = Resources.Load("Prefabs/Testing/Body Explosion Test") as GameObject;
             Instantiate(particle, o.position, Quaternion.identity);
         }
-
-        
     }
 
     #region commented out hit detection
