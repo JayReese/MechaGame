@@ -28,7 +28,7 @@ public class Projectile : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        transform.LookAt(LockOnTarget);
     }
 
     // Update is called once per frame
@@ -53,6 +53,15 @@ public class Projectile : MonoBehaviour
     void ReorientProjectileRotation()
     {
         //Debug.Log(Vector3.Angle(transform.position, LockOnTarget.position));
+
+        if ((transform.position.x / LockOnTarget.position.x < 1 || transform.position.x / LockOnTarget.position.x > 1)
+            && LockOnTarget.position.z / transform.position.z > 0)
+        {
+            var angleDegree = transform.position.x / LockOnTarget.position.x < 1 ? -1 : 1;
+            var angle = Vector3.Angle(LockOnTarget.position - transform.position, transform.forward);
+
+            transform.Rotate(0, angle * Time.fixedDeltaTime * angleDegree, 0);
+        }
     }
 
     //void OnEnable()
