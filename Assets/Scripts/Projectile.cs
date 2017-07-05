@@ -9,6 +9,9 @@ public class Projectile : MonoBehaviour
     public ArmorPiercingInteraction ArmorInteractionValue;
     public Transform WeaponOrigin, PlayerOrigin, LockOnTarget;
     public MovementBehavior PerformProjectileBehavior;
+
+    private Quaternion _rotation;
+    private Vector3 _direction;
    
 
     [SerializeField]
@@ -19,9 +22,14 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     bool PlayerIsLockedOn;
 
+#if UNITY_EDITOR
+    public WeaponDebugging wdb;
+#endif
+
     void Awake()
     {
         //SetUpLockOnBehavior();
+        LockOnHardnessValue = 8;
         Lifetime = 10f;
     }
 
@@ -42,28 +50,47 @@ public class Projectile : MonoBehaviour
         if (PerformProjectileBehavior != null)
             PerformProjectileBehavior();   
 
-        //DegradeProjectileLife();
+        DegradeProjectileLife();
 
         CheckForHit();
 
         ReorientProjectileRotation();
-        transform.position += transform.forward * FlightSpeed * 1.5f * Time.fixedDeltaTime;
+        //transform.position += transform.forward * FlightSpeed * 2f * Time.fixedDeltaTime;
+
+        GetComponent<Rigidbody>().AddForce(transform.forward * 100, ForceMode.Impulse);
+        //Debug.Log(LockOnTarget.position.x / transform.position.x);
     }
 
     void ReorientProjectileRotation()
     {
+        #region commented out, angle calculation method of determining reorientation.
         //Debug.Log(Vector3.Angle(transform.position, LockOnTarget.position));
 
-        if ((transform.position.x / LockOnTarget.position.x < 1 || transform.position.x / LockOnTarget.position.x > 1)
-            && LockOnTarget.position.z / transform.position.z > 0)
-        {
-            var angleDegree = transform.position.x / LockOnTarget.position.x < 1 ? -1 : 1;
-            var angle = Vector3.Angle(LockOnTarget.position - transform.position, transform.forward);
+        //if ((transform.position.x / LockOnTarget.position.x < 1 || transform.position.x / LockOnTarget.position.x > 1))
+        //{
+        //    var angleDegree = transform.position.x / LockOnTarget.position.x < 1 ? -1 : 1;
+        //    var angle = Vector3.Angle(LockOnTarget.position - transform.position, transform.forward);
 
-            transform.Rotate(0, angle * Time.fixedDeltaTime * angleDegree, 0);
+        //    if(LockOnTarget.position.z / transform.position.z > 0)
+        //        transform.Rotate(0, angle * Time.fixedDeltaTime * angleDegree, 0);
+        //}
+        #endregion
+
+        #region commented out, quaternion slerping of method of determining reorientation.
+        //if (LockOnTarget.position.z / transform.position.z > 0.1f)
+        //{
+        //    _direction = (LockOnTarget.position - transform.position).normalized;
+        //    _rotation = Quaternion.LookRotation(_direction);
+        //    transform.rotation = Quaternion.Slerp(transform.rotation, _rotation, Time.fixedDeltaTime * LockOnHardnessValue);
+        //}
+        #endregion
+
+        if (LockOnTarget.position.z / transform.position.z > 2f)
+        {
+            if(LockOnTarget.position.x / transform.position.x >= 1f || LockOnTarget.position.x / transform.position.x <= -1f)
+                transform.LookAt(LockOnTarget.position);
         }
     }
-
     //void OnEnable()
     //{
     //    transform.parent = null;
@@ -108,7 +135,17 @@ public class Projectile : MonoBehaviour
 
         //}
 
-        Debug.Log("Hit");
+        if (other.GetComponent<TargetDebugging>())
+        {
+            ReportResult(true);
+            Debug.Log("Target hit");
+        }  
+        else
+        {
+            ReportResult(false);
+            Debug.Log("Hit");
+        }
+            
         Destroy(gameObject);
     }
 
@@ -141,10 +178,10 @@ public class Projectile : MonoBehaviour
         //    gameObject.SetActive(false);
         //}
 
-        if (Globals.RaycastHitTarget(transform.position, transform.forward, 3f).collider != null)
-        {
-            Debug.Log("Hit");
-        }    
+        //if (Globals.RaycastHitTarget(transform.position, transform.forward, 3f).collider != null)
+        //{
+        //    Debug.Log("Hit");
+        //}    
     }
 
     //public void OnCollisionEnter(Collision collision)
@@ -222,9 +259,13 @@ public class Projectile : MonoBehaviour
 
     void DegradeProjectileLife()
     {
-        Lifetime -= Time.fixedDeltaTime * 1.5f;
+        Lifetime -= Time.fixedDeltaTime * 1f;
 
-        if (Lifetime <= 0) Destroy(gameObject);
+        if (Lifetime <= 0)
+        {
+            Destroy(gameObject);
+            ReportResult(false);
+        }
     }
 
     void SetUpLockOnBehavior()
@@ -256,5 +297,10 @@ public class Projectile : MonoBehaviour
     void ProjectileBehavior_SoftLockedMovement()
     {
         transform.position += transform.forward * FlightSpeed * 1.5f * Time.fixedDeltaTime;
+    }
+
+    void ReportResult(bool hit)
+    {
+        wdb.LogResult(hit);
     }
 }
