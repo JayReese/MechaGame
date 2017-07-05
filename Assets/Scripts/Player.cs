@@ -316,16 +316,16 @@ public class Player : DamageableObject
 
         base.Kill(g);
 
-        bool isDead = Health <= 0;
+        //bool isDead = Health <= 0;
 
-        if (isDead)
-            BodyPartsReference.gameObject.SetActive(false);
+        //if (isDead)
+        //    BodyPartsReference.gameObject.SetActive(false);
 
-        if (RespawnTimer > 0)
-        {
-            transform.FindGrandchild("Camera").gameObject.SetActive(isDead);
-            transform.FindGrandchild("Death Camera").gameObject.SetActive(!isDead);
-        }
+        //if (RespawnTimer > 0)
+        //{
+        //    transform.FindGrandchild("Camera").gameObject.SetActive(isDead);
+        //    transform.FindGrandchild("Death Camera").gameObject.SetActive(!isDead);
+        //}
     }
 
     public void TestReload() { PlayerWeapon.Test_Reload(); }

@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     //[SerializeField]
     //GameObject[] TeamSpawningPositions;
     [SerializeField]
-    List<Transform> BuildingWaypoints, RegularWaypoints;
+    List<Transform> BuildingWaypoints, RegularWaypoints, AllPlayersInMatch;
     //[SerializeField]
     //List<GameObject> TeamOne, TeamTwo;
     [SerializeField]
@@ -32,9 +32,7 @@ public class GameManager : MonoBehaviour
     const int numberOfTeams = 2;                //this variable can be adjusted in the future if we ever want more than 2 teams
     int NumPlayers;
     int[] teamScoreboards;
-
-    GameObject PlayersInMatch;
-
+    
     //You can't have 2D arrays exposed to the editor, so this is the workaround
     [System.Serializable]
     struct TeamTransformPositions
@@ -54,11 +52,22 @@ public class GameManager : MonoBehaviour
         //Debug.Log(players);
         teamScoreboards = new int[NumPlayers];
         //bool unevenTeams = (players % numberOfTeams != 0);    //this variable can be used to determine if the teams cannot be evenly distributed
-        PlayersInMatch = GameObject.Find("Players");
 
+        PopulateGlobalListOfPlayers();
         SetUpPlayersForBattle();
         SetUpTeams();
-        
+
+    }
+
+    private void PopulateGlobalListOfPlayers()
+    {
+        //Debug.Log(GameObject.Find("Players").transform.GetChild(3).name);
+
+        for (byte a = 0; a < GameObject.Find("Players").transform.childCount; a++)
+        {
+            Debug.Log(GameObject.Find("Players").transform.GetChild(a).name);
+            AllPlayersInMatch.Add(GameObject.Find("Players").transform.GetChild(a));
+        }
     }
 
     private void SetUpTeams()
@@ -71,10 +80,10 @@ public class GameManager : MonoBehaviour
         {
             Teams[i] = new TeamStats(i + 1);
 
-            for(byte a = 0; a < PlayersInMatch.transform.childCount; a++)
+            for(byte a = 0; a < AllPlayersInMatch.Count; a++)
             {
-                if (PlayersInMatch.transform.GetChild(a).GetComponent<Player>().TeamNumber == Teams[i].TeamNumber)
-                    Teams[i].AddPlayerToTeam(PlayersInMatch.transform.GetChild(a).gameObject);
+                if (AllPlayersInMatch[a].GetComponent<Player>().TeamNumber == Teams[i].TeamNumber)
+                    Teams[i].AddPlayerToTeam(AllPlayersInMatch[a].gameObject);    
             }
         }
         #endregion
@@ -83,7 +92,7 @@ public class GameManager : MonoBehaviour
 
         RepositionAllPlayersToRespectiveSpawns();
 
-        SetPlayerColors();
+        //SetPlayerColors();
     }
 
     // Use this for initialization
@@ -136,13 +145,13 @@ public class GameManager : MonoBehaviour
 
     void SetPlayerID()
     {
-        for (int i = 0; i < PlayersInMatch.transform.childCount; i++)
+        for (int i = 0; i < AllPlayersInMatch.Count; i++)
         {
-            PlayersInMatch.transform.GetChild(i).GetComponent<Player>().PlayerID = i;        
+            AllPlayersInMatch[i].GetComponent<Player>().PlayerID = i;        
 
             Vector2 viewRect = Globals.ReturnCorrectCameraRect(i);
-            PlayersInMatch.transform.GetChild(i).GetComponentInChildren<Camera>().rect = new Rect(viewRect[0], viewRect[1], 0.5f, 0.5f);
-            PlayersInMatch.transform.GetChild(i).FindGrandchild("Death Camera").GetComponent<Camera>().rect = new Rect(viewRect[0], viewRect[1], 0.5f, 0.5f);
+            AllPlayersInMatch[i].GetComponentInChildren<Camera>().rect = new Rect(viewRect[0], viewRect[1], 0.5f, 0.5f);
+            AllPlayersInMatch[i].FindGrandchild("Death Camera").GetComponent<Camera>().rect = new Rect(viewRect[0], viewRect[1], 0.5f, 0.5f);
         }
     }
 
@@ -150,7 +159,7 @@ public class GameManager : MonoBehaviour
     {
         for (byte i = 0; i < Teams.Length; i++)
         {
-            if (Teams[i].SpawnPositions == null) Teams[i].SpawnPositions = new Transform[PlayersInMatch.transform.childCount / 2];
+            if (Teams[i].SpawnPositions == null) Teams[i].SpawnPositions = new Transform[AllPlayersInMatch.Count / 2];
 
             for (byte a = 0; a < Teams[i].SpawnPositions.Length; a++)
                 Teams[i].SetUpTeamSpawns(a, GameObject.Find("Team Spawns").transform.GetChild(Teams[i].TeamNumber - 1).GetChild(a));
@@ -160,12 +169,12 @@ public class GameManager : MonoBehaviour
     void AssignTeamNumberToPlayers()
     {
 
-        for (byte i = 0; i < PlayersInMatch.transform.childCount; i++)
+        for (byte i = 0; i < AllPlayersInMatch.Count; i++)
         {
-            if (PlayersInMatch.transform.GetChild(i).GetComponent<Player>().PlayerID == 0 || PlayersInMatch.transform.GetChild(i).GetComponent<Player>().PlayerID == 2)
-                PlayersInMatch.transform.GetChild(i).GetComponent<Player>().SetTeamNumber(1);
+            if (AllPlayersInMatch[i].GetComponent<Player>().PlayerID == 0 || AllPlayersInMatch[i].GetComponent<Player>().PlayerID == 2)
+                AllPlayersInMatch[i].GetComponent<Player>().SetTeamNumber(1);
             else
-                PlayersInMatch.transform.GetChild(i).GetComponent<Player>().SetTeamNumber(2);
+                AllPlayersInMatch[i].GetComponent<Player>().SetTeamNumber(2);
         }
     }
 
@@ -184,8 +193,8 @@ public class GameManager : MonoBehaviour
 
     private void MakeAllPlayersControllable()
     {
-        for (byte i = 0; i < PlayersInMatch.transform.childCount; i++)
-            PlayersInMatch.transform.GetChild(i).GetComponent<Player>().CurrentInterfacingState = InterfacingState.CONTROLLABLE;
+        for (byte i = 0; i < AllPlayersInMatch.Count; i++)
+            AllPlayersInMatch[i].GetComponent<Player>().CurrentInterfacingState = InterfacingState.CONTROLLABLE;
     }
 
     //void ActivateWin()
@@ -197,6 +206,9 @@ public class GameManager : MonoBehaviour
 
     void SetUpPlayersForBattle()
     {
+        AllPlayersInMatch.ForEach(x => x.parent = null);
+        Destroy(GameObject.Find("Players"));
+
         SetPlayerID();
         AssignTeamNumberToPlayers();
     }
