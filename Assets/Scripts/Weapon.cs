@@ -164,6 +164,6 @@ public abstract class Weapon : MonoBehaviour
             BaseDamageDealt = BaseDamage,
             ProjectileFlightSpeed = ProjectileSpeed
         }, 
-        gameObject.transform.FindChild("Ammo Feeder"));
+        gameObject.transform.Find("Ammo Feeder"));
     }
 }
