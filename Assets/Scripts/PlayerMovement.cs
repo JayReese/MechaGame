@@ -21,12 +21,12 @@ public class PlayerMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        PlayerCamera = transform.FindChild("Camera");
+        PlayerCamera = transform.Find("Camera");
 
         PlayerRef = GetComponent<Player>();
         PlayerRigidbody = GetComponent<Rigidbody>();
 
-        PlayerModel = transform.FindChild("Model").gameObject;
+        PlayerModel = transform.Find("Model").gameObject;
 
         PlayerRef.MovementSpeed = 10f;
         PlayerRef.JumpJetStrength = 15f;

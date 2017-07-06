@@ -37,7 +37,11 @@ public class Player_BeamRifleman : Player
 
     new void FixedUpdate()
     {
-        PerformCommandExecution(); CheckIfUsingMelee(); ManageCooldownTimers(); base.FixedUpdate();
+        PerformCommandExecution();
+        CheckIfUsingMelee();
+        ManageCooldownTimers();
+
+        base.FixedUpdate();
     }
 
     protected override void UseFirstSubweapon()

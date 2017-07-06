@@ -60,7 +60,7 @@ public class Player : DamageableObject
         PRadar = transform.GetComponentInChildren<Radar>();
         PlayerWeapon = GetComponentInChildren<Weapon>();
 
-        PlayerCamera = transform.FindChild("Camera");
+        PlayerCamera = transform.Find("Camera");
     }
 
     // Use this for initialization
