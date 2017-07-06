@@ -80,6 +80,7 @@ public class Player : DamageableObject
         PRadar = transform.GetComponentInChildren<Radar>();
         PlayerWeapon = GetComponentInChildren<Weapon>();
 
+<<<<<<< HEAD
         PlayerAudioSource = GetComponent<AudioSource>();
 
         //sOperationalArmorPieces = new List<GameObject>();
@@ -88,6 +89,9 @@ public class Player : DamageableObject
         PlayerDeathCamera = transform.FindGrandchild("Death Camera");
         
         //Debug.Log(Enum.IsDefined(typeof(PoiseState), 2));
+=======
+        PlayerCamera = transform.Find("Camera");
+>>>>>>> input-mechanics
     }
 
     // Use this for initialization

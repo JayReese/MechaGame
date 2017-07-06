@@ -152,7 +152,11 @@ public abstract class Weapon : MonoBehaviour
         IsFiring = false;
 
         WeaponProjectile = Resources.Load("Prefabs/Testing/Test Projectile") as GameObject;
+<<<<<<< HEAD
         WeaponEmitter = transform.FindGrandchild("Weapon Emitter");
+=======
+        WeaponEmitter = transform.Find("Weapon Emitter");
+>>>>>>> input-mechanics
     }
 
     void SetUpAmmoFeederPool()
