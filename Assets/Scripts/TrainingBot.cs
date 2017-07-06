@@ -75,6 +75,6 @@ public class TrainingBot : DamageableObject
 
         g.GetComponent<Projectile>().PlayerOrigin = transform;
 
-        Instantiate(g, transform.FindChild("Emitter").position, transform.FindChild("Emitter").rotation);
+        Instantiate(g, transform.Find("Emitter").position, transform.Find("Emitter").rotation);
     }
 }

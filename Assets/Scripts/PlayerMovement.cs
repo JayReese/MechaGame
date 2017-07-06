@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerRef = GetComponent<Player>();
         PlayerRigidbody = GetComponent<Rigidbody>();
 
-        PlayerModel = transform.FindChild("Model").gameObject;
+        PlayerModel = transform.Find("Model").gameObject;
 
         PlayerRef.MovementSpeed = 25f;
         PlayerRef.MoveSpeedModifier = 1.0f;
