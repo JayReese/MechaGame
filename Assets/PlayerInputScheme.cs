@@ -42,10 +42,7 @@ public class PlayerInputScheme : MonoBehaviour
 
     void Start()
     {
-<<<<<<< HEAD:Assets/PlayerInputScheme.cs
         // IDs are currently set by grabbing the component of the player.
-=======
->>>>>>> input-mechanics:Assets/Scripts/PlayerInputScheme.cs
         _currentPlayerID = GetComponent<Player>().PlayerID;
     }
     

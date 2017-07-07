@@ -22,22 +22,15 @@ public class PlayerMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-<<<<<<< HEAD
         PlayerCamera = transform.FindGrandchild("Camera");
-=======
-        PlayerCamera = transform.Find("Camera");
->>>>>>> input-mechanics
 
         PlayerRef = GetComponent<Player>();
         PlayerRigidbody = GetComponent<Rigidbody>();
 
         PlayerModel = transform.Find("Model").gameObject;
-<<<<<<< HEAD
 
         PlayerRef.MovementSpeed = 25f;
         PlayerRef.MoveSpeedModifier = 1.0f;
-=======
->>>>>>> input-mechanics
 
         PlayerRef.JumpJetStrength = 15f;
 

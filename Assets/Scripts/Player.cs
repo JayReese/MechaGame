@@ -80,7 +80,6 @@ public class Player : DamageableObject
         PRadar = transform.GetComponentInChildren<Radar>();
         PlayerWeapon = GetComponentInChildren<Weapon>();
 
-<<<<<<< HEAD
         PlayerAudioSource = GetComponent<AudioSource>();
 
         //sOperationalArmorPieces = new List<GameObject>();
@@ -89,9 +88,6 @@ public class Player : DamageableObject
         PlayerDeathCamera = transform.FindGrandchild("Death Camera");
         
         //Debug.Log(Enum.IsDefined(typeof(PoiseState), 2));
-=======
-        PlayerCamera = transform.Find("Camera");
->>>>>>> input-mechanics
     }
 
     // Use this for initialization
@@ -134,7 +130,7 @@ public class Player : DamageableObject
 
         CurrentPlayerBoostingState = IsOnGround ? BoostState.ON_GROUND : CurrentPlayerBoostingState;
 
-        Kill();
+        //Kill();
     }
 
     private void CorrectLockOnEdgeCase()
@@ -315,22 +311,37 @@ public class Player : DamageableObject
         //transform.position = SpawnPosition;
     }
 
-    public override void Kill(string g = "regular death")
-    {
+    //public override void Kill(string g = "regular death")
+    //{
 
-        base.Kill(g);
+    //    base.Kill(g);
 
-        //bool isDead = Health <= 0;
+    //    //bool isDead = Health <= 0;
 
-        //if (isDead)
-        //    BodyPartsReference.gameObject.SetActive(false);
+    //    //if (isDead)
+    //    //    BodyPartsReference.gameObject.SetActive(false);
 
-        //if (RespawnTimer > 0)
-        //{
-        //    transform.FindGrandchild("Camera").gameObject.SetActive(isDead);
-        //    transform.FindGrandchild("Death Camera").gameObject.SetActive(!isDead);
-        //}
-    }
+    //    //if (RespawnTimer > 0)
+    //    //{
+    //    //    transform.FindGrandchild("Camera").gameObject.SetActive(isDead);
+    //    //    transform.FindGrandchild("Death Camera").gameObject.SetActive(!isDead);
+    //    //}
+    //}
 
     public void TestReload() { PlayerWeapon.Test_Reload(); }
+
+    protected override void ToggleLife()
+    {
+        ExecuteCommand = null;
+
+        ToggleCorrectCameras();
+        base.ToggleLife();
+    }
+
+    private void ToggleCorrectCameras()
+    {
+        Debug.Log("Cameras toggled");
+        PlayerDeathCamera.gameObject.SetActive(Health <= 0);
+        PlayerCamera.gameObject.SetActive(Health > 0);
+    }
 }
