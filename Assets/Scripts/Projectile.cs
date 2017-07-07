@@ -37,6 +37,9 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         transform.LookAt(LockOnTarget);
+
+        if(!wdb.IsTesting)
+            Debug.Log(string.Format("X: {0}, Z: {1}", (LockOnTarget.position.x / transform.position.x), ((LockOnTarget.position.z - transform.position.z) / 1f)));
     }
 
     // Update is called once per frame
@@ -58,7 +61,6 @@ public class Projectile : MonoBehaviour
         //transform.position += transform.forward * FlightSpeed * 2f * Time.fixedDeltaTime;
 
         GetComponent<Rigidbody>().AddForce(transform.forward * 100, ForceMode.Impulse);
-        //Debug.Log(LockOnTarget.position.x / transform.position.x);
     }
 
     void ReorientProjectileRotation()
@@ -85,12 +87,13 @@ public class Projectile : MonoBehaviour
         //}
         #endregion
 
-        if (LockOnTarget.position.z / transform.position.z > 2f)
+        if (LockOnTarget.position.z - transform.position.z > ((LockOnTarget.position.z - transform.position.z) / 5f))
         {
-            if(LockOnTarget.position.x / transform.position.x >= 1f || LockOnTarget.position.x / transform.position.x <= -1f)
+            if (LockOnTarget.position.x / transform.position.x >= 1f || LockOnTarget.position.x / transform.position.x <= -1f)
                 transform.LookAt(LockOnTarget.position);
         }
     }
+
     //void OnEnable()
     //{
     //    transform.parent = null;

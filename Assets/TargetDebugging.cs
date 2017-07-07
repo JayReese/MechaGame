@@ -23,6 +23,6 @@ public class TargetDebugging : MonoBehaviour
             life = 4.0f;
         }
 
-        transform.position += transform.right * direction * Time.deltaTime * 5f;
+        transform.position += transform.right * direction * Time.deltaTime * 10f;
     }
 }
