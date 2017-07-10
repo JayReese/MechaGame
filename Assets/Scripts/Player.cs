@@ -95,12 +95,12 @@ public class Player : DamageableObject
 
     void OnEnable()
     {
-        //Debug.Log("max f: " + MaxFuel);
+        SetPlayerDefaults();
     }
 
     void OnDisable()
     {
-        SetPlayerDefaults();
+        //SetPlayerDefaults();
     }
 
     private void TetherBodyPartsToParent()

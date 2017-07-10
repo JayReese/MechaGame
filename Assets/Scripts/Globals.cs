@@ -8,6 +8,8 @@ public enum PoiseState { POISED, DAZED = 50, SUPER_STAGGERED = 100 };
 
 public enum InterfacingState { CONTROLLABLE = 1, SPECTATING, NONE };
 
+public enum RoundState { NOT_STARTED, IN_PROGRESS, ENDED }
+
 public enum LockOnState { FREE, LOCKED };
 
 public enum LockOnHardness { SOFT = 1, HARD };

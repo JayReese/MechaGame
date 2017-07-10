@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int CurrentMatchProgress;
     [SerializeField] float RoundStartTime;
     [SerializeField] bool RoundInProgress, StartingNewRound;
+    [SerializeField] RoundState CurrentRoundState;
     [SerializeField] GameObject[] mechaPlayerPrefabs;
     //[SerializeField]
     //GameObject[] TeamSpawningPositions;
@@ -35,7 +36,6 @@ public class GameManager : MonoBehaviour
    
     void Awake()
     {
-        
         RoundStartTime = 5;
         
         #region commented out - player tracking and instantiation.
@@ -48,6 +48,8 @@ public class GameManager : MonoBehaviour
         PopulateGlobalListOfPlayers();
         SetUpPlayersForBattle();
         SetUpTeams();
+
+        if (CurrentMatchProgress == 0) CurrentRoundState = RoundState.NOT_STARTED;
     }
 
     private void PopulateGlobalListOfPlayers()
@@ -81,8 +83,6 @@ public class GameManager : MonoBehaviour
 
         SetUpTeamSpawnPositions();
 
-        //RepositionAllPlayersToRespectiveSpawns();
-
         //SetPlayerColors();
     }
 
@@ -90,19 +90,19 @@ public class GameManager : MonoBehaviour
     void Start ()
     {
         GetWaypointTransformReferences();
-        PerformStartOfRoundDuties(true);
+        PerformStartOfRoundDuties();
         //BeginGame();
     }
 
-    private void PerformStartOfRoundDuties(bool startOfGame = false)
+    private void PerformStartOfRoundDuties()
     {
         // Sets the starting of the new round to true if we haven't reached the maximum amount.
-        if (startOfGame) CurrentMatchProgress = 1;
+        if (CurrentRoundState == RoundState.NOT_STARTED) CurrentMatchProgress = 1;
 
-        if(StartingNewRound && !startOfGame)
+        if (CurrentRoundState == RoundState.ENDED)
         {
-            CurrentMatchProgress++;
-            StartingNewRound = false;
+            //CurrentMatchProgress++;
+            CurrentRoundState = RoundState.IN_PROGRESS;
         }
 
         BeginGame();
@@ -122,32 +122,27 @@ public class GameManager : MonoBehaviour
 
         //CheckIfAnyLiveEntitiesAreDead();
         //PerformDutiesWhileNotInCombat();
+        PerformMidRoundDuties();
     }
 
-    private void PerformDutiesWhileNotInCombat()
+    private void PerformMidRoundDuties()
     {
-        // Constantly checks to ensure that if the match is in progress or not.
-        
-        if (!RoundInProgress && MatchCurrentlyInProgress())
-        {
-            PerformEndOfRoundDuties();
-        }
+        CheckIfAnyLiveEntitiesAreDead();
+        PerformEndOfRoundDuties();
     }
 
     private void PerformEndOfRoundDuties()
     {
-        Debug.Log("The round has ended.");
-        
-        ExecuteNextGameModeActions();
+        if(CurrentRoundState == RoundState.ENDED)
+        {
+            Debug.Log("The round has ended.");
+
+            if (MatchCurrentlyInProgress())
+                PerformStartOfRoundDuties();
+        }
+       
     }
 
-    private void ExecuteNextGameModeActions()
-    {
-        if(CurrentMatchProgress < 5)
-            BeginGame();
-        else
-            EndMatch();
-    }
 
     #region Match start methods and routines to perform.
     void GetWaypointTransformReferences()
@@ -258,11 +253,9 @@ public class GameManager : MonoBehaviour
     #region Methods called each round.
     private void BeginGame()
     {
+        
 
-        for (byte i = 0; i < Teams.Length; i++)
-            Teams[i].TeamMembers.ForEach(x => Teams[i].ActiveTeamMembers.Add(x));
-
-        if(!RoundInProgress && MatchCurrentlyInProgress())
+        if(CurrentRoundState == RoundState.IN_PROGRESS && MatchCurrentlyInProgress() || CurrentRoundState == RoundState.NOT_STARTED)
         {
             StartCoroutine(StartRound());
         }
@@ -273,6 +266,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private IEnumerator StartRound()
     {
+        //for (byte i = 0; i < Teams.Length; i++)
+        //    Teams[i].TeamMembers.ForEach(x => Teams[i].ActiveTeamMembers.Add(x));
+
         RepositionAllPlayersToRespectiveSpawns();
         ChangeControllableStateOfPlayers(InterfacingState.SPECTATING);
 
@@ -280,7 +276,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Begin round " + CurrentMatchProgress);
         ChangeControllableStateOfPlayers(InterfacingState.CONTROLLABLE);
 
-        RoundInProgress = true;
+        //CurrentRoundState = RoundState.IN_PROGRESS;
     }
 
     /// <summary>
@@ -305,12 +301,19 @@ public class GameManager : MonoBehaviour
     {
         if(specificPlayer != null)
         {
+            specificPlayer.gameObject.SetActive(false);
+            specificPlayer.gameObject.SetActive(true);
             specificPlayer.GetComponent<Player>().CurrentInterfacingState = state;
         }
         else
         {
             foreach (Transform t in AllPlayersInMatch)
+            {
+                t.gameObject.SetActive(false);
+                t.gameObject.SetActive(true);
                 t.GetComponent<Player>().CurrentInterfacingState = state;
+            }
+                
         }
     }
     #endregion
@@ -322,16 +325,13 @@ public class GameManager : MonoBehaviour
         {
             if (Teams[i].AllPlayersDowned())
             {
-                RoundInProgress = false;
+                CurrentRoundState = RoundState.ENDED;
                 Debug.Log("Team " + (i + 1) + " players dead.");
             }
         }
     }
 
-    bool MatchCurrentlyInProgress()
-    {
-        return CurrentMatchProgress < 5;
-    }
+    bool MatchCurrentlyInProgress() { return CurrentMatchProgress < 5; }
 
 #if UNITY_EDITOR
     private void PerformScoreDebugging()
