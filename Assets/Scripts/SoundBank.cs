@@ -31,7 +31,7 @@ public class SoundBank
         AudioCollection = AudioCollection.OrderBy(x => x.name).ToList();
     }
 
-    public AudioClip ReturnCorrectAudioClip(byte index)
+    public AudioClip ReturnCorrectAudioClip(int index)
     {
         return AudioCollection[index];
     }

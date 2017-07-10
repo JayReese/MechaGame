@@ -31,10 +31,14 @@ public class SoundManager : MonoBehaviour
         string[] dirs = Directory.GetDirectories("Assets/Resources/Sounds");
 
         foreach (string s in dirs)
+        {
+            Debug.Log(Path.GetFileName(s));
             Banks.Add(new SoundBank(Path.GetFileName(s), Directory.GetFiles(s)));
+        }
+        //Debug.Log(Banks[2].BankName);   
     }
 
-    public static AudioClip GetSoundClipForAllocation(byte indexOfList, byte indexOfSound)
+    public static AudioClip GetSoundClipForAllocation(int indexOfList, int indexOfSound)
     {
         return Banks[indexOfList].ReturnCorrectAudioClip(indexOfSound);
     }

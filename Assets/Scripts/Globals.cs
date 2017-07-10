@@ -99,8 +99,8 @@ public static class Globals
     /// <param name="audioIndexToSearch"></param>
     /// <param name="audioClipRetrievedFromIndex"></param>
     /// <param name="volumeOfClip"></param>
-    public static void PlaySoundClip(AudioSource source, byte audioIndexToSearch, byte audioClipRetrievedFromIndex, float volumeOfClip = 0.7f)
+    public static void PlaySoundClip(AudioSource source, int audioIndexToSearch, int audioClipRetrievedFromIndex, float volumeOfClip = 0.7f)
     {
-        source.PlayOneShot(SoundManager.GetSoundClipForAllocation(audioIndexToSearch, audioClipRetrievedFromIndex), volumeOfClip);
+        source.PlayOneShot(SoundManager.GetSoundClipForAllocation(audioIndexToSearch - 1, audioClipRetrievedFromIndex - 1), volumeOfClip);
     }
 }
