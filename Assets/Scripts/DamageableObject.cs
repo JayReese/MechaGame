@@ -17,34 +17,29 @@ public class DamageableObject : MonoBehaviour
 
     protected void FixedUpdate()
     {
-        DecrementDestructTimer();
+        //DecrementDestructTimer();
+        ToggleLife();
     }
 
     private void DecrementDestructTimer()
     {
-        if (!IsTargetable && IsPersistingObject)
-        {
-            Debug.Log(gameObject.name + " destroyed. Health: " + Health);
-            RespawnTimer -= Time.fixedDeltaTime;
+        //if (!IsTargetable && IsPersistingObject)
+        //{
+        //    Debug.Log(gameObject.name + " destroyed. Health: " + Health);
+        //    RespawnTimer -= Time.fixedDeltaTime;
 
-            if (RespawnTimer <= 0 && IsPersistingObject)
-                Kill();
-        }
+        //    if (RespawnTimer <= 0 && IsPersistingObject)
+        //        Kill();
+        //}
 
-        if (!IsPersistingObject && Health <= 0)
-            Kill("non pers obj killed.");
+        //if (!IsPersistingObject && Health <= 0)
+        //    Kill("non pers obj killed.");
     }
 
-    public virtual void Kill( string g = "regular death")
+    #region Player-oriented methods.
+    protected virtual void ToggleLife()
     {
-        Debug.Log(gameObject.name + " destroyed. " + g + " Health: " + Health);
-        if(!IsPlayer) gameObject.SetActive(false);    
+        
     }
-
-    protected virtual void OnEnable()
-    {
-        if (gameObject.tag == "Controllable") IsPlayer = true;
-
-        RespawnTimer = IsPersistingObject ? 4 : 0;
-    }
+    #endregion
 }

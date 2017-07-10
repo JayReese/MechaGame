@@ -57,11 +57,10 @@ public class TrainingBot : DamageableObject
 
 	}
 
-    protected override void OnEnable()
+    void OnEnable()
     {
         IsPersistingObject = true;
         Health = 10;
-        base.OnEnable();
     }
 
     void OnTriggerEnter(Collider c)
@@ -75,6 +74,6 @@ public class TrainingBot : DamageableObject
 
         g.GetComponent<Projectile>().PlayerOrigin = transform;
 
-        Instantiate(g, transform.FindChild("Emitter").position, transform.FindChild("Emitter").rotation);
+        Instantiate(g, transform.Find("Emitter").position, transform.Find("Emitter").rotation);
     }
 }

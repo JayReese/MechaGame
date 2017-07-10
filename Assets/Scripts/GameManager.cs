@@ -15,10 +15,10 @@ public class GameManager : MonoBehaviour
      * 3) Change scenes if a certain team wins
      */
 
-    [SerializeField] int pointsToWinThreshhold;
-    [SerializeField] float MatchStartTimer;
+    [SerializeField] int CurrentMatchProgress;
+    [SerializeField] float RoundStartTime;
+    [SerializeField] bool RoundInProgress, StartingNewRound;
     [SerializeField] GameObject[] mechaPlayerPrefabs;
-    [SerializeField] TeamTransformPositions[] TeamSpawnPositions;
     //[SerializeField]
     //GameObject[] TeamSpawningPositions;
     [SerializeField]
@@ -28,35 +28,26 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     TeamStats[] Teams;
 
+
     public const int pointsPerKill = 100;       //how many points the team will score when they get a kill
     const int numberOfTeams = 2;                //this variable can be adjusted in the future if we ever want more than 2 teams
     int NumPlayers;
-    int[] teamScoreboards;
-    
-    //You can't have 2D arrays exposed to the editor, so this is the workaround
-    [System.Serializable]
-    struct TeamTransformPositions
-    {
-        public Transform[] positions;
-    }
-
-
+   
     void Awake()
     {
-
-        //CreatePlayers();
-        //Players = GameObject.FindGameObjectsWithTag("Controllable");
-
-        //determine how many controllers are hooked up
-        NumPlayers = Input.GetJoystickNames().Length;
-        //Debug.Log(players);
-        teamScoreboards = new int[NumPlayers];
+        
+        RoundStartTime = 5;
+        
+        #region commented out - player tracking and instantiation.
         //bool unevenTeams = (players % numberOfTeams != 0);    //this variable can be used to determine if the teams cannot be evenly distributed
+        ////determine how many controllers are hooked up
+        //NumPlayers = Input.GetJoystickNames().Length;
+        //CreatePlayers();
+        #endregion
 
         PopulateGlobalListOfPlayers();
         SetUpPlayersForBattle();
         SetUpTeams();
-
     }
 
     private void PopulateGlobalListOfPlayers()
@@ -65,7 +56,7 @@ public class GameManager : MonoBehaviour
 
         for (byte a = 0; a < GameObject.Find("Players").transform.childCount; a++)
         {
-            Debug.Log(GameObject.Find("Players").transform.GetChild(a).name);
+            //Debug.Log(GameObject.Find("Players").transform.GetChild(a).name);
             AllPlayersInMatch.Add(GameObject.Find("Players").transform.GetChild(a));
         }
     }
@@ -90,7 +81,7 @@ public class GameManager : MonoBehaviour
 
         SetUpTeamSpawnPositions();
 
-        RepositionAllPlayersToRespectiveSpawns();
+        //RepositionAllPlayersToRespectiveSpawns();
 
         //SetPlayerColors();
     }
@@ -99,7 +90,22 @@ public class GameManager : MonoBehaviour
     void Start ()
     {
         GetWaypointTransformReferences();
-        MatchStartTimer = 5;
+        PerformStartOfRoundDuties(true);
+        //BeginGame();
+    }
+
+    private void PerformStartOfRoundDuties(bool startOfGame = false)
+    {
+        // Sets the starting of the new round to true if we haven't reached the maximum amount.
+        if (startOfGame) CurrentMatchProgress = 1;
+
+        if(StartingNewRound && !startOfGame)
+        {
+            CurrentMatchProgress++;
+            StartingNewRound = false;
+        }
+
+        BeginGame();
     }
 
     void Update()
@@ -114,16 +120,33 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Team " + Teams[i].TeamNumber + " wins.");
         }
 
-        ToggleRoundProgress();
-        CheckIfAnyLiveEntitiesAreDead();
+        //CheckIfAnyLiveEntitiesAreDead();
+        //PerformDutiesWhileNotInCombat();
     }
 
-    private void ToggleRoundProgress()
+    private void PerformDutiesWhileNotInCombat()
     {
-        if (MatchStartTimer > 0)
-            MatchStartTimer -= Time.deltaTime;
+        // Constantly checks to ensure that if the match is in progress or not.
+        
+        if (!RoundInProgress && MatchCurrentlyInProgress())
+        {
+            PerformEndOfRoundDuties();
+        }
+    }
+
+    private void PerformEndOfRoundDuties()
+    {
+        Debug.Log("The round has ended.");
+        
+        ExecuteNextGameModeActions();
+    }
+
+    private void ExecuteNextGameModeActions()
+    {
+        if(CurrentMatchProgress < 5)
+            BeginGame();
         else
-            StartMatch();
+            EndMatch();
     }
 
     #region Match start methods and routines to perform.
@@ -184,26 +207,6 @@ public class GameManager : MonoBehaviour
             Instantiate(Resources.Load("Prefabs/Testing/Test Machi") as GameObject);
     }
 
-    private void StartMatch()
-    {
-        Debug.Log("Match begin.");
-
-        MakeAllPlayersControllable();
-    }
-
-    private void MakeAllPlayersControllable()
-    {
-        for (byte i = 0; i < AllPlayersInMatch.Count; i++)
-            AllPlayersInMatch[i].GetComponent<Player>().CurrentInterfacingState = InterfacingState.CONTROLLABLE;
-    }
-
-    //void ActivateWin()
-    //{
-    //    //do more stuff (like register scores, calculate MVP, send info to the next scene, signal the UI to update/display end of match stats, etc)
-
-    //    StateManager.instance.currentGameState = StateManager.GameState.END_OF_MATCH;
-    //}
-
     void SetUpPlayersForBattle()
     {
         AllPlayersInMatch.ForEach(x => x.parent = null);
@@ -213,17 +216,10 @@ public class GameManager : MonoBehaviour
         AssignTeamNumberToPlayers();
     }
 
-    public void ActivateSpawn(GameObject player)
-    {
-        int teamIndexToCheck = player.GetComponent<Player>().TeamNumber - 1;
-
-        for(byte i = 0; i < Teams[teamIndexToCheck].TeamMembers.Count; i++)
-        {
-            if (player == Teams[teamIndexToCheck].TeamMembers[i])
-                player.transform.position = Teams[teamIndexToCheck].SpawnPositions[i].position;
-        }
-    }
-
+    #region Methods to be called at the beginning of a round.
+    /// <summary>
+    /// Repositions all of the players back to their correct spawns.
+    /// </summary>
     private void RepositionAllPlayersToRespectiveSpawns()
     {
         for(byte i = 0; i < Teams.Length; i++)
@@ -232,6 +228,21 @@ public class GameManager : MonoBehaviour
                 ActivateSpawn(p);
         }
     }
+
+    // Activates the player's spawn.
+    private void ActivateSpawn(GameObject player)
+    {
+        int teamIndexToCheck = player.GetComponent<Player>().TeamNumber - 1;
+
+        player.GetComponent<Player>().SetPlayerDefaults();
+
+        for (byte i = 0; i < Teams[teamIndexToCheck].TeamMembers.Count; i++)
+        {
+            if (player == Teams[teamIndexToCheck].TeamMembers[i])
+                player.transform.position = Teams[teamIndexToCheck].SpawnPositions[i].position;
+        }
+    }
+    #endregion
 
     private void SetPlayerColors()
     {
@@ -243,41 +254,101 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+
+    #region Methods called each round.
+    private void BeginGame()
+    {
+
+        for (byte i = 0; i < Teams.Length; i++)
+            Teams[i].TeamMembers.ForEach(x => Teams[i].ActiveTeamMembers.Add(x));
+
+        if(!RoundInProgress && MatchCurrentlyInProgress())
+        {
+            StartCoroutine(StartRound());
+        }
+    }
+
+    /// <summary>
+    /// Starts the next round.
+    /// </summary>
+    private IEnumerator StartRound()
+    {
+        RepositionAllPlayersToRespectiveSpawns();
+        ChangeControllableStateOfPlayers(InterfacingState.SPECTATING);
+
+        yield return new WaitForSeconds(RoundStartTime);
+        Debug.Log("Begin round " + CurrentMatchProgress);
+        ChangeControllableStateOfPlayers(InterfacingState.CONTROLLABLE);
+
+        RoundInProgress = true;
+    }
+
+    /// <summary>
+    /// Ends the match.
+    /// </summary>
+    private void EndMatch()
+    {
+        Debug.Log("Match ended.");
+    }
+
+    private void MakeAllPlayersControllable()
+    {
+        for (byte i = 0; i < AllPlayersInMatch.Count; i++)
+        {
+            AllPlayersInMatch[i].gameObject.SetActive(false);
+            AllPlayersInMatch[i].gameObject.SetActive(true);
+            AllPlayersInMatch[i].GetComponent<Player>().CurrentInterfacingState = InterfacingState.CONTROLLABLE;
+        }
+    }
+
+    private void ChangeControllableStateOfPlayers(InterfacingState state, Transform specificPlayer = null)
+    {
+        if(specificPlayer != null)
+        {
+            specificPlayer.GetComponent<Player>().CurrentInterfacingState = state;
+        }
+        else
+        {
+            foreach (Transform t in AllPlayersInMatch)
+                t.GetComponent<Player>().CurrentInterfacingState = state;
+        }
+    }
+    #endregion
+
+    // Continually checks if any of the entities are dead.
     private void CheckIfAnyLiveEntitiesAreDead()
     {
-        //for(byte i = 0; i < PlayersInMatch.transform.childCount; i++)
-        //{
-        //    if (PlayersInMatch.transform.GetChild(i).GetComponent<DamageableObject>().Health <= 0)
-        //    {
-                
-        //    }
-        //}
+        for(byte i = 0; i < Teams.Length; i++)
+        {
+            if (Teams[i].AllPlayersDowned())
+            {
+                RoundInProgress = false;
+                Debug.Log("Team " + (i + 1) + " players dead.");
+            }
+        }
+    }
+
+    bool MatchCurrentlyInProgress()
+    {
+        return CurrentMatchProgress < 5;
     }
 
 #if UNITY_EDITOR
     private void PerformScoreDebugging()
     {
         int teamThatScored = -1;
-        int teamAttacked = -1;
 
         if(Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.P))
         {
             if (Input.GetKeyDown(KeyCode.K))
-            {
                 teamThatScored = 1;
-                teamAttacked = 2;
-            }
             else if (Input.GetKeyDown(KeyCode.P))
-            {
                 teamThatScored = 2;
-                teamAttacked = 1;
-            }
 
-            Teams[teamThatScored - 1].AddToScore(1);
+            if (Teams[teamThatScored - 1].TeamMembers[0].GetComponent<DamageableObject>().Health > 0) Teams[teamThatScored - 1].TeamMembers[0].GetComponent<DamageableObject>().Health = 0;
+            else
+                Teams[teamThatScored - 1].TeamMembers[1].GetComponent<DamageableObject>().Health = 0;
         }
-        
-
-        
     }
 #endif    
 }

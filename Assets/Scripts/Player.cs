@@ -17,10 +17,6 @@ public class Player : DamageableObject
     [SerializeField]
     bool GodModeActive;
 
-    public byte WeaponLockHardnessValue;
-
-    public List<Transform> TargetsInRange;
-
     public CommandExecution ExecuteCommand;
 
     #region Player Stats
@@ -39,6 +35,7 @@ public class Player : DamageableObject
 
     public bool IsOnGround, IsCurrentlyControllable,
                 CanUseSubweapons;
+    public bool IsAlive { get; private set; }
 
     [SerializeField]
     protected float FirstSubWeaponCooldownTimer, SecondSubWeaponCooldownTimer;
@@ -66,16 +63,10 @@ public class Player : DamageableObject
 
     protected void Awake()
     {
-        MaxFuel = 20;
-        CurrentFuel = MaxFuel;
-        colorSet = false;
-
-        CanUseSubweapons = true;
-        IsPersistingObject = true;
         IsPlayer = true;
 
         DamageSurfaceType = SurfaceType.PLAYER;
-        CurrentInterfacingState = InterfacingState.SPECTATING;
+        CurrentInterfacingState = InterfacingState.NONE;
 
         PRadar = transform.GetComponentInChildren<Radar>();
         PlayerWeapon = GetComponentInChildren<Weapon>();
@@ -102,6 +93,16 @@ public class Player : DamageableObject
         //TetherBodyPartsToParent();
     }
 
+    void OnEnable()
+    {
+        //Debug.Log("max f: " + MaxFuel);
+    }
+
+    void OnDisable()
+    {
+        SetPlayerDefaults();
+    }
+
     private void TetherBodyPartsToParent()
     {
         BodyPartsReference = transform.FindGrandchild("Body");
@@ -116,8 +117,6 @@ public class Player : DamageableObject
     {
         ArmorPiecesReference = transform.FindGrandchild("Armor Pieces");
         UniquePartsReference = transform.FindGrandchild("Unique Pieces");
-
-
     }
 
     // Update is called once per frame
@@ -129,8 +128,6 @@ public class Player : DamageableObject
         CorrectLockOnEdgeCase();
 
         CurrentPlayerBoostingState = IsOnGround ? BoostState.ON_GROUND : CurrentPlayerBoostingState;
-
-        Kill();
     }
 
     private void CorrectLockOnEdgeCase()
@@ -224,6 +221,7 @@ public class Player : DamageableObject
         base.ReceiveDamage(amount);
         //TakeDamage(amount);
         Debug.Log("damage dealt to body, " + Health + " HP left.");
+        IsAlive = Health > 0;
     }
 
     internal void ChangeBodyColor(Color teamColor)
@@ -306,27 +304,48 @@ public class Player : DamageableObject
         TeamNumber = num;
     }
 
-    protected override void OnEnable()
-    {
-        //transform.position = SpawnPosition;
-    }
+    //public override void Kill(string g = "regular death")
+    //{
 
-    public override void Kill(string g = "regular death")
-    {
+    //    base.Kill(g);
 
-        base.Kill(g);
+    //    //bool isDead = Health <= 0;
 
-        //bool isDead = Health <= 0;
+    //    //if (isDead)
+    //    //    BodyPartsReference.gameObject.SetActive(false);
 
-        //if (isDead)
-        //    BodyPartsReference.gameObject.SetActive(false);
-
-        //if (RespawnTimer > 0)
-        //{
-        //    transform.FindGrandchild("Camera").gameObject.SetActive(isDead);
-        //    transform.FindGrandchild("Death Camera").gameObject.SetActive(!isDead);
-        //}
-    }
+    //    //if (RespawnTimer > 0)
+    //    //{
+    //    //    transform.FindGrandchild("Camera").gameObject.SetActive(isDead);
+    //    //    transform.FindGrandchild("Death Camera").gameObject.SetActive(!isDead);
+    //    //}
+    //}
 
     public void TestReload() { PlayerWeapon.Test_Reload(); }
+
+    protected override void ToggleLife()
+    {
+        ToggleCorrectCameras();
+        
+        base.ToggleLife();
+    }
+
+    private void ToggleCorrectCameras()
+    {
+        //Debug.Log("Cameras toggled");
+        PlayerDeathCamera.gameObject.SetActive(CurrentInterfacingState != InterfacingState.CONTROLLABLE && CurrentInterfacingState != InterfacingState.SPECTATING);
+        PlayerCamera.gameObject.SetActive(CurrentInterfacingState == InterfacingState.CONTROLLABLE);
+    }
+
+    internal virtual void SetPlayerDefaults()
+    {
+        //Debug.Log(gameObject.name + " defaults reset.");
+
+        MaxFuel = 20;
+        CurrentFuel = MaxFuel;
+
+        CanUseSubweapons = true;
+        IsPersistingObject = true;
+        IsPlayer = true;
+    }
 }

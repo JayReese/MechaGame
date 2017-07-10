@@ -16,10 +16,8 @@ public class Deployable : DamageableObject
 	    
 	}
 
-    protected override void OnEnable()
+    void OnEnable()
     {
         IsPersistingObject = false;
-
-        base.OnEnable();
     }
 }

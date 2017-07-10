@@ -39,8 +39,10 @@ public class Projectile : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (PerformProjectileBehavior != null)
-            PerformProjectileBehavior();   
+        //if (PerformProjectileBehavior != null)
+        //    PerformProjectileBehavior();
+        
+          
 
         DegradeProjectileLife();
 
@@ -219,5 +221,11 @@ public class Projectile : MonoBehaviour
     void ProjectileBehavior_SoftLockedMovement()
     {
         transform.position += transform.forward * FlightSpeed * 1.5f * Time.fixedDeltaTime;
+    }
+
+    protected virtual void ActivateUniqueBehavior()
+    {
+        // Does nothing, set to be overridden.
+        Debug.Log("unique behavior");
     }
 }
