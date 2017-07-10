@@ -13,13 +13,15 @@ public class EnvironmentDebugger : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         respawnTestTimer = 10f;
-	}
+
+        
+
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
         if (Input.GetKeyDown(KeyCode.Q))
             player.GetComponent<DamageableObject>().Health = player.GetComponent<DamageableObject>().Health > 0 ? 0 : 10;
-            
-	}
+    }
 }

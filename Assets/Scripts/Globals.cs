@@ -6,7 +6,7 @@ public enum BoostState { ON_GROUND, BOOSTING };
 
 public enum PoiseState { POISED, DAZED = 50, SUPER_STAGGERED = 100 };
 
-public enum InterfacingState { CONTROLLABLE = 1, SPECTATING };
+public enum InterfacingState { CONTROLLABLE = 1, SPECTATING, NONE };
 
 public enum LockOnState { FREE, LOCKED };
 

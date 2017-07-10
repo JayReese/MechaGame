@@ -26,12 +26,10 @@ public class ArmorPiece : DamageableObject
         Health = Health <= 0 ? 0 : Health;
     }
 
-    protected override void OnEnable()
+    void OnEnable()
     {
         IsPersistingObject = false;
         DamageSurfaceType = SurfaceType.ARMOR;
-
-        base.OnEnable();
     }
 
     public void SetUniqueParameters(int newHealth)

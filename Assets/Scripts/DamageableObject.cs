@@ -42,12 +42,4 @@ public class DamageableObject : MonoBehaviour
         
     }
     #endregion
-
-
-    protected virtual void OnEnable()
-    {
-        if (gameObject.tag == "Controllable") IsPlayer = true;
-
-        RespawnTimer = IsPersistingObject ? 4 : 0;
-    }
 }

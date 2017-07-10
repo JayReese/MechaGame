@@ -15,9 +15,9 @@ public class DeathCameraMovement : MonoBehaviour
 	
     void FixedUpdate()
     {
-        _moveSpeed = Input.GetKey(KeyCode.LeftShift) ? 5f : _moveSpeed;
+        _moveSpeed = Input.GetKey(KeyCode.LeftShift) ? 5f : 1f;
 
         transform.position += transform.forward * Input.GetAxisRaw("Vertical") * _moveSpeed;
-        transform.Rotate(-(Input.GetAxis("Mouse Y") * 5f), Input.GetAxisRaw("Mouse X") * 5f, 0);
+        transform.Rotate(0, Input.GetAxisRaw("Mouse X") * 5f, 0);
     }
 }

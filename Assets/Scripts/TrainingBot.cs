@@ -57,11 +57,10 @@ public class TrainingBot : DamageableObject
 
 	}
 
-    protected override void OnEnable()
+    void OnEnable()
     {
         IsPersistingObject = true;
         Health = 10;
-        base.OnEnable();
     }
 
     void OnTriggerEnter(Collider c)
