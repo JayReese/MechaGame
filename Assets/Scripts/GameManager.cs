@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject g in go)
         {
-            if (g.name == "Building Waypoint")
+            if (g.name.Contains( "Building" ))
                 BuildingWaypoints.Add(g.transform);
             else
                 RegularWaypoints.Add(g.transform);
