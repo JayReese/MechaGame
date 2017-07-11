@@ -257,6 +257,7 @@ public class GameManager : MonoBehaviour
 
         if(CurrentRoundState == RoundState.IN_PROGRESS && MatchCurrentlyInProgress() || CurrentRoundState == RoundState.NOT_STARTED)
         {
+            if(CurrentRoundState != RoundState.NOT_STARTED) CurrentMatchProgress++;
             StartCoroutine(StartRound());
         }
     }

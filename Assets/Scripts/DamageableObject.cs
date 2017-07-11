@@ -21,21 +21,6 @@ public class DamageableObject : MonoBehaviour
         ToggleLife();
     }
 
-    private void DecrementDestructTimer()
-    {
-        //if (!IsTargetable && IsPersistingObject)
-        //{
-        //    Debug.Log(gameObject.name + " destroyed. Health: " + Health);
-        //    RespawnTimer -= Time.fixedDeltaTime;
-
-        //    if (RespawnTimer <= 0 && IsPersistingObject)
-        //        Kill();
-        //}
-
-        //if (!IsPersistingObject && Health <= 0)
-        //    Kill("non pers obj killed.");
-    }
-
     #region Player-oriented methods.
     protected virtual void ToggleLife()
     {

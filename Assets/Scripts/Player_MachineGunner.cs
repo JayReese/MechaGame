@@ -14,8 +14,6 @@ public class Player_MachineGunner : Player
         FirstSubWeaponCooldown = 3f;
         SecondSubWeaponCooldown = 5f;
 
-        Health = 10;
-
         base.Start();
     }
 
@@ -45,6 +43,12 @@ public class Player_MachineGunner : Player
     {
         if (SecondSubWeaponCooldownTimer <= 0) SecondSubweapon_ArmorShield();
         base.UseSecondSubweapon();
+    }
+
+    internal override void SetPlayerDefaults()
+    {
+        Health = 10;
+        base.SetPlayerDefaults();
     }
 
     #region Machi's subweapons.
