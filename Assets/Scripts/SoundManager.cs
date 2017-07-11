@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 public class SoundManager : MonoBehaviour
 {
@@ -32,10 +33,13 @@ public class SoundManager : MonoBehaviour
 
         foreach (string s in dirs)
         {
-            Debug.Log(Path.GetFileName(s));
             Banks.Add(new SoundBank(Path.GetFileName(s), Directory.GetFiles(s)));
         }
-        //Debug.Log(Banks[2].BankName);   
+
+        // Puts the banks in alphanumerical order. This is extremely important and can make or break the system.
+        Banks.Sort((x, y) => string.Compare(x.BankName, y.BankName));
+
+        Banks.ForEach(x => Debug.Log(x.BankName));
     }
 
     public static AudioClip GetSoundClipForAllocation(int indexOfList, int indexOfSound)

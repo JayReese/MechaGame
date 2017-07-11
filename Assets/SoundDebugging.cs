@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class SoundDebugging : MonoBehaviour
 {
-    int currentSound, maxSounds;
+    [SerializeField] int currentSound, maxSounds;
     AudioSource source;
 
 	// Use this for initialization
 	void Start ()
     {
-        currentSound = 0;
-        maxSounds = 7;
+        currentSound = 1;
+        maxSounds = 2;
 
         source = GameObject.Find("Machine Gunner").GetComponent<AudioSource>();
+        //Globals.PlaySoundClip(source, 3, 5);
         StartCoroutine(playSound());
     }
 	
@@ -27,11 +28,10 @@ public class SoundDebugging : MonoBehaviour
     {
         do
         {
+            Globals.PlaySoundClip(source, 5, currentSound);
             yield return new WaitForSeconds(4f);
-            Globals.PlaySoundClip(source, 1, currentSound);
-
             currentSound++;
         }
-        while (currentSound != maxSounds);
+        while (currentSound != maxSounds + 1);
     }
 }
