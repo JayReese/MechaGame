@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour
      */
 
     [SerializeField] int CurrentMatchProgress;
+    [SerializeField] const int MaxPointsToWin = 5;
     [SerializeField] float RoundStartTime;
-    [SerializeField] bool RoundInProgress, StartingNewRound;
     [SerializeField] RoundState CurrentRoundState;
     [SerializeField] GameObject[] mechaPlayerPrefabs;
     //[SerializeField]
@@ -113,13 +113,7 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         PerformScoreDebugging();
 #endif
-
-        for(byte i = 0; i < Teams.Length; i++)
-        {
-            if (Teams[i].Score >= 4)
-                Debug.Log("Team " + Teams[i].TeamNumber + " wins.");
-        }
-
+        
         //CheckIfAnyLiveEntitiesAreDead();
         //PerformDutiesWhileNotInCombat();
         PerformMidRoundDuties();
@@ -133,14 +127,26 @@ public class GameManager : MonoBehaviour
 
     private void PerformEndOfRoundDuties()
     {
-        if(CurrentRoundState == RoundState.ENDED)
+        if(CurrentRoundState == RoundState.ENDED && MatchCurrentlyInProgress())
         {
             Debug.Log("The round has ended.");
 
-            if (MatchCurrentlyInProgress())
-                PerformStartOfRoundDuties();
+            Debug.Log(string.Format("Tean 1: {0}\nTeam 2: {1}", Teams[0].Score, Teams[1].Score));
+
+            PerformStartOfRoundDuties();
         }
-       
+
+        if (!MatchCurrentlyInProgress())
+            ShowResults();
+    }
+
+    private void ShowResults()
+    {
+        for (byte i = 0; i < Teams.Length; i++)
+        {
+            if (Teams[i].Score == 5)
+                Debug.Log("Team " + (i + 1) + " wins!");
+        }
     }
 
 
@@ -253,12 +259,26 @@ public class GameManager : MonoBehaviour
     #region Methods called each round.
     private void BeginGame()
     {
-        
-
         if(CurrentRoundState == RoundState.IN_PROGRESS && MatchCurrentlyInProgress() || CurrentRoundState == RoundState.NOT_STARTED)
         {
-            if(CurrentRoundState != RoundState.NOT_STARTED) CurrentMatchProgress++;
+            if (CurrentRoundState != RoundState.NOT_STARTED) AdvanceGameToCorrectRound(); 
             StartCoroutine(StartRound());
+        }
+    }
+
+    private void AdvanceGameToCorrectRound()
+    {
+        if(
+            ((Teams[0].Score > Teams[1].Score) && CurrentMatchProgress - 1 != Teams[0].Score) || 
+            ((Teams[1].Score > Teams[0].Score) && CurrentMatchProgress - 1 != Teams[1].Score)
+          )
+        {
+            Debug.Log("Round has advanced...");
+            CurrentMatchProgress++;
+        }
+        else
+        {
+            Debug.Log("Round stayed the same.");
         }
     }
 
@@ -327,9 +347,27 @@ public class GameManager : MonoBehaviour
             if (Teams[i].AllPlayersDowned())
             {
                 CurrentRoundState = RoundState.ENDED;
-                Debug.Log("Team " + (i + 1) + " players dead.");
+                ChangeTeamScore(i);
             }
         }
+    }
+
+    private void ChangeTeamScore(int teamDowned)
+    {
+        string team = "0";
+
+        if(teamDowned == 0)
+        {
+            team = "2";
+            Teams[1].AddToScore(1);
+        }
+        else
+        {
+            team = "1";
+            Teams[0].AddToScore(1);
+        }
+
+        Debug.Log(string.Format("Team {0} gained a point.", team));
     }
 
     bool MatchCurrentlyInProgress() { return CurrentMatchProgress < 5; }

@@ -39,7 +39,7 @@ public class SoundManager : MonoBehaviour
         // Puts the banks in alphanumerical order. This is extremely important and can make or break the system.
         Banks.Sort((x, y) => string.Compare(x.BankName, y.BankName));
 
-        Banks.ForEach(x => Debug.Log(x.BankName));
+        //Banks.ForEach(x => Debug.Log(x.BankName));
     }
 
     public static AudioClip GetSoundClipForAllocation(int indexOfList, int indexOfSound)
