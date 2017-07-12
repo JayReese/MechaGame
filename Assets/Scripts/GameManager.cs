@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
    
     void Awake()
     {
-        RoundStartTime = 5;
+        RoundStartTime = 3;
         
         #region commented out - player tracking and instantiation.
         //bool unevenTeams = (players % numberOfTeams != 0);    //this variable can be used to determine if the teams cannot be evenly distributed
@@ -366,8 +366,6 @@ public class GameManager : MonoBehaviour
             team = "1";
             Teams[0].AddToScore(1);
         }
-
-        Debug.Log(string.Format("Team {0} gained a point.", team));
     }
 
     bool MatchCurrentlyInProgress() { return CurrentMatchProgress < 5; }

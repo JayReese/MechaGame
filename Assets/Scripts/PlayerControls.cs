@@ -30,7 +30,7 @@ public class PlayerControls : MonoBehaviour
     private void CheckActionControls()
     {
         // This function continually runs without a gate because the DodgeState requires it.
-        if (/*PlayerReference.PlayerID == PlayerInput._currentPlayerID*/ PlayerReference.PlayerID == 0 && PlayerReference.CurrentInterfacingState == InterfacingState.CONTROLLABLE)
+        if (PlayerReference.PlayerID == PlayerInput._currentPlayerID /*PlayerReference.PlayerID == 0*/ && PlayerReference.CurrentInterfacingState == InterfacingState.CONTROLLABLE)
         {
             Movement.Move(PlayerInput.LookAxis, PlayerInput.MovementAxis, PlayerInput.BoostingThreshold, PlayerInput.Boosting, PlayerReference.PlayerID);
 

@@ -51,8 +51,8 @@ public class PlayerInputScheme : MonoBehaviour
     /// </summary>
     public void BindActionInputs()
     {
-        //LoadControllerControls();
-        LoadKeyboardControls();
+        LoadControllerControls();
+        //LoadKeyboardControls();
     }
 
     void LoadKeyboardControls()
