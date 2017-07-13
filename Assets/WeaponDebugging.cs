@@ -12,8 +12,8 @@ public class WeaponDebugging : MonoBehaviour
     float Timer, Accuracy, ShotsFired, ShotsHit;
     [SerializeField]
     int TestNumber;
-    [SerializeField]
-    bool IsTesting;
+
+    public bool IsTesting;
 
 	// Use this for initialization
 	void Start ()
@@ -22,11 +22,11 @@ public class WeaponDebugging : MonoBehaviour
         LockOnTarget = GameObject.Find("Target").transform;
 	    _projectilePrefab = Resources.Load("Prefabs/Testing/Test Projectile") as GameObject;
 
-        _projectilePrefab.GetComponent<Projectile>().FlightSpeed = 100f;
+        _projectilePrefab.GetComponent<Projectile>().FlightSpeed = 200f;
         _projectilePrefab.GetComponent<Projectile>().LockOnTarget = LockOnTarget;
         _projectilePrefab.GetComponent<Projectile>().wdb = this;
 
-        IsTesting = true;
+        IsTesting = false;
 
         if(IsTesting)
         {
