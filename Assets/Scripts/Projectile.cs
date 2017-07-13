@@ -89,7 +89,7 @@ public class Projectile : MonoBehaviour
 
         if (LockOnTarget.position.z - transform.position.z > ((LockOnTarget.position.z - transform.position.z) / 5f))
         {
-            if (LockOnTarget.position.x / transform.position.x >= 1f || LockOnTarget.position.x / transform.position.x <= -1f)
+            if (LockOnTarget.position.x / transform.position.x >= 3f || LockOnTarget.position.x / transform.position.x <= -3f)
                 transform.LookAt(LockOnTarget.position);
         }
     }
