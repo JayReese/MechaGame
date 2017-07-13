@@ -17,13 +17,16 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] int CurrentMatchProgress;
     [SerializeField] const int MaxPointsToWin = 5;
+    [SerializeField] const int MatchNumber = 3;
     [SerializeField] float RoundStartTime;
     [SerializeField] RoundState CurrentRoundState;
+    [SerializeField] Material testSkybox;
     [SerializeField] GameObject[] mechaPlayerPrefabs;
     //[SerializeField]
     //GameObject[] TeamSpawningPositions;
     [SerializeField]
     List<Transform> BuildingWaypoints, RegularWaypoints, AllPlayersInMatch;
+    [SerializeField] Transform SceneLighting;
     //[SerializeField]
     //List<GameObject> TeamOne, TeamTwo;
     [SerializeField]
@@ -48,6 +51,8 @@ public class GameManager : MonoBehaviour
         PopulateGlobalListOfPlayers();
         SetUpPlayersForBattle();
         SetUpTeams();
+
+        SceneLighting = GameObject.Find("Lighting Groups").transform;
 
         if (CurrentMatchProgress == 0) CurrentRoundState = RoundState.NOT_STARTED;
     }
@@ -290,6 +295,8 @@ public class GameManager : MonoBehaviour
         //for (byte i = 0; i < Teams.Length; i++)
         //    Teams[i].TeamMembers.ForEach(x => Teams[i].ActiveTeamMembers.Add(x));
 
+        AdvanceTimeOfDay();
+
         RepositionAllPlayersToRespectiveSpawns();
         ChangeControllableStateOfPlayers(InterfacingState.SPECTATING);
 
@@ -337,6 +344,17 @@ public class GameManager : MonoBehaviour
                 
         }
     }
+
+    private void AdvanceTimeOfDay()
+    {
+        DynamicGI.UpdateEnvironment();
+        RenderSettings.skybox = Resources.Load(string.Format("Prefabs/Testing/Skyboxes/Round {0}", CurrentMatchProgress)) as Material;
+        
+        for(byte i = 0; i < SceneLighting.childCount; i++)
+        {
+            SceneLighting.GetChild(i).gameObject.SetActive(i + 1 == CurrentMatchProgress);
+        }
+    }
     #endregion
 
     // Continually checks if any of the entities are dead.
@@ -368,7 +386,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    bool MatchCurrentlyInProgress() { return CurrentMatchProgress < 5; }
+    bool MatchCurrentlyInProgress() { return CurrentMatchProgress < MatchNumber; }
 
 #if UNITY_EDITOR
     private void PerformScoreDebugging()
