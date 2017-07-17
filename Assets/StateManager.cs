@@ -16,7 +16,7 @@ public class StateManager : MonoBehaviour
 
     public static StateManager instance = null; //you can make this private for the stateManager to be a "private singleton"
 
-    public enum GameState { MAIN_MENU, CHARACTER_SELECT, MAIN_GAME, END_OF_MATCH };
+    
     static GameState currGameState;
     static GameState prevGameState;
 
@@ -53,16 +53,16 @@ public class StateManager : MonoBehaviour
         switch (currentGameState)
         {
             case (GameState.MAIN_MENU):
-                SceneManager.LoadScene(mainMenuSceneName);
+                SceneManager.LoadScene("TitleScreen");
                 break;
             case (GameState.CHARACTER_SELECT):
-                SceneManager.LoadScene(characterSelectSceneName);
+                SceneManager.LoadScene("CharacterSelection");
                 break;
             case (GameState.MAIN_GAME):
-                SceneManager.LoadScene(mainGameSceneName);
+                SceneManager.LoadScene("Battlefield");
                 break;
             case (GameState.END_OF_MATCH):
-                SceneManager.LoadScene(endOfMatchSceneName);
+                SceneManager.LoadScene("ReturnScreen");
                 break;
         }
     }
