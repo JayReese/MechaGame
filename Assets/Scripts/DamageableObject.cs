@@ -12,19 +12,53 @@ public class DamageableObject : MonoBehaviour
     public virtual void ReceiveDamage(int amount)
     {
         Health -= amount;
-        Debug.Log(string.Format("change to health detected on {0}, {1} HP left.", gameObject.name, this.Health)); 
+
+        if (Health <= 0) Kill();
+
+        Debug.Log(string.Format("change to health detected on {0}, {1} HP left.", gameObject.name, this.Health));
     }
 
     protected void FixedUpdate()
     {
         //DecrementDestructTimer();
+<<<<<<< HEAD
         ToggleLife();
+=======
+>>>>>>> lock-on-mechanics
     }
 
     #region Player-oriented methods.
     protected virtual void ToggleLife()
     {
+<<<<<<< HEAD
         
+=======
+        if (RespawnTimer <= 0) RespawnTimer -= Time.deltaTime;
+    }
+
+    public virtual void Kill( string g = "regular death")
+    {
+        Debug.Log(gameObject.name + " destroyed. " + g + " Health: " + Health);
+        if(!IsPlayer) gameObject.SetActive(false);
+
+        if (!IsTargetable && IsPersistingObject)
+        {
+            Debug.Log(gameObject.name + " destroyed. Health: " + Health);
+            DecrementDestructTimer();
+        }
+
+        if (!IsPersistingObject)
+            Kill("non pers obj killed.");
+    }
+
+    protected virtual void OnEnable()
+    {
+        if (gameObject.tag == "Controllable")
+        {
+            IsPlayer = true;
+            RespawnTimer = 4;
+        }
+>>>>>>> lock-on-mechanics
     }
     #endregion
 }
