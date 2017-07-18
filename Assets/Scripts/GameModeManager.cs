@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class GameModeManager : MonoBehaviour
+public class GameModeManager : InstancedManager
 {
 
     int CurrentMatchProgress;
@@ -21,8 +21,15 @@ public class GameModeManager : MonoBehaviour
 
     TeamStats[] Teams;
    
-    void Awake()
+    new void Awake()
     {
+        base.Awake();
+        _currentGameState = GameState.MAIN_GAME;
+
+        GlobalManagement.ReportEndOfScene(_currentGameState);
+
+        Debug.Log(_currentGameState);
+
         RoundStartTime = 3;
         
         #region commented out - player tracking and instantiation.
@@ -130,11 +137,13 @@ public class GameModeManager : MonoBehaviour
 
     private void ShowResults()
     {
-        for (byte i = 0; i < Teams.Length; i++)
-        {
-            if (Teams[i].Score == 5)
-                Debug.Log("Team " + (i + 1) + " wins!");
-        }
+        //for (byte i = 0; i < Teams.Length; i++)
+        //{
+        //    if (Teams[i].Score == 5)
+        //        Debug.Log("Team " + (i + 1) + " wins!");
+        //}
+
+
     }
 
 

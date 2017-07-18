@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-public class SoundManager : MonoBehaviour
-{
+public class SoundManager : InstancedManager
+{ 
     static List<SoundBank> Banks;
 
-    private void Awake()
+    new void Awake()
     {
+        base.Awake();
         Banks = new List<SoundBank>();
         AllocateToSoundBanks();
     }

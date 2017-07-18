@@ -18,7 +18,7 @@ public enum ArmorPiercingInteraction { BLOCKED = 1, DAMAGING, PIERCING, BREAKING
 
 public enum SurfaceType { PLAYER, ARMOR, ENVIRONMENT };
 
-public enum GameState { MAIN_MENU, CHARACTER_SELECT, MAIN_GAME, END_OF_MATCH };
+public enum GameState { MAIN_MENU = 1, CHARACTER_SELECT, MAIN_GAME, END_OF_MATCH };
 
 public delegate void CommandExecution();
 public delegate void MovementBehavior();

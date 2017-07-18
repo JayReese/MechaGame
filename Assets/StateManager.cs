@@ -9,11 +9,6 @@ public class StateManager : MonoBehaviour
      * There should only ever be one instance of this class
      */
 
-    [SerializeField] string mainMenuSceneName;
-    [SerializeField] string characterSelectSceneName;
-    [SerializeField] string mainGameSceneName;
-    [SerializeField] string endOfMatchSceneName;
-
     public static StateManager instance = null; //you can make this private for the stateManager to be a "private singleton"
 
     
@@ -27,7 +22,6 @@ public class StateManager : MonoBehaviour
         {
             prevGameState = currGameState;
             currGameState = value;
-            ChangeSceneOnStateChange();
         }
     }
 
@@ -65,5 +59,11 @@ public class StateManager : MonoBehaviour
                 SceneManager.LoadScene("ReturnScreen");
                 break;
         }
+    }
+
+    public void ChangeState(GameState newState)
+    {
+        currGameState = newState;
+        ChangeSceneOnStateChange();
     }
 }
