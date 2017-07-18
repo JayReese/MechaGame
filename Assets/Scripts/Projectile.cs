@@ -9,10 +9,13 @@ public class Projectile : MonoBehaviour
     public ArmorPiercingInteraction ArmorInteractionValue;
     public Transform WeaponOrigin, PlayerOrigin, LockOnTarget;
     public MovementBehavior PerformProjectileBehavior;
+    public float ProjectileLockOnWindow;
 
     private Quaternion _rotation;
     private Vector3 _direction;
-   
+
+    [SerializeField] bool _projectileOrientWindowHasPassed;
+    [SerializeField] float _currentLockOnWindow;
 
     [SerializeField]
     public float FlightSpeed;
@@ -31,6 +34,7 @@ public class Projectile : MonoBehaviour
         //SetUpLockOnBehavior();
         LockOnHardnessValue = 8;
         Lifetime = 10f;
+        _currentLockOnWindow = ProjectileLockOnWindow;
     }
 
     // Use this for initialization
@@ -39,13 +43,16 @@ public class Projectile : MonoBehaviour
         transform.LookAt(LockOnTarget);
 
         if(!wdb.IsTesting)
-            Debug.Log(string.Format("X: {0}, Z: {1}", (LockOnTarget.position.x / transform.position.x), ((LockOnTarget.position.z - transform.position.z) / 1f)));
+            Debug.Log(string.Format("Z: {0}", (Mathf.Abs(LockOnTarget.position.z - transform.position.z) / 1f)));
     }
 
     // Update is called once per frame
     void Update()
     {
+        _projectileOrientWindowHasPassed = _currentLockOnWindow <= 0;
 
+        if (_currentLockOnWindow > 0)
+            _currentLockOnWindow -= Time.deltaTime;
     }
 
     void FixedUpdate()
@@ -60,7 +67,7 @@ public class Projectile : MonoBehaviour
         ReorientProjectileRotation();
         //transform.position += transform.forward * FlightSpeed * 2f * Time.fixedDeltaTime;
 
-        GetComponent<Rigidbody>().AddForce(transform.forward * 100, ForceMode.Impulse);
+        GetComponent<Rigidbody>().AddForce(transform.forward * 50, ForceMode.Impulse);
     }
 
     void ReorientProjectileRotation()
@@ -87,11 +94,18 @@ public class Projectile : MonoBehaviour
         //}
         #endregion
 
-        if (LockOnTarget.position.z - transform.position.z > ((LockOnTarget.position.z - transform.position.z) / 5f))
-        {
-            if (LockOnTarget.position.x / transform.position.x >= 3f || LockOnTarget.position.x / transform.position.x <= -3f)
-                transform.LookAt(LockOnTarget.position);
-        }
+        //if ((LockOnTarget.position.z - transform.position.z > ((LockOnTarget.position.z - transform.position.z) / 1f)) && 
+        //    (LockOnTarget.position.x / transform.position.x >= 1f || LockOnTarget.position.x / transform.position.x <= -1f))
+        //{
+        //    transform.LookAt(LockOnTarget.position);
+        //}
+
+        float zForwardPos = Mathf.Abs(LockOnTarget.position.z - transform.position.z);
+
+        Debug.Log(zForwardPos);
+
+        if (!_projectileOrientWindowHasPassed && (zForwardPos > (zForwardPos / 1f)))
+            transform.LookAt(LockOnTarget.position);
     }
 
     //void OnEnable()
@@ -142,13 +156,13 @@ public class Projectile : MonoBehaviour
         {
             ReportResult(true);
             Debug.Log("Target hit");
-        }  
+        }
         else
         {
             ReportResult(false);
             Debug.Log("Hit");
         }
-            
+
         Destroy(gameObject);
     }
 

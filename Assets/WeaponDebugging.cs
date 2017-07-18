@@ -22,11 +22,12 @@ public class WeaponDebugging : MonoBehaviour
         LockOnTarget = GameObject.Find("Target").transform;
 	    _projectilePrefab = Resources.Load("Prefabs/Testing/Test Projectile") as GameObject;
 
-        _projectilePrefab.GetComponent<Projectile>().FlightSpeed = 200f;
+        _projectilePrefab.GetComponent<Projectile>().FlightSpeed = 300f;
         _projectilePrefab.GetComponent<Projectile>().LockOnTarget = LockOnTarget;
         _projectilePrefab.GetComponent<Projectile>().wdb = this;
+        _projectilePrefab.GetComponent<Projectile>().ProjectileLockOnWindow = 0.1f;
 
-        IsTesting = false;
+        IsTesting = true;
 
         if(IsTesting)
         {
