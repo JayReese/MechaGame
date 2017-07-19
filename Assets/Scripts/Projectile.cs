@@ -44,8 +44,9 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         transform.LookAt(LockOnTarget);
-
         _projectileHasPassedTarget = false;
+        if(!wdb.IsTesting)
+            Debug.Log(string.Format("Z: {0}", (Mathf.Abs(LockOnTarget.position.z - transform.position.z) / 1f)));
     }
 
     // Update is called once per frame
@@ -72,10 +73,6 @@ public class Projectile : MonoBehaviour
     void FixedUpdate()
     {
         _projectileHasPassedTarget = CurrentPositionIsGreaterThanTarget();
-
-        //if (PerformProjectileBehavior != null)
-        //    PerformProjectileBehavior();
-
         
 
         CheckForHit();
@@ -336,7 +333,6 @@ public class Projectile : MonoBehaviour
     {
         transform.position += transform.forward * FlightSpeed * 1.5f * Time.fixedDeltaTime;
     }
-
     void ReportResult(bool hit)
     {
         wdb.LogResult(hit);

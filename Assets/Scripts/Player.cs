@@ -65,6 +65,8 @@ public class Player : DamageableObject
     {
         IsPlayer = true;
 
+        RespawnTimer = IsPersistingObject ? 4 : 0;
+
         DamageSurfaceType = SurfaceType.PLAYER;
         CurrentInterfacingState = InterfacingState.NONE;
 
@@ -128,6 +130,11 @@ public class Player : DamageableObject
         CorrectLockOnEdgeCase();
 
         CurrentPlayerBoostingState = IsOnGround ? BoostState.ON_GROUND : CurrentPlayerBoostingState;
+<<<<<<< HEAD
+=======
+
+        //Kill();
+>>>>>>> lock-on-mechanics
     }
 
     private void CorrectLockOnEdgeCase()
@@ -332,6 +339,7 @@ public class Player : DamageableObject
 
     private void ToggleCorrectCameras()
     {
+<<<<<<< HEAD
         //Debug.Log("Cameras toggled");
         PlayerDeathCamera.gameObject.SetActive(CurrentInterfacingState != InterfacingState.CONTROLLABLE && CurrentInterfacingState != InterfacingState.SPECTATING);
         PlayerCamera.gameObject.SetActive(CurrentInterfacingState == InterfacingState.CONTROLLABLE);
@@ -347,5 +355,19 @@ public class Player : DamageableObject
         CanUseSubweapons = true;
         IsPersistingObject = true;
         IsPlayer = true;
+=======
+        if(Health <= 0) base.Kill(g);
+
+        bool isDead = Health <= 0;
+
+        //if (isDead)
+        //    BodyPartsReference.gameObject.SetActive(false);
+
+        if (RespawnTimer <= 0)
+        {
+            transform.FindGrandchild("Camera").gameObject.SetActive(isDead);
+            transform.FindGrandchild("Death Camera").gameObject.SetActive(!isDead);
+        }
+>>>>>>> lock-on-mechanics
     }
 }

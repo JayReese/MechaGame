@@ -85,7 +85,7 @@ public abstract class Weapon : MonoBehaviour
 
         SetUpProjectileParameters(g, currentLockOnTarget);
 
-        Instantiate(g, WeaponEmitter.position, WeaponEmitter.transform.rotation);
+        //Instantiate(g, WeaponEmitter.position, WeaponEmitter.transform.rotation);
     }
 
     private void SetUpProjectileParameters(GameObject g, Transform lockOnTarget)
@@ -94,7 +94,11 @@ public abstract class Weapon : MonoBehaviour
         g.GetComponent<Projectile>().PlayerOrigin = TetheredPlayer;
         g.GetComponent<Projectile>().WeaponOrigin = transform;
         g.GetComponent<Projectile>().LockOnHardnessValue = LockOnHardnessValue;
+<<<<<<< HEAD
         //g.GetComponent<Projectile>().ArmorInteractionValue = (ArmorInteractionValue)2;
+=======
+        //g.GetComponent<Projectile>().ArmorInteractionValue = 2;
+>>>>>>> badb2e384d579ee2da3467ce05fb0d682a42dbda
     }
 
     private void ReduceMagazine()
@@ -159,9 +163,11 @@ public abstract class Weapon : MonoBehaviour
     {
         Feeder = new AmmunitionFeeder(new ProjectileStatConfig
         {
+            ProjectilePrefab = Resources.Load("Prefabs/Testing/Test Projectile") as GameObject,
             LockOnHardnessValue = LockOnHardnessValue,
             BaseDamageDealt = BaseDamage,
-            ProjectileFlightSpeed = ProjectileSpeed 
-        });
+            ProjectileFlightSpeed = ProjectileSpeed
+        }, 
+        gameObject.transform.Find("Ammo Feeder"));
     }
 }
