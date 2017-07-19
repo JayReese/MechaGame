@@ -5,10 +5,19 @@ using System;
 public class Projectile : MonoBehaviour
 {
     [SerializeField]
-    public int LockOnHardnessValue, ArmorInteractionValue;
+    public int LockOnHardnessValue, BaseDamage;
+    public ArmorPiercingInteraction ArmorInteractionValue;
     public Transform WeaponOrigin, PlayerOrigin, LockOnTarget;
     public MovementBehavior PerformProjectileBehavior;
-   
+    public float ProjectileLockOnWindow;
+
+    private Quaternion _rotation;
+    private Vector3 _direction;
+
+    [SerializeField]
+    bool _projectileOrientWindowHasPassed;
+    [SerializeField]
+    float _currentLockOnWindow;
 
     [SerializeField]
     public float FlightSpeed;
@@ -18,36 +27,101 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     bool PlayerIsLockedOn;
 
+#if UNITY_EDITOR
+    public WeaponDebugging wdb;
+#endif
+
     void Awake()
     {
-        SetUpLockOnBehavior();
-        FlightSpeed = 60f;
+        //SetUpLockOnBehavior();
+        LockOnHardnessValue = 8;
         Lifetime = 10f;
+        _currentLockOnWindow = ProjectileLockOnWindow;
     }
 
     // Use this for initialization
     void Start()
     {
+        transform.LookAt(LockOnTarget);
 
+        if (!wdb.IsTesting)
+            Debug.Log(string.Format("Z: {0}", (Mathf.Abs(LockOnTarget.position.z - transform.position.z) / 1f)));
     }
 
     // Update is called once per frame
     void Update()
     {
+        _projectileOrientWindowHasPassed = _currentLockOnWindow <= 0;
 
+        if (_currentLockOnWindow > 0)
+            _currentLockOnWindow -= Time.deltaTime;
     }
 
     void FixedUpdate()
     {
-        //if (PerformProjectileBehavior != null)
-        //    PerformProjectileBehavior();
-        
-          
+        if (PerformProjectileBehavior != null)
+            PerformProjectileBehavior();
 
         DegradeProjectileLife();
 
         CheckForHit();
+
+        ReorientProjectileRotation();
+        //transform.position += transform.forward * FlightSpeed * 2f * Time.fixedDeltaTime;
+
+        GetComponent<Rigidbody>().AddForce(transform.forward * 50, ForceMode.Impulse);
     }
+
+    void ReorientProjectileRotation()
+    {
+        #region commented out, angle calculation method of determining reorientation.
+        //Debug.Log(Vector3.Angle(transform.position, LockOnTarget.position));
+
+        //if ((transform.position.x / LockOnTarget.position.x < 1 || transform.position.x / LockOnTarget.position.x > 1))
+        //{
+        //    var angleDegree = transform.position.x / LockOnTarget.position.x < 1 ? -1 : 1;
+        //    var angle = Vector3.Angle(LockOnTarget.position - transform.position, transform.forward);
+
+        //    if(LockOnTarget.position.z / transform.position.z > 0)
+        //        transform.Rotate(0, angle * Time.fixedDeltaTime * angleDegree, 0);
+        //}
+        #endregion
+
+        #region commented out, quaternion slerping of method of determining reorientation.
+        //if (LockOnTarget.position.z / transform.position.z > 0.1f)
+        //{
+        //    _direction = (LockOnTarget.position - transform.position).normalized;
+        //    _rotation = Quaternion.LookRotation(_direction);
+        //    transform.rotation = Quaternion.Slerp(transform.rotation, _rotation, Time.fixedDeltaTime * LockOnHardnessValue);
+        //}
+        #endregion
+
+        //if ((LockOnTarget.position.z - transform.position.z > ((LockOnTarget.position.z - transform.position.z) / 1f)) && 
+        //    (LockOnTarget.position.x / transform.position.x >= 1f || LockOnTarget.position.x / transform.position.x <= -1f))
+        //{
+        //    transform.LookAt(LockOnTarget.position);
+        //}
+
+        float zForwardPos = Mathf.Abs(LockOnTarget.position.z - transform.position.z);
+
+        Debug.Log(zForwardPos);
+
+        if (!_projectileOrientWindowHasPassed && (zForwardPos > (zForwardPos / 1f)))
+            transform.LookAt(LockOnTarget.position);
+    }
+
+    //void OnEnable()
+    //{
+    //    transform.parent = null;
+    //    transform.position = WeaponOrigin.FindChild("Weapon Emitter").transform.position;
+    //    transform.rotation = WeaponOrigin.FindChild("Weapon Emitter").transform.rotation;
+    //}
+
+    //void OnDisable()
+    //{
+    //    Debug.Log("Bullet deactivated.");
+    //    //transform.parent = WeaponOrigin.FindChild("Ammo Feeder");
+    //}
 
     public void OnTriggerEnter(Collider other)
     {
@@ -77,36 +151,56 @@ public class Projectile : MonoBehaviour
         //        ApplyDamageToCorrectObject(other.GetComponent<BodyPart>().TetheredParentObject);
         //        Debug.Log(other.GetComponent<BodyPart>().TetheredParentObject + " hit");
         //    }
-                
+
         //}
+
+        if (other.GetComponent<TargetDebugging>())
+        {
+            ReportResult(true);
+            Debug.Log("Target hit");
+        }
+        else
+        {
+            ReportResult(false);
+            Debug.Log("Hit");
+        }
+
+        Destroy(gameObject);
     }
 
     void CheckForHit()
     {
-        if (Globals.RaycastHitTarget(transform.position, transform.forward, 3f).collider != null)
-        {
-            Collider hit = Globals.RaycastHitTarget(transform.position, transform.forward, 3f).collider;
+        //if (Globals.RaycastHitTarget(transform.position, transform.forward, 3f).collider != null)
+        //{
+        //    Collider hit = Globals.RaycastHitTarget(transform.position, transform.forward, 3f).collider;
 
-            if (hit.gameObject.layer != 11 && hit.transform != WeaponOrigin)
-            {
-                if (hit.tag == "Projectile" && hit.GetComponent<Projectile>())
-                {
-                    if (hit.GetComponent<Projectile>().PlayerOrigin == PlayerOrigin)
-                        Debug.Log("Own projectile hit lolol");
-                }
-                else if ((hit.GetComponent<ArmorPiece>()))
-                {
-                    ApplyDamageToCorrectObject(hit.transform);
-                }
-                else
-                {
-                    ApplyDamageToCorrectObject(hit.GetComponent<BodyPart>().TetheredParentObject);
-                    Debug.Log(hit.GetComponent<BodyPart>().TetheredParentObject + " hit");
-                }
+        //    if (hit.gameObject.layer != 11 && hit.transform != WeaponOrigin)
+        //    {
+        //        if (hit.tag == "Projectile" && hit.GetComponent<Projectile>())
+        //        {
+        //            if (hit.GetComponent<Projectile>().PlayerOrigin == PlayerOrigin)
+        //                Debug.Log("Own projectile hit lolol");
+        //        }
+        //        else if ((hit.GetComponent<ArmorPiece>()))
+        //        {
+        //            //ApplyDamageToCorrectObject(hit.transform);
+        //            Debug.Log("Armor piece hit");
+        //        }
+        //        else
+        //        {
+        //            //ApplyDamageToCorrectObject(hit.GetComponent<BodyPart>().TetheredParentObject);
+        //            Debug.Log(hit.GetComponent<BodyPart>().TetheredParentObject + " hit");
+        //        }
 
-            }
-        }
-            
+        //    }
+
+        //    gameObject.SetActive(false);
+        //}
+
+        //if (Globals.RaycastHitTarget(transform.position, transform.forward, 3f).collider != null)
+        //{
+        //    Debug.Log("Hit");
+        //}    
     }
 
     //public void OnCollisionEnter(Collision collision)
@@ -130,15 +224,12 @@ public class Projectile : MonoBehaviour
         {
             particle = Resources.Load("Prefabs/Testing/Armor Explosion Test") as GameObject;
             Instantiate(particle, o.position, Quaternion.identity);
-        }      
+        }
         else
         {
             particle = Resources.Load("Prefabs/Testing/Body Explosion Test") as GameObject;
             Instantiate(particle, o.position, Quaternion.identity);
         }
-            
-
-        Destroy(gameObject);
     }
 
     #region commented out hit detection
@@ -187,9 +278,13 @@ public class Projectile : MonoBehaviour
 
     void DegradeProjectileLife()
     {
-        Lifetime -= Time.fixedDeltaTime * 1.5f;
+        Lifetime -= Time.fixedDeltaTime * 1f;
 
-        if (Lifetime <= 0) Destroy(gameObject);
+        if (Lifetime <= 0)
+        {
+            Destroy(gameObject);
+            ReportResult(false);
+        }
     }
 
     void SetUpLockOnBehavior()
@@ -223,9 +318,8 @@ public class Projectile : MonoBehaviour
         transform.position += transform.forward * FlightSpeed * 1.5f * Time.fixedDeltaTime;
     }
 
-    protected virtual void ActivateUniqueBehavior()
+    void ReportResult(bool hit)
     {
-        // Does nothing, set to be overridden.
-        Debug.Log("unique behavior");
+        wdb.LogResult(hit);
     }
 }
