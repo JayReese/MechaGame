@@ -15,14 +15,15 @@ public class Projectile : MonoBehaviour
     private Vector3 _direction;
 
     [SerializeField]
-    bool _projectileOrientWindowHasPassed;
+    bool _projectileOrientWindowHasPassed,
+         _projectileHasPassedTarget, _initialProjectileThresholdIsNegative;
     [SerializeField]
     float _currentLockOnWindow;
 
     [SerializeField]
     public float FlightSpeed;
 
-    float Lifetime;
+    [SerializeField] float Lifetime;
 
     [SerializeField]
     bool PlayerIsLockedOn;
@@ -44,8 +45,7 @@ public class Projectile : MonoBehaviour
     {
         transform.LookAt(LockOnTarget);
 
-        if (!wdb.IsTesting)
-            Debug.Log(string.Format("Z: {0}", (Mathf.Abs(LockOnTarget.position.z - transform.position.z) / 1f)));
+        _projectileHasPassedTarget = false;
     }
 
     // Update is called once per frame
@@ -57,19 +57,43 @@ public class Projectile : MonoBehaviour
             _currentLockOnWindow -= Time.deltaTime;
     }
 
+    private bool CurrentPositionIsGreaterThanTarget()
+    {
+        float zForwardPos = LockOnTarget.position.z - transform.position.z;
+
+        if (_initialProjectileThresholdIsNegative)
+            if (zForwardPos > 0) return true;
+        else
+            if (zForwardPos < 0) return true;
+
+        return false;
+    }
+
     void FixedUpdate()
     {
-        if (PerformProjectileBehavior != null)
-            PerformProjectileBehavior();
+        _projectileHasPassedTarget = CurrentPositionIsGreaterThanTarget();
 
-        DegradeProjectileLife();
+        //if (PerformProjectileBehavior != null)
+        //    PerformProjectileBehavior();
+
+        
 
         CheckForHit();
+        //Debug.Log(LockOnTarget.position.z - transform.position.z); 
 
         ReorientProjectileRotation();
+
+        if (ProjectileLockOnWindow != 0f)
+        {
+            DegradeProjectileLife();
+            GetComponent<Rigidbody>().AddForce(transform.forward * FlightSpeed, ForceMode.Impulse);
+        }
+        else
+            transform.position = Vector3.MoveTowards(transform.position, LockOnTarget.position, FlightSpeed / 10);
+
         //transform.position += transform.forward * FlightSpeed * 2f * Time.fixedDeltaTime;
 
-        GetComponent<Rigidbody>().AddForce(transform.forward * 50, ForceMode.Impulse);
+
     }
 
     void ReorientProjectileRotation()
@@ -96,17 +120,7 @@ public class Projectile : MonoBehaviour
         //}
         #endregion
 
-        //if ((LockOnTarget.position.z - transform.position.z > ((LockOnTarget.position.z - transform.position.z) / 1f)) && 
-        //    (LockOnTarget.position.x / transform.position.x >= 1f || LockOnTarget.position.x / transform.position.x <= -1f))
-        //{
-        //    transform.LookAt(LockOnTarget.position);
-        //}
-
-        float zForwardPos = Mathf.Abs(LockOnTarget.position.z - transform.position.z);
-
-        Debug.Log(zForwardPos);
-
-        if (!_projectileOrientWindowHasPassed && (zForwardPos > (zForwardPos / 1f)))
+        if ((ProjectileLockOnWindow != 0 && !_projectileOrientWindowHasPassed && !_projectileHasPassedTarget) || ProjectileLockOnWindow == 0)
             transform.LookAt(LockOnTarget.position);
     }
 
@@ -116,6 +130,11 @@ public class Projectile : MonoBehaviour
     //    transform.position = WeaponOrigin.FindChild("Weapon Emitter").transform.position;
     //    transform.rotation = WeaponOrigin.FindChild("Weapon Emitter").transform.rotation;
     //}
+
+    void OnEnable()
+    {
+        _initialProjectileThresholdIsNegative = LockOnTarget.position.z - transform.position.z < 0;
+    }
 
     //void OnDisable()
     //{

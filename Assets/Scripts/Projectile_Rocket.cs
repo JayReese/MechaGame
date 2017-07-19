@@ -17,8 +17,8 @@ public class Projectile_Rocket : Projectile
 		
 	}
 
-    protected override void ActivateUniqueBehavior()
-    {
-        base.ActivateUniqueBehavior();
-    }
+    //protected override void ActivateUniqueBehavior()
+    //{
+    //    base.ActivateUniqueBehavior();
+    //}
 }
