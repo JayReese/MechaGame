@@ -19,32 +19,22 @@ public class WeaponDebugging : MonoBehaviour
 	void Start ()
     {
         Timer = 30f;
-        LockOnTarget = GameObject.Find("Target").transform;
-<<<<<<< HEAD
-	    _projectilePrefab = Resources.Load("Art/Rocket Projectile") as GameObject;
+        LockOnTarget = GameObject.FindGameObjectWithTag("Player").transform.FindGrandchild("Lock On Target").transform;
+
+	    _projectilePrefab = Resources.Load("Prefabs/Rocket Projectile") as GameObject;
 
         _projectilePrefab.GetComponent<Projectile>().FlightSpeed = 10f;
         _projectilePrefab.GetComponent<Projectile>().LockOnTarget = LockOnTarget;
         _projectilePrefab.GetComponent<Projectile>().wdb = this;
         _projectilePrefab.GetComponent<Projectile>().ProjectileLockOnWindow = 0f;
-=======
-	    _projectilePrefab = Resources.Load("Prefabs/Testing/Test Projectile") as GameObject;
 
-        _projectilePrefab.GetComponent<Projectile>().FlightSpeed = 300f;
-        _projectilePrefab.GetComponent<Projectile>().LockOnTarget = LockOnTarget;
-        _projectilePrefab.GetComponent<Projectile>().wdb = this;
-        _projectilePrefab.GetComponent<Projectile>().ProjectileLockOnWindow = 0.1f;
->>>>>>> badb2e384d579ee2da3467ce05fb0d682a42dbda
-
-        IsTesting = true;
+        IsTesting = false;
 
         if(IsTesting)
         {
             TestNumber = 1;
             InvokeRepeating("FireBullet", 0, 1f);
         }
-
-        //Debug.Log(LockOnTarget.position.z / transform.position.z);
     }
 	
 	// Update is called once per frame

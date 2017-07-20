@@ -87,10 +87,6 @@ public class Projectile : MonoBehaviour
         }
         else
             transform.position = Vector3.MoveTowards(transform.position, LockOnTarget.position, FlightSpeed / 10);
-
-        //transform.position += transform.forward * FlightSpeed * 2f * Time.fixedDeltaTime;
-
-
     }
 
     void ReorientProjectileRotation()
@@ -119,7 +115,7 @@ public class Projectile : MonoBehaviour
 
         if ((ProjectileLockOnWindow != 0 && !_projectileOrientWindowHasPassed && !_projectileHasPassedTarget) || ProjectileLockOnWindow == 0)
             transform.LookAt(LockOnTarget.position);
-    }
+    }   
 
     //void OnEnable()
     //{
@@ -141,94 +137,18 @@ public class Projectile : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        //if (other != null && (!other.GetComponent<Projectile>() || (other.GetComponent<Projectile>() && other.GetComponent<Projectile>().PlayerOrigin != PlayerOrigin)))
-        //{
-        //    //if (other.transform.GetComponent<DamageableObject>())
-        //    //    ApplyDamageToCorrectObject(other.transform);
-        //    //else
-        //    //    ApplyDamageToCorrectObject(other.transform.FindGrandparent("Players"));
-
-
-        //}
-
-        //if (other.gameObject.layer != 11)
-        //{
-        //    if (other.tag == "Projectile" && other.GetComponent<Projectile>())
-        //    {
-        //         if(other.GetComponent<Projectile>().PlayerOrigin == PlayerOrigin)
-        //            Debug.Log("Own projectile hit lolol");
-        //    }
-        //    else if ((other.GetComponent<ArmorPiece>()))
-        //    {
-        //        ApplyDamageToCorrectObject(other.transform);
-        //    }
-        //    else
-        //    {
-        //        ApplyDamageToCorrectObject(other.GetComponent<BodyPart>().TetheredParentObject);
-        //        Debug.Log(other.GetComponent<BodyPart>().TetheredParentObject + " hit");
-        //    }
-
-        //}
-
-        if (other.GetComponent<TargetDebugging>())
+        if (other.GetComponent<DamageableObject>())
         {
             ReportResult(true);
-            Debug.Log("Target hit");
+            Debug.Log(other.name + " hit");
+            Destroy(gameObject);
         }
-        else
-        {
-            ReportResult(false);
-            Debug.Log("Hit");
-        }
-
-        Destroy(gameObject);
     }
 
     void CheckForHit()
     {
-        //if (Globals.RaycastHitTarget(transform.position, transform.forward, 3f).collider != null)
-        //{
-        //    Collider hit = Globals.RaycastHitTarget(transform.position, transform.forward, 3f).collider;
-
-        //    if (hit.gameObject.layer != 11 && hit.transform != WeaponOrigin)
-        //    {
-        //        if (hit.tag == "Projectile" && hit.GetComponent<Projectile>())
-        //        {
-        //            if (hit.GetComponent<Projectile>().PlayerOrigin == PlayerOrigin)
-        //                Debug.Log("Own projectile hit lolol");
-        //        }
-        //        else if ((hit.GetComponent<ArmorPiece>()))
-        //        {
-        //            //ApplyDamageToCorrectObject(hit.transform);
-        //            Debug.Log("Armor piece hit");
-        //        }
-        //        else
-        //        {
-        //            //ApplyDamageToCorrectObject(hit.GetComponent<BodyPart>().TetheredParentObject);
-        //            Debug.Log(hit.GetComponent<BodyPart>().TetheredParentObject + " hit");
-        //        }
-
-        //    }
-
-        //    gameObject.SetActive(false);
-        //}
-
-        //if (Globals.RaycastHitTarget(transform.position, transform.forward, 3f).collider != null)
-        //{
-        //    Debug.Log("Hit");
-        //}    
+        
     }
-
-    //public void OnCollisionEnter(Collision collision)
-    //{
-    //    if(collision.collider != null && (!collision.collider.GetComponent<Projectile>() || (collision.collider.GetComponent<Projectile>() && collision.collider.GetComponent<Projectile>().PlayerOrigin != PlayerOrigin)))
-    //    {
-    //        if (collision.transform.GetComponent<DamageableObject>())
-    //            ApplyDamageToCorrectObject(collision.transform);
-    //        else
-    //            ApplyDamageToCorrectObject(collision.transform.root);
-    //    }
-    //}
 
     private void ApplyDamageToCorrectObject(Transform o)
     {
@@ -303,36 +223,6 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    void SetUpLockOnBehavior()
-    {
-        PlayerIsLockedOn = LockOnTarget != null ? true : false;
-
-        if (PlayerIsLockedOn)
-        {
-            switch ((LockOnHardness)LockOnHardnessValue)
-            {
-                case LockOnHardness.SOFT:
-                    transform.LookAt(LockOnTarget);
-                    PerformProjectileBehavior += ProjectileBehavior_SoftLockedMovement;
-                    break;
-                case LockOnHardness.HARD:
-                    PerformProjectileBehavior += ProjectileBehavior_HardLockedMovement;
-                    break;
-            }
-        }
-        else
-            PerformProjectileBehavior += ProjectileBehavior_SoftLockedMovement;
-    }
-
-    void ProjectileBehavior_HardLockedMovement()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, LockOnTarget.position, (FlightSpeed * 1.5f) * Time.fixedDeltaTime);
-    }
-
-    void ProjectileBehavior_SoftLockedMovement()
-    {
-        transform.position += transform.forward * FlightSpeed * 1.5f * Time.fixedDeltaTime;
-    }
     void ReportResult(bool hit)
     {
         wdb.LogResult(hit);

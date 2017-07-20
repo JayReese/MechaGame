@@ -94,11 +94,6 @@ public abstract class Weapon : MonoBehaviour
         g.GetComponent<Projectile>().PlayerOrigin = TetheredPlayer;
         g.GetComponent<Projectile>().WeaponOrigin = transform;
         g.GetComponent<Projectile>().LockOnHardnessValue = LockOnHardnessValue;
-<<<<<<< HEAD
-        //g.GetComponent<Projectile>().ArmorInteractionValue = (ArmorInteractionValue)2;
-=======
-        //g.GetComponent<Projectile>().ArmorInteractionValue = 2;
->>>>>>> badb2e384d579ee2da3467ce05fb0d682a42dbda
     }
 
     private void ReduceMagazine()

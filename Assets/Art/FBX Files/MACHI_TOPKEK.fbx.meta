@@ -1,0 +1,196 @@
+fileFormatVersion: 2
+guid: ee2a982e7ce045c47887dc009081dc26
+timeCreated: 1500570713
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Blade
+    100002: Breast_Plate_AR
+    100004: Chest
+    100006: gun3
+    100008: Head
+    100010: Head 1
+    100012: L_arm
+    100014: L_Arm_CTRL
+    100016: L_ForeArm
+    100018: L_Forearm_AR
+    100020: L_Palm_Joint
+    100022: L_Shoulder
+    100024: L_shoulder_AR
+    100026: L_Shoulder_Nurb
+    100028: L_Upperarm_AR
+    100030: L_Wrist
+    100032: L_Wrist 1
+    100034: L_Wrist_Nurb
+    100036: L_Wrist_Nurb1
+    100038: Machi_Top
+    100040: //RootNode
+    100042: Main_Body
+    100044: Neck
+    100046: Neck 1
+    100048: polySurface230
+    100050: R_arm
+    100052: R_Arm_CTRL
+    100054: R_ForeArm
+    100056: R_Forearm_AR
+    100058: R_Palm_Joint
+    100060: R_Palm_Joint1
+    100062: R_Shoulder
+    100064: R_shoulder_AR
+    100066: R_Shoulder_Nurb
+    100068: R_Upperarm_AR
+    100070: R_Wrist
+    100072: R_Wrist 1
+    100074: Root_nurb_Igonre_this
+    100076: Spine
+    100078: Spine_nurb
+    100080: Spine_nurb2
+    100082: transform1
+    100084: world
+    400000: Blade
+    400002: Breast_Plate_AR
+    400004: Chest
+    400006: gun3
+    400008: Head
+    400010: Head 1
+    400012: L_arm
+    400014: L_Arm_CTRL
+    400016: L_ForeArm
+    400018: L_Forearm_AR
+    400020: L_Palm_Joint
+    400022: L_Shoulder
+    400024: L_shoulder_AR
+    400026: L_Shoulder_Nurb
+    400028: L_Upperarm_AR
+    400030: L_Wrist
+    400032: L_Wrist 1
+    400034: L_Wrist_Nurb
+    400036: L_Wrist_Nurb1
+    400038: Machi_Top
+    400040: //RootNode
+    400042: Main_Body
+    400044: Neck
+    400046: Neck 1
+    400048: polySurface230
+    400050: R_arm
+    400052: R_Arm_CTRL
+    400054: R_ForeArm
+    400056: R_Forearm_AR
+    400058: R_Palm_Joint
+    400060: R_Palm_Joint1
+    400062: R_Shoulder
+    400064: R_shoulder_AR
+    400066: R_Shoulder_Nurb
+    400068: R_Upperarm_AR
+    400070: R_Wrist
+    400072: R_Wrist 1
+    400074: Root_nurb_Igonre_this
+    400076: Spine
+    400078: Spine_nurb
+    400080: Spine_nurb2
+    400082: transform1
+    400084: world
+    2300000: Blade
+    2300002: Breast_Plate_AR
+    2300004: gun3
+    2300006: L_Forearm_AR
+    2300008: L_shoulder_AR
+    2300010: L_Upperarm_AR
+    2300012: polySurface230
+    2300014: R_Forearm_AR
+    2300016: R_shoulder_AR
+    2300018: R_Upperarm_AR
+    3300000: Blade
+    3300002: Breast_Plate_AR
+    3300004: gun3
+    3300006: L_Forearm_AR
+    3300008: L_shoulder_AR
+    3300010: L_Upperarm_AR
+    3300012: polySurface230
+    3300014: R_Forearm_AR
+    3300016: R_shoulder_AR
+    3300018: R_Upperarm_AR
+    4300000: Machi_Top
+    4300002: gun3
+    4300004: R_Forearm_AR
+    4300006: R_Upperarm_AR
+    4300008: R_shoulder_AR
+    4300010: L_Forearm_AR
+    4300012: Blade
+    4300014: L_Upperarm_AR
+    4300016: L_shoulder_AR
+    4300018: Breast_Plate_AR
+    4300020: polySurface230
+    9500000: //RootNode
+    13700000: Machi_Top
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

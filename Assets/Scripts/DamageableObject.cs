@@ -25,16 +25,7 @@ public class DamageableObject : MonoBehaviour
     #region Player-oriented methods.
     protected virtual void ToggleLife()
     {
-        if (RespawnTimer <= 0) RespawnTimer -= Time.deltaTime;
-    }
-
-    protected virtual void OnEnable()
-    {
-        if (gameObject.tag == "Controllable")
-        {
-            IsPlayer = true;
-            RespawnTimer = 4;
-        }
+        //if (RespawnTimer <= 0) RespawnTimer -= Time.deltaTime;
     }
     #endregion
 }
