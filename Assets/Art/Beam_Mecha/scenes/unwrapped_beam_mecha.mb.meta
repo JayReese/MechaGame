@@ -1,0 +1,270 @@
+fileFormatVersion: 2
+guid: c764a7d8ce2e6394f95c0d8723263e8c
+timeCreated: 1500656455
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: beam_mech_1_imagePlane3
+    100002: beam_mech_1_nurbsCircle1
+    100004: beam_mech_1_pCube10
+    100006: beam_mech_1_pCube21
+    100008: beam_mech_1_pCylinder14
+    100010: beam_mech_1_polySurface15
+    100012: beam_mech_1_polySurface17
+    100014: beam_mech_1_polySurface31
+    100016: beam_mech_1_polySurface42
+    100018: beam_mech_1_polySurface47
+    100020: beam_mech_1_polySurface50
+    100022: beam_mech_1_polySurface52
+    100024: beam_mech_1_polySurface53
+    100026: bottom
+    100028: Chest_armor
+    100030: Crotch_armor
+    100032: imagePlane3
+    100034: joint5
+    100036: joint6
+    100038: joint7
+    100040: joint8
+    100042: joint9
+    100044: L_arm_Armor
+    100046: L_arm_Armor 1
+    100048: L_LowerLeg_Armor
+    100050: L_Neck_armor
+    100052: L_shoulder_Armor
+    100054: Lower_Back_Armor
+    100056: Lower_Body5
+    100058: Lower_chest_armor
+    100060: Main_Body
+    100062: nurbsCircle1
+    100064: pCube10
+    100066: pCube21
+    100068: pCube40
+    100070: pCylinder14
+    100072: pCylinder35
+    100074: pCylinder37
+    100076: polySurface145
+    100078: polySurface15
+    100080: polySurface153
+    100082: polySurface17
+    100084: polySurface225
+    100086: polySurface226
+    100088: polySurface227
+    100090: polySurface228
+    100092: polySurface31
+    100094: polySurface42
+    100096: polySurface47
+    100098: polySurface50
+    100100: polySurface52
+    100102: polySurface53
+    100104: polySurface570
+    100106: polySurface584
+    100108: polySurface633
+    100110: polySurface693
+    100112: polySurface696
+    100114: polySurface93
+    100116: polySurface99
+    100118: R_arm_Armor
+    100120: R_LowerLeg_Armor
+    100122: R_Neck_armor
+    100124: R_shoulder_Armor
+    100126: top1
+    100128: Top_Body
+    100130: //RootNode
+    100132: Upper_Back_Armor
+    100134: Upper_Body
+    100136: upper_body
+    400000: beam_mech_1_imagePlane3
+    400002: beam_mech_1_nurbsCircle1
+    400004: beam_mech_1_pCube10
+    400006: beam_mech_1_pCube21
+    400008: beam_mech_1_pCylinder14
+    400010: beam_mech_1_polySurface15
+    400012: beam_mech_1_polySurface17
+    400014: beam_mech_1_polySurface31
+    400016: beam_mech_1_polySurface42
+    400018: beam_mech_1_polySurface47
+    400020: beam_mech_1_polySurface50
+    400022: beam_mech_1_polySurface52
+    400024: beam_mech_1_polySurface53
+    400026: bottom
+    400028: Chest_armor
+    400030: Crotch_armor
+    400032: imagePlane3
+    400034: joint5
+    400036: joint6
+    400038: joint7
+    400040: joint8
+    400042: joint9
+    400044: L_arm_Armor
+    400046: L_arm_Armor 1
+    400048: L_LowerLeg_Armor
+    400050: L_Neck_armor
+    400052: L_shoulder_Armor
+    400054: Lower_Back_Armor
+    400056: Lower_Body5
+    400058: Lower_chest_armor
+    400060: Main_Body
+    400062: nurbsCircle1
+    400064: pCube10
+    400066: pCube21
+    400068: pCube40
+    400070: pCylinder14
+    400072: pCylinder35
+    400074: pCylinder37
+    400076: polySurface145
+    400078: polySurface15
+    400080: polySurface153
+    400082: polySurface17
+    400084: polySurface225
+    400086: polySurface226
+    400088: polySurface227
+    400090: polySurface228
+    400092: polySurface31
+    400094: polySurface42
+    400096: polySurface47
+    400098: polySurface50
+    400100: polySurface52
+    400102: polySurface53
+    400104: polySurface570
+    400106: polySurface584
+    400108: polySurface633
+    400110: polySurface693
+    400112: polySurface696
+    400114: polySurface93
+    400116: polySurface99
+    400118: R_arm_Armor
+    400120: R_LowerLeg_Armor
+    400122: R_Neck_armor
+    400124: R_shoulder_Armor
+    400126: top1
+    400128: Top_Body
+    400130: //RootNode
+    400132: Upper_Back_Armor
+    400134: Upper_Body
+    400136: upper_body
+    2300000: Chest_armor
+    2300002: Crotch_armor
+    2300004: L_arm_Armor 1
+    2300006: L_LowerLeg_Armor
+    2300008: L_Neck_armor
+    2300010: L_shoulder_Armor
+    2300012: Lower_Back_Armor
+    2300014: Lower_Body5
+    2300016: Lower_chest_armor
+    2300018: polySurface693
+    2300020: polySurface696
+    2300022: polySurface99
+    2300024: R_arm_Armor
+    2300026: R_LowerLeg_Armor
+    2300028: R_Neck_armor
+    2300030: R_shoulder_Armor
+    2300032: Upper_Back_Armor
+    2300034: upper_body
+    3300000: Chest_armor
+    3300002: Crotch_armor
+    3300004: L_arm_Armor 1
+    3300006: L_LowerLeg_Armor
+    3300008: L_Neck_armor
+    3300010: L_shoulder_Armor
+    3300012: Lower_Back_Armor
+    3300014: Lower_Body5
+    3300016: Lower_chest_armor
+    3300018: polySurface693
+    3300020: polySurface696
+    3300022: polySurface99
+    3300024: R_arm_Armor
+    3300026: R_LowerLeg_Armor
+    3300028: R_Neck_armor
+    3300030: R_shoulder_Armor
+    3300032: Upper_Back_Armor
+    3300034: upper_body
+    4300000: L_arm_Armor
+    4300002: R_arm_Armor
+    4300004: R_shoulder_Armor
+    4300006: R_Neck_armor
+    4300008: Lower_Back_Armor
+    4300010: Lower_chest_armor
+    4300012: Crotch_armor
+    4300014: L_shoulder_Armor
+    4300016: L_Neck_armor
+    4300018: polySurface693
+    4300020: polySurface696
+    4300022: polySurface99
+    4300024: R_LowerLeg_Armor
+    4300026: L_LowerLeg_Armor
+    4300028: Upper_Back_Armor
+    4300030: upper_body
+    4300032: Chest_armor
+    4300034: Lower_Body5
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

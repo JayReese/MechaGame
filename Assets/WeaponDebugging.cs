@@ -26,7 +26,7 @@ public class WeaponDebugging : MonoBehaviour
         _projectilePrefab.GetComponent<Projectile>().FlightSpeed = 10f;
         _projectilePrefab.GetComponent<Projectile>().LockOnTarget = LockOnTarget;
         _projectilePrefab.GetComponent<Projectile>().wdb = this;
-        _projectilePrefab.GetComponent<Projectile>().ProjectileLockOnWindow = 0f;
+        _projectilePrefab.GetComponent<Projectile>().ProjectileLockOnWindow = 0.2f;
 
         IsTesting = false;
 

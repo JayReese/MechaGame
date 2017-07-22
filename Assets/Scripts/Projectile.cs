@@ -11,9 +11,6 @@ public class Projectile : MonoBehaviour
     public MovementBehavior PerformProjectileBehavior;
     public float ProjectileLockOnWindow;
 
-    private Quaternion _rotation;
-    private Vector3 _direction;
-
     [SerializeField]
     bool _projectileOrientWindowHasPassed,
          _projectileHasPassedTarget, _initialProjectileThresholdIsNegative;
@@ -25,8 +22,7 @@ public class Projectile : MonoBehaviour
 
     [SerializeField] float Lifetime;
 
-    [SerializeField]
-    bool PlayerIsLockedOn;
+    [SerializeField] bool PlayerIsLockedOn;
 
 #if UNITY_EDITOR
     public WeaponDebugging wdb;
@@ -34,7 +30,6 @@ public class Projectile : MonoBehaviour
 
     void Awake()
     {
-        //SetUpLockOnBehavior();
         LockOnHardnessValue = 8;
         Lifetime = 10f;
         _currentLockOnWindow = ProjectileLockOnWindow;
@@ -44,9 +39,8 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         transform.LookAt(LockOnTarget);
+
         _projectileHasPassedTarget = false;
-        if(!wdb.IsTesting)
-            Debug.Log(string.Format("Z: {0}", (Mathf.Abs(LockOnTarget.position.z - transform.position.z) / 1f)));
     }
 
     // Update is called once per frame
@@ -73,10 +67,6 @@ public class Projectile : MonoBehaviour
     void FixedUpdate()
     {
         _projectileHasPassedTarget = CurrentPositionIsGreaterThanTarget();
-        
-
-        CheckForHit();
-        //Debug.Log(LockOnTarget.position.z - transform.position.z); 
 
         ReorientProjectileRotation();
 
@@ -86,43 +76,14 @@ public class Projectile : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(transform.forward * FlightSpeed, ForceMode.Impulse);
         }
         else
-            transform.position = Vector3.MoveTowards(transform.position, LockOnTarget.position, FlightSpeed / 10);
+            transform.position = Vector3.MoveTowards(transform.position, LockOnTarget.position, FlightSpeed / 2);
     }
 
     void ReorientProjectileRotation()
     {
-        #region commented out, angle calculation method of determining reorientation.
-        //Debug.Log(Vector3.Angle(transform.position, LockOnTarget.position));
-
-        //if ((transform.position.x / LockOnTarget.position.x < 1 || transform.position.x / LockOnTarget.position.x > 1))
-        //{
-        //    var angleDegree = transform.position.x / LockOnTarget.position.x < 1 ? -1 : 1;
-        //    var angle = Vector3.Angle(LockOnTarget.position - transform.position, transform.forward);
-
-        //    if(LockOnTarget.position.z / transform.position.z > 0)
-        //        transform.Rotate(0, angle * Time.fixedDeltaTime * angleDegree, 0);
-        //}
-        #endregion
-
-        #region commented out, quaternion slerping of method of determining reorientation.
-        //if (LockOnTarget.position.z / transform.position.z > 0.1f)
-        //{
-        //    _direction = (LockOnTarget.position - transform.position).normalized;
-        //    _rotation = Quaternion.LookRotation(_direction);
-        //    transform.rotation = Quaternion.Slerp(transform.rotation, _rotation, Time.fixedDeltaTime * LockOnHardnessValue);
-        //}
-        #endregion
-
         if ((ProjectileLockOnWindow != 0 && !_projectileOrientWindowHasPassed && !_projectileHasPassedTarget) || ProjectileLockOnWindow == 0)
             transform.LookAt(LockOnTarget.position);
-    }   
-
-    //void OnEnable()
-    //{
-    //    transform.parent = null;
-    //    transform.position = WeaponOrigin.FindChild("Weapon Emitter").transform.position;
-    //    transform.rotation = WeaponOrigin.FindChild("Weapon Emitter").transform.rotation;
-    //}
+    }
 
     void OnEnable()
     {
@@ -145,7 +106,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    void CheckForHit()
+    protected virtual void CheckForHit()
     {
         
     }
@@ -211,7 +172,10 @@ public class Projectile : MonoBehaviour
     //    //colliderToDamage.transform.root.GetComponent<DamageableObject>().ReceiveDamage(damageDealt);
     //}
     #endregion
-
+    
+    /// <summary>
+    /// Degrades the projectile's life over time.
+    /// </summary>
     void DegradeProjectileLife()
     {
         Lifetime -= Time.fixedDeltaTime * 1f;
@@ -223,8 +187,10 @@ public class Projectile : MonoBehaviour
         }
     }
 
+#if UNITY_EDITOR
     void ReportResult(bool hit)
     {
         wdb.LogResult(hit);
     }
+#endif
 }
