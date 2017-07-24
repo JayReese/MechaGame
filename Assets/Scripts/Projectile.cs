@@ -28,7 +28,7 @@ public class Projectile : MonoBehaviour
     public WeaponDebugging wdb;
 #endif
 
-    void Awake()
+    protected void Awake()
     {
         LockOnHardnessValue = 8;
         Lifetime = 10f;
@@ -36,7 +36,7 @@ public class Projectile : MonoBehaviour
     }
 
     // Use this for initialization
-    void Start()
+    protected void Start()
     {
         transform.LookAt(LockOnTarget);
 
@@ -44,7 +44,7 @@ public class Projectile : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         _projectileOrientWindowHasPassed = _currentLockOnWindow <= 0;
 
@@ -64,7 +64,7 @@ public class Projectile : MonoBehaviour
         return false;
     }
 
-    void FixedUpdate()
+    protected void FixedUpdate()
     {
         _projectileHasPassedTarget = CurrentPositionIsGreaterThanTarget();
 
@@ -85,7 +85,7 @@ public class Projectile : MonoBehaviour
             transform.LookAt(LockOnTarget.position);
     }
 
-    void OnEnable()
+    protected void OnEnable()
     {
         _initialProjectileThresholdIsNegative = LockOnTarget.position.z - transform.position.z < 0;
     }
