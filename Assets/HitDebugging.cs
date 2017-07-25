@@ -19,6 +19,7 @@ public class HitDebugging : MonoBehaviour
 
     void OnTriggerEnter(Collider c)
     {
-        Debug.Log(c.name);
+        if(c.GetComponent<DamageableObject>())
+            Debug.Log(c.name);
     }
 }

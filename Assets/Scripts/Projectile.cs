@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     public float ProjectileLockOnWindow;
 
     [SerializeField]
-    bool _projectileOrientWindowHasPassed,
+    protected bool _projectileOrientWindowHasPassed,
          _projectileHasPassedTarget, _initialProjectileThresholdIsNegative;
     [SerializeField]
     float _currentLockOnWindow;

@@ -21,7 +21,7 @@ public class WeaponDebugging : MonoBehaviour
         Timer = 30f;
         LockOnTarget = GameObject.FindGameObjectWithTag("Player").transform.FindGrandchild("Lock On Target").transform;
 
-	    _projectilePrefab = Resources.Load("Prefabs/Rocket Projectile") as GameObject;
+	    _projectilePrefab = Resources.Load("Prefabs/Machine Gun Projectile") as GameObject;
 
         _projectilePrefab.GetComponent<Projectile>().FlightSpeed = 10f;
         _projectilePrefab.GetComponent<Projectile>().LockOnTarget = LockOnTarget;

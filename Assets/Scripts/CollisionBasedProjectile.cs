@@ -14,6 +14,8 @@ public class CollisionBasedProjectile : Projectile
 	new void Start ()
     {
         base.Start();
+
+        
 	}
 	
 	// Update is called once per frame
@@ -32,4 +34,9 @@ public class CollisionBasedProjectile : Projectile
         base.OnEnable();
     }
     #endregion
+
+    new void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+    }
 }
