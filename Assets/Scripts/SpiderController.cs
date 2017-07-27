@@ -8,13 +8,11 @@ public class SpiderController : MonoBehaviour
     Spider spider;
     public Vector3 TargetDestination;
     public float Speed;
-    public bool climbing;
     // Use this for initialization
     void Awake()
     {
         spider = new Spider();
         buildings = GameObject.FindGameObjectsWithTag("Building");
-        climbing = false;
     }
     void Start()
     {
@@ -47,20 +45,11 @@ public class SpiderController : MonoBehaviour
             }
             else
             {
-                climbing = true;
                 //Debug.Log("Moving y");
-                transform.position = Vector3.MoveTowards(transform.position, new Vector3(TargetDestination.x, TargetDestination.y, TargetDestination.z), Speed/2 * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(TargetDestination.x, TargetDestination.y, TargetDestination.z), Speed * Time.deltaTime);
             }
             CheckForArrival();
             Debug.Log(spider.spiderState);
-        }
-        if (climbing)//magic number to be changed
-        {
-            if (this.transform.rotation.x > -.7)
-            {
-                transform.Rotate(Vector3.left * Time.deltaTime * 1000);
-                Debug.Log(this.transform.rotation.x);
-            }
         }
     }
 
