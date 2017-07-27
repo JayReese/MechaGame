@@ -1,0 +1,323 @@
+fileFormatVersion: 2
+guid: fb9b51c241c975140b4edc796f755beb
+timeCreated: 1501109279
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Back_plate_AR1
+    100002: Blade
+    100004: Breast_Plate_AR
+    100006: Chest
+    100008: Front_Plate_AR
+    100010: gun2:imagePlane1
+    100012: gun2:polySurface25
+    100014: gun2:polySurface27
+    100016: gun2:polySurface29
+    100018: gun2:polySurface38
+    100020: gun3
+    100022: gun:imagePlane1
+    100024: Head
+    100026: Head 1
+    100028: ikHandle6
+    100030: ikHandle7
+    100032: ikHandle8
+    100034: ikHandle9
+    100036: L_Ankle
+    100038: L_arm
+    100040: L_Arm_CTRL
+    100042: L_Elbow_Nurb
+    100044: L_Foot
+    100046: L_ForeArm
+    100048: L_Forearm_AR
+    100050: L_Hip
+    100052: L_Hip 1
+    100054: L_Hip_AR
+    100056: L_Knee
+    100058: L_Knee 1
+    100060: L_Lower_Leg_AR
+    100062: L_Lower_Leg_AR1
+    100064: L_Palm_Joint
+    100066: L_Shoulder
+    100068: L_shoulder_AR
+    100070: L_Shoulder_Nurb
+    100072: L_Toe
+    100074: L_upper_Leg_AR
+    100076: L_Upperarm_AR
+    100078: L_Wrist
+    100080: L_Wrist 1
+    100082: L_Wrist_Nurb
+    100084: L_Wrist_Nurb1
+    100086: MACHI
+    100088: Machi_Top
+    100090: MachiBottom
+    100092: Main_Body
+    100094: //RootNode
+    100096: Neck
+    100098: Neck 1
+    100100: none_combined
+    100102: pCube14
+    100104: Pelvis
+    100106: polySurface150
+    100108: polySurface224
+    100110: polySurface225
+    100112: polySurface226
+    100114: polySurface227
+    100116: polySurface228
+    100118: polySurface230
+    100120: R_Ankle
+    100122: R_arm
+    100124: R_Arm_CTRL
+    100126: R_Elbow_Nurb
+    100128: R_Foot
+    100130: R_ForeArm
+    100132: R_Forearm_AR
+    100134: R_Hip
+    100136: R_Hip 1
+    100138: R_Hip_AR
+    100140: R_Knee
+    100142: R_Knee 1
+    100144: R_Lower_Leg_AR
+    100146: R_Palm_Joint
+    100148: R_Palm_Joint1
+    100150: R_Shoulder
+    100152: R_shoulder_AR
+    100154: R_Shoulder_Nurb
+    100156: R_Toe
+    100158: R_upper_Leg_AR
+    100160: R_Upperarm_AR
+    100162: R_Wrist
+    100164: R_Wrist 1
+    100166: Root_nurb_Igonre_this
+    100168: Spine
+    100170: Spine_nurb
+    100172: Spine_nurb2
+    100174: transform1
+    100176: transform2
+    100178: transform3
+    100180: transform4
+    100182: transform5
+    100184: world
+    400000: Back_plate_AR1
+    400002: Blade
+    400004: Breast_Plate_AR
+    400006: Chest
+    400008: Front_Plate_AR
+    400010: gun2:imagePlane1
+    400012: gun2:polySurface25
+    400014: gun2:polySurface27
+    400016: gun2:polySurface29
+    400018: gun2:polySurface38
+    400020: gun3
+    400022: gun:imagePlane1
+    400024: Head
+    400026: Head 1
+    400028: ikHandle6
+    400030: ikHandle7
+    400032: ikHandle8
+    400034: ikHandle9
+    400036: L_Ankle
+    400038: L_arm
+    400040: L_Arm_CTRL
+    400042: L_Elbow_Nurb
+    400044: L_Foot
+    400046: L_ForeArm
+    400048: L_Forearm_AR
+    400050: L_Hip
+    400052: L_Hip 1
+    400054: L_Hip_AR
+    400056: L_Knee
+    400058: L_Knee 1
+    400060: L_Lower_Leg_AR
+    400062: L_Lower_Leg_AR1
+    400064: L_Palm_Joint
+    400066: L_Shoulder
+    400068: L_shoulder_AR
+    400070: L_Shoulder_Nurb
+    400072: L_Toe
+    400074: L_upper_Leg_AR
+    400076: L_Upperarm_AR
+    400078: L_Wrist
+    400080: L_Wrist 1
+    400082: L_Wrist_Nurb
+    400084: L_Wrist_Nurb1
+    400086: MACHI
+    400088: Machi_Top
+    400090: MachiBottom
+    400092: Main_Body
+    400094: //RootNode
+    400096: Neck
+    400098: Neck 1
+    400100: none_combined
+    400102: pCube14
+    400104: Pelvis
+    400106: polySurface150
+    400108: polySurface224
+    400110: polySurface225
+    400112: polySurface226
+    400114: polySurface227
+    400116: polySurface228
+    400118: polySurface230
+    400120: R_Ankle
+    400122: R_arm
+    400124: R_Arm_CTRL
+    400126: R_Elbow_Nurb
+    400128: R_Foot
+    400130: R_ForeArm
+    400132: R_Forearm_AR
+    400134: R_Hip
+    400136: R_Hip 1
+    400138: R_Hip_AR
+    400140: R_Knee
+    400142: R_Knee 1
+    400144: R_Lower_Leg_AR
+    400146: R_Palm_Joint
+    400148: R_Palm_Joint1
+    400150: R_Shoulder
+    400152: R_shoulder_AR
+    400154: R_Shoulder_Nurb
+    400156: R_Toe
+    400158: R_upper_Leg_AR
+    400160: R_Upperarm_AR
+    400162: R_Wrist
+    400164: R_Wrist 1
+    400166: Root_nurb_Igonre_this
+    400168: Spine
+    400170: Spine_nurb
+    400172: Spine_nurb2
+    400174: transform1
+    400176: transform2
+    400178: transform3
+    400180: transform4
+    400182: transform5
+    400184: world
+    2300000: Back_plate_AR1
+    2300002: Blade
+    2300004: Breast_Plate_AR
+    2300006: Front_Plate_AR
+    2300008: gun3
+    2300010: L_Forearm_AR
+    2300012: L_Hip_AR
+    2300014: L_Lower_Leg_AR
+    2300016: L_shoulder_AR
+    2300018: L_upper_Leg_AR
+    2300020: L_Upperarm_AR
+    2300022: polySurface230
+    2300024: R_Forearm_AR
+    2300026: R_Hip_AR
+    2300028: R_Lower_Leg_AR
+    2300030: R_shoulder_AR
+    2300032: R_upper_Leg_AR
+    2300034: R_Upperarm_AR
+    3300000: Back_plate_AR1
+    3300002: Blade
+    3300004: Breast_Plate_AR
+    3300006: Front_Plate_AR
+    3300008: gun3
+    3300010: L_Forearm_AR
+    3300012: L_Hip_AR
+    3300014: L_Lower_Leg_AR
+    3300016: L_shoulder_AR
+    3300018: L_upper_Leg_AR
+    3300020: L_Upperarm_AR
+    3300022: polySurface230
+    3300024: R_Forearm_AR
+    3300026: R_Hip_AR
+    3300028: R_Lower_Leg_AR
+    3300030: R_shoulder_AR
+    3300032: R_upper_Leg_AR
+    3300034: R_Upperarm_AR
+    4300000: Machi_Top
+    4300002: L_Lower_Leg_AR
+    4300004: L_upper_Leg_AR
+    4300006: L_Hip_AR
+    4300008: R_Lower_Leg_AR
+    4300010: R_upper_Leg_AR
+    4300012: R_Hip_AR
+    4300014: Front_Plate_AR
+    4300016: Back_plate_AR1
+    4300018: MachiBottom
+    4300020: gun3
+    4300022: R_Forearm_AR
+    4300024: R_Upperarm_AR
+    4300026: R_shoulder_AR
+    4300028: L_Forearm_AR
+    4300030: Blade
+    4300032: L_Upperarm_AR
+    4300034: L_shoulder_AR
+    4300036: Breast_Plate_AR
+    4300038: polySurface230
+    7400000: Rig.0004
+    9500000: //RootNode
+    13700000: Machi_Top
+    13700002: MachiBottom
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

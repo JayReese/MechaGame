@@ -1,0 +1,2812 @@
+fileFormatVersion: 2
+guid: 0b594fce8ff127d42a9aeb77b802834b
+timeCreated: 1501109080
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Body_Top
+    100004: Chest_armor
+    100006: Chest_Joint
+    100008: Chest_Nurb
+    100010: Crotch_armor
+    100012: Gun
+    100014: Head_Joint
+    100016: Head_nurb
+    100018: ikHandle5
+    100020: ikHandle6
+    100022: ikHandle7
+    100024: ikHandle8
+    100026: L_arm_Armor1
+    100028: L_Arm_Nurb
+    100030: L_armShoulder_Joint
+    100032: L_BackWings_Nurb
+    100034: L_BottomWing_Joint
+    100036: L_BottomWing_nurb
+    100038: L_Elbow_Joint
+    100040: L_Elbow_Nurb
+    100042: L_foot_Joint
+    100044: L_foot_Nurb
+    100046: L_foot_nurb
+    100048: L_foot_Nurb1
+    100050: L_Hand_Joint
+    100052: L_Hand_Nurb
+    100054: L_hand_Nurb
+    100056: L_Heel_Joint
+    100058: L_Hip_Nurb
+    100060: L_Knee_Joint
+    100062: L_Knee_Nurb
+    100064: L_Lower_hip_Joint
+    100066: L_LowerLeg_Armor
+    100068: L_MidWing_Joint
+    100070: L_MidWing_nurb
+    100072: L_Neck_armor
+    100074: L_shoulder_Armor
+    100076: L_shoulder_Joint
+    100078: L_Shoulder_Nurb
+    100080: L_Upper_Hip_Joint
+    100082: L_UpperWing_Joint
+    100084: L_UpperWing_nurb
+    100086: L_WingBase_Joint
+    100088: L_Wrist_Joint
+    100090: Lower_Back_Armor
+    100092: Lower_Body
+    100094: Lower_chest_armor
+    100096: lower_root
+    100098: Neck_Joint
+    100100: Neck_nurb
+    100102: pelvis_USE__FOR_THE_BOTTOM
+    100104: R_arm_Armor
+    100106: R_Arm_Nurb
+    100108: R_armShoulder_Joint
+    100110: R_BackWings_Nurb
+    100112: R_BottomWing_Joint
+    100114: R_BottomWing_nurb
+    100116: R_Elbow_Joint
+    100118: R_Elbow_Nurb
+    100120: R_foot_Joint
+    100122: R_foot_nurb
+    100124: R_Hand_Joint
+    100126: R_Hand_Nurb
+    100128: R_hand_Nurb
+    100130: R_Heel_Joint
+    100132: R_Hip_Nurb
+    100134: R_Knee_Joint
+    100136: R_Knee_Nurb
+    100138: R_Lower_hip_Joint
+    100140: R_LowerLeg_Armor
+    100142: R_MidWing_Joint
+    100144: R_MidWing_nurb
+    100146: R_Neck_armor
+    100148: R_shoulder_Armor
+    100150: R_shoulder_Joint
+    100152: R_Shoulder_Nurb
+    100154: R_Upper_Hip_Joint
+    100156: R_UpperWing_Joint
+    100158: R_UpperWing_nurb
+    100160: R_WingBase_Joint
+    100162: R_Wrist_Joint
+    100164: Spine_Joint
+    100166: Spine_Nurb
+    100168: Tail_Joint
+    100170: Tail_Nurb
+    100172: Upper_Back_Armor
+    100174: Upper_Root
+    100176: Upper_root
+    100178: World
+    400000: //RootNode
+    400002: Body_Top
+    400004: Chest_armor
+    400006: Chest_Joint
+    400008: Chest_Nurb
+    400010: Crotch_armor
+    400012: Gun
+    400014: Head_Joint
+    400016: Head_nurb
+    400018: ikHandle5
+    400020: ikHandle6
+    400022: ikHandle7
+    400024: ikHandle8
+    400026: L_arm_Armor1
+    400028: L_Arm_Nurb
+    400030: L_armShoulder_Joint
+    400032: L_BackWings_Nurb
+    400034: L_BottomWing_Joint
+    400036: L_BottomWing_nurb
+    400038: L_Elbow_Joint
+    400040: L_Elbow_Nurb
+    400042: L_foot_Joint
+    400044: L_foot_Nurb
+    400046: L_foot_nurb
+    400048: L_foot_Nurb1
+    400050: L_Hand_Joint
+    400052: L_Hand_Nurb
+    400054: L_hand_Nurb
+    400056: L_Heel_Joint
+    400058: L_Hip_Nurb
+    400060: L_Knee_Joint
+    400062: L_Knee_Nurb
+    400064: L_Lower_hip_Joint
+    400066: L_LowerLeg_Armor
+    400068: L_MidWing_Joint
+    400070: L_MidWing_nurb
+    400072: L_Neck_armor
+    400074: L_shoulder_Armor
+    400076: L_shoulder_Joint
+    400078: L_Shoulder_Nurb
+    400080: L_Upper_Hip_Joint
+    400082: L_UpperWing_Joint
+    400084: L_UpperWing_nurb
+    400086: L_WingBase_Joint
+    400088: L_Wrist_Joint
+    400090: Lower_Back_Armor
+    400092: Lower_Body
+    400094: Lower_chest_armor
+    400096: lower_root
+    400098: Neck_Joint
+    400100: Neck_nurb
+    400102: pelvis_USE__FOR_THE_BOTTOM
+    400104: R_arm_Armor
+    400106: R_Arm_Nurb
+    400108: R_armShoulder_Joint
+    400110: R_BackWings_Nurb
+    400112: R_BottomWing_Joint
+    400114: R_BottomWing_nurb
+    400116: R_Elbow_Joint
+    400118: R_Elbow_Nurb
+    400120: R_foot_Joint
+    400122: R_foot_nurb
+    400124: R_Hand_Joint
+    400126: R_Hand_Nurb
+    400128: R_hand_Nurb
+    400130: R_Heel_Joint
+    400132: R_Hip_Nurb
+    400134: R_Knee_Joint
+    400136: R_Knee_Nurb
+    400138: R_Lower_hip_Joint
+    400140: R_LowerLeg_Armor
+    400142: R_MidWing_Joint
+    400144: R_MidWing_nurb
+    400146: R_Neck_armor
+    400148: R_shoulder_Armor
+    400150: R_shoulder_Joint
+    400152: R_Shoulder_Nurb
+    400154: R_Upper_Hip_Joint
+    400156: R_UpperWing_Joint
+    400158: R_UpperWing_nurb
+    400160: R_WingBase_Joint
+    400162: R_Wrist_Joint
+    400164: Spine_Joint
+    400166: Spine_Nurb
+    400168: Tail_Joint
+    400170: Tail_Nurb
+    400172: Upper_Back_Armor
+    400174: Upper_Root
+    400176: Upper_root
+    400178: World
+    2300000: Chest_armor
+    2300002: Crotch_armor
+    2300004: Gun
+    2300006: L_arm_Armor1
+    2300008: L_LowerLeg_Armor
+    2300010: L_Neck_armor
+    2300012: L_shoulder_Armor
+    2300014: Lower_Back_Armor
+    2300016: Lower_chest_armor
+    2300018: R_arm_Armor
+    2300020: R_LowerLeg_Armor
+    2300022: R_Neck_armor
+    2300024: R_shoulder_Armor
+    2300026: Upper_Back_Armor
+    3300000: Chest_armor
+    3300002: Crotch_armor
+    3300004: Gun
+    3300006: L_arm_Armor1
+    3300008: L_LowerLeg_Armor
+    3300010: L_Neck_armor
+    3300012: L_shoulder_Armor
+    3300014: Lower_Back_Armor
+    3300016: Lower_chest_armor
+    3300018: R_arm_Armor
+    3300020: R_LowerLeg_Armor
+    3300022: R_Neck_armor
+    3300024: R_shoulder_Armor
+    3300026: Upper_Back_Armor
+    4300000: R_LowerLeg_Armor
+    4300002: L_LowerLeg_Armor
+    4300004: Crotch_armor
+    4300006: Gun
+    4300008: R_arm_Armor
+    4300010: R_shoulder_Armor
+    4300012: R_Neck_armor
+    4300014: L_arm_Armor1
+    4300016: L_shoulder_Armor
+    4300018: L_Neck_armor
+    4300020: Chest_armor
+    4300022: Upper_Back_Armor
+    4300024: Lower_Back_Armor
+    4300026: Lower_chest_armor
+    4300028: Lower_Body
+    4300030: Body_Top
+    7400000: Charge Shoot and Recoil
+    7400002: Fly Into Position
+    7400004: Float
+    7400006: Fly Forward
+    7400008: Dodge Right
+    7400010: Dodge Left
+    7400012: Fly Up
+    7400014: Fly Down
+    7400016: Melee Attack 1
+    7400018: Melee Attack 2
+    7400020: Glide Backward
+    7400022: Stumble and Recover
+    9500000: //RootNode
+    13700000: Body_Top
+    13700002: Lower_Body
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Fly Into Position
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body_Top
+        weight: 1
+      - path: ikHandle5
+        weight: 1
+      - path: ikHandle6
+        weight: 1
+      - path: ikHandle7
+        weight: 1
+      - path: ikHandle8
+        weight: 1
+      - path: Lower_Body
+        weight: 1
+      - path: lower_root
+        weight: 1
+      - path: lower_root/Crotch_armor
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint/L_foot_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint/R_foot_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/Tail_Joint
+        weight: 1
+      - path: Upper_Root
+        weight: 1
+      - path: Upper_Root/Spine_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Chest_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_arm_Armor1
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint/L_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Lower_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint/Head_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_arm_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint/Gun
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Upper_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Lower_chest_armor
+        weight: 1
+      - path: World
+        weight: 1
+      - path: World/L_Elbow_Nurb
+        weight: 1
+      - path: World/L_foot_nurb
+        weight: 1
+      - path: World/L_foot_nurb/L_foot_Nurb
+        weight: 1
+      - path: World/L_Knee_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/L_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/R_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Tail_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb/L_hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb/Head_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb/R_hand_Nurb
+        weight: 1
+      - path: World/R_Elbow_Nurb
+        weight: 1
+      - path: World/R_foot_nurb
+        weight: 1
+      - path: World/R_foot_nurb/L_foot_Nurb1
+        weight: 1
+      - path: World/R_Knee_Nurb
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Charge Shoot and Recoil
+      takeName: Take 001
+      firstFrame: 56
+      lastFrame: 90
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body_Top
+        weight: 1
+      - path: ikHandle5
+        weight: 1
+      - path: ikHandle6
+        weight: 1
+      - path: ikHandle7
+        weight: 1
+      - path: ikHandle8
+        weight: 1
+      - path: Lower_Body
+        weight: 1
+      - path: lower_root
+        weight: 1
+      - path: lower_root/Crotch_armor
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint/L_foot_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint/R_foot_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/Tail_Joint
+        weight: 1
+      - path: Upper_Root
+        weight: 1
+      - path: Upper_Root/Spine_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Chest_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_arm_Armor1
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint/L_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Lower_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint/Head_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_arm_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint/Gun
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Upper_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Lower_chest_armor
+        weight: 1
+      - path: World
+        weight: 1
+      - path: World/L_Elbow_Nurb
+        weight: 1
+      - path: World/L_foot_nurb
+        weight: 1
+      - path: World/L_foot_nurb/L_foot_Nurb
+        weight: 1
+      - path: World/L_Knee_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/L_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/R_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Tail_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb/L_hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb/Head_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb/R_hand_Nurb
+        weight: 1
+      - path: World/R_Elbow_Nurb
+        weight: 1
+      - path: World/R_foot_nurb
+        weight: 1
+      - path: World/R_foot_nurb/L_foot_Nurb1
+        weight: 1
+      - path: World/R_Knee_Nurb
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Float
+      takeName: Take 001
+      firstFrame: 100
+      lastFrame: 140
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body_Top
+        weight: 1
+      - path: ikHandle5
+        weight: 1
+      - path: ikHandle6
+        weight: 1
+      - path: ikHandle7
+        weight: 1
+      - path: ikHandle8
+        weight: 1
+      - path: Lower_Body
+        weight: 1
+      - path: lower_root
+        weight: 1
+      - path: lower_root/Crotch_armor
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint/L_foot_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint/R_foot_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/Tail_Joint
+        weight: 1
+      - path: Upper_Root
+        weight: 1
+      - path: Upper_Root/Spine_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Chest_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_arm_Armor1
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint/L_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Lower_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint/Head_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_arm_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint/Gun
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Upper_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Lower_chest_armor
+        weight: 1
+      - path: World
+        weight: 1
+      - path: World/L_Elbow_Nurb
+        weight: 1
+      - path: World/L_foot_nurb
+        weight: 1
+      - path: World/L_foot_nurb/L_foot_Nurb
+        weight: 1
+      - path: World/L_Knee_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/L_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/R_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Tail_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb/L_hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb/Head_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb/R_hand_Nurb
+        weight: 1
+      - path: World/R_Elbow_Nurb
+        weight: 1
+      - path: World/R_foot_nurb
+        weight: 1
+      - path: World/R_foot_nurb/L_foot_Nurb1
+        weight: 1
+      - path: World/R_Knee_Nurb
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Fly Forward
+      takeName: Take 001
+      firstFrame: 170
+      lastFrame: 210
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body_Top
+        weight: 1
+      - path: ikHandle5
+        weight: 1
+      - path: ikHandle6
+        weight: 1
+      - path: ikHandle7
+        weight: 1
+      - path: ikHandle8
+        weight: 1
+      - path: Lower_Body
+        weight: 1
+      - path: lower_root
+        weight: 1
+      - path: lower_root/Crotch_armor
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint/L_foot_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint/R_foot_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/Tail_Joint
+        weight: 1
+      - path: Upper_Root
+        weight: 1
+      - path: Upper_Root/Spine_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Chest_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_arm_Armor1
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint/L_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Lower_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint/Head_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_arm_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint/Gun
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Upper_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Lower_chest_armor
+        weight: 1
+      - path: World
+        weight: 1
+      - path: World/L_Elbow_Nurb
+        weight: 1
+      - path: World/L_foot_nurb
+        weight: 1
+      - path: World/L_foot_nurb/L_foot_Nurb
+        weight: 1
+      - path: World/L_Knee_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/L_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/R_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Tail_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb/L_hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb/Head_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb/R_hand_Nurb
+        weight: 1
+      - path: World/R_Elbow_Nurb
+        weight: 1
+      - path: World/R_foot_nurb
+        weight: 1
+      - path: World/R_foot_nurb/L_foot_Nurb1
+        weight: 1
+      - path: World/R_Knee_Nurb
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Dodge Right
+      takeName: Take 001
+      firstFrame: 225
+      lastFrame: 249
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body_Top
+        weight: 1
+      - path: ikHandle5
+        weight: 1
+      - path: ikHandle6
+        weight: 1
+      - path: ikHandle7
+        weight: 1
+      - path: ikHandle8
+        weight: 1
+      - path: Lower_Body
+        weight: 1
+      - path: lower_root
+        weight: 1
+      - path: lower_root/Crotch_armor
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint/L_foot_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint/R_foot_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/Tail_Joint
+        weight: 1
+      - path: Upper_Root
+        weight: 1
+      - path: Upper_Root/Spine_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Chest_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_arm_Armor1
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint/L_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Lower_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint/Head_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_arm_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint/Gun
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Upper_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Lower_chest_armor
+        weight: 1
+      - path: World
+        weight: 1
+      - path: World/L_Elbow_Nurb
+        weight: 1
+      - path: World/L_foot_nurb
+        weight: 1
+      - path: World/L_foot_nurb/L_foot_Nurb
+        weight: 1
+      - path: World/L_Knee_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/L_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/R_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Tail_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb/L_hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb/Head_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb/R_hand_Nurb
+        weight: 1
+      - path: World/R_Elbow_Nurb
+        weight: 1
+      - path: World/R_foot_nurb
+        weight: 1
+      - path: World/R_foot_nurb/L_foot_Nurb1
+        weight: 1
+      - path: World/R_Knee_Nurb
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Dodge Left
+      takeName: Take 001
+      firstFrame: 260
+      lastFrame: 288
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body_Top
+        weight: 1
+      - path: ikHandle5
+        weight: 1
+      - path: ikHandle6
+        weight: 1
+      - path: ikHandle7
+        weight: 1
+      - path: ikHandle8
+        weight: 1
+      - path: Lower_Body
+        weight: 1
+      - path: lower_root
+        weight: 1
+      - path: lower_root/Crotch_armor
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint/L_foot_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint/R_foot_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/Tail_Joint
+        weight: 1
+      - path: Upper_Root
+        weight: 1
+      - path: Upper_Root/Spine_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Chest_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_arm_Armor1
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint/L_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Lower_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint/Head_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_arm_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint/Gun
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Upper_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Lower_chest_armor
+        weight: 1
+      - path: World
+        weight: 1
+      - path: World/L_Elbow_Nurb
+        weight: 1
+      - path: World/L_foot_nurb
+        weight: 1
+      - path: World/L_foot_nurb/L_foot_Nurb
+        weight: 1
+      - path: World/L_Knee_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/L_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/R_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Tail_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb/L_hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb/Head_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb/R_hand_Nurb
+        weight: 1
+      - path: World/R_Elbow_Nurb
+        weight: 1
+      - path: World/R_foot_nurb
+        weight: 1
+      - path: World/R_foot_nurb/L_foot_Nurb1
+        weight: 1
+      - path: World/R_Knee_Nurb
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Fly Up
+      takeName: Take 001
+      firstFrame: 300
+      lastFrame: 322
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body_Top
+        weight: 1
+      - path: ikHandle5
+        weight: 1
+      - path: ikHandle6
+        weight: 1
+      - path: ikHandle7
+        weight: 1
+      - path: ikHandle8
+        weight: 1
+      - path: Lower_Body
+        weight: 1
+      - path: lower_root
+        weight: 1
+      - path: lower_root/Crotch_armor
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint/L_foot_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint/R_foot_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/Tail_Joint
+        weight: 1
+      - path: Upper_Root
+        weight: 1
+      - path: Upper_Root/Spine_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Chest_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_arm_Armor1
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint/L_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Lower_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint/Head_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_arm_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint/Gun
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Upper_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Lower_chest_armor
+        weight: 1
+      - path: World
+        weight: 1
+      - path: World/L_Elbow_Nurb
+        weight: 1
+      - path: World/L_foot_nurb
+        weight: 1
+      - path: World/L_foot_nurb/L_foot_Nurb
+        weight: 1
+      - path: World/L_Knee_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/L_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/R_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Tail_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb/L_hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb/Head_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb/R_hand_Nurb
+        weight: 1
+      - path: World/R_Elbow_Nurb
+        weight: 1
+      - path: World/R_foot_nurb
+        weight: 1
+      - path: World/R_foot_nurb/L_foot_Nurb1
+        weight: 1
+      - path: World/R_Knee_Nurb
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Fly Down
+      takeName: Take 001
+      firstFrame: 323
+      lastFrame: 355
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body_Top
+        weight: 1
+      - path: ikHandle5
+        weight: 1
+      - path: ikHandle6
+        weight: 1
+      - path: ikHandle7
+        weight: 1
+      - path: ikHandle8
+        weight: 1
+      - path: Lower_Body
+        weight: 1
+      - path: lower_root
+        weight: 1
+      - path: lower_root/Crotch_armor
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint/L_foot_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint/R_foot_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/Tail_Joint
+        weight: 1
+      - path: Upper_Root
+        weight: 1
+      - path: Upper_Root/Spine_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Chest_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_arm_Armor1
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint/L_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Lower_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint/Head_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_arm_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint/Gun
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Upper_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Lower_chest_armor
+        weight: 1
+      - path: World
+        weight: 1
+      - path: World/L_Elbow_Nurb
+        weight: 1
+      - path: World/L_foot_nurb
+        weight: 1
+      - path: World/L_foot_nurb/L_foot_Nurb
+        weight: 1
+      - path: World/L_Knee_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/L_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/R_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Tail_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb/L_hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb/Head_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb/R_hand_Nurb
+        weight: 1
+      - path: World/R_Elbow_Nurb
+        weight: 1
+      - path: World/R_foot_nurb
+        weight: 1
+      - path: World/R_foot_nurb/L_foot_Nurb1
+        weight: 1
+      - path: World/R_Knee_Nurb
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Melee Attack 1
+      takeName: Take 001
+      firstFrame: 370
+      lastFrame: 393
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body_Top
+        weight: 1
+      - path: ikHandle5
+        weight: 1
+      - path: ikHandle6
+        weight: 1
+      - path: ikHandle7
+        weight: 1
+      - path: ikHandle8
+        weight: 1
+      - path: Lower_Body
+        weight: 1
+      - path: lower_root
+        weight: 1
+      - path: lower_root/Crotch_armor
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint/L_foot_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint/R_foot_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/Tail_Joint
+        weight: 1
+      - path: Upper_Root
+        weight: 1
+      - path: Upper_Root/Spine_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Chest_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_arm_Armor1
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint/L_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Lower_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint/Head_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_arm_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint/Gun
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Upper_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Lower_chest_armor
+        weight: 1
+      - path: World
+        weight: 1
+      - path: World/L_Elbow_Nurb
+        weight: 1
+      - path: World/L_foot_nurb
+        weight: 1
+      - path: World/L_foot_nurb/L_foot_Nurb
+        weight: 1
+      - path: World/L_Knee_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/L_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/R_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Tail_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb/L_hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb/Head_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb/R_hand_Nurb
+        weight: 1
+      - path: World/R_Elbow_Nurb
+        weight: 1
+      - path: World/R_foot_nurb
+        weight: 1
+      - path: World/R_foot_nurb/L_foot_Nurb1
+        weight: 1
+      - path: World/R_Knee_Nurb
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Melee Attack 2
+      takeName: Take 001
+      firstFrame: 400
+      lastFrame: 422
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body_Top
+        weight: 1
+      - path: ikHandle5
+        weight: 1
+      - path: ikHandle6
+        weight: 1
+      - path: ikHandle7
+        weight: 1
+      - path: ikHandle8
+        weight: 1
+      - path: Lower_Body
+        weight: 1
+      - path: lower_root
+        weight: 1
+      - path: lower_root/Crotch_armor
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint/L_foot_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint/R_foot_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/Tail_Joint
+        weight: 1
+      - path: Upper_Root
+        weight: 1
+      - path: Upper_Root/Spine_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Chest_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_arm_Armor1
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint/L_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Lower_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint/Head_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_arm_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint/Gun
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Upper_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Lower_chest_armor
+        weight: 1
+      - path: World
+        weight: 1
+      - path: World/L_Elbow_Nurb
+        weight: 1
+      - path: World/L_foot_nurb
+        weight: 1
+      - path: World/L_foot_nurb/L_foot_Nurb
+        weight: 1
+      - path: World/L_Knee_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/L_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/R_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Tail_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb/L_hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb/Head_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb/R_hand_Nurb
+        weight: 1
+      - path: World/R_Elbow_Nurb
+        weight: 1
+      - path: World/R_foot_nurb
+        weight: 1
+      - path: World/R_foot_nurb/L_foot_Nurb1
+        weight: 1
+      - path: World/R_Knee_Nurb
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Glide Backward
+      takeName: Take 001
+      firstFrame: 487
+      lastFrame: 513
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body_Top
+        weight: 1
+      - path: ikHandle5
+        weight: 1
+      - path: ikHandle6
+        weight: 1
+      - path: ikHandle7
+        weight: 1
+      - path: ikHandle8
+        weight: 1
+      - path: Lower_Body
+        weight: 1
+      - path: lower_root
+        weight: 1
+      - path: lower_root/Crotch_armor
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint/L_foot_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint/R_foot_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/Tail_Joint
+        weight: 1
+      - path: Upper_Root
+        weight: 1
+      - path: Upper_Root/Spine_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Chest_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_arm_Armor1
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint/L_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Lower_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint/Head_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_arm_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint/Gun
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Upper_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Lower_chest_armor
+        weight: 1
+      - path: World
+        weight: 1
+      - path: World/L_Elbow_Nurb
+        weight: 1
+      - path: World/L_foot_nurb
+        weight: 1
+      - path: World/L_foot_nurb/L_foot_Nurb
+        weight: 1
+      - path: World/L_Knee_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/L_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/R_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Tail_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb/L_hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb/Head_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb/R_hand_Nurb
+        weight: 1
+      - path: World/R_Elbow_Nurb
+        weight: 1
+      - path: World/R_foot_nurb
+        weight: 1
+      - path: World/R_foot_nurb/L_foot_Nurb1
+        weight: 1
+      - path: World/R_Knee_Nurb
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Stumble and Recover
+      takeName: Take 001
+      firstFrame: 543
+      lastFrame: 600
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body_Top
+        weight: 1
+      - path: ikHandle5
+        weight: 1
+      - path: ikHandle6
+        weight: 1
+      - path: ikHandle7
+        weight: 1
+      - path: ikHandle8
+        weight: 1
+      - path: Lower_Body
+        weight: 1
+      - path: lower_root
+        weight: 1
+      - path: lower_root/Crotch_armor
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_Heel_Joint/L_foot_Joint
+        weight: 1
+      - path: lower_root/L_Upper_Hip_Joint/L_Lower_hip_Joint/L_Knee_Joint/L_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_Heel_Joint/R_foot_Joint
+        weight: 1
+      - path: lower_root/R_Upper_Hip_Joint/R_Lower_hip_Joint/R_Knee_Joint/R_LowerLeg_Armor
+        weight: 1
+      - path: lower_root/Tail_Joint
+        weight: 1
+      - path: Upper_Root
+        weight: 1
+      - path: Upper_Root/Spine_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Chest_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_arm_Armor1
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_Elbow_Joint/L_Wrist_Joint/L_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_armShoulder_Joint/L_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_shoulder_Joint/L_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/L_WingBase_Joint/L_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Lower_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Neck_Joint/Head_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_arm_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_Elbow_Joint/R_Wrist_Joint/R_Hand_Joint/Gun
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_armShoulder_Joint/R_shoulder_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_shoulder_Joint/R_Neck_armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_BottomWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_MidWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/R_WingBase_Joint/R_UpperWing_Joint
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Chest_Joint/Upper_Back_Armor
+        weight: 1
+      - path: Upper_Root/Spine_Joint/Lower_chest_armor
+        weight: 1
+      - path: World
+        weight: 1
+      - path: World/L_Elbow_Nurb
+        weight: 1
+      - path: World/L_foot_nurb
+        weight: 1
+      - path: World/L_foot_nurb/L_foot_Nurb
+        weight: 1
+      - path: World/L_Knee_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/L_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/R_Hip_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Tail_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_BackWings_Nurb/L_MidWing_nurb/L_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/L_Shoulder_Nurb/L_Arm_Nurb/L_Hand_Nurb/L_hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/Neck_nurb/Head_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_BottomWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_BackWings_Nurb/R_MidWing_nurb/R_UpperWing_nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb
+        weight: 1
+      - path: World/pelvis_USE__FOR_THE_BOTTOM/Upper_root/Spine_Nurb/Chest_Nurb/R_Shoulder_Nurb/R_Arm_Nurb/R_Hand_Nurb/R_hand_Nurb
+        weight: 1
+      - path: World/R_Elbow_Nurb
+        weight: 1
+      - path: World/R_foot_nurb
+        weight: 1
+      - path: World/R_foot_nurb/L_foot_Nurb1
+        weight: 1
+      - path: World/R_Knee_Nurb
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
