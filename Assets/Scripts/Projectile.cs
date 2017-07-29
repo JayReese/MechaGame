@@ -30,6 +30,8 @@ public class Projectile : MonoBehaviour
 
     protected void Awake()
     {
+        Debug.Log("shoot");
+
         LockOnHardnessValue = 8;
         Lifetime = 10f;
         _currentLockOnWindow = ProjectileLockOnWindow;
@@ -95,16 +97,6 @@ public class Projectile : MonoBehaviour
     //    Debug.Log("Bullet deactivated.");
     //    //transform.parent = WeaponOrigin.FindChild("Ammo Feeder");
     //}
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.GetComponent<DamageableObject>())
-        {
-            ReportResult(true);
-            Debug.Log(other.name + " hit");
-            Destroy(gameObject);
-        }
-    }
 
     protected virtual void CheckForHit()
     {

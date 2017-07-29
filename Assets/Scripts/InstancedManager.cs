@@ -10,7 +10,6 @@ public class InstancedManager : MonoBehaviour
     protected void Awake()
     {
         GlobalManagement = GameObject.FindGameObjectWithTag("Global").GetComponent<GameManager>();
-        //Debug.Log("called");
     }
 
     void Start()

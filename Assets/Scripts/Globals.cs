@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.IO;
 
 public enum BoostState { ON_GROUND, BOOSTING };
 
@@ -104,5 +105,10 @@ public static class Globals
     public static void PlaySoundClip(AudioSource source, int audioIndexToSearch, int audioClipRetrievedFromIndex, float volumeOfClip = 0.7f)
     {
         source.PlayOneShot(SoundManager.GetSoundClipForAllocation(audioIndexToSearch - 1, audioClipRetrievedFromIndex - 1), volumeOfClip);
+    }
+
+    public static string ReturnChosenDirectory(string path)
+    {
+        return string.Format("{0}/{1}", Directory.GetCurrentDirectory() + "\\Assets\\", path);
     }
 }
