@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Weapon_RocketLauncher : Weapon
+public class WeaponRocketLauncher : Weapon
 {
 
 	// Use this for initialization

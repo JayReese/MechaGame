@@ -324,7 +324,7 @@ public class Player : DamageableObject
     internal virtual void SetPlayerDefaults()
     {
         //Debug.Log(gameObject.name + " defaults reset.");
-
+        //TetherBodyPartsToParent();
         MaxFuel = 20;
         CurrentFuel = MaxFuel;
 
@@ -332,7 +332,7 @@ public class Player : DamageableObject
         IsPersistingObject = true;
         IsPlayer = true;
 
-        BodyPartsReference.gameObject.SetActive(false);
+       // BodyPartsReference.gameObject.SetActive(false);
 
         //if (RespawnTimer <= 0)
         //{

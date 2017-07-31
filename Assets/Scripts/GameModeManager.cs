@@ -13,25 +13,26 @@ public class GameModeManager : InstancedManager
 
     float RoundStartTime;
 
-    [SerializeField] RoundState CurrentRoundState;
+    [SerializeField]
+    RoundState CurrentRoundState;
 
     List<Transform> BuildingWaypoints, RegularWaypoints, AllPlayersInMatch;
 
     Transform SceneLighting;
 
     TeamStats[] Teams;
-   
+
     new void Awake()
     {
         base.Awake();
         _currentGameState = GameState.MAIN_GAME;
 
-        GlobalManagement.ReportEndOfScene(_currentGameState);
+        //GlobalManagement.ReportEndOfScene(_currentGameState);
 
         Debug.Log(_currentGameState);
 
         RoundStartTime = 3;
-        
+
         #region commented out - player tracking and instantiation.
         //bool unevenTeams = (players % numberOfTeams != 0);    //this variable can be used to determine if the teams cannot be evenly distributed
         ////determine how many controllers are hooked up
@@ -71,10 +72,10 @@ public class GameModeManager : InstancedManager
         {
             Teams[i] = new TeamStats(i + 1);
 
-            for(byte a = 0; a < AllPlayersInMatch.Count; a++)
+            for (byte a = 0; a < AllPlayersInMatch.Count; a++)
             {
                 if (AllPlayersInMatch[a].GetComponent<Player>().TeamNumber == Teams[i].TeamNumber)
-                    Teams[i].AddPlayerToTeam(AllPlayersInMatch[a].gameObject);    
+                    Teams[i].AddPlayerToTeam(AllPlayersInMatch[a].gameObject);
             }
         }
         #endregion
@@ -85,7 +86,7 @@ public class GameModeManager : InstancedManager
     }
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         GetWaypointTransformReferences();
         PerformStartOfRoundDuties();
@@ -109,7 +110,7 @@ public class GameModeManager : InstancedManager
     void Update()
     {
 #if UNITY_EDITOR
-        if(MatchCurrentlyInProgress()) PerformScoreDebugging();
+        if (MatchCurrentlyInProgress()) PerformScoreDebugging();
 #endif
         PerformMidRoundDuties();
     }
@@ -122,7 +123,7 @@ public class GameModeManager : InstancedManager
 
     private void PerformEndOfRoundDuties()
     {
-        if(CurrentRoundState == RoundState.ENDED && MatchCurrentlyInProgress())
+        if (CurrentRoundState == RoundState.ENDED && MatchCurrentlyInProgress())
         {
             Debug.Log("The round has ended.");
 
@@ -157,7 +158,7 @@ public class GameModeManager : InstancedManager
 
         foreach (GameObject g in go)
         {
-            if (g.name.Contains( "Building" ))
+            if (g.name.Contains("Building"))
                 BuildingWaypoints.Add(g.transform);
             else
                 RegularWaypoints.Add(g.transform);
@@ -168,7 +169,7 @@ public class GameModeManager : InstancedManager
     {
         for (int i = 0; i < AllPlayersInMatch.Count; i++)
         {
-            AllPlayersInMatch[i].GetComponent<Player>().PlayerID = i;        
+            AllPlayersInMatch[i].GetComponent<Player>().PlayerID = i;
 
             Vector2 viewRect = Globals.ReturnCorrectCameraRect(i);
             AllPlayersInMatch[i].GetComponentInChildren<Camera>().rect = new Rect(viewRect[0], viewRect[1], 0.5f, 0.5f);
@@ -220,7 +221,7 @@ public class GameModeManager : InstancedManager
     /// </summary>
     private void RepositionAllPlayersToRespectiveSpawns()
     {
-        for(byte i = 0; i < Teams.Length; i++)
+        for (byte i = 0; i < Teams.Length; i++)
         {
             foreach (GameObject p in Teams[i].TeamMembers)
                 ActivateSpawn(p);
@@ -244,10 +245,10 @@ public class GameModeManager : InstancedManager
 
     private void SetPlayerColors()
     {
-        for(byte i = 0; i < Teams.Length; i++)
+        for (byte i = 0; i < Teams.Length; i++)
         {
             foreach (GameObject p in Teams[i].TeamMembers)
-                if(p.name.Contains("Test")) p.GetComponent<Player>().ChangeBodyColor(Teams[i].TeamColor);
+                if (p.name.Contains("Test")) p.GetComponent<Player>().ChangeBodyColor(Teams[i].TeamColor);
         }
     }
     #endregion
@@ -256,11 +257,11 @@ public class GameModeManager : InstancedManager
     #region Methods called each round.
     private void BeginGame()
     {
-        if(CurrentRoundState == RoundState.IN_PROGRESS && MatchCurrentlyInProgress() || CurrentRoundState == RoundState.NOT_STARTED)
+        if (CurrentRoundState == RoundState.IN_PROGRESS && MatchCurrentlyInProgress() || CurrentRoundState == RoundState.NOT_STARTED)
         {
-            if (CurrentRoundState != RoundState.NOT_STARTED) AdvanceGameToCorrectRound(); 
+            if (CurrentRoundState != RoundState.NOT_STARTED) AdvanceGameToCorrectRound();
 
-            if(MatchCurrentlyInProgress())
+            if (MatchCurrentlyInProgress())
                 StartCoroutine(StartRound());
             else
                 PerformEndOfRoundDuties();
@@ -315,7 +316,7 @@ public class GameModeManager : InstancedManager
 
     private void ChangeControllableStateOfPlayers(InterfacingState state, Transform specificPlayer = null)
     {
-        if(specificPlayer != null)
+        if (specificPlayer != null)
         {
             specificPlayer.gameObject.SetActive(false);
             specificPlayer.gameObject.SetActive(true);
@@ -329,7 +330,7 @@ public class GameModeManager : InstancedManager
                 t.gameObject.SetActive(true);
                 t.GetComponent<Player>().CurrentInterfacingState = state;
             }
-                
+
         }
     }
 
@@ -337,8 +338,8 @@ public class GameModeManager : InstancedManager
     {
         DynamicGI.UpdateEnvironment();
         RenderSettings.skybox = Resources.Load(string.Format("Prefabs/Testing/Skyboxes/Round {0}", CurrentMatchProgress)) as Material;
-        
-        for(byte i = 0; i < SceneLighting.childCount; i++)
+
+        for (byte i = 0; i < SceneLighting.childCount; i++)
         {
             SceneLighting.GetChild(i).gameObject.SetActive(i + 1 == CurrentMatchProgress);
         }
@@ -348,7 +349,7 @@ public class GameModeManager : InstancedManager
     // Continually checks if any of the entities are dead.
     private void CheckIfAnyLiveEntitiesAreDead()
     {
-        for(byte i = 0; i < Teams.Length; i++)
+        for (byte i = 0; i < Teams.Length; i++)
         {
             if (Teams[i].AllPlayersDowned())
             {
@@ -362,7 +363,7 @@ public class GameModeManager : InstancedManager
     {
         string team = "0";
 
-        if(teamDowned == 0)
+        if (teamDowned == 0)
         {
             team = "2";
             Teams[1].AddToScore(1);
@@ -374,14 +375,14 @@ public class GameModeManager : InstancedManager
         }
     }
 
-    bool MatchCurrentlyInProgress() { return CurrentMatchProgress <= MatchNumber; }
+    public bool MatchCurrentlyInProgress() { return CurrentMatchProgress <= MatchNumber; }
 
 #if UNITY_EDITOR
     private void PerformScoreDebugging()
     {
         int teamThatScored = -1;
 
-        if(Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.P))
         {
             if (Input.GetKeyDown(KeyCode.K))
                 teamThatScored = 1;

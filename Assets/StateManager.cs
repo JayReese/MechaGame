@@ -30,6 +30,8 @@ public class StateManager : MonoBehaviour
     //Singleton... at least, the Unity version of one
     void Start()
     {
+        Debug.Log("hi");
+
         if (instance == null)
         {
             instance = this;
