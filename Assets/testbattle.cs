@@ -2,16 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class testbattle : InstancedManager
+public class testbattle : MonoBehaviour
 {
-    new void Awake()
-    {
-        base.Awake();
-        _currentGameState = GameState.MAIN_GAME;
-
-        GlobalManagement.ReportEndOfScene(_currentGameState);
-    }
-
 	// Use this for initialization
 	void Start ()
     {
@@ -21,6 +13,6 @@ public class testbattle : InstancedManager
 	// Update is called once per frame
 	void Update ()
     {
-		
+        transform.position += transform.forward * Time.deltaTime * 20f;
 	}
 }

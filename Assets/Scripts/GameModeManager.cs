@@ -40,9 +40,9 @@ public class GameModeManager : InstancedManager
         //CreatePlayers();
         #endregion
 
-        PopulateGlobalListOfPlayers();
-        SetUpPlayersForBattle();
-        SetUpTeams();
+            //PopulateGlobalListOfPlayers();
+            //SetUpPlayersForBattle();
+            //SetUpTeams();
 
         SceneLighting = GameObject.Find("Lighting Groups").transform;
 

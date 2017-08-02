@@ -1,30 +1,28 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BattlefieldUIManager : MonoBehaviour
 {
-    public enum MatchUIState { CHARACTER_SELECT, IN_GAME, RESULTS_SCREEN }
+    public enum MatchUIState { CHARACTER_SELECT = 1, ROUND_STARTING, RESULTS_SCREEN }
 
     [SerializeField]
-    MatchUIState _currentMatchUIState, _previousMatchUIState;
+    MatchUIState _currentMatchUIState;
+    [SerializeField]
+    bool _setUIToChange;
 
-    [SerializeField] GameObject[] InGameUIElements;
+    [SerializeField] GameObject GlobalUIElement;
 
     public MatchUIState CurrentMatchUIState
     {
         get { return _currentMatchUIState; }
-        set
-        {
-            _previousMatchUIState = _currentMatchUIState;
-            _currentMatchUIState = value;
-        }
     }
 
     // Use this for initialization
     void Start ()
     {
-        InGameUIElements = GameObject.FindGameObjectsWithTag("Game UI");
+        GlobalUIElement = GameObject.FindGameObjectWithTag("Game UI");
         _currentMatchUIState = MatchUIState.CHARACTER_SELECT;
 	}
 	
@@ -35,22 +33,41 @@ public class BattlefieldUIManager : MonoBehaviour
         if (GetComponent<GameModeManager>().MatchCurrentlyInProgress()) PerformMatchUIStateDebugging();
 #endif
 
-        ShiftGameUI();
-    }
-
-    public void ShiftGameUI()
-    {
-        if (_currentMatchUIState != _previousMatchUIState)
-            Debug.Log("UI manager changed");
+        //ShiftGameUI();
     }
 
 #if UNITY_EDITOR
     private void PerformMatchUIStateDebugging()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-            _currentMatchUIState = (MatchUIState)(((int)_currentMatchUIState) + 1);
+        bool buttonPress = Input.GetKeyDown(KeyCode.T);
 
-        Debug.Log(CurrentMatchUIState);
+        if (buttonPress && Enum.IsDefined(typeof(MatchUIState), ((int)_currentMatchUIState) + 1))
+        {
+            ActivateCorrectGlobalUIElement(((int)_currentMatchUIState) + 1);
+            _currentMatchUIState = (MatchUIState)(((int)_currentMatchUIState) + 1);
+        }
     }
 #endif
+
+    private void ChangeGlobalUIState()
+    {
+        if (Enum.IsDefined(typeof(MatchUIState), ((int)_currentMatchUIState) + 1))
+        {
+            ActivateCorrectGlobalUIElement(((int)_currentMatchUIState) + 1);
+            _currentMatchUIState = (MatchUIState)(((int)_currentMatchUIState) + 1);
+        }
+    }
+
+    private void ActivateCorrectGlobalUIElement(int uiToActivate, bool deactivateGlobalUIElements = false)
+    {
+        if(deactivateGlobalUIElements)
+        {
+            GlobalUIElement.SetActive(true);
+
+            for (int i = 0; i < GlobalUIElement.transform.childCount; i++)
+                GlobalUIElement.transform.GetChild(i).gameObject.SetActive(i == uiToActivate);
+        }
+        else
+            GlobalUIElement.SetActive(false);
+    }
 }
