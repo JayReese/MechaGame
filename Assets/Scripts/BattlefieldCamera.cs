@@ -14,8 +14,6 @@ public class BattlefieldCamera : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Debug.Log("Yes");
-
         _centerOfBattlefield = GameObject.Find("Level Center").transform;
     }
 

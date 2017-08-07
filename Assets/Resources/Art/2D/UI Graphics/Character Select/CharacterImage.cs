@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,9 +30,10 @@ public class CharacterImage : MonoBehaviour
 
     public Team team;
 
-    public State startingState; 
+    public State startingState;
 
-
+    [SerializeField]
+    float _movementScalar;
 
     int movementValue;
 
@@ -68,37 +70,29 @@ public class CharacterImage : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        ApplyMovementScalar();
         FloatingMotion();
+
         if(testButton)
         {
             LockinChoice();
         }
     }
 
+    private void ApplyMovementScalar()
+    {
+        _movementScalar = currentState == State.GoingUp ? 1 : -1;
+    }
+
     private void FloatingMotion()
     {
-        if (currentState == State.GoingUp)
+        movementValue--;
+        transform.Translate(0, _movementScalar * movementSpeed * Time.deltaTime, 0);
+
+        if (movementValue <= 0)
         {
-            movementValue--;
-            transform.Translate(0, movementSpeed * Time.deltaTime, 0);
-
-            if (movementValue <= 0)
-            {
-                movementValue = 100;
-                currentState = State.GoingDown;
-            }
-        }
-
-        if (currentState == State.GoingDown)
-        {
-            movementValue--;
-            transform.Translate(0, -1 * movementSpeed * Time.deltaTime, 0);
-
-            if (movementValue <= 0)
-            {
-                movementValue = 100;
-                currentState = State.GoingUp;
-            }
+            movementValue = 100;
+            currentState = currentState == State.GoingUp ? State.GoingDown : State.GoingUp;
         }
     }
 }

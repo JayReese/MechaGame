@@ -109,6 +109,6 @@ public static class Globals
 
     public static string ReturnChosenDirectory(string path)
     {
-        return string.Format("{0}/{1}", Directory.GetCurrentDirectory() + "\\Assets\\", path);
+        return string.Format("{0}{1}", Directory.GetCurrentDirectory() + @"\Assets", path);
     }
 }

@@ -4,9 +4,10 @@ using System;
 
 public class PlayerInputScheme : MonoBehaviour
 {
-    [SerializeField]
-    bool UsingControllers;
-    public int _currentPlayerID; 
+
+    int _currentPlayerID;
+    public int CurrentPlayerID { get; private set; }
+
     public float HorizontalLook { get; private set; }
     public float LookAxis { get; private set; }
 
